@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Paymentdemo</title>
+  <link rel="stylesheet" media="screen,projection,tv" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=a91571e" />
+  <link href="http://getbootstrap.com/docs-assets/css/docs.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
+<script src="http://codemirror.net/lib/codemirror.js"></script>
+<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
+<script src="http://codemirror.net/mode/javascript/javascript.js"></script>
+<script src="http://getbootstrap.com/docs-assets/js/holder.js"></script>
+
+<script src="http://getbootstrap.com//docs-assets/js/application.js"></script>
+  <link data-turbolinks-track="true" href="/assets/application-c3f510c62a9b8876f870fafe42e277c7.css" media="all" rel="stylesheet" />
+  <script data-turbolinks-track="true" src="/assets/application-4f2e06aa615cc23c862b89dc2211bcdd.js"></script>
+  <meta content="authenticity_token" name="csrf-param" />
+<meta content="Gd5M72prVwme03XUeg4WsTj1nY7oIrCTFhq4DJt68NI=" name="csrf-token" />
+</head>
+<body>
+
+<!-- temporary beta notice -->
+  <div class="redesign-beta-notice"><div class="center"><bdi>
+    <strong>Welcome to the new, improved Authorize.Net API Docs</strong> We hope you like it! If you have any suggestions or comments, <a href="/en-US/docs/Project:Feedback">please share!</a>
+  </bdi></div>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="../" class="navbar-brand">Authorize</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="../getting-started">Getting started</a>
+        </li>
+        <li class="active">
+          <a href="../components">API</a>
+        </li>
+        <li>
+          <a href="../javascript">Client Libraries</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a href="../about">Back to Developer Center</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+<div class="container bs-docs-container">
+  <div class="row">
+    <div class="col-md-3">
+        <div class="bs-sidebar hidden-print" role="complementary">
+          <ul class="nav bs-sidenav">
+		    {{#each this}}
+            <li>
+			    <a href="#{{this.API-ID}}">{{this.APIName}}</a>
+				<ul class="nav">
+                {{#each methods}}
+				    <li><a href="#{{this.id}}">{{this.title}}</a></li>
+                {{/each}}
+				</ul>
+            </li>
+           {{/each}}
+          </ul>
+        </div>
+    </div>
+
+
+<div class="col-md-9" role="main">
+
+<!-- Dropdowns
+  ================================================== -->
+  {{#each this}}
+  <div class="bs-docs-section">
+    <div class="page-header">
+      <h1 id="transactions">{{this.APIName}}</h1>
+    </div>
+    <p class="lead">{{this.APIUsage}}</p>
+    {{#each methods}}
+    <h3 id="{{this.id}}">{{this.title}}</h3>
+    <p>{{this.usage}}</p>
+    <div class="bs-example bs-example-tabs">
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab">Fields</a></li>
+        <li><a id="createTransactionTryIt" href="#profile" data-toggle="tab">Try it</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+    <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Value</th>
+            <th>Format</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each request.children}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.value}}</td>
+            <td>{{this.format}}</td>
+            <td>{{this.notes}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+        </div>
+        <div class="tab-pane fade" id="profile">
+           <form method="post" action="">
+           <p>
+              <textarea id="txtReqXml" name="txtReqXml" cols="80" rows="6" style="">
+              {{this.request.sample}}
+              </textarea>
+           </p>
+    <p>
+      <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
+    </p>
+    <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
+    <p>
+      <textarea id="txtRespXml" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
+    </p>
+  </form>
+
+        </div>
+      </div>
+  </div>
+  {{/each}}
+</div>
+{{/each}}
+ 
+
+
+
+  </div>
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css">
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
+
+<script language="javascript" type="text/javascript">
+ var myReqCodeMirror = CodeMirror.fromTextArea(txtReqXml, {"mode": "xml"});
+ 
+
+// <!CDATA[
+var requestEditor, responseEditor;
+
+$(document).ready(function() {
+        requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml'), {
+                mode: 'xml',
+                lineNumbers: true
+        });
+
+        responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml'), {
+                mode: 'xml',
+                lineNumbers: true
+        });
+
+        $('#createTransactionTryIt').click(function() {
+                setTimeout(redrawEditors, 250);
+        });
+});
+
+function redrawEditors() {
+        requestEditor.refresh();
+        responseEditor.refresh();
+}
+
+function XHConn()
+{
+  var xmlhttp, bComplete = false;
+  try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); }
+  catch (e) { try { xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
+  catch (e) { try { xmlhttp = new XMLHttpRequest(); }
+  catch (e) { xmlhttp = false; }}}
+  if (!xmlhttp) return null;
+
+  this.connect = function(sURL, sPostData, fnDone)
+  {
+    if (!xmlhttp) return false;
+    bComplete = false;
+
+    try {
+      xmlhttp.open("POST", sURL, true);
+      xmlhttp.setRequestHeader("Method", "POST "+sURL+" HTTP/1.1");
+      xmlhttp.setRequestHeader("Content-Type", "text/xml");
+      xmlhttp.onreadystatechange = function(){
+        if (xmlhttp.readyState == 4 && !bComplete)
+        {
+          bComplete = true;
+          fnDone(xmlhttp);
+        }
+      };
+      xmlhttp.send(sPostData);
+    }
+    catch(z) {
+      alert(z);
+      return false;
+    }
+    return true;
+  };
+  return this;
+}
+
+var g_xc = new XHConn();
+
+function btnSend_onclick() {
+
+  document.getElementById("btnSend").disabled = true;
+  document.getElementById("txtRespXml").innerHTML = "";
+  document.getElementById("spnStatusCode").innerHTML = "";
+  var fnWhenDone = function (oXML) {
+    if (oXML.status && oXML.status != "200") {
+      document.getElementById("spnStatusCode").innerHTML = "HTTP status code: " + oXML.status.toString().replace(/</g, "&lt;");
+    }
+    var txt = oXML.responseText;
+    txt = txt.replace(/></g, "> <");
+    txt = txt.replace(/</g, "&lt;");
+    txt = txt.replace(/>/g, "&gt;");
+     // Temp of course
+     txt = "&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;createTransactionResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt; &lt;refId&gt;123456&lt;/refId&gt; &lt;messages&gt; &lt;resultCode&gt;Ok&lt;/resultCode&gt; &lt;message&gt; &lt;code&gt;I00001&lt;/code&gt; &lt;text&gt;Successful.&lt;/text&gt; &lt;/message&gt; &lt;/messages&gt; &lt;transactionResponse&gt; &lt;responseCode&gt;1&lt;/responseCode&gt; &lt;authCode&gt;000000&lt;/authCode&gt; &lt;avsResultCode&gt;P&lt;/avsResultCode&gt; &lt;cvvResultCode /&gt; &lt;cavvResultCode /&gt; &lt;transId&gt;0&lt;/transId&gt; &lt;refTransID /&gt; &lt;transHash&gt;B363D5C80A9195B54FD915C7D9B41F67&lt;/transHash&gt; &lt;testRequest&gt;1&lt;/testRequest&gt; &lt;accountNumber&gt;XXXX0015&lt;/accountNumber&gt; &lt;accountType&gt;MasterCard&lt;/accountType&gt; &lt;messages&gt; &lt;message&gt; &lt;code&gt;1&lt;/code&gt; &lt;description&gt;This transaction has been approved.&lt;/description&gt; &lt;/message&gt; &lt;/messages&gt; &lt;/transactionResponse&gt; &lt;/createTransactionResponse&gt;"
+
+    document.getElementById("txtRespXml").innerHTML = txt;
+    document.getElementById("btnSend").disabled = false;
+    var myRespCodeMirror = CodeMirror.fromTextArea(txtRespXml, {"mode": "xml"});
+  };
+  g_xc.connect("https://apitest.authorize.net/xml/v1/request.api", document.getElementById("txtReqXml").value, fnWhenDone);
+}
+
+function selUrls_onChange(obj) {
+  if (document.getElementById("selUrls").value) {
+    document.getElementById("txtUrl").value = document.getElementById("selUrls").value;
+  }
+}
+
+// ]]>
+</script>
+
+</body>

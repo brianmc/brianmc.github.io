@@ -1,0 +1,157 @@
+[
+        {
+                "APIName" : "Payment Transactions",
+                "APIUsage" : "This is the big one, money man!!",
+				"API-ID" : "transactions",
+                "methods" : [
+                       {
+    "title": "Create Transaction",
+    "usage": "This is great",
+	"id": "create-transaction",
+    "request": {
+        "name": "CreateTransactionRequest",
+        "children": [
+            {
+                "name": "amount",
+                "value": "amount of the transaction",
+                "format": "decimal",
+                "required": true,
+                "notes": ""
+            },
+            {
+                "name": "paymentdata",
+                "value": "element",
+                "format": "",
+                "required": true,
+                "notes": "",
+                "children": [
+                    {
+                        "name": "cardnumber",
+                        "value": "PAN Data",
+                        "format": "19 digit",
+                        "required": true,
+                        "notes": ""
+                    }
+                ]
+            }
+        ],
+        "sample": " <ARBCreateSubscription xmlns=\"https://api.authorize.net/soap/v1/\">\n      <merchantAuthentication>\n        <name>string</name>\n        <transactionKey>string</transactionKey>\n      </merchantAuthentication>\n      <subscription>\n        <name>string</name>\n        <paymentSchedule>\n          <interval>\n            <length>short</length>\n            <unit>days or months</unit>\n          </interval>\n          <startDate>date</startDate>\n          <totalOccurrences>short</totalOccurrences>\n          <trialOccurrences>short</trialOccurrences>\n        </paymentSchedule>\n        <amount>decimal</amount>\n        <trialAmount>decimal</trialAmount>\n        <payment />\n        <order>\n          <invoiceNumber>string</invoiceNumber>\n          <description>string</description>\n        </order>\n        <customer>\n          <type>individual or business</type>\n          <id>string</id>\n          <email>string</email>\n          <phoneNumber>string</phoneNumber>\n          <faxNumber>string</faxNumber>\n          <driversLicense>\n            <number>string</number>\n            <dateOfBirth>string</dateOfBirth>\n          </driversLicense>\n          <taxId>string</taxId>\n        </customer>\n        <billTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </billTo>\n        <shipTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </shipTo>\n      </subscription>\n    </ARBCreateSubscription>"
+    },
+    "response": {
+        "name": "CreateTransactionResponse",
+        "children": [
+            {
+                "name": "authcode",
+                "value": "authorization code",
+                "format": "",
+                "required": false,
+                "notes": "this is the real deal"
+            }
+        ],
+        "sample": "<ARBCreateSubscriptionResponse xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n <refId>Sample</refId>\n <messages>\n <resultCode>Ok</resultCode>\n <message>\n <code>I00001</code>\n <text>Successful.</text>\n </message>\n </messages>\n <subscriptionId>100748</subscriptionId>\n</ARBCreateSubscriptionResponse>"
+    }
+}
+                ]
+        },
+        {
+            "APIName" : "Recurring Billing",
+            "APIUsage" : "The is really the one, mo money man!!!",
+			"API-ID" : "subscriptions",
+            "methods" : [
+                   {
+    "title": "Create Subscription",
+    "usage": "This is great",
+	"id": "create-subscription",
+    "request": {
+        "name": "CreateTransactionRequest",
+        "children": [
+            {
+                "name": "amount",
+                "value": "amount of the transaction",
+                "format": "decimal",
+                "required": true,
+                "notes": ""
+            },
+            {
+                "name": "paymentdata",
+                "value": "element",
+                "format": "",
+                "required": true,
+                "notes": "",
+                "children": [
+                    {
+                        "name": "cardnumber",
+                        "value": "PAN Data",
+                        "format": "19 digit",
+                        "required": true,
+                        "notes": ""
+                    }
+                ]
+            }
+        ],
+        "sample": " <ARBCreateSubscription xmlns=\"https://api.authorize.net/soap/v1/\">\n      <merchantAuthentication>\n        <name>string</name>\n        <transactionKey>string</transactionKey>\n      </merchantAuthentication>\n      <subscription>\n        <name>string</name>\n        <paymentSchedule>\n          <interval>\n            <length>short</length>\n            <unit>days or months</unit>\n          </interval>\n          <startDate>date</startDate>\n          <totalOccurrences>short</totalOccurrences>\n          <trialOccurrences>short</trialOccurrences>\n        </paymentSchedule>\n        <amount>decimal</amount>\n        <trialAmount>decimal</trialAmount>\n        <payment />\n        <order>\n          <invoiceNumber>string</invoiceNumber>\n          <description>string</description>\n        </order>\n        <customer>\n          <type>individual or business</type>\n          <id>string</id>\n          <email>string</email>\n          <phoneNumber>string</phoneNumber>\n          <faxNumber>string</faxNumber>\n          <driversLicense>\n            <number>string</number>\n            <dateOfBirth>string</dateOfBirth>\n          </driversLicense>\n          <taxId>string</taxId>\n        </customer>\n        <billTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </billTo>\n        <shipTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </shipTo>\n      </subscription>\n    </ARBCreateSubscription>"
+    },
+    "response": {
+        "name": "CreateTransactionResponse",
+        "children": [
+            {
+                "name": "authcode",
+                "value": "authorization code",
+                "format": "",
+                "required": false,
+                "notes": "this is the real deal"
+            }
+        ],
+        "sample": "<ARBCreateSubscriptionResponse xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n <refId>Sample</refId>\n <messages>\n <resultCode>Ok</resultCode>\n <message>\n <code>I00001</code>\n <text>Successful.</text>\n </message>\n </messages>\n <subscriptionId>100748</subscriptionId>\n</ARBCreateSubscriptionResponse>"
+    }
+},
+                    {
+    "title": "Delete Subscription",
+    "usage": "This is great",
+	"id": "delete-subscription",
+    "request": {
+        "name": "CreateTransactionRequest",
+        "children": [
+            {
+                "name": "amount",
+                "value": "amount of the transaction",
+                "format": "decimal",
+                "required": true,
+                "notes": ""
+            },
+            {
+                "name": "paymentdata",
+                "value": "element",
+                "format": "",
+                "required": true,
+                "notes": "",
+                "children": [
+                    {
+                        "name": "cardnumber",
+                        "value": "PAN Data",
+                        "format": "19 digit",
+                        "required": true,
+                        "notes": ""
+                    }
+                ]
+            }
+        ],
+        "sample": " <ARBCreateSubscription xmlns=\"https://api.authorize.net/soap/v1/\">\n      <merchantAuthentication>\n        <name>string</name>\n        <transactionKey>string</transactionKey>\n      </merchantAuthentication>\n      <subscription>\n        <name>string</name>\n        <paymentSchedule>\n          <interval>\n            <length>short</length>\n            <unit>days or months</unit>\n          </interval>\n          <startDate>date</startDate>\n          <totalOccurrences>short</totalOccurrences>\n          <trialOccurrences>short</trialOccurrences>\n        </paymentSchedule>\n        <amount>decimal</amount>\n        <trialAmount>decimal</trialAmount>\n        <payment />\n        <order>\n          <invoiceNumber>string</invoiceNumber>\n          <description>string</description>\n        </order>\n        <customer>\n          <type>individual or business</type>\n          <id>string</id>\n          <email>string</email>\n          <phoneNumber>string</phoneNumber>\n          <faxNumber>string</faxNumber>\n          <driversLicense>\n            <number>string</number>\n            <dateOfBirth>string</dateOfBirth>\n          </driversLicense>\n          <taxId>string</taxId>\n        </customer>\n        <billTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </billTo>\n        <shipTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </shipTo>\n      </subscription>\n    </ARBCreateSubscription>"
+    },
+    "response": {
+        "name": "CreateTransactionResponse",
+        "children": [
+            {
+                "name": "authcode",
+                "value": "authorization code",
+                "format": "",
+                "required": false,
+                "notes": "this is the real deal"
+            }
+        ],
+        "sample": "<ARBCreateSubscriptionResponse xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n <refId>Sample</refId>\n <messages>\n <resultCode>Ok</resultCode>\n <message>\n <code>I00001</code>\n <text>Successful.</text>\n </message>\n </messages>\n <subscriptionId>100748</subscriptionId>\n</ARBCreateSubscriptionResponse>"
+    }
+}
+            ]
+        }
+    ]
