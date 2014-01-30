@@ -94,11 +94,12 @@
     <p>{{this.usage}}</p>
     <div class="bs-example bs-example-tabs">
       <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#home" data-toggle="tab">Fields</a></li>
-        <li><a id="createTransactionTryIt" href="#profile" data-toggle="tab">Try it</a></li>
+        <li class="active"><a href="#homereq-{{this.id}}" data-toggle="tab">Request</a></li>
+		<li><a href="#homeresp-{{this.id}}" data-toggle="tab">Response</a></li>
+        <li><a id="createTransactionTryIt" href="#console-{{this.id}}" data-toggle="tab">Try it</a></li>
       </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="home">
+        <div class="tab-pane fade in active" id="homereq-{{this.id}}">
     <table class="table table-condensed">
         <thead>
           <tr>
@@ -136,10 +137,48 @@
         </tbody>
       </table>
         </div>
-        <div class="tab-pane fade" id="profile">
+		 <div class="tab-pane fade in" id="homeresp-{{this.id}}">
+    <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Value</th>
+            <th>Format</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each response.children}}
+          <tr>
+            <td>{{this.name}}</td>
+            <td>{{this.value}}</td>
+            <td>{{this.format}}</td>
+            <td>{{this.notes}}</td>
+          </tr>
+		  {{#each this.children}}
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
+            <td>{{this.value}}</td>
+            <td>{{this.format}}</td>
+            <td>{{this.notes}}</td>
+          </tr>
+		  {{#each this.children}}
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
+            <td>{{this.value}}</td>
+            <td>{{this.format}}</td>
+            <td>{{this.notes}}</td>
+          </tr>
+		  {{/each}}
+		  {{/each}}
+          {{/each}}
+        </tbody>
+      </table>
+        </div>
+        <div class="tab-pane fade" id="console-{{this.id}}">
            <form method="post" action="">
            <p>
-              <textarea id="txtReqXml" name="txtReqXml" cols="80" rows="6" style="">
+              <textarea id="txtReqXml-{{this.id}}" name="txtReqXml" cols="80" rows="6" style="">
               {{this.request.sample}}
               </textarea>
            </p>
@@ -148,7 +187,7 @@
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
     <p>
-      <textarea id="txtRespXml" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
+      <textarea id="txtRespXml-{{this.id}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
     </p>
   </form>
 
@@ -178,12 +217,12 @@
 var requestEditor, responseEditor;
 
 $(document).ready(function() {
-        requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml'), {
+        requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-subscription'), {
                 mode: 'xml',
                 lineNumbers: true
         });
 
-        responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml'), {
+        responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-subscription'), {
                 mode: 'xml',
                 lineNumbers: true
         });
@@ -239,7 +278,7 @@ var g_xc = new XHConn();
 function btnSend_onclick() {
 
   document.getElementById("btnSend").disabled = true;
-  document.getElementById("txtRespXml").innerHTML = "";
+  document.getElementById("txtRespXml-create-subscription").innerHTML = "";
   document.getElementById("spnStatusCode").innerHTML = "";
   var fnWhenDone = function (oXML) {
     if (oXML.status && oXML.status != "200") {
@@ -252,9 +291,9 @@ function btnSend_onclick() {
      // Temp of course
      txt = "&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;createTransactionResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt; &lt;refId&gt;123456&lt;/refId&gt; &lt;messages&gt; &lt;resultCode&gt;Ok&lt;/resultCode&gt; &lt;message&gt; &lt;code&gt;I00001&lt;/code&gt; &lt;text&gt;Successful.&lt;/text&gt; &lt;/message&gt; &lt;/messages&gt; &lt;transactionResponse&gt; &lt;responseCode&gt;1&lt;/responseCode&gt; &lt;authCode&gt;000000&lt;/authCode&gt; &lt;avsResultCode&gt;P&lt;/avsResultCode&gt; &lt;cvvResultCode /&gt; &lt;cavvResultCode /&gt; &lt;transId&gt;0&lt;/transId&gt; &lt;refTransID /&gt; &lt;transHash&gt;B363D5C80A9195B54FD915C7D9B41F67&lt;/transHash&gt; &lt;testRequest&gt;1&lt;/testRequest&gt; &lt;accountNumber&gt;XXXX0015&lt;/accountNumber&gt; &lt;accountType&gt;MasterCard&lt;/accountType&gt; &lt;messages&gt; &lt;message&gt; &lt;code&gt;1&lt;/code&gt; &lt;description&gt;This transaction has been approved.&lt;/description&gt; &lt;/message&gt; &lt;/messages&gt; &lt;/transactionResponse&gt; &lt;/createTransactionResponse&gt;"
 
-    document.getElementById("txtRespXml").innerHTML = txt;
+    document.getElementById("txtRespXml-create-subscription").innerHTML = txt;
     document.getElementById("btnSend").disabled = false;
-    var myRespCodeMirror = CodeMirror.fromTextArea(txtRespXml, {"mode": "xml"});
+    var myRespCodeMirror = CodeMirror.fromTextArea(txtRespXml-create-subscription, {"mode": "xml"});
   };
   g_xc.connect("https://apitest.authorize.net/xml/v1/request.api", document.getElementById("txtReqXml").value, fnWhenDone);
 }
