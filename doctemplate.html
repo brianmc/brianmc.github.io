@@ -116,6 +116,22 @@
             <td>{{this.format}}</td>
             <td>{{this.notes}}</td>
           </tr>
+		  {{#each this.children}}
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
+            <td>{{this.value}}</td>
+            <td>{{this.format}}</td>
+            <td>{{this.notes}}</td>
+          </tr>
+		  {{#each this.children}}
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
+            <td>{{this.value}}</td>
+            <td>{{this.format}}</td>
+            <td>{{this.notes}}</td>
+          </tr>
+		  {{/each}}
+		  {{/each}}
           {{/each}}
         </tbody>
       </table>

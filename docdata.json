@@ -33,6 +33,31 @@
                         "notes": ""
                     }
                 ]
+            },
+			{
+                "name": "3-level-nesting",
+                "value": "element",
+                "format": "",
+                "required": true,
+                "notes": "",
+                "children": [
+                    {
+                        "name": "address",
+                        "value": "element",
+                        "format": "19 digit",
+                        "required": true,
+                        "notes": "",
+						"children": [
+							{
+								"name": "housenumber",
+								"value": "Number of your house",
+								"format": "19 digit",
+								"required": true,
+								"notes": "tetstststst"
+							}
+						]
+                    }
+                ]
             }
         ],
         "sample": " <ARBCreateSubscription xmlns=\"https://api.authorize.net/soap/v1/\">\n      <merchantAuthentication>\n        <name>string</name>\n        <transactionKey>string</transactionKey>\n      </merchantAuthentication>\n      <subscription>\n        <name>string</name>\n        <paymentSchedule>\n          <interval>\n            <length>short</length>\n            <unit>days or months</unit>\n          </interval>\n          <startDate>date</startDate>\n          <totalOccurrences>short</totalOccurrences>\n          <trialOccurrences>short</trialOccurrences>\n        </paymentSchedule>\n        <amount>decimal</amount>\n        <trialAmount>decimal</trialAmount>\n        <payment />\n        <order>\n          <invoiceNumber>string</invoiceNumber>\n          <description>string</description>\n        </order>\n        <customer>\n          <type>individual or business</type>\n          <id>string</id>\n          <email>string</email>\n          <phoneNumber>string</phoneNumber>\n          <faxNumber>string</faxNumber>\n          <driversLicense>\n            <number>string</number>\n            <dateOfBirth>string</dateOfBirth>\n          </driversLicense>\n          <taxId>string</taxId>\n        </customer>\n        <billTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </billTo>\n        <shipTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </shipTo>\n      </subscription>\n    </ARBCreateSubscription>"
