@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -26,7 +25,7 @@ function XHConn()
   {
     if (!xmlhttp) return false;
     bComplete = false;
-
+    sURL = "https://apitest.authorize.net/xml/v1/request.api";
     try {
       xmlhttp.open("POST", sURL, true);
       xmlhttp.setRequestHeader("Method", "POST "+sURL+" HTTP/1.1");
