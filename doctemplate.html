@@ -66,10 +66,10 @@
           <ul class="nav bs-sidenav">
 		    {{#each this}}
             <li>
-			    <a href="#{{this.API-ID}}">{{this.APIName}}</a>
+			    <a href="#{{idFromTitle this.APIName}}">{{this.APIName}}</a>
 				<ul class="nav">
                 {{#each methods}}
-				    <li><a href="#{{this.id}}">{{this.title}}</a></li>
+				    <li><a href="#{{idFromTitle this.title}}">{{this.title}}</a></li>
                 {{/each}}
 				</ul>
             </li>
@@ -81,55 +81,48 @@
 
 <div class="col-md-9" role="main">
 
-<!-- Dropdowns
-  ================================================== -->
   {{#each this}}
   <div class="bs-docs-section">
     <div class="page-header">
-      <h1 id="transactions">{{this.APIName}}</h1>
+      <h1 id="{{idFromTitle this.APIName}}">{{this.APIName}}</h1>
     </div>
-    <p class="lead">{{this.APIUsage}}</p>
     {{#each methods}}
-    <h3 id="{{this.id}}">{{this.title}}</h3>
+    <h3 id="{{idFromTitle this.title}}">{{this.title}}</h3>
     <p>{{this.usage}}</p>
     <div class="bs-example bs-example-tabs">
       <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#homereq-{{this.id}}" data-toggle="tab">Request</a></li>
-		<li><a href="#homeresp-{{this.id}}" data-toggle="tab">Response</a></li>
-        <li><a id="createTransactionTryIt" href="#console-{{this.id}}" data-toggle="tab">Try it</a></li>
+        <li class="active"><a href="#homereq-{{idFromTitle this.title}}" data-toggle="tab">Request</a></li>
+		<li><a href="#homeresp-{{idFromTitle this.title}}" data-toggle="tab">Response</a></li>
+        <li><a id="{{idFromTitle this.title}}TryIt" href="#console-{{idFromTitle this.title}}" data-toggle="tab">Try it</a></li>
       </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="homereq-{{this.id}}">
+        <div class="tab-pane fade in active" id="homereq-{{idFromTitle this.title}}">
     <table class="table table-condensed">
         <thead>
           <tr>
             <th>Element</th>
-            <th>Value</th>
+            <th>Description</th>
             <th>Format</th>
-            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
           {{#each request.children}}
           <tr>
             <td>{{this.name}}</td>
-            <td>{{this.value}}</td>
+            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
             <td>{{this.format}}</td>
-            <td>{{this.notes}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
-            <td>{{this.value}}</td>
+            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
             <td>{{this.format}}</td>
-            <td>{{this.notes}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
-            <td>{{this.value}}</td>
+            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
             <td>{{this.format}}</td>
-            <td>{{this.notes}}</td>
           </tr>
 		  {{/each}}
 		  {{/each}}
@@ -137,37 +130,33 @@
         </tbody>
       </table>
         </div>
-		 <div class="tab-pane fade in" id="homeresp-{{this.id}}">
+		 <div class="tab-pane fade in" id="homeresp-{{idFromTitle this.title}}">
     <table class="table table-condensed">
         <thead>
           <tr>
             <th>Element</th>
-            <th>Value</th>
+            <th>Description</th>
             <th>Format</th>
-            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
           {{#each response.children}}
           <tr>
             <td>{{this.name}}</td>
-            <td>{{this.value}}</td>
+            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
             <td>{{this.format}}</td>
-            <td>{{this.notes}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
-            <td>{{this.value}}</td>
+            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
             <td>{{this.format}}</td>
-            <td>{{this.notes}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
-            <td>{{this.value}}</td>
+            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
             <td>{{this.format}}</td>
-            <td>{{this.notes}}</td>
           </tr>
 		  {{/each}}
 		  {{/each}}
@@ -175,10 +164,10 @@
         </tbody>
       </table>
         </div>
-        <div class="tab-pane fade" id="console-{{this.id}}">
+        <div class="tab-pane fade" id="console-{{idFromTitle this.title}}">
            <form method="post" action="">
            <p>
-              <textarea id="txtReqXml-{{this.id}}" name="txtReqXml" cols="80" rows="6" style="">
+              <textarea id="txtReqXml-{{idFromTitle this.title}}" name="txtReqXml" cols="80" rows="6" style="">
               {{this.request.sample}}
               </textarea>
            </p>
@@ -187,7 +176,7 @@
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
     <p>
-      <textarea id="txtRespXml-{{this.id}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
+      <textarea id="txtRespXml-{{idFromTitle this.title}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
     </p>
   </form>
 
@@ -217,12 +206,12 @@
 var requestEditor, responseEditor;
 
 $(document).ready(function() {
-        requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-subscription'), {
+        requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
                 mode: 'xml',
                 lineNumbers: true
         });
 
-        responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-subscription'), {
+        responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-a-subscription'), {
                 mode: 'xml',
                 lineNumbers: true
         });

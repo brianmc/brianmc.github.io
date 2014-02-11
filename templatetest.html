@@ -66,21 +66,16 @@
           <ul class="nav bs-sidenav">
 		    
             <li>
-			    <a href="#transactions">Payment Transactions</a>
+			    <a href="#recurring-billing">Recurring Billing</a>
 				<ul class="nav">
                 
-				    <li><a href="#create-transaction">Create Transaction</a></li>
+				    <li><a href="#create-a-subscription">Create a Subscription</a></li>
                 
-				</ul>
-            </li>
-           
-            <li>
-			    <a href="#subscriptions">Recurring Billing</a>
-				<ul class="nav">
+				    <li><a href="#get-subscription-status">Get Subscription Status</a></li>
                 
-				    <li><a href="#create-subscription">Create a Subscription</a></li>
+				    <li><a href="#update-a-subscription">Update a Subscription</a></li>
                 
-				    <li><a href="#delete-subscription">Delete Subscription</a></li>
+				    <li><a href="#cancel-a-subscription">Cancel a Subscription</a></li>
                 
 				</ul>
             </li>
@@ -92,523 +87,290 @@
 
 <div class="col-md-9" role="main">
 
-<!-- Dropdowns
-  ================================================== -->
   
   <div class="bs-docs-section">
     <div class="page-header">
-      <h1 id="transactions">Payment Transactions</h1>
+      <h1 id="recurring-billing">Recurring Billing</h1>
     </div>
-    <p class="lead">This is the big one, money man!!</p>
     
-    <h3 id="create-transaction">Create Transaction</h3>
-    <p>This is great</p>
+    <h3 id="create-a-subscription">Create a Subscription</h3>
+    <p>For subscriptions with a monthly interval, whose payments begin on the 31st of a month, payments for months with less than 31 days will occur on the last day of the month. </p>
     <div class="bs-example bs-example-tabs">
       <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#homereq-create-transaction" data-toggle="tab">Request</a></li>
-		<li><a href="#homeresp-create-transaction" data-toggle="tab">Response</a></li>
-        <li><a id="createTransactionTryIt" href="#console-create-transaction" data-toggle="tab">Try it</a></li>
+        <li class="active"><a href="#homereq-create-a-subscription" data-toggle="tab">Request</a></li>
+		<li><a href="#homeresp-create-a-subscription" data-toggle="tab">Response</a></li>
+        <li><a id="create-a-subscriptionTryIt" href="#console-create-a-subscription" data-toggle="tab">Try it</a></li>
       </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="homereq-create-transaction">
+        <div class="tab-pane fade in active" id="homereq-create-a-subscription">
     <table class="table table-condensed">
         <thead>
           <tr>
             <th>Element</th>
-            <th>Value</th>
+            <th>Description</th>
             <th>Format</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <tr>
-            <td>amount</td>
-            <td>amount of the transaction</td>
-            <td>decimal</td>
-            <td></td>
-          </tr>
-		  
-          
-          <tr>
-            <td>paymentdata</td>
-            <td>element</td>
-            <td></td>
-            <td></td>
-          </tr>
-		  
-		  <tr>
-            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;cardnumber</td>
-            <td>PAN Data</td>
-            <td>19 digit</td>
-            <td></td>
-          </tr>
-		  
-		  
-          
-          <tr>
-            <td>3-level-nesting</td>
-            <td>element</td>
-            <td></td>
-            <td></td>
-          </tr>
-		  
-		  <tr>
-            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;address</td>
-            <td>element</td>
-            <td>19 digit</td>
-            <td></td>
-          </tr>
-		  
-		  <tr>
-            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;housenumber</td>
-            <td>Number of your house</td>
-            <td>19 digit</td>
-            <td>tetstststst</td>
-          </tr>
-		  
-		  
-          
-        </tbody>
-      </table>
-        </div>
-		 <div class="tab-pane fade in" id="homeresp-create-transaction">
-    <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>Element</th>
-            <th>Value</th>
-            <th>Format</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <tr>
-            <td>authcode</td>
-            <td>authorization code</td>
-            <td></td>
-            <td>this is the real deal</td>
-          </tr>
-		  
-          
-        </tbody>
-      </table>
-        </div>
-        <div class="tab-pane fade" id="console-create-transaction">
-           <form method="post" action="">
-           <p>
-              <textarea id="txtReqXml-create-transaction" name="txtReqXml" cols="80" rows="6" style="">
-               &lt;ARBCreateSubscription xmlns=&quot;https://api.authorize.net/soap/v1/&quot;&gt;
-      &lt;merchantAuthentication&gt;
-        &lt;name&gt;string&lt;/name&gt;
-        &lt;transactionKey&gt;string&lt;/transactionKey&gt;
-      &lt;/merchantAuthentication&gt;
-      &lt;subscription&gt;
-        &lt;name&gt;string&lt;/name&gt;
-        &lt;paymentSchedule&gt;
-          &lt;interval&gt;
-            &lt;length&gt;short&lt;/length&gt;
-            &lt;unit&gt;days or months&lt;/unit&gt;
-          &lt;/interval&gt;
-          &lt;startDate&gt;date&lt;/startDate&gt;
-          &lt;totalOccurrences&gt;short&lt;/totalOccurrences&gt;
-          &lt;trialOccurrences&gt;short&lt;/trialOccurrences&gt;
-        &lt;/paymentSchedule&gt;
-        &lt;amount&gt;decimal&lt;/amount&gt;
-        &lt;trialAmount&gt;decimal&lt;/trialAmount&gt;
-        &lt;payment /&gt;
-        &lt;order&gt;
-          &lt;invoiceNumber&gt;string&lt;/invoiceNumber&gt;
-          &lt;description&gt;string&lt;/description&gt;
-        &lt;/order&gt;
-        &lt;customer&gt;
-          &lt;type&gt;individual or business&lt;/type&gt;
-          &lt;id&gt;string&lt;/id&gt;
-          &lt;email&gt;string&lt;/email&gt;
-          &lt;phoneNumber&gt;string&lt;/phoneNumber&gt;
-          &lt;faxNumber&gt;string&lt;/faxNumber&gt;
-          &lt;driversLicense&gt;
-            &lt;number&gt;string&lt;/number&gt;
-            &lt;dateOfBirth&gt;string&lt;/dateOfBirth&gt;
-          &lt;/driversLicense&gt;
-          &lt;taxId&gt;string&lt;/taxId&gt;
-        &lt;/customer&gt;
-        &lt;billTo&gt;
-          &lt;firstName&gt;string&lt;/firstName&gt;
-          &lt;lastName&gt;string&lt;/lastName&gt;
-          &lt;company&gt;string&lt;/company&gt;
-          &lt;address&gt;string&lt;/address&gt;
-          &lt;city&gt;string&lt;/city&gt;
-          &lt;state&gt;string&lt;/state&gt;
-          &lt;zip&gt;string&lt;/zip&gt;
-          &lt;country&gt;string&lt;/country&gt;
-        &lt;/billTo&gt;
-        &lt;shipTo&gt;
-          &lt;firstName&gt;string&lt;/firstName&gt;
-          &lt;lastName&gt;string&lt;/lastName&gt;
-          &lt;company&gt;string&lt;/company&gt;
-          &lt;address&gt;string&lt;/address&gt;
-          &lt;city&gt;string&lt;/city&gt;
-          &lt;state&gt;string&lt;/state&gt;
-          &lt;zip&gt;string&lt;/zip&gt;
-          &lt;country&gt;string&lt;/country&gt;
-        &lt;/shipTo&gt;
-      &lt;/subscription&gt;
-    &lt;/ARBCreateSubscription&gt;
-              </textarea>
-           </p>
-    <p>
-      <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
-    </p>
-    <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
-    <p>
-      <textarea id="txtRespXml-create-transaction" name="txtRespXml" cols="80" rows="6">&lt;ARBCreateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
-AnetApiSchema.xsd&quot;&gt;
- &lt;refId&gt;Sample&lt;/refId&gt;
- &lt;messages&gt;
- &lt;resultCode&gt;Ok&lt;/resultCode&gt;
- &lt;message&gt;
- &lt;code&gt;I00001&lt;/code&gt;
- &lt;text&gt;Successful.&lt;/text&gt;
- &lt;/message&gt;
- &lt;/messages&gt;
- &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
-&lt;/ARBCreateSubscriptionResponse&gt;</textarea>
-    </p>
-  </form>
-
-        </div>
-      </div>
-  </div>
-  
-</div>
-
-  <div class="bs-docs-section">
-    <div class="page-header">
-      <h1 id="transactions">Recurring Billing</h1>
-    </div>
-    <p class="lead">The is really the one, mo money man!!!</p>
-    
-    <h3 id="create-subscription">Create a Subscription</h3>
-    <p>Used to establish a new ARB subscription</p>
-    <div class="bs-example bs-example-tabs">
-      <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#homereq-create-subscription" data-toggle="tab">Request</a></li>
-		<li><a href="#homeresp-create-subscription" data-toggle="tab">Response</a></li>
-        <li><a id="createTransactionTryIt" href="#console-create-subscription" data-toggle="tab">Try it</a></li>
-      </ul>
-      <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="homereq-create-subscription">
-    <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>Element</th>
-            <th>Value</th>
-            <th>Format</th>
-            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
           
           <tr>
             <td>merchantAuthentication</td>
-            <td>Merchant account credentials</td>
+            <td>Merchant account credentials.<br/>See Merchant authentication Section. <strong>Required.</strong></td>
             <td></td>
-            <td>See Merchant authentication Section</td>
           </tr>
 		  
           
           <tr>
             <td>refId</td>
-            <td>Merchant-assigned ID associated with the customer Profile</td>
+            <td>Merchant-assigned ID associated with the customer Profile.<br/>If included in the request, this value will be included int he response. </td>
             <td>Up to 20 characters</td>
-            <td>If included in the request, this value will be included int he response</td>
           </tr>
 		  
           
           <tr>
             <td>subscription</td>
-            <td>Contains information about the subscription</td>
-            <td></td>
+            <td>Contains information about the subscription.<br/>. <strong>Required.</strong></td>
             <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;name</td>
-            <td>Merchant-assigned name for hte subscription</td>
+            <td>Merchant-assigned name for hte subscription.<br/>. </td>
             <td>Up to 50 characters</td>
-            <td></td>
           </tr>
 		  
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;paymentSchedule</td>
-            <td>Contains information about the payment schedule</td>
-            <td></td>
+            <td>Contains information about the payment schedule.<br/>. <strong>Required.</strong></td>
             <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;interval</td>
-            <td>Contains information about the time between payments</td>
-            <td></td>
+            <td>Contains information about the time between payments.<br/>. <strong>Required.</strong></td>
             <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;startDate</td>
-            <td>The date the subscription begins (also the date the initial billing occurs)</td>
-            <td>YYYY-MM-DD</td>
-            <td>The date entered must be greater than or equal to the date the subscription was created.
+            <td>The date the subscription begins (also the date the initial billing occurs).<br/>The date entered must be greater than or equal to the date the subscription was created.
 
 The validation checks against local server date, which is Mountain Time. An error might possibly occur if you try to submit a subscription from a time zone where the resulting date is different; for example, if you are in the Pacific time zone and try to submit a subscription between 11:00 PM and midnight, with a start date set for today. 
 
-If the start date is the 31st, and the interval is monthly, the billing date is the last day of each month (even when the month does not have 31 days)</td>
+If the start date is the 31st, and the interval is monthly, the billing date is the last day of each month (even when the month does not have 31 days). <strong>Required.</strong></td>
+            <td>YYYY-MM-DD</td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;totalOccurrences</td>
-            <td>Number of billing occurrences or payments for the subscription</td>
-            <td>Up to 4 digits</td>
-            <td>To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”
+            <td>Number of billing occurrences or payments for the subscription.<br/>To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”
 
-If a trial period is specified, this number should include the Trial Occurrences</td>
+If a trial period is specified, this number should include the Trial Occurrences. <strong>Required.</strong></td>
+            <td>Up to 4 digits</td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;trialOccurrences</td>
-            <td>Number of billing occurrences or payments int he trial period</td>
+            <td>Number of billing occurrences or payments int he trial period.<br/>If a trial period is specified, this number must be included in the Total Occurences. </td>
             <td>Numeric (up to 2 digits)</td>
-            <td>If a trial period is specified, this number must be included in the Total Occurences</td>
           </tr>
 		  
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;amount</td>
-            <td>The amount to be billed to the customer for each payment int he subscription</td>
+            <td>The amount to be billed to the customer for each payment int he subscription.<br/>If a trial period is specified, this is the amount that will be charged after the trial payments are complete.. <strong>Required.</strong></td>
             <td>Up to 15 digits</td>
-            <td>If a trial period is specified, this is the amount that will be charged after the trial payments are complete.</td>
           </tr>
 		  
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;trialAmount</td>
-            <td>The amount to be charged for each payment during the trial period.</td>
-            <td>Up to 15 digits</td>
-            <td>Required when trialOccurrences is specified.
+            <td>The amount to be charged for each payment during the trial period..<br/>Required when trialOccurrences is specified.
 
-Once the number of trial occurrences is complete, the regular amount will be charged for each remaining payment.</td>
+Once the number of trial occurrences is complete, the regular amount will be charged for each remaining payment.. </td>
+            <td>Up to 15 digits</td>
           </tr>
 		  
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;payment</td>
-            <td>Contains either the customer&#x27;s credit card or bank account payment information</td>
-            <td></td>
+            <td>Contains either the customer&#x27;s credit card or bank account payment information.<br/>. </td>
             <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;creditCard</td>
-            <td>Contains the customer&#x27;s credit card information</td>
+            <td>Contains the customer&#x27;s credit card information.<br/>Include this element only when the payment method is credit card. </td>
             <td></td>
-            <td>Include this element only when the payment method is credit card</td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;bankAccount</td>
-            <td>Contains the customer&#x27;s bank account information</td>
+            <td>Contains the customer&#x27;s bank account information.<br/>Include this element only when the payment method is bank account.. </td>
             <td></td>
-            <td>Include this element only when the payment method is bank account.</td>
           </tr>
 		  
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;order</td>
-            <td>Contains optional order information</td>
-            <td></td>
+            <td>Contains optional order information.<br/>. </td>
             <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;invoiceNumber</td>
-            <td>Merchant-assigned invoice number for the subscription</td>
+            <td>Merchant-assigned invoice number for the subscription.<br/>The invoice number will be associated with each payment in the subscription. </td>
             <td>Up to 20 characters</td>
-            <td>The invoice number will be associated with each payment in the subscription</td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;description</td>
-            <td>Description of the subscription</td>
+            <td>Description of the subscription.<br/>The description will be associated with each payment in the subscription. </td>
             <td>Up to 255 chracters</td>
-            <td>The description will be associated with each payment in the subscription</td>
           </tr>
 		  
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;customer</td>
-            <td>Contains information about the customer</td>
-            <td></td>
+            <td>Contains information about the customer.<br/>. </td>
             <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;id</td>
-            <td>Merchant-assigned identifier for the customer</td>
+            <td>Merchant-assigned identifier for the customer.<br/>. </td>
             <td>Up to 20 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;email</td>
-            <td>The customer&#x27;s email address</td>
+            <td>The customer&#x27;s email address.<br/>Required when using an EU payment processor. </td>
             <td>Up to 255 characters</td>
-            <td>Required when using an EU payment processor</td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;phoneNumber</td>
-            <td>The customer&#x27;s phone number</td>
+            <td>The customer&#x27;s phone number.<br/>. </td>
             <td>Up to 25 digits</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;faxNumber</td>
-            <td>The customer&#x27;s fax number</td>
+            <td>The customer&#x27;s fax number.<br/>. </td>
             <td>Up to 25 digits</td>
-            <td></td>
           </tr>
 		  
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;billTo</td>
-            <td>Contains the customer&#x27;s billing address information</td>
-            <td></td>
+            <td>Contains the customer&#x27;s billing address information.<br/>. </td>
             <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;firstName</td>
-            <td>The first name associated with the customer&#x27;s billing address</td>
+            <td>The first name associated with the customer&#x27;s billing address.<br/>. </td>
             <td>Up to 50 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;lastName</td>
-            <td>The last name associated with the customer&#x27;s billing address</td>
+            <td>The last name associated with the customer&#x27;s billing address.<br/>. </td>
             <td>Up to 50 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;company</td>
-            <td>The company associated with the customer&#x27;s billing address</td>
+            <td>The company associated with the customer&#x27;s billing address.<br/>. </td>
             <td>Up to 60 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;address</td>
-            <td>The customer&#x27;s billing street address</td>
+            <td>The customer&#x27;s billing street address.<br/>Required when using an EU payment processor. </td>
             <td>Up to 60 characters</td>
-            <td>Required when using an EU payment processor</td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;city</td>
-            <td>The city of the customer&#x27;s billing address</td>
+            <td>The city of the customer&#x27;s billing address.<br/>Required when using an EU payment processor. </td>
             <td>Up to 40 characters</td>
-            <td>Required when using an EU payment processor</td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;state</td>
-            <td>The state or province of the customer&#x27;s billing address</td>
+            <td>The state or province of the customer&#x27;s billing address.<br/>Required when using an EU payment processor. </td>
             <td>2 characters</td>
-            <td>Required when using an EU payment processor</td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;zip</td>
-            <td>The ZIP or Postal code of the customer&#x27;s billing address</td>
+            <td>The ZIP or Postal code of the customer&#x27;s billing address.<br/>Required when using an EU payment processor. </td>
             <td>Up to 20 characters</td>
-            <td>Required when using an EU payment processor</td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;country</td>
-            <td>The country of the customer&#x27;s billing address</td>
-            <td>Up to 60 characters</td>
-            <td>Must be valid two-character country code or full country name (in English).
+            <td>The country of the customer&#x27;s billing address.<br/>Must be valid two-character country code or full country name (in English).
 
-Required when using an EU payment processor</td>
+Required when using an EU payment processor. </td>
+            <td>Up to 60 characters</td>
           </tr>
 		  
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;shipTo</td>
-            <td>Contains the customer&#x27;s shipping address information</td>
-            <td></td>
+            <td>Contains the customer&#x27;s shipping address information.<br/>. </td>
             <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;firstName</td>
-            <td>The first name associated with the customer&#x27;s shipping address</td>
+            <td>The first name associated with the customer&#x27;s shipping address.<br/>. </td>
             <td>Up to 50 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;lastName</td>
-            <td>The last name associated with the customer&#x27;s shipping address</td>
+            <td>The last name associated with the customer&#x27;s shipping address.<br/>. </td>
             <td>Up to 50 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;company</td>
-            <td>The company associated with the customer&#x27;s shipping address</td>
+            <td>The company associated with the customer&#x27;s shipping address.<br/>. </td>
             <td>Up to 50 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;address</td>
-            <td>The customer&#x27;s shipping street address</td>
+            <td>The customer&#x27;s shipping street address.<br/>. </td>
             <td>Up to 60 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;city</td>
-            <td>The city of the customer&#x27;s shipping address</td>
+            <td>The city of the customer&#x27;s shipping address.<br/>. </td>
             <td>Up to 40 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;state</td>
-            <td>The state of the customer&#x27;s shipping address</td>
+            <td>The state of the customer&#x27;s shipping address.<br/>. </td>
             <td>Up to 40 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;zip</td>
-            <td>The ZIP code of the customer&#x27;s shipping address</td>
+            <td>The ZIP code of the customer&#x27;s shipping address.<br/>. </td>
             <td>Up to 20 characters</td>
-            <td></td>
           </tr>
 		  
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;country</td>
-            <td>The country of the customer&#x27;s shipping address</td>
+            <td>The country of the customer&#x27;s shipping address.<br/>. </td>
             <td>Up to 60 characters</td>
-            <td></td>
           </tr>
 		  
 		  
@@ -616,49 +378,45 @@ Required when using an EU payment processor</td>
         </tbody>
       </table>
         </div>
-		 <div class="tab-pane fade in" id="homeresp-create-subscription">
+		 <div class="tab-pane fade in" id="homeresp-create-a-subscription">
     <table class="table table-condensed">
         <thead>
           <tr>
             <th>Element</th>
-            <th>Value</th>
+            <th>Description</th>
             <th>Format</th>
-            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
           
           <tr>
             <td>refId</td>
-            <td>Merchant-assigned reference ID for the request</td>
+            <td>Merchant-assigned reference ID for the request.<br/>If included in the request, this value will be included in the response. </td>
             <td>Up to 20 characters</td>
-            <td>If included in the request, this value will be included in the response</td>
           </tr>
 		  
           
           <tr>
             <td>messages</td>
-            <td>Contains Information about the results of the request</td>
+            <td>Contains Information about the results of the request.<br/>See response code guide.. </td>
             <td></td>
-            <td>See response code guide.</td>
           </tr>
 		  
           
           <tr>
             <td>subscriptionId</td>
-            <td>The payment gateway assigned identification number for the subscription</td>
+            <td>The payment gateway assigned identification number for the subscription.<br/>. </td>
             <td>Up to 13 digits</td>
-            <td></td>
           </tr>
 		  
           
         </tbody>
       </table>
         </div>
-        <div class="tab-pane fade" id="console-create-subscription">
+        <div class="tab-pane fade" id="console-create-a-subscription">
            <form method="post" action="">
            <p>
-              <textarea id="txtReqXml-create-subscription" name="txtReqXml" cols="80" rows="6" style="">
+              <textarea id="txtReqXml-create-a-subscription" name="txtReqXml" cols="80" rows="6" style="">
               &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCreateSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
@@ -699,7 +457,7 @@ AnetApiSchema.xsd&quot;&gt;
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
     <p>
-      <textarea id="txtRespXml-create-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+      <textarea id="txtRespXml-create-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCreateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
 	&lt;refId&gt;Sample&lt;/refId&gt;
@@ -719,138 +477,98 @@ AnetApiSchema.xsd&quot;&gt;
       </div>
   </div>
   
-    <h3 id="delete-subscription">Delete Subscription</h3>
-    <p>This is great</p>
+    <h3 id="get-subscription-status">Get Subscription Status</h3>
+    <p>Retrieves the status of an existing ARB subscription.</p>
     <div class="bs-example bs-example-tabs">
       <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#homereq-delete-subscription" data-toggle="tab">Request</a></li>
-		<li><a href="#homeresp-delete-subscription" data-toggle="tab">Response</a></li>
-        <li><a id="createTransactionTryIt" href="#console-delete-subscription" data-toggle="tab">Try it</a></li>
+        <li class="active"><a href="#homereq-get-subscription-status" data-toggle="tab">Request</a></li>
+		<li><a href="#homeresp-get-subscription-status" data-toggle="tab">Response</a></li>
+        <li><a id="get-subscription-statusTryIt" href="#console-get-subscription-status" data-toggle="tab">Try it</a></li>
       </ul>
       <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="homereq-delete-subscription">
+        <div class="tab-pane fade in active" id="homereq-get-subscription-status">
     <table class="table table-condensed">
         <thead>
           <tr>
             <th>Element</th>
-            <th>Value</th>
+            <th>Description</th>
             <th>Format</th>
-            <th>Notes</th>
           </tr>
         </thead>
         <tbody>
           
           <tr>
-            <td>amount</td>
-            <td>amount of the transaction</td>
-            <td>decimal</td>
+            <td>merchantAuthentication</td>
+            <td>Merchant account credentials.<br/>See Merchant authentication Section. <strong>Required.</strong></td>
             <td></td>
           </tr>
 		  
           
           <tr>
-            <td>paymentdata</td>
-            <td>element</td>
-            <td></td>
-            <td></td>
+            <td>refId</td>
+            <td>Merchant-assigned ID associated with the customer Profile.<br/>If included in the request, this value will be included int he response. </td>
+            <td>Up to 20 characters</td>
           </tr>
-		  
-		  <tr>
-            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;cardnumber</td>
-            <td>PAN Data</td>
-            <td>19 digit</td>
-            <td></td>
-          </tr>
-		  
 		  
           
-        </tbody>
-      </table>
-        </div>
-		 <div class="tab-pane fade in" id="homeresp-delete-subscription">
-    <table class="table table-condensed">
-        <thead>
           <tr>
-            <th>Element</th>
-            <th>Value</th>
-            <th>Format</th>
-            <th>Notes</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <tr>
-            <td>authcode</td>
-            <td>authorization code</td>
-            <td></td>
-            <td>this is the real deal</td>
+            <td>subscriptionId</td>
+            <td>The payment gateway-assigned identification number for the subscription.<br/>. <strong>Required.</strong></td>
+            <td>Numeric (up to 13 digits)</td>
           </tr>
 		  
           
         </tbody>
       </table>
         </div>
-        <div class="tab-pane fade" id="console-delete-subscription">
+		 <div class="tab-pane fade in" id="homeresp-get-subscription-status">
+    <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Description</th>
+            <th>Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>refId</td>
+            <td>Merchant-assigned reference ID for the request.<br/>If included in the request, this value will be included in the response. </td>
+            <td>Up to 20 characters</td>
+          </tr>
+		  
+          
+          <tr>
+            <td>messages</td>
+            <td>Contains Information about the results of the request.<br/>See response code guide.. </td>
+            <td></td>
+          </tr>
+		  
+          
+          <tr>
+            <td>status</td>
+            <td>Contains information about the subscription status.<br/>. </td>
+            <td>active, expired, suspended, cancelled, terminated</td>
+          </tr>
+		  
+          
+        </tbody>
+      </table>
+        </div>
+        <div class="tab-pane fade" id="console-get-subscription-status">
            <form method="post" action="">
            <p>
-              <textarea id="txtReqXml-delete-subscription" name="txtReqXml" cols="80" rows="6" style="">
-               &lt;ARBCreateSubscription xmlns=&quot;https://api.authorize.net/soap/v1/&quot;&gt;
-      &lt;merchantAuthentication&gt;
-        &lt;name&gt;string&lt;/name&gt;
-        &lt;transactionKey&gt;string&lt;/transactionKey&gt;
-      &lt;/merchantAuthentication&gt;
-      &lt;subscription&gt;
-        &lt;name&gt;string&lt;/name&gt;
-        &lt;paymentSchedule&gt;
-          &lt;interval&gt;
-            &lt;length&gt;short&lt;/length&gt;
-            &lt;unit&gt;days or months&lt;/unit&gt;
-          &lt;/interval&gt;
-          &lt;startDate&gt;date&lt;/startDate&gt;
-          &lt;totalOccurrences&gt;short&lt;/totalOccurrences&gt;
-          &lt;trialOccurrences&gt;short&lt;/trialOccurrences&gt;
-        &lt;/paymentSchedule&gt;
-        &lt;amount&gt;decimal&lt;/amount&gt;
-        &lt;trialAmount&gt;decimal&lt;/trialAmount&gt;
-        &lt;payment /&gt;
-        &lt;order&gt;
-          &lt;invoiceNumber&gt;string&lt;/invoiceNumber&gt;
-          &lt;description&gt;string&lt;/description&gt;
-        &lt;/order&gt;
-        &lt;customer&gt;
-          &lt;type&gt;individual or business&lt;/type&gt;
-          &lt;id&gt;string&lt;/id&gt;
-          &lt;email&gt;string&lt;/email&gt;
-          &lt;phoneNumber&gt;string&lt;/phoneNumber&gt;
-          &lt;faxNumber&gt;string&lt;/faxNumber&gt;
-          &lt;driversLicense&gt;
-            &lt;number&gt;string&lt;/number&gt;
-            &lt;dateOfBirth&gt;string&lt;/dateOfBirth&gt;
-          &lt;/driversLicense&gt;
-          &lt;taxId&gt;string&lt;/taxId&gt;
-        &lt;/customer&gt;
-        &lt;billTo&gt;
-          &lt;firstName&gt;string&lt;/firstName&gt;
-          &lt;lastName&gt;string&lt;/lastName&gt;
-          &lt;company&gt;string&lt;/company&gt;
-          &lt;address&gt;string&lt;/address&gt;
-          &lt;city&gt;string&lt;/city&gt;
-          &lt;state&gt;string&lt;/state&gt;
-          &lt;zip&gt;string&lt;/zip&gt;
-          &lt;country&gt;string&lt;/country&gt;
-        &lt;/billTo&gt;
-        &lt;shipTo&gt;
-          &lt;firstName&gt;string&lt;/firstName&gt;
-          &lt;lastName&gt;string&lt;/lastName&gt;
-          &lt;company&gt;string&lt;/company&gt;
-          &lt;address&gt;string&lt;/address&gt;
-          &lt;city&gt;string&lt;/city&gt;
-          &lt;state&gt;string&lt;/state&gt;
-          &lt;zip&gt;string&lt;/zip&gt;
-          &lt;country&gt;string&lt;/country&gt;
-        &lt;/shipTo&gt;
-      &lt;/subscription&gt;
-    &lt;/ARBCreateSubscription&gt;
+              <textarea id="txtReqXml-get-subscription-status" name="txtReqXml" cols="80" rows="6" style="">
+              &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ARBGetSubscriptionStatusRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;mytestacct&lt;/name&gt;
+		&lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+&lt;/ARBGetSubscriptionStatusRequest&gt;
               </textarea>
            </p>
     <p>
@@ -858,18 +576,487 @@ AnetApiSchema.xsd&quot;&gt;
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
     <p>
-      <textarea id="txtRespXml-delete-subscription" name="txtRespXml" cols="80" rows="6">&lt;ARBCreateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
+      <textarea id="txtRespXml-get-subscription-status" name="txtRespXml" cols="80" rows="6">&lt;ARBGetSubscriptionStatusResponse xmlns:xsi=&quot;http://www.w3.org/2001/
+XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
+	&lt;Status&gt;active&lt;/Status&gt;
+&lt;/ARBGetSubscriptionStatusResponse&gt;</textarea>
+    </p>
+  </form>
+
+        </div>
+      </div>
+  </div>
+  
+    <h3 id="update-a-subscription">Update a Subscription</h3>
+    <p>Used to update an existing ARB subscription. Only the subscription ID and fields that you wish to modify need to be submitted.</p>
+    <div class="bs-example bs-example-tabs">
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#homereq-update-a-subscription" data-toggle="tab">Request</a></li>
+		<li><a href="#homeresp-update-a-subscription" data-toggle="tab">Response</a></li>
+        <li><a id="update-a-subscriptionTryIt" href="#console-update-a-subscription" data-toggle="tab">Try it</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="homereq-update-a-subscription">
+    <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Description</th>
+            <th>Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>merchantAuthentication</td>
+            <td>Merchant account credentials.<br/>See Merchant authentication Section. <strong>Required.</strong></td>
+            <td></td>
+          </tr>
+		  
+          
+          <tr>
+            <td>refId</td>
+            <td>Merchant-assigned ID associated with the customer Profile.<br/>If included in the request, this value will be included int he response. </td>
+            <td>Up to 20 characters</td>
+          </tr>
+		  
+          
+          <tr>
+            <td>subscriptionId</td>
+            <td>The payment gateway-assigned identification number for the subscription.<br/>. <strong>Required.</strong></td>
+            <td>Numeric (up to 13 digits)</td>
+          </tr>
+		  
+          
+          <tr>
+            <td>subscription</td>
+            <td>Contains information about the subscription.<br/>. <strong>Required.</strong></td>
+            <td></td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;name</td>
+            <td>Merchant-assigned name for hte subscription.<br/>. </td>
+            <td>Up to 50 characters</td>
+          </tr>
+		  
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;paymentSchedule</td>
+            <td>Contains information about the payment schedule.<br/>. </td>
+            <td></td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;startDate</td>
+            <td>The date the subscription begins (also the date the initial billing occurs).<br/>The start date can only be updated if no successful payments have been completed. </td>
+            <td>YYYY-MM-DD</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;totalOccurrences</td>
+            <td>Number of billing occurrences or payments for the subscription.<br/>To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”
+
+If a trial period is specified, this number should include the Trial Occurrences. <strong>Required.</strong></td>
+            <td>Up to 4 digits</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;trialOccurrences</td>
+            <td>Number of billing occurrences or payments int he trial period.<br/>The number of trial occurrences can only be edited if the subscription has not started or is still in the trial period.. </td>
+            <td>Numeric (up to 2 digits)</td>
+          </tr>
+		  
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;amount</td>
+            <td>The amount to be billed to the customer for each payment int he subscription.<br/>If a trial period is specified, this is the amount that will be charged after the trial payments are complete.. </td>
+            <td>Up to 15 digits</td>
+          </tr>
+		  
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;trialAmount</td>
+            <td>The amount to be charged for each payment during the trial period..<br/>Required when trialOccurrences is specified.
+
+Once the number of trial occurrences is complete, the regular amount will be charged for each remaining payment.. </td>
+            <td>Up to 15 digits</td>
+          </tr>
+		  
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;payment</td>
+            <td>Contains either the customer&#x27;s credit card or bank account payment information.<br/>. </td>
+            <td></td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;creditCard</td>
+            <td>Contains the customer&#x27;s credit card information.<br/>Include this element only when the payment method is credit card. </td>
+            <td></td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;bankAccount</td>
+            <td>Contains the customer&#x27;s bank account information.<br/>Include this element only when the payment method is bank account.. </td>
+            <td></td>
+          </tr>
+		  
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;order</td>
+            <td>Contains optional order information.<br/>. </td>
+            <td></td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;invoiceNumber</td>
+            <td>Merchant-assigned invoice number for the subscription.<br/>The invoice number will be associated with each payment in the subscription. </td>
+            <td>Up to 20 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;description</td>
+            <td>Description of the subscription.<br/>The description will be associated with each payment in the subscription. </td>
+            <td>Up to 255 chracters</td>
+          </tr>
+		  
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;customer</td>
+            <td>Contains information about the customer.<br/>. </td>
+            <td></td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;id</td>
+            <td>Merchant-assigned identifier for the customer.<br/>. </td>
+            <td>Up to 20 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;email</td>
+            <td>The customer&#x27;s email address.<br/>Required when using an EU payment processor. </td>
+            <td>Up to 255 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;phoneNumber</td>
+            <td>The customer&#x27;s phone number.<br/>. </td>
+            <td>Up to 25 digits</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;faxNumber</td>
+            <td>The customer&#x27;s fax number.<br/>. </td>
+            <td>Up to 25 digits</td>
+          </tr>
+		  
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;billTo</td>
+            <td>Contains the customer&#x27;s billing address information.<br/>. </td>
+            <td></td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;firstName</td>
+            <td>The first name associated with the customer&#x27;s billing address.<br/>. </td>
+            <td>Up to 50 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;lastName</td>
+            <td>The last name associated with the customer&#x27;s billing address.<br/>. </td>
+            <td>Up to 50 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;company</td>
+            <td>The company associated with the customer&#x27;s billing address.<br/>. </td>
+            <td>Up to 60 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;address</td>
+            <td>The customer&#x27;s billing street address.<br/>Required when using an EU payment processor. </td>
+            <td>Up to 60 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;city</td>
+            <td>The city of the customer&#x27;s billing address.<br/>Required when using an EU payment processor. </td>
+            <td>Up to 40 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;state</td>
+            <td>The state or province of the customer&#x27;s billing address.<br/>Required when using an EU payment processor. </td>
+            <td>2 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;zip</td>
+            <td>The ZIP or Postal code of the customer&#x27;s billing address.<br/>Required when using an EU payment processor. </td>
+            <td>Up to 20 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;country</td>
+            <td>The country of the customer&#x27;s billing address.<br/>Must be valid two-character country code or full country name (in English).
+
+Required when using an EU payment processor. </td>
+            <td>Up to 60 characters</td>
+          </tr>
+		  
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;shipTo</td>
+            <td>Contains the customer&#x27;s shipping address information.<br/>. </td>
+            <td></td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;firstName</td>
+            <td>The first name associated with the customer&#x27;s shipping address.<br/>. </td>
+            <td>Up to 50 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;lastName</td>
+            <td>The last name associated with the customer&#x27;s shipping address.<br/>. </td>
+            <td>Up to 50 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;company</td>
+            <td>The company associated with the customer&#x27;s shipping address.<br/>. </td>
+            <td>Up to 50 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;address</td>
+            <td>The customer&#x27;s shipping street address.<br/>. </td>
+            <td>Up to 60 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;city</td>
+            <td>The city of the customer&#x27;s shipping address.<br/>. </td>
+            <td>Up to 40 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;state</td>
+            <td>The state of the customer&#x27;s shipping address.<br/>. </td>
+            <td>Up to 40 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;zip</td>
+            <td>The ZIP code of the customer&#x27;s shipping address.<br/>. </td>
+            <td>Up to 20 characters</td>
+          </tr>
+		  
+		  <tr>
+            <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;country</td>
+            <td>The country of the customer&#x27;s shipping address.<br/>. </td>
+            <td>Up to 60 characters</td>
+          </tr>
+		  
+		  
+          
+        </tbody>
+      </table>
+        </div>
+		 <div class="tab-pane fade in" id="homeresp-update-a-subscription">
+    <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Description</th>
+            <th>Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>refId</td>
+            <td>Merchant-assigned reference ID for the request.<br/>If included in the request, this value will be included in the response. </td>
+            <td>Up to 20 characters</td>
+          </tr>
+		  
+          
+          <tr>
+            <td>messages</td>
+            <td>Contains Information about the results of the request.<br/>See response code guide.. </td>
+            <td></td>
+          </tr>
+		  
+          
+        </tbody>
+      </table>
+        </div>
+        <div class="tab-pane fade" id="console-update-a-subscription">
+           <form method="post" action="">
+           <p>
+              <textarea id="txtReqXml-update-a-subscription" name="txtReqXml" cols="80" rows="6" style="">
+              &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ARBUpdateSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
- &lt;refId&gt;Sample&lt;/refId&gt;
- &lt;messages&gt;
- &lt;resultCode&gt;Ok&lt;/resultCode&gt;
- &lt;message&gt;
- &lt;code&gt;I00001&lt;/code&gt;
- &lt;text&gt;Successful.&lt;/text&gt;
- &lt;/message&gt;
- &lt;/messages&gt;
- &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
-&lt;/ARBCreateSubscriptionResponse&gt;</textarea>
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;mytestacct&lt;/name&gt;
+		&lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;subscription&gt;
+		&lt;payment&gt;
+			&lt;creditCard&gt;
+				&lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
+				&lt;expirationDate&gt;2010-08&lt;/expirationDate&gt;
+			&lt;/creditCard&gt;
+		&lt;/payment&gt;
+	&lt;/subscription&gt;
+&lt;/ARBUpdateSubscriptionRequest&gt;
+              </textarea>
+           </p>
+    <p>
+      <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
+    </p>
+    <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
+    <p>
+      <textarea id="txtRespXml-update-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ARBUpdateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
+AnetApiSchema.xsd&quot;&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
+&lt;/ARBUpdateSubscriptionResponse&gt;</textarea>
+    </p>
+  </form>
+
+        </div>
+      </div>
+  </div>
+  
+    <h3 id="cancel-a-subscription">Cancel a Subscription</h3>
+    <p>Used to cancel an existing subscription.</p>
+    <div class="bs-example bs-example-tabs">
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#homereq-cancel-a-subscription" data-toggle="tab">Request</a></li>
+		<li><a href="#homeresp-cancel-a-subscription" data-toggle="tab">Response</a></li>
+        <li><a id="cancel-a-subscriptionTryIt" href="#console-cancel-a-subscription" data-toggle="tab">Try it</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="homereq-cancel-a-subscription">
+    <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Description</th>
+            <th>Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>merchantAuthentication</td>
+            <td>Merchant account credentials.<br/>See Merchant authentication Section. <strong>Required.</strong></td>
+            <td></td>
+          </tr>
+		  
+          
+          <tr>
+            <td>refId</td>
+            <td>Merchant-assigned ID associated with the customer Profile.<br/>If included in the request, this value will be included int he response. </td>
+            <td>Up to 20 characters</td>
+          </tr>
+		  
+          
+          <tr>
+            <td>subscriptionId</td>
+            <td>The payment gateway-assigned identification number for the subscription.<br/>. <strong>Required.</strong></td>
+            <td>Numeric (up to 13 digits)</td>
+          </tr>
+		  
+          
+        </tbody>
+      </table>
+        </div>
+		 <div class="tab-pane fade in" id="homeresp-cancel-a-subscription">
+    <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Description</th>
+            <th>Format</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td>refId</td>
+            <td>Merchant-assigned reference ID for the request.<br/>If included in the request, this value will be included in the response. </td>
+            <td>Up to 20 characters</td>
+          </tr>
+		  
+          
+          <tr>
+            <td>messages</td>
+            <td>Contains Information about the results of the request.<br/>See response code guide.. </td>
+            <td></td>
+          </tr>
+		  
+          
+        </tbody>
+      </table>
+        </div>
+        <div class="tab-pane fade" id="console-cancel-a-subscription">
+           <form method="post" action="">
+           <p>
+              <textarea id="txtReqXml-cancel-a-subscription" name="txtReqXml" cols="80" rows="6" style="">
+              &lt;ARBCancelSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/
+AnetApiSchema.xsd&quot;&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;mytestacct&lt;/name&gt;
+		&lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+&lt;/ARBCancelSubscriptionRequest&gt;
+              </textarea>
+           </p>
+    <p>
+      <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
+    </p>
+    <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
+    <p>
+      <textarea id="txtRespXml-cancel-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;ARBCancelSubscriptionResponsexmlns=&quot;AnetApi/xml/v1/schema/
+AnetApiSchema.xsd&quot;&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
+&lt;/ARBCancelSubscriptionResponse&gt;</textarea>
     </p>
   </form>
 
@@ -899,12 +1086,12 @@ AnetApiSchema.xsd&quot;&gt;
 var requestEditor, responseEditor;
 
 $(document).ready(function() {
-        requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-subscription'), {
+        requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
                 mode: 'xml',
                 lineNumbers: true
         });
 
-        responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-subscription'), {
+        responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-a-subscription'), {
                 mode: 'xml',
                 lineNumbers: true
         });

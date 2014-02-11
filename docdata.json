@@ -1,92 +1,12 @@
 [
         {
-                "APIName" : "Payment Transactions",
-                "APIUsage" : "This is the big one, money man!!",
-				"API-ID" : "transactions",
-                "methods" : [
-                       {
-    "title": "Create Transaction",
-    "usage": "This is great",
-	"id": "create-transaction",
-    "request": {
-        "name": "CreateTransactionRequest",
-        "children": [
-            {
-                "name": "amount",
-                "value": "amount of the transaction",
-                "format": "decimal",
-                "required": true,
-                "notes": ""
-            },
-            {
-                "name": "paymentdata",
-                "value": "element",
-                "format": "",
-                "required": true,
-                "notes": "",
-                "children": [
-                    {
-                        "name": "cardnumber",
-                        "value": "PAN Data",
-                        "format": "19 digit",
-                        "required": true,
-                        "notes": ""
-                    }
-                ]
-            },
-			{
-                "name": "3-level-nesting",
-                "value": "element",
-                "format": "",
-                "required": true,
-                "notes": "",
-                "children": [
-                    {
-                        "name": "address",
-                        "value": "element",
-                        "format": "19 digit",
-                        "required": true,
-                        "notes": "",
-						"children": [
-							{
-								"name": "housenumber",
-								"value": "Number of your house",
-								"format": "19 digit",
-								"required": true,
-								"notes": "tetstststst"
-							}
-						]
-                    }
-                ]
-            }
-        ],
-        "sample": " <ARBCreateSubscription xmlns=\"https://api.authorize.net/soap/v1/\">\n      <merchantAuthentication>\n        <name>string</name>\n        <transactionKey>string</transactionKey>\n      </merchantAuthentication>\n      <subscription>\n        <name>string</name>\n        <paymentSchedule>\n          <interval>\n            <length>short</length>\n            <unit>days or months</unit>\n          </interval>\n          <startDate>date</startDate>\n          <totalOccurrences>short</totalOccurrences>\n          <trialOccurrences>short</trialOccurrences>\n        </paymentSchedule>\n        <amount>decimal</amount>\n        <trialAmount>decimal</trialAmount>\n        <payment />\n        <order>\n          <invoiceNumber>string</invoiceNumber>\n          <description>string</description>\n        </order>\n        <customer>\n          <type>individual or business</type>\n          <id>string</id>\n          <email>string</email>\n          <phoneNumber>string</phoneNumber>\n          <faxNumber>string</faxNumber>\n          <driversLicense>\n            <number>string</number>\n            <dateOfBirth>string</dateOfBirth>\n          </driversLicense>\n          <taxId>string</taxId>\n        </customer>\n        <billTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </billTo>\n        <shipTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </shipTo>\n      </subscription>\n    </ARBCreateSubscription>"
-    },
-    "response": {
-        "name": "CreateTransactionResponse",
-        "children": [
-            {
-                "name": "authcode",
-                "value": "authorization code",
-                "format": "",
-                "required": false,
-                "notes": "this is the real deal"
-            }
-        ],
-        "sample": "<ARBCreateSubscriptionResponse xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n <refId>Sample</refId>\n <messages>\n <resultCode>Ok</resultCode>\n <message>\n <code>I00001</code>\n <text>Successful.</text>\n </message>\n </messages>\n <subscriptionId>100748</subscriptionId>\n</ARBCreateSubscriptionResponse>"
-    }
-}
-                ]
-        },
-        {
             "APIName" : "Recurring Billing",
-            "APIUsage" : "The is really the one, mo money man!!!",
-			"API-ID" : "subscriptions",
+            "APIUsage" : "For merchants enabled for the Automated Recurring Billing (ARB) service, Recurring Billing API supports integration with a Web site payment form or a proprietary business application-allowing online customers or sales representatives using a business application to select and submit subscription- or installment-based payments.",
+			"API-ID" : "recurring-billing",
             "methods" : [
-{
+				{
 	"title": "Create a Subscription",
-	"usage": "Used to establish a new ARB subscription",
-	"id": "create-subscription",
+	"usage": "For subscriptions with a monthly interval, whose payments begin on the 31st of a month, payments for months with less than 31 days will occur on the last day of the month. ",
 	"request": {
 		"name": "ARBCreateSubscriptionRequest",
 		"children": [
@@ -498,52 +418,505 @@
 		"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ARBCreateSubscriptionResponse xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n\t<refId>Sample</refId>\n\t<messages>\n\t\t<resultCode>Ok</resultCode>\n\t\t<message>\n\t\t\t<code>I00001</code>\n\t\t\t<text>Successful.</text>\n\t\t</message>\n\t</messages>\n\t<subscriptionId>100748</subscriptionId>\n</ARBCreateSubscriptionResponse>"
 	}
 },
-                    {
-    "title": "Delete Subscription",
-    "usage": "This is great",
-	"id": "delete-subscription",
-    "request": {
-        "name": "CreateTransactionRequest",
-        "children": [
-            {
-                "name": "amount",
-                "value": "amount of the transaction",
-                "format": "decimal",
-                "required": true,
-                "notes": ""
-            },
-            {
-                "name": "paymentdata",
-                "value": "element",
-                "format": "",
-                "required": true,
-                "notes": "",
-                "children": [
-                    {
-                        "name": "cardnumber",
-                        "value": "PAN Data",
-                        "format": "19 digit",
-                        "required": true,
-                        "notes": ""
-                    }
-                ]
-            }
-        ],
-        "sample": " <ARBCreateSubscription xmlns=\"https://api.authorize.net/soap/v1/\">\n      <merchantAuthentication>\n        <name>string</name>\n        <transactionKey>string</transactionKey>\n      </merchantAuthentication>\n      <subscription>\n        <name>string</name>\n        <paymentSchedule>\n          <interval>\n            <length>short</length>\n            <unit>days or months</unit>\n          </interval>\n          <startDate>date</startDate>\n          <totalOccurrences>short</totalOccurrences>\n          <trialOccurrences>short</trialOccurrences>\n        </paymentSchedule>\n        <amount>decimal</amount>\n        <trialAmount>decimal</trialAmount>\n        <payment />\n        <order>\n          <invoiceNumber>string</invoiceNumber>\n          <description>string</description>\n        </order>\n        <customer>\n          <type>individual or business</type>\n          <id>string</id>\n          <email>string</email>\n          <phoneNumber>string</phoneNumber>\n          <faxNumber>string</faxNumber>\n          <driversLicense>\n            <number>string</number>\n            <dateOfBirth>string</dateOfBirth>\n          </driversLicense>\n          <taxId>string</taxId>\n        </customer>\n        <billTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </billTo>\n        <shipTo>\n          <firstName>string</firstName>\n          <lastName>string</lastName>\n          <company>string</company>\n          <address>string</address>\n          <city>string</city>\n          <state>string</state>\n          <zip>string</zip>\n          <country>string</country>\n        </shipTo>\n      </subscription>\n    </ARBCreateSubscription>"
-    },
-    "response": {
-        "name": "CreateTransactionResponse",
-        "children": [
-            {
-                "name": "authcode",
-                "value": "authorization code",
-                "format": "",
-                "required": false,
-                "notes": "this is the real deal"
-            }
-        ],
-        "sample": "<ARBCreateSubscriptionResponse xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n <refId>Sample</refId>\n <messages>\n <resultCode>Ok</resultCode>\n <message>\n <code>I00001</code>\n <text>Successful.</text>\n </message>\n </messages>\n <subscriptionId>100748</subscriptionId>\n</ARBCreateSubscriptionResponse>"
-    }
+{
+	"title": "Get Subscription Status",
+	"usage": "Retrieves the status of an existing ARB subscription.",
+	"request": {
+		"name": "ARBGetSubscriptionStatusRequest",
+		"children": [
+			{
+				"name": "merchantAuthentication",
+				"value": "Merchant account credentials",
+				"format": "",
+				"required": true,
+				"notes": "See Merchant authentication Section"
+			},
+			{
+				"name": "refId",
+				"value": "Merchant-assigned ID associated with the customer Profile",
+				"format": "Up to 20 characters",
+				"required": false,
+				"notes": "If included in the request, this value will be included int he response"
+			},
+			{
+				"name": "subscriptionId",
+				"value": "The payment gateway-assigned identification number for the subscription",
+				"format": "Numeric (up to 13 digits)",
+				"required": true,
+				"notes": ""
+			}
+		],
+		"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ARBGetSubscriptionStatusRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n\t<merchantAuthentication>\n\t\t<name>mytestacct</name>\n\t\t<transactionKey>112223344</transactionKey>\n\t</merchantAuthentication>\n\t<refId>Sample</refId>\n\t<subscriptionId>100748</subscriptionId>\n</ARBGetSubscriptionStatusRequest>"
+	},
+	"response": {
+		"name": "ARBGetSubscriptionStatusResponse",
+		"children": [
+			{
+				"name": "refId",
+				"value": "Merchant-assigned reference ID for the request",
+				"format": "Up to 20 characters",
+				"required": false,
+				"notes": "If included in the request, this value will be included in the response"
+			},
+			{
+				"name": "messages",
+				"value": "Contains Information about the results of the request",
+				"format": "",
+				"required": false,
+				"notes": "See response code guide."
+			},
+			{
+				"name": "status",
+				"value": "Contains information about the subscription status",
+				"format": "active, expired, suspended, cancelled, terminated",
+				"required": false,
+				"notes": ""
+			}
+		],
+		"sample": "<ARBGetSubscriptionStatusResponse xmlns:xsi=\"http://www.w3.org/2001/\nXMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n\t<refId>Sample</refId>\n\t<messages>\n\t\t<resultCode>Ok</resultCode>\n\t\t<message>\n\t\t\t<code>I00001</code>\n\t\t\t<text>Successful</text>\n\t\t</message>\n\t</messages>\n\t<Status>active</Status>\n</ARBGetSubscriptionStatusResponse>"
+	}
+},
+{
+	"title": "Update a Subscription",
+	"usage": "Used to update an existing ARB subscription. Only the subscription ID and fields that you wish to modify need to be submitted.",
+	"request": {
+		"name": "ARBUpdateSubscriptionRequest",
+		"children": [
+			{
+				"name": "merchantAuthentication",
+				"value": "Merchant account credentials",
+				"format": "",
+				"required": true,
+				"notes": "See Merchant authentication Section"
+			},
+			{
+				"name": "refId",
+				"value": "Merchant-assigned ID associated with the customer Profile",
+				"format": "Up to 20 characters",
+				"required": false,
+				"notes": "If included in the request, this value will be included int he response"
+			},
+			{
+				"name": "subscriptionId",
+				"value": "The payment gateway-assigned identification number for the subscription",
+				"format": "Numeric (up to 13 digits)",
+				"required": true,
+				"notes": ""
+			},
+			{
+				"name": "subscription",
+				"value": "Contains information about the subscription",
+				"format": "",
+				"required": true,
+				"notes": "",
+				"children": [
+					{
+						"name": "name",
+						"value": "Merchant-assigned name for hte subscription",
+						"format": "Up to 50 characters",
+						"required": false,
+						"notes": ""
+					},
+					{
+						"name": "paymentSchedule",
+						"value": "Contains information about the payment schedule",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "startDate",
+								"value": "The date the subscription begins (also the date the initial billing occurs)",
+								"format": "YYYY-MM-DD",
+								"required": false,
+								"notes": "The start date can only be updated if no successful payments have been completed"
+							},
+							{
+								"name": "totalOccurrences",
+								"value": "Number of billing occurrences or payments for the subscription",
+								"format": "Up to 4 digits",
+								"required": true,
+								"notes": "To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”\n\nIf a trial period is specified, this number should include the Trial Occurrences"
+							},
+							{
+								"name": "trialOccurrences",
+								"value": "Number of billing occurrences or payments int he trial period",
+								"format": "Numeric (up to 2 digits)",
+								"required": false,
+								"notes": "The number of trial occurrences can only be edited if the subscription has not started or is still in the trial period."
+							}
+						]
+					},
+					{
+						"name": "amount",
+						"value": "The amount to be billed to the customer for each payment int he subscription",
+						"format": "Up to 15 digits",
+						"required": false,
+						"notes": "If a trial period is specified, this is the amount that will be charged after the trial payments are complete."
+					},
+					{
+						"name": "trialAmount",
+						"value": "The amount to be charged for each payment during the trial period.",
+						"format": "Up to 15 digits",
+						"required": false,
+						"notes": "Required when trialOccurrences is specified.\n\nOnce the number of trial occurrences is complete, the regular amount will be charged for each remaining payment."
+					},
+					{
+						"name": "payment",
+						"value": "Contains either the customer's credit card or bank account payment information",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "creditCard",
+								"value": "Contains the customer's credit card information",
+								"format": "",
+								"required": false,
+								"notes": "Include this element only when the payment method is credit card",
+								"children": [
+									{
+										"name": "cardNumber",
+										"value": "The credit card number used for payment of the subscription",
+										"format": "Numeric (13-16 digits)",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "expirationDate",
+										"value": "The expiration date of the credit card used for the subscription",
+										"format": "YYYY-MM",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "cardCode",
+										"value": "The three or four-digit card code on the back of most credit cards, on the front for American Express",
+										"format": "Numeric (3 or 4 digits)",
+										"required": false,
+										"notes": "Include this element only when the merchant has set the card code value field to required int he account settings. The value itself is never validated."
+									}
+								]
+							},
+							{
+								"name": "bankAccount",
+								"value": "Contains the customer's bank account information",
+								"format": "",
+								"required": false,
+								"notes": "Include this element only when the payment method is bank account.",
+								"children": [
+									{
+										"name": "accountType",
+										"value": "The type of account used for payment of the subscription",
+										"format": "checking, businessChecking, savings",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "routingNumber",
+										"value": "The routing number of the customer's bank",
+										"format": "9 digits",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "accountNumber",
+										"value": "The bank account number used for payment of the subscription",
+										"format": "Numeric (5-17 digits)",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "nameonAccount",
+										"value": "The full name of the individual associated with the bank account number",
+										"format": "Up to 22 characters",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "echeckType",
+										"value": "The type of electronic check transaction used for the subscription",
+										"format": "PPD, TEL, WEB, CCD",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "bankName",
+										"value": "The name of the bank associated with the bank account Number",
+										"format": "Up to 50 characters",
+										"required": false,
+										"notes": ""
+									}
+								]
+							}
+						]
+					},
+					{
+						"name": "order",
+						"value": "Contains optional order information",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "invoiceNumber",
+								"value": "Merchant-assigned invoice number for the subscription",
+								"format": "Up to 20 characters",
+								"required": false,
+								"notes": "The invoice number will be associated with each payment in the subscription"
+							},
+							{
+								"name": "description",
+								"value": "Description of the subscription",
+								"format": "Up to 255 chracters",
+								"required": false,
+								"notes": "The description will be associated with each payment in the subscription"
+							}
+						]
+					},
+					{
+						"name": "customer",
+						"value": "Contains information about the customer",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "id",
+								"value": "Merchant-assigned identifier for the customer",
+								"format": "Up to 20 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "email",
+								"value": "The customer's email address",
+								"format": "Up to 255 characters",
+								"required": false,
+								"notes": "Required when using an EU payment processor"
+							},
+							{
+								"name": "phoneNumber",
+								"value": "The customer's phone number",
+								"format": "Up to 25 digits",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "faxNumber",
+								"value": "The customer's fax number",
+								"format": "Up to 25 digits",
+								"required": false,
+								"notes": ""
+							}
+						]
+					},
+					{
+						"name": "billTo",
+						"value": "Contains the customer's billing address information",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "firstName",
+								"value": "The first name associated with the customer's billing address",
+								"format": "Up to 50 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "lastName",
+								"value": "The last name associated with the customer's billing address",
+								"format": "Up to 50 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "company",
+								"value": "The company associated with the customer's billing address",
+								"format": "Up to 60 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "address",
+								"value": "The customer's billing street address",
+								"format": "Up to 60 characters",
+								"required": false,
+								"notes": "Required when using an EU payment processor"
+							},
+							{
+								"name": "city",
+								"value": "The city of the customer's billing address",
+								"format": "Up to 40 characters",
+								"required": false,
+								"notes": "Required when using an EU payment processor"
+							},
+							{
+								"name": "state",
+								"value": "The state or province of the customer's billing address",
+								"format": "2 characters",
+								"required": false,
+								"notes": "Required when using an EU payment processor"
+							},
+							{
+								"name": "zip",
+								"value": "The ZIP or Postal code of the customer's billing address",
+								"format": "Up to 20 characters",
+								"required": false,
+								"notes": "Required when using an EU payment processor"
+							},
+							{
+								"name": "country",
+								"value": "The country of the customer's billing address",
+								"format": "Up to 60 characters",
+								"required": false,
+								"notes": "Must be valid two-character country code or full country name (in English).\n\nRequired when using an EU payment processor"
+							}
+						]
+					},
+					{
+						"name": "shipTo",
+						"value": "Contains the customer's shipping address information",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "firstName",
+								"value": "The first name associated with the customer's shipping address",
+								"format": "Up to 50 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "lastName",
+								"value": "The last name associated with the customer's shipping address",
+								"format": "Up to 50 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "company",
+								"value": "The company associated with the customer's shipping address",
+								"format": "Up to 50 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "address",
+								"value": "The customer's shipping street address",
+								"format": "Up to 60 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "city",
+								"value": "The city of the customer's shipping address",
+								"format": "Up to 40 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "state",
+								"value": "The state of the customer's shipping address",
+								"format": "Up to 40 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "zip",
+								"value": "The ZIP code of the customer's shipping address",
+								"format": "Up to 20 characters",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "country",
+								"value": "The country of the customer's shipping address",
+								"format": "Up to 60 characters",
+								"required": false,
+								"notes": ""
+							}
+						]
+					}
+				]
+			}
+		],
+		"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ARBUpdateSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n\t<merchantAuthentication>\n\t\t<name>mytestacct</name>\n\t\t<transactionKey>112223344</transactionKey>\n\t</merchantAuthentication>\n\t<refId>Sample</refId>\n\t<subscriptionId>100748</subscriptionId>\n\t<subscription>\n\t\t<payment>\n\t\t\t<creditCard>\n\t\t\t\t<cardNumber>4111111111111111</cardNumber>\n\t\t\t\t<expirationDate>2010-08</expirationDate>\n\t\t\t</creditCard>\n\t\t</payment>\n\t</subscription>\n</ARBUpdateSubscriptionRequest>"
+	},
+	"response": {
+		"name": "ARBUpdateSubscriptionResponse",
+		"children": [
+			{
+				"name": "refId",
+				"value": "Merchant-assigned reference ID for the request",
+				"format": "Up to 20 characters",
+				"required": false,
+				"notes": "If included in the request, this value will be included in the response"
+			},
+			{
+				"name": "messages",
+				"value": "Contains Information about the results of the request",
+				"format": "",
+				"required": false,
+				"notes": "See response code guide."
+			}
+		],
+		"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ARBUpdateSubscriptionResponse xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n\t<refId>Sample</refId>\n\t<messages>\n\t\t<resultCode>Ok</resultCode>\n\t\t<message>\n\t\t\t<code>I00001</code>\n\t\t\t<text>Successful.</text>\n\t\t</message>\n\t</messages>\n</ARBUpdateSubscriptionResponse>"
+	}
+},
+{
+	"title": "Cancel a Subscription",
+	"usage": "Used to cancel an existing subscription.",
+	"request": {
+		"name": "ARBCancelSubscriptionRequest",
+		"children": [
+			{
+				"name": "merchantAuthentication",
+				"value": "Merchant account credentials",
+				"format": "",
+				"required": true,
+				"notes": "See Merchant authentication Section"
+			},
+			{
+				"name": "refId",
+				"value": "Merchant-assigned ID associated with the customer Profile",
+				"format": "Up to 20 characters",
+				"required": false,
+				"notes": "If included in the request, this value will be included int he response"
+			},
+			{
+				"name": "subscriptionId",
+				"value": "The payment gateway-assigned identification number for the subscription",
+				"format": "Numeric (up to 13 digits)",
+				"required": true,
+				"notes": ""
+			}
+		],
+		"sample": "<ARBCancelSubscriptionRequest xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n\t<merchantAuthentication>\n\t\t<name>mytestacct</name>\n\t\t<transactionKey>112223344</transactionKey>\n\t</merchantAuthentication>\n\t<refId>Sample</refId>\n\t<subscriptionId>100748</subscriptionId>\n</ARBCancelSubscriptionRequest>"
+	},
+	"response": {
+		"name": "ARBCancelSubscriptionResponse",
+		"children": [
+			{
+				"name": "refId",
+				"value": "Merchant-assigned reference ID for the request",
+				"format": "Up to 20 characters",
+				"required": false,
+				"notes": "If included in the request, this value will be included in the response"
+			},
+			{
+				"name": "messages",
+				"value": "Contains Information about the results of the request",
+				"format": "",
+				"required": false,
+				"notes": "See response code guide."
+			}
+		],
+		"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ARBCancelSubscriptionResponsexmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n\t<refId>Sample</refId>\n\t<messages>\n\t\t<resultCode>Ok</resultCode>\n\t\t<message>\n\t\t\t<code>I00001</code>\n\t\t\t<text>Successful.</text>\n\t\t</message>\n\t</messages>\n</ARBCancelSubscriptionResponse>"
+	}
 }
             ]
         }
