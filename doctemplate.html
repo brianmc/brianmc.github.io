@@ -97,6 +97,7 @@
       </ul>
       <div id="myTabContent" class="tab-content">
         <div class="tab-pane fade in active" id="homereq-{{idFromTitle this.title}}">
+		<p><em>{{this.request.name}}</em></p>
     <table class="table table-condensed">
         <thead>
           <tr>
@@ -109,19 +110,19 @@
           {{#each request.children}}
           <tr>
             <td>{{this.name}}</td>
-            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
+            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
-            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
+            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
-            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
+            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
 		  {{/each}}
@@ -131,6 +132,7 @@
       </table>
         </div>
 		 <div class="tab-pane fade in" id="homeresp-{{idFromTitle this.title}}">
+		 <p><em>{{this.response.name}}</em></p>
     <table class="table table-condensed">
         <thead>
           <tr>
@@ -143,19 +145,19 @@
           {{#each response.children}}
           <tr>
             <td>{{this.name}}</td>
-            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
+            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
-            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
+            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
             <td>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;<strong>*</strong>&nbsp;&nbsp;&nbsp;{{this.name}}</td>
-            <td>{{this.value}}.<br/>{{this.notes}}. {{#if this.required}}<strong>Required.</strong>{{/if}}</td>
+            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
 		  {{/each}}
