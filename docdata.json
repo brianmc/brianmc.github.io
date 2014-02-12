@@ -1,7 +1,7 @@
 [
         {
             "APIName" : "Recurring Billing",
-            "APIUsage" : "For merchants enabled for the Automated Recurring Billing (ARB) service, Recurring Billing API supports integration with a Web site payment form or a proprietary business application-allowing online customers or sales representatives using a business application to select and submit subscription- or installment-based payments.",
+            "APIUsage" : "Recurring Billing API methods allow you to manage regular payment subscriptions.",
 			"API-ID" : "recurring-billing",
             "methods" : [
 {
