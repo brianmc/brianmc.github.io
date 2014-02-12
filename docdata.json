@@ -4,7 +4,7 @@
             "APIUsage" : "For merchants enabled for the Automated Recurring Billing (ARB) service, Recurring Billing API supports integration with a Web site payment form or a proprietary business application-allowing online customers or sales representatives using a business application to select and submit subscription- or installment-based payments.",
 			"API-ID" : "recurring-billing",
             "methods" : [
-				{
+{
 	"title": "Create a Subscription",
 	"usage": "For subscriptions with a monthly interval, whose payments begin on the 31st of a month, payments for months with less than 31 days will occur on the last day of the month. ",
 	"request": {
@@ -12,56 +12,56 @@
 		"children": [
 			{
 				"name": "merchantAuthentication",
-				"value": "Merchant account credentials",
+				"value": "Merchant account credentials.",
 				"format": "",
 				"required": true,
-				"notes": "See Merchant authentication Section"
+				"notes": "See Merchant authentication Section."
 			},
 			{
 				"name": "refId",
-				"value": "Merchant-assigned ID associated with the customer Profile",
-				"format": "Up to 20 characters",
+				"value": "Merchant-assigned ID associated with the customer Profile.",
+				"format": "Up to 20 characters.",
 				"required": false,
-				"notes": "If included in the request, this value will be included int he response"
+				"notes": "If included in the request, this value will be included int he response."
 			},
 			{
 				"name": "subscription",
-				"value": "Contains information about the subscription",
+				"value": "Contains information about the subscription.",
 				"format": "",
 				"required": true,
 				"notes": "",
 				"children": [
 					{
 						"name": "name",
-						"value": "Merchant-assigned name for hte subscription",
-						"format": "Up to 50 characters",
+						"value": "Merchant-assigned name for the subscription.",
+						"format": "Up to 50 characters.",
 						"required": false,
 						"notes": ""
 					},
 					{
 						"name": "paymentSchedule",
-						"value": "Contains information about the payment schedule",
+						"value": "Contains information about the payment schedule.",
 						"format": "",
 						"required": true,
 						"notes": "",
 						"children": [
 							{
 								"name": "interval",
-								"value": "Contains information about the time between payments",
+								"value": "Contains information about the time between payments.",
 								"format": "",
 								"required": true,
 								"notes": "",
 								"children": [
 									{
 										"name": "length",
-										"value": "The measurement of time, in association with the Interval Unit, that is used to define the frequency of the billing occurrences",
-										"format": "Numeric (up to 3 digits)",
+										"value": "The measurement of time, in association with the Interval Unit, that is used to define the frequency of the billing occurrences.",
+										"format": "Numeric (up to 3 digits).",
 										"required": true,
-										"notes": "If the Interval Unit is \"months\", can be any number between one (1) and 12. If the Interval Unit is \"days\", can be any number between seven (7) and 365"
+										"notes": "If the Interval Unit is \"months\", can be any number between one (1) and 12. If the Interval Unit is \"days\", can be any number between seven (7) and 365."
 									},
 									{
 										"name": "unit",
-										"value": "The unit of time, in association with the Interval Length, between each billing occurrence",
+										"value": "The unit of time, in association with the Interval Length, between each billing occurrence.",
 										"format": "days, months",
 										"required": true,
 										"notes": ""
@@ -70,73 +70,73 @@
 							},
 							{
 								"name": "startDate",
-								"value": "The date the subscription begins (also the date the initial billing occurs)",
+								"value": "The date the subscription begins (also the date the initial billing occurs).",
 								"format": "YYYY-MM-DD",
 								"required": true,
-								"notes": "The date entered must be greater than or equal to the date the subscription was created.\n\nThe validation checks against local server date, which is Mountain Time. An error might possibly occur if you try to submit a subscription from a time zone where the resulting date is different; for example, if you are in the Pacific time zone and try to submit a subscription between 11:00 PM and midnight, with a start date set for today. \n\nIf the start date is the 31st, and the interval is monthly, the billing date is the last day of each month (even when the month does not have 31 days)"
+								"notes": "The date entered must be greater than or equal to the date the subscription was created.\n\nThe validation checks against local server date, which is Mountain Time. An error might possibly occur if you try to submit a subscription from a time zone where the resulting date is different; for example, if you are in the Pacific time zone and try to submit a subscription between 11:00 PM and midnight, with a start date set for today. \n\nIf the start date is the 31st, and the interval is monthly, the billing date is the last day of each month (even when the month does not have 31 days)."
 							},
 							{
 								"name": "totalOccurrences",
-								"value": "Number of billing occurrences or payments for the subscription",
-								"format": "Up to 4 digits",
+								"value": "Number of billing occurrences or payments for the subscription.",
+								"format": "Up to 4 digits.",
 								"required": true,
-								"notes": "To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”\n\nIf a trial period is specified, this number should include the Trial Occurrences"
+								"notes": "To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”\n\nIf a trial period is specified, this number should include the Trial Occurrences."
 							},
 							{
 								"name": "trialOccurrences",
-								"value": "Number of billing occurrences or payments int he trial period",
-								"format": "Numeric (up to 2 digits)",
+								"value": "Number of billing occurrences or payments int he trial period.",
+								"format": "Numeric (up to 2 digits).",
 								"required": false,
-								"notes": "If a trial period is specified, this number must be included in the Total Occurences"
+								"notes": "If a trial period is specified, this number must be included in the Total Occurences."
 							}
 						]
 					},
 					{
 						"name": "amount",
-						"value": "The amount to be billed to the customer for each payment int he subscription",
-						"format": "Up to 15 digits",
+						"value": "The amount to be billed to the customer for each payment int he subscription.",
+						"format": "Up to 15 digits.",
 						"required": true,
 						"notes": "If a trial period is specified, this is the amount that will be charged after the trial payments are complete."
 					},
 					{
 						"name": "trialAmount",
 						"value": "The amount to be charged for each payment during the trial period.",
-						"format": "Up to 15 digits",
+						"format": "Up to 15 digits.",
 						"required": false,
 						"notes": "Required when trialOccurrences is specified.\n\nOnce the number of trial occurrences is complete, the regular amount will be charged for each remaining payment."
 					},
 					{
 						"name": "payment",
-						"value": "Contains either the customer's credit card or bank account payment information",
+						"value": "Contains either the customer's credit card or bank account payment information.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "creditCard",
-								"value": "Contains the customer's credit card information",
+								"value": "Contains the customer's credit card information.",
 								"format": "",
 								"required": false,
-								"notes": "Include this element only when the payment method is credit card",
+								"notes": "Include this element only when the payment method is credit card.",
 								"children": [
 									{
 										"name": "cardNumber",
-										"value": "The credit card number used for payment of the subscription",
-										"format": "Numeric (13-16 digits)",
+										"value": "The credit card number used for payment of the subscription.",
+										"format": "Numeric (13-16 digits).",
 										"required": true,
 										"notes": ""
 									},
 									{
 										"name": "expirationDate",
-										"value": "The expiration date of the credit card used for the subscription",
+										"value": "The expiration date of the credit card used for the subscription.",
 										"format": "YYYY-MM",
 										"required": true,
 										"notes": ""
 									},
 									{
 										"name": "cardCode",
-										"value": "The three or four-digit card code on the back of most credit cards, on the front for American Express",
-										"format": "Numeric (3 or 4 digits)",
+										"value": "The three or four-digit card code on the back of most credit cards, on the front for American Express.",
+										"format": "Numeric (3 or 4 digits).",
 										"required": false,
 										"notes": "Include this element only when the merchant has set the card code value field to required int he account settings. The value itself is never validated."
 									}
@@ -144,50 +144,50 @@
 							},
 							{
 								"name": "bankAccount",
-								"value": "Contains the customer's bank account information",
+								"value": "Contains the customer's bank account information.",
 								"format": "",
 								"required": false,
 								"notes": "Include this element only when the payment method is bank account.",
 								"children": [
 									{
 										"name": "accountType",
-										"value": "The type of account used for payment of the subscription",
+										"value": "The type of account used for payment of the subscription.",
 										"format": "checking, businessChecking, savings",
 										"required": true,
 										"notes": ""
 									},
 									{
 										"name": "routingNumber",
-										"value": "The routing number of the customer's bank",
-										"format": "9 digits",
+										"value": "The routing number of the customer's bank.",
+										"format": "9 digits.",
 										"required": true,
 										"notes": ""
 									},
 									{
 										"name": "accountNumber",
-										"value": "The bank account number used for payment of the subscription",
-										"format": "Numeric (5-17 digits)",
+										"value": "The bank account number used for payment of the subscription.",
+										"format": "Numeric (5-17 digits).",
 										"required": true,
 										"notes": ""
 									},
 									{
 										"name": "nameonAccount",
-										"value": "The full name of the individual associated with the bank account number",
-										"format": "Up to 22 characters",
+										"value": "The full name of the individual associated with the bank account number.",
+										"format": "Up to 22 characters.",
 										"required": true,
 										"notes": ""
 									},
 									{
 										"name": "echeckType",
-										"value": "The type of electronic check transaction used for the subscription",
+										"value": "The type of electronic check transaction used for the subscription.",
 										"format": "PPD, TEL, WEB, CCD",
 										"required": true,
 										"notes": ""
 									},
 									{
 										"name": "bankName",
-										"value": "The name of the bank associated with the bank account Number",
-										"format": "Up to 50 characters",
+										"value": "The name of the bank associated with the bank account Number.",
+										"format": "Up to 50 characters.",
 										"required": false,
 										"notes": ""
 									}
@@ -197,59 +197,59 @@
 					},
 					{
 						"name": "order",
-						"value": "Contains optional order information",
+						"value": "Contains optional order information.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "invoiceNumber",
-								"value": "Merchant-assigned invoice number for the subscription",
-								"format": "Up to 20 characters",
+								"value": "Merchant-assigned invoice number for the subscription.",
+								"format": "Up to 20 characters.",
 								"required": false,
-								"notes": "The invoice number will be associated with each payment in the subscription"
+								"notes": "The invoice number will be associated with each payment in the subscription."
 							},
 							{
 								"name": "description",
-								"value": "Description of the subscription",
-								"format": "Up to 255 chracters",
+								"value": "Description of the subscription.",
+								"format": "Up to 255 chracters.",
 								"required": false,
-								"notes": "The description will be associated with each payment in the subscription"
+								"notes": "The description will be associated with each payment in the subscription."
 							}
 						]
 					},
 					{
 						"name": "customer",
-						"value": "Contains information about the customer",
+						"value": "Contains information about the customer.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "id",
-								"value": "Merchant-assigned identifier for the customer",
-								"format": "Up to 20 characters",
+								"value": "Merchant-assigned identifier for the customer.",
+								"format": "Up to 20 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "email",
-								"value": "The customer's email address",
-								"format": "Up to 255 characters",
+								"value": "The customer's email address.",
+								"format": "Up to 255 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "phoneNumber",
-								"value": "The customer's phone number",
-								"format": "Up to 25 digits",
+								"value": "The customer's phone number.",
+								"format": "Up to 25 digits.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "faxNumber",
-								"value": "The customer's fax number",
-								"format": "Up to 25 digits",
+								"value": "The customer's fax number.",
+								"format": "Up to 25 digits.",
 								"required": false,
 								"notes": ""
 							}
@@ -257,108 +257,108 @@
 					},
 					{
 						"name": "billTo",
-						"value": "Contains the customer's billing address information",
+						"value": "Contains the customer's billing address information.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "firstName",
-								"value": "The first name associated with the customer's billing address",
-								"format": "Up to 50 characters",
+								"value": "The first name associated with the customer's billing address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "lastName",
-								"value": "The last name associated with the customer's billing address",
-								"format": "Up to 50 characters",
+								"value": "The last name associated with the customer's billing address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "company",
-								"value": "The company associated with the customer's billing address",
-								"format": "Up to 60 characters",
+								"value": "The company associated with the customer's billing address.",
+								"format": "Up to 60 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "address",
-								"value": "The customer's billing street address",
-								"format": "Up to 60 characters",
+								"value": "The customer's billing street address.",
+								"format": "Up to 60 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "city",
-								"value": "The city of the customer's billing address",
-								"format": "Up to 40 characters",
+								"value": "The city of the customer's billing address.",
+								"format": "Up to 40 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "state",
-								"value": "The state or province of the customer's billing address",
-								"format": "2 characters",
+								"value": "The state or province of the customer's billing address.",
+								"format": "2 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "zip",
-								"value": "The ZIP or Postal code of the customer's billing address",
-								"format": "Up to 20 characters",
+								"value": "The ZIP or Postal code of the customer's billing address.",
+								"format": "Up to 20 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "country",
-								"value": "The country of the customer's billing address",
-								"format": "Up to 60 characters",
+								"value": "The country of the customer's billing address.",
+								"format": "Up to 60 characters.",
 								"required": false,
-								"notes": "Must be valid two-character country code or full country name (in English).\n\nRequired when using an EU payment processor"
+								"notes": "Must be valid two-character country code or full country name (in English).\n\nRequired when using an EU payment processor."
 							}
 						]
 					},
 					{
 						"name": "shipTo",
-						"value": "Contains the customer's shipping address information",
+						"value": "Contains the customer's shipping address information.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "firstName",
-								"value": "The first name associated with the customer's shipping address",
-								"format": "Up to 50 characters",
+								"value": "The first name associated with the customer's shipping address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "lastName",
-								"value": "The last name associated with the customer's shipping address",
-								"format": "Up to 50 characters",
+								"value": "The last name associated with the customer's shipping address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "company",
-								"value": "The company associated with the customer's shipping address",
-								"format": "Up to 50 characters",
+								"value": "The company associated with the customer's shipping address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "address",
-								"value": "The customer's shipping street address",
-								"format": "Up to 60 characters",
+								"value": "The customer's shipping street address.",
+								"format": "Up to 60 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "city",
-								"value": "The city of the customer's shipping address",
-								"format": "Up to 40 characters",
+								"value": "The city of the customer's shipping address.",
+								"format": "Up to 40 characters.",
 								"required": false,
 								"notes": ""
 							},
@@ -371,15 +371,15 @@
 							},
 							{
 								"name": "zip",
-								"value": "The ZIP code of the customer's shipping address",
-								"format": "Up to 20 characters",
+								"value": "The ZIP code of the customer's shipping address.",
+								"format": "Up to 20 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "country",
-								"value": "The country of the customer's shipping address",
-								"format": "Up to 60 characters",
+								"value": "The country of the customer's shipping address.",
+								"format": "Up to 60 characters.",
 								"required": false,
 								"notes": ""
 							}
@@ -395,22 +395,22 @@
 		"children": [
 			{
 				"name": "refId",
-				"value": "Merchant-assigned reference ID for the request",
-				"format": "Up to 20 characters",
+				"value": "Merchant-assigned reference ID for the request.",
+				"format": "Up to 20 characters.",
 				"required": false,
-				"notes": "If included in the request, this value will be included in the response"
+				"notes": "If included in the request, this value will be included in the response."
 			},
 			{
 				"name": "messages",
-				"value": "Contains Information about the results of the request",
+				"value": "Contains Information about the results of the request.",
 				"format": "",
 				"required": false,
 				"notes": "See response code guide."
 			},
 			{
 				"name": "subscriptionId",
-				"value": "The payment gateway assigned identification number for the subscription",
-				"format": "Up to 13 digits",
+				"value": "The payment gateway assigned identification number for the subscription.",
+				"format": "Up to 13 digits.",
 				"required": false,
 				"notes": ""
 			}
@@ -426,22 +426,22 @@
 		"children": [
 			{
 				"name": "merchantAuthentication",
-				"value": "Merchant account credentials",
+				"value": "Merchant account credentials.",
 				"format": "",
 				"required": true,
-				"notes": "See Merchant authentication Section"
+				"notes": "See Merchant authentication Section."
 			},
 			{
 				"name": "refId",
-				"value": "Merchant-assigned ID associated with the customer Profile",
-				"format": "Up to 20 characters",
+				"value": "Merchant-assigned ID associated with the customer Profile.",
+				"format": "Up to 20 characters.",
 				"required": false,
-				"notes": "If included in the request, this value will be included int he response"
+				"notes": "If included in the request, this value will be included int he response."
 			},
 			{
 				"name": "subscriptionId",
-				"value": "The payment gateway-assigned identification number for the subscription",
-				"format": "Numeric (up to 13 digits)",
+				"value": "The payment gateway-assigned identification number for the subscription.",
+				"format": "Numeric (up to 13 digits).",
 				"required": true,
 				"notes": ""
 			}
@@ -453,21 +453,21 @@
 		"children": [
 			{
 				"name": "refId",
-				"value": "Merchant-assigned reference ID for the request",
-				"format": "Up to 20 characters",
+				"value": "Merchant-assigned reference ID for the request.",
+				"format": "Up to 20 characters.",
 				"required": false,
-				"notes": "If included in the request, this value will be included in the response"
+				"notes": "If included in the request, this value will be included in the response."
 			},
 			{
 				"name": "messages",
-				"value": "Contains Information about the results of the request",
+				"value": "Contains Information about the results of the request.",
 				"format": "",
 				"required": false,
 				"notes": "See response code guide."
 			},
 			{
 				"name": "status",
-				"value": "Contains information about the subscription status",
+				"value": "Contains information about the subscription status.",
 				"format": "active, expired, suspended, cancelled, terminated",
 				"required": false,
 				"notes": ""
@@ -484,64 +484,64 @@
 		"children": [
 			{
 				"name": "merchantAuthentication",
-				"value": "Merchant account credentials",
+				"value": "Merchant account credentials.",
 				"format": "",
 				"required": true,
-				"notes": "See Merchant authentication Section"
+				"notes": "See Merchant authentication Section."
 			},
 			{
 				"name": "refId",
-				"value": "Merchant-assigned ID associated with the customer Profile",
-				"format": "Up to 20 characters",
+				"value": "Merchant-assigned ID associated with the customer Profile.",
+				"format": "Up to 20 characters.",
 				"required": false,
-				"notes": "If included in the request, this value will be included int he response"
+				"notes": "If included in the request, this value will be included int he response."
 			},
 			{
 				"name": "subscriptionId",
-				"value": "The payment gateway-assigned identification number for the subscription",
-				"format": "Numeric (up to 13 digits)",
+				"value": "The payment gateway-assigned identification number for the subscription.",
+				"format": "Numeric (up to 13 digits).",
 				"required": true,
 				"notes": ""
 			},
 			{
 				"name": "subscription",
-				"value": "Contains information about the subscription",
+				"value": "Contains information about the subscription.",
 				"format": "",
 				"required": true,
 				"notes": "",
 				"children": [
 					{
 						"name": "name",
-						"value": "Merchant-assigned name for hte subscription",
-						"format": "Up to 50 characters",
+						"value": "Merchant-assigned name for hte subscription.",
+						"format": "Up to 50 characters.",
 						"required": false,
 						"notes": ""
 					},
 					{
 						"name": "paymentSchedule",
-						"value": "Contains information about the payment schedule",
+						"value": "Contains information about the payment schedule.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "startDate",
-								"value": "The date the subscription begins (also the date the initial billing occurs)",
+								"value": "The date the subscription begins (also the date the initial billing occurs).",
 								"format": "YYYY-MM-DD",
 								"required": false,
-								"notes": "The start date can only be updated if no successful payments have been completed"
+								"notes": "The start date can only be updated if no successful payments have been completed."
 							},
 							{
 								"name": "totalOccurrences",
-								"value": "Number of billing occurrences or payments for the subscription",
+								"value": "Number of billing occurrences or payments for the subscription.",
 								"format": "Up to 4 digits",
 								"required": true,
-								"notes": "To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”\n\nIf a trial period is specified, this number should include the Trial Occurrences"
+								"notes": "To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”\n\nIf a trial period is specified, this number should include the Trial Occurrences."
 							},
 							{
 								"name": "trialOccurrences",
-								"value": "Number of billing occurrences or payments int he trial period",
-								"format": "Numeric (up to 2 digits)",
+								"value": "Number of billing occurrences or payments int he trial period.",
+								"format": "Numeric (up to 2 digits).",
 								"required": false,
 								"notes": "The number of trial occurrences can only be edited if the subscription has not started or is still in the trial period."
 							}
@@ -549,50 +549,50 @@
 					},
 					{
 						"name": "amount",
-						"value": "The amount to be billed to the customer for each payment int he subscription",
-						"format": "Up to 15 digits",
+						"value": "The amount to be billed to the customer for each payment int he subscription.",
+						"format": "Up to 15 digits.",
 						"required": false,
 						"notes": "If a trial period is specified, this is the amount that will be charged after the trial payments are complete."
 					},
 					{
 						"name": "trialAmount",
 						"value": "The amount to be charged for each payment during the trial period.",
-						"format": "Up to 15 digits",
+						"format": "Up to 15 digits.",
 						"required": false,
 						"notes": "Required when trialOccurrences is specified.\n\nOnce the number of trial occurrences is complete, the regular amount will be charged for each remaining payment."
 					},
 					{
 						"name": "payment",
-						"value": "Contains either the customer's credit card or bank account payment information",
+						"value": "Contains either the customer's credit card or bank account payment information.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "creditCard",
-								"value": "Contains the customer's credit card information",
+								"value": "Contains the customer's credit card information.",
 								"format": "",
 								"required": false,
-								"notes": "Include this element only when the payment method is credit card",
+								"notes": "Include this element only when the payment method is credit card.",
 								"children": [
 									{
 										"name": "cardNumber",
-										"value": "The credit card number used for payment of the subscription",
-										"format": "Numeric (13-16 digits)",
+										"value": "The credit card number used for payment of the subscription.",
+										"format": "Numeric (13-16 digits).",
 										"required": false,
 										"notes": ""
 									},
 									{
 										"name": "expirationDate",
-										"value": "The expiration date of the credit card used for the subscription",
-										"format": "YYYY-MM",
+										"value": "The expiration date of the credit card used for the subscription.",
+										"format": "YYYY-MM.",
 										"required": false,
 										"notes": ""
 									},
 									{
 										"name": "cardCode",
-										"value": "The three or four-digit card code on the back of most credit cards, on the front for American Express",
-										"format": "Numeric (3 or 4 digits)",
+										"value": "The three or four-digit card code on the back of most credit cards, on the front for American Express.",
+										"format": "Numeric (3 or 4 digits).",
 										"required": false,
 										"notes": "Include this element only when the merchant has set the card code value field to required int he account settings. The value itself is never validated."
 									}
@@ -600,50 +600,50 @@
 							},
 							{
 								"name": "bankAccount",
-								"value": "Contains the customer's bank account information",
+								"value": "Contains the customer's bank account information.",
 								"format": "",
 								"required": false,
 								"notes": "Include this element only when the payment method is bank account.",
 								"children": [
 									{
 										"name": "accountType",
-										"value": "The type of account used for payment of the subscription",
+										"value": "The type of account used for payment of the subscription.",
 										"format": "checking, businessChecking, savings",
 										"required": false,
 										"notes": ""
 									},
 									{
 										"name": "routingNumber",
-										"value": "The routing number of the customer's bank",
-										"format": "9 digits",
+										"value": "The routing number of the customer's bank.",
+										"format": "9 digits.",
 										"required": false,
 										"notes": ""
 									},
 									{
 										"name": "accountNumber",
-										"value": "The bank account number used for payment of the subscription",
-										"format": "Numeric (5-17 digits)",
+										"value": "The bank account number used for payment of the subscription.",
+										"format": "Numeric (5-17 digits).",
 										"required": false,
 										"notes": ""
 									},
 									{
 										"name": "nameonAccount",
-										"value": "The full name of the individual associated with the bank account number",
-										"format": "Up to 22 characters",
+										"value": "The full name of the individual associated with the bank account number.",
+										"format": "Up to 22 characters.",
 										"required": false,
 										"notes": ""
 									},
 									{
 										"name": "echeckType",
-										"value": "The type of electronic check transaction used for the subscription",
+										"value": "The type of electronic check transaction used for the subscription.",
 										"format": "PPD, TEL, WEB, CCD",
 										"required": false,
 										"notes": ""
 									},
 									{
 										"name": "bankName",
-										"value": "The name of the bank associated with the bank account Number",
-										"format": "Up to 50 characters",
+										"value": "The name of the bank associated with the bank account Number.",
+										"format": "Up to 50 characters.",
 										"required": false,
 										"notes": ""
 									}
@@ -653,59 +653,59 @@
 					},
 					{
 						"name": "order",
-						"value": "Contains optional order information",
+						"value": "Contains optional order information.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "invoiceNumber",
-								"value": "Merchant-assigned invoice number for the subscription",
-								"format": "Up to 20 characters",
+								"value": "Merchant-assigned invoice number for the subscription.",
+								"format": "Up to 20 characters.",
 								"required": false,
-								"notes": "The invoice number will be associated with each payment in the subscription"
+								"notes": "The invoice number will be associated with each payment in the subscription."
 							},
 							{
 								"name": "description",
-								"value": "Description of the subscription",
-								"format": "Up to 255 chracters",
+								"value": "Description of the subscription.",
+								"format": "Up to 255 characters.",
 								"required": false,
-								"notes": "The description will be associated with each payment in the subscription"
+								"notes": "The description will be associated with each payment in the subscription."
 							}
 						]
 					},
 					{
 						"name": "customer",
-						"value": "Contains information about the customer",
+						"value": "Contains information about the customer.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "id",
-								"value": "Merchant-assigned identifier for the customer",
-								"format": "Up to 20 characters",
+								"value": "Merchant-assigned identifier for the customer.",
+								"format": "Up to 20 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "email",
-								"value": "The customer's email address",
-								"format": "Up to 255 characters",
+								"value": "The customer's email address.",
+								"format": "Up to 255 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "phoneNumber",
-								"value": "The customer's phone number",
-								"format": "Up to 25 digits",
+								"value": "The customer's phone number.",
+								"format": "Up to 25 digits.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "faxNumber",
-								"value": "The customer's fax number",
-								"format": "Up to 25 digits",
+								"value": "The customer's fax number.",
+								"format": "Up to 25 digits.",
 								"required": false,
 								"notes": ""
 							}
@@ -713,129 +713,129 @@
 					},
 					{
 						"name": "billTo",
-						"value": "Contains the customer's billing address information",
+						"value": "Contains the customer's billing address information.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "firstName",
-								"value": "The first name associated with the customer's billing address",
-								"format": "Up to 50 characters",
+								"value": "The first name associated with the customer's billing address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "lastName",
-								"value": "The last name associated with the customer's billing address",
-								"format": "Up to 50 characters",
+								"value": "The last name associated with the customer's billing address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "company",
-								"value": "The company associated with the customer's billing address",
-								"format": "Up to 60 characters",
+								"value": "The company associated with the customer's billing address.",
+								"format": "Up to 60 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "address",
-								"value": "The customer's billing street address",
-								"format": "Up to 60 characters",
+								"value": "The customer's billing street address.",
+								"format": "Up to 60 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "city",
-								"value": "The city of the customer's billing address",
-								"format": "Up to 40 characters",
+								"value": "The city of the customer's billing address.",
+								"format": "Up to 40 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "state",
-								"value": "The state or province of the customer's billing address",
-								"format": "2 characters",
+								"value": "The state or province of the customer's billing address.",
+								"format": "2 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "zip",
-								"value": "The ZIP or Postal code of the customer's billing address",
-								"format": "Up to 20 characters",
+								"value": "The ZIP or Postal code of the customer's billing address.",
+								"format": "Up to 20 characters.",
 								"required": false,
-								"notes": "Required when using an EU payment processor"
+								"notes": "Required when using an EU payment processor."
 							},
 							{
 								"name": "country",
-								"value": "The country of the customer's billing address",
-								"format": "Up to 60 characters",
+								"value": "The country of the customer's billing address.",
+								"format": "Up to 60 characters.",
 								"required": false,
-								"notes": "Must be valid two-character country code or full country name (in English).\n\nRequired when using an EU payment processor"
+								"notes": "Must be valid two-character country code or full country name (in English).\n\nRequired when using an EU payment processor."
 							}
 						]
 					},
 					{
 						"name": "shipTo",
-						"value": "Contains the customer's shipping address information",
+						"value": "Contains the customer's shipping address information.",
 						"format": "",
 						"required": false,
 						"notes": "",
 						"children": [
 							{
 								"name": "firstName",
-								"value": "The first name associated with the customer's shipping address",
-								"format": "Up to 50 characters",
+								"value": "The first name associated with the customer's shipping address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "lastName",
-								"value": "The last name associated with the customer's shipping address",
-								"format": "Up to 50 characters",
+								"value": "The last name associated with the customer's shipping address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "company",
-								"value": "The company associated with the customer's shipping address",
-								"format": "Up to 50 characters",
+								"value": "The company associated with the customer's shipping address.",
+								"format": "Up to 50 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "address",
-								"value": "The customer's shipping street address",
-								"format": "Up to 60 characters",
+								"value": "The customer's shipping street address.",
+								"format": "Up to 60 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "city",
-								"value": "The city of the customer's shipping address",
-								"format": "Up to 40 characters",
+								"value": "The city of the customer's shipping address.",
+								"format": "Up to 40 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "state",
-								"value": "The state of the customer's shipping address",
-								"format": "Up to 40 characters",
+								"value": "The state of the customer's shipping address.",
+								"format": "Up to 40 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "zip",
-								"value": "The ZIP code of the customer's shipping address",
-								"format": "Up to 20 characters",
+								"value": "The ZIP code of the customer's shipping address.",
+								"format": "Up to 20 characters.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "country",
-								"value": "The country of the customer's shipping address",
-								"format": "Up to 60 characters",
+								"value": "The country of the customer's shipping address.",
+								"format": "Up to 60 characters.",
 								"required": false,
 								"notes": ""
 							}
@@ -851,14 +851,14 @@
 		"children": [
 			{
 				"name": "refId",
-				"value": "Merchant-assigned reference ID for the request",
-				"format": "Up to 20 characters",
+				"value": "Merchant-assigned reference ID for the request.",
+				"format": "Up to 20 characters.",
 				"required": false,
-				"notes": "If included in the request, this value will be included in the response"
+				"notes": "If included in the request, this value will be included in the response."
 			},
 			{
 				"name": "messages",
-				"value": "Contains Information about the results of the request",
+				"value": "Contains Information about the results of the request.",
 				"format": "",
 				"required": false,
 				"notes": "See response code guide."
@@ -875,22 +875,22 @@
 		"children": [
 			{
 				"name": "merchantAuthentication",
-				"value": "Merchant account credentials",
+				"value": "Merchant account credentials.",
 				"format": "",
 				"required": true,
-				"notes": "See Merchant authentication Section"
+				"notes": "See Merchant authentication Section."
 			},
 			{
 				"name": "refId",
-				"value": "Merchant-assigned ID associated with the customer Profile",
-				"format": "Up to 20 characters",
+				"value": "Merchant-assigned ID associated with the customer Profile.",
+				"format": "Up to 20 characters.",
 				"required": false,
-				"notes": "If included in the request, this value will be included int he response"
+				"notes": "If included in the request, this value will be included int he response."
 			},
 			{
 				"name": "subscriptionId",
-				"value": "The payment gateway-assigned identification number for the subscription",
-				"format": "Numeric (up to 13 digits)",
+				"value": "The payment gateway-assigned identification number for the subscription.",
+				"format": "Numeric (up to 13 digits.",
 				"required": true,
 				"notes": ""
 			}
@@ -902,14 +902,14 @@
 		"children": [
 			{
 				"name": "refId",
-				"value": "Merchant-assigned reference ID for the request",
-				"format": "Up to 20 characters",
+				"value": "Merchant-assigned reference ID for the request.",
+				"format": "Up to 20 characters.",
 				"required": false,
-				"notes": "If included in the request, this value will be included in the response"
+				"notes": "If included in the request, this value will be included in the response."
 			},
 			{
 				"name": "messages",
-				"value": "Contains Information about the results of the request",
+				"value": "Contains Information about the results of the request.",
 				"format": "",
 				"required": false,
 				"notes": "See response code guide."

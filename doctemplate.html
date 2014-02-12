@@ -1,32 +1,42 @@
 
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Paymentdemo</title>
-  <link rel="stylesheet" media="screen,projection,tv" href="https://developer.cdn.mozilla.net/media/css/mdn-min.css?build=a91571e" />
-  <link href="http://getbootstrap.com/docs-assets/css/docs.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://getbootstrap.com/dist/js/bootstrap.js"></script>
-<script src="http://codemirror.net/lib/codemirror.js"></script>
-<link rel="stylesheet" href="http://codemirror.net/lib/codemirror.css">
-<script src="http://codemirror.net/mode/javascript/javascript.js"></script>
-<script src="http://getbootstrap.com/docs-assets/js/holder.js"></script>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Authorize.Net API Documentation">
+<meta name="keywords" content="AIM ARB CIM Reporting">
 
-<script src="http://getbootstrap.com//docs-assets/js/application.js"></script>
-  <link data-turbolinks-track="true" href="http://www.paymentdemos.com/assets/application-c3f510c62a9b8876f870fafe42e277c7.css" media="all" rel="stylesheet" />
-  <script data-turbolinks-track="true" src="http://www.paymentdemos.com/assets/application-4f2e06aa615cc23c862b89dc2211bcdd.js"></script>
-  <meta content="authenticity_token" name="csrf-param" />
-<meta content="Gd5M72prVwme03XUeg4WsTj1nY7oIrCTFhq4DJt68NI=" name="csrf-token" />
-</head>
-<body>
+<title>
+  
+  Authorize.Net API Documentation
+  
+</title>
 
-<!-- temporary beta notice -->
-  <div class="redesign-beta-notice"><div class="center"><bdi>
-    <strong>Welcome to the new, improved Authorize.Net API Docs</strong> We hope you like it! If you have any suggestions or comments, <a href="/en-US/docs/Project:Feedback">please share!</a>
-  </bdi></div>
+<!-- Bootstrap core CSS -->
+<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Documentation extras -->
+<link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<!-- Favicons -->
+<link href="http://developer.authorize.net/resources/images/favicon.ico" rel="shortcut icon" />
+
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
 
     <!-- Docs master nav -->
-    <header class="navbar navbar-inverse navbar-fixed-top bs-docs-nav" role="banner">
+    <header class="navbar navbar-static-top bs-docs-nav" role="banner">
   <div class="container">
     <div class="navbar-header">
       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
@@ -43,15 +53,10 @@
           <a href="../getting-started">Getting started</a>
         </li>
         <li class="active">
-          <a href="../components">API</a>
+          <a href="../api">API</a>
         </li>
         <li>
-          <a href="../javascript">Client Libraries</a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a href="../about">Back to Developer Center</a>
+          <a href="../client-libraries">Client Libraries</a>
         </li>
       </ul>
     </nav>
@@ -59,37 +64,24 @@
 </header>
 
 
-<div class="container bs-docs-container">
-  <div class="row">
-    <div class="col-md-3">
-        <div class="bs-sidebar hidden-print" role="complementary">
-          <ul class="nav bs-sidenav">
-		    {{#each this}}
-            <li>
-			    <a href="#{{idFromTitle this.APIName}}">{{this.APIName}}</a>
-				<ul class="nav">
-                {{#each methods}}
-				    <li><a href="#{{idFromTitle this.title}}">{{this.title}}</a></li>
-                {{/each}}
-				</ul>
-            </li>
-           {{/each}}
-          </ul>
-        </div>
-    </div>
+    <div class="container bs-docs-container">
 
+      <div class="row">
+        <div class="col-md-9" role="main">
+		<div class="bs-docs-section">
+  <h1 id="authentication" class="page-header">Authentication</h1>
+  <p>ALL calls to the Authorize.Net API require merchant authentication. If you do not have a test account you can sign up for one really quickly  <a href="https://developer.authorize.net/sandbox/" target="_blank">here</a></p>
 
-<div class="col-md-9" role="main">
-
-  {{#each this}}
-  <div class="bs-docs-section">
-    <div class="page-header">
-      <h1 id="{{idFromTitle this.APIName}}">{{this.APIName}}</h1>
-    </div>
-    {{#each methods}}
-    <h3 id="{{idFromTitle this.title}}">{{this.title}}</h3>
-    <p>{{this.usage}}</p>
-    <div class="bs-example bs-example-tabs">
+  </div>
+{{#each this}}
+<div class="bs-docs-section">
+  <h1 id="{{idFromTitle this.APIName}}" class="page-header">{{this.APIName}}</h1>
+  <p class="lead">{{this.APIUsage}}</p>
+  {{#each methods}}
+  <br/>
+  <h3 id="{{idFromTitle ../APIName}}-{{idFromTitle this.title}}">{{this.title}}</h3>
+  <p>{{this.usage}}</p>
+  <div class="bs-example bs-example-tabs">
       <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#homereq-{{idFromTitle this.title}}" data-toggle="tab">Request</a></li>
 		<li><a href="#homeresp-{{idFromTitle this.title}}" data-toggle="tab">Response</a></li>
@@ -188,114 +180,41 @@
   {{/each}}
 </div>
 {{/each}}
- 
+
+ </div>
+        <div class="col-md-3">
+          <div class="bs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-sidenav">
+			<li>
+            <a href="#authentication">Authentication</a>
+			</li>
+            {{#each this}}
+            <li>
+			    <a href="#{{idFromTitle this.APIName}}">{{this.APIName}}</a>
+				<ul class="nav">
+                {{#each methods}}
+				    <li><a href="#{{idFromTitle ../APIName}}-{{idFromTitle this.title}}">{{this.title}}</a></li>
+                {{/each}}
+				</ul>
+            </li>
+           {{/each}}
+		   
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
 
 
-
-  </div>
-
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css">
-<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
+<script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
+<script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 
-<script language="javascript" type="text/javascript">
- var myReqCodeMirror = CodeMirror.fromTextArea(txtReqXml, {"mode": "xml"});
- 
 
-// <!CDATA[
-var requestEditor, responseEditor;
 
-$(document).ready(function() {
-        requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
-                mode: 'xml',
-                lineNumbers: true
-        });
-
-        responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-a-subscription'), {
-                mode: 'xml',
-                lineNumbers: true
-        });
-
-        $('#createTransactionTryIt').click(function() {
-                setTimeout(redrawEditors, 250);
-        });
-});
-
-function redrawEditors() {
-        requestEditor.refresh();
-        responseEditor.refresh();
-}
-
-function XHConn()
-{
-  var xmlhttp, bComplete = false;
-  try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); }
-  catch (e) { try { xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
-  catch (e) { try { xmlhttp = new XMLHttpRequest(); }
-  catch (e) { xmlhttp = false; }}}
-  if (!xmlhttp) return null;
-
-  this.connect = function(sURL, sPostData, fnDone)
-  {
-    if (!xmlhttp) return false;
-    bComplete = false;
-
-    try {
-      xmlhttp.open("POST", sURL, true);
-      xmlhttp.setRequestHeader("Method", "POST "+sURL+" HTTP/1.1");
-      xmlhttp.setRequestHeader("Content-Type", "text/xml");
-      xmlhttp.onreadystatechange = function(){
-        if (xmlhttp.readyState == 4 && !bComplete)
-        {
-          bComplete = true;
-          fnDone(xmlhttp);
-        }
-      };
-      xmlhttp.send(sPostData);
-    }
-    catch(z) {
-      alert(z);
-      return false;
-    }
-    return true;
-  };
-  return this;
-}
-
-var g_xc = new XHConn();
-
-function btnSend_onclick() {
-
-  document.getElementById("btnSend").disabled = true;
-  document.getElementById("txtRespXml-create-subscription").innerHTML = "";
-  document.getElementById("spnStatusCode").innerHTML = "";
-  var fnWhenDone = function (oXML) {
-    if (oXML.status && oXML.status != "200") {
-      document.getElementById("spnStatusCode").innerHTML = "HTTP status code: " + oXML.status.toString().replace(/</g, "&lt;");
-    }
-    var txt = oXML.responseText;
-    txt = txt.replace(/></g, "> <");
-    txt = txt.replace(/</g, "&lt;");
-    txt = txt.replace(/>/g, "&gt;");
-     // Temp of course
-     txt = "&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;createTransactionResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt; &lt;refId&gt;123456&lt;/refId&gt; &lt;messages&gt; &lt;resultCode&gt;Ok&lt;/resultCode&gt; &lt;message&gt; &lt;code&gt;I00001&lt;/code&gt; &lt;text&gt;Successful.&lt;/text&gt; &lt;/message&gt; &lt;/messages&gt; &lt;transactionResponse&gt; &lt;responseCode&gt;1&lt;/responseCode&gt; &lt;authCode&gt;000000&lt;/authCode&gt; &lt;avsResultCode&gt;P&lt;/avsResultCode&gt; &lt;cvvResultCode /&gt; &lt;cavvResultCode /&gt; &lt;transId&gt;0&lt;/transId&gt; &lt;refTransID /&gt; &lt;transHash&gt;B363D5C80A9195B54FD915C7D9B41F67&lt;/transHash&gt; &lt;testRequest&gt;1&lt;/testRequest&gt; &lt;accountNumber&gt;XXXX0015&lt;/accountNumber&gt; &lt;accountType&gt;MasterCard&lt;/accountType&gt; &lt;messages&gt; &lt;message&gt; &lt;code&gt;1&lt;/code&gt; &lt;description&gt;This transaction has been approved.&lt;/description&gt; &lt;/message&gt; &lt;/messages&gt; &lt;/transactionResponse&gt; &lt;/createTransactionResponse&gt;"
-
-    document.getElementById("txtRespXml-create-subscription").innerHTML = txt;
-    document.getElementById("btnSend").disabled = false;
-    var myRespCodeMirror = CodeMirror.fromTextArea(txtRespXml-create-subscription, {"mode": "xml"});
-  };
-  g_xc.connect("https://apitest.authorize.net/xml/v1/request.api", document.getElementById("txtReqXml").value, fnWhenDone);
-}
-
-function selUrls_onChange(obj) {
-  if (document.getElementById("selUrls").value) {
-    document.getElementById("txtUrl").value = document.getElementById("selUrls").value;
-  }
-}
-
-// ]]>
-</script>
-
-</body>
+  </body>
+</html>
