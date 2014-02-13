@@ -1,0 +1,64 @@
+.navbar
+{
+    background-color: #2e5c82;   
+}
+.navbar-brand
+{
+    font-family: Georgia;
+    font-size: 28px;
+    color: #ffffff !important;
+}
+.navbar-nav li a 
+{
+    color: #ffffff !important;
+    font-family: Arial !important;
+    font-weight: bold !important;
+    font-size: 11pt !important;
+}
+.nav > li > a:hover, .nav > li > a:focus {
+    -moz-text-decoration-color: -moz-use-text-color;
+    -moz-text-decoration-line: none;
+    -moz-text-decoration-style: solid;
+    background-color: #EEEEEE;
+    color: #2e5c82 !important;
+}
+li.active a
+{
+    color: #2e5c82 !important;
+}
+.bs-docs-section
+{
+    margin-bottom: 25px !important;
+}
+.lead
+{
+    font-size: 18px !important;
+}
+.tab-content em
+{
+    font-family: "Lucida Console" !important;
+    font-style: normal;
+    font-size: 20px;
+}
+BODY
+{
+    color: #2e5c82 !important;
+}
+.page-header
+{
+    color: #2e5c82 !important;
+}
+P, h3
+{
+    color: #2e5c82 !important;
+}
+.table > tbody > tr > td:first-child
+{
+    font-family: "Lucida Console" !important;
+}
+table thead
+{
+    font-family: Arial !important;
+    font-style: Italic;
+    font-weight: normal !important;
+}
