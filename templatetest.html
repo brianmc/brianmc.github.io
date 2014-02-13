@@ -114,16 +114,16 @@
         </div>
         <div class="tab-pane fade" id="authentication-keys">
 		    <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-			<form class="form-inline" role="form">
+			<form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
 			  <div class="form-group">
 				<label class="sr-only" for="loginID">API Login ID</label>
-				<input type="text" class="form-control" id="loginID" placeholder="API Login ID">
+				<input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
 			  </div>
 			  <div class="form-group">
 				<label class="sr-only" for="transactionKey">Transaction Key</label>
-				<input type="text" class="form-control" id="transactionKey" placeholder="Transaction Key">
+				<input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
 			  </div>
-			  <button type="submit" class="btn btn-primary" onclick="return btnPopulateKeys_onclick()">Populate Sample Requests</button>
+			  <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
 			</form>
         </div>
       </div>
@@ -1260,8 +1260,23 @@ function btnSend_onclick() {
 
 function btnPopulateKeys_onclick() {
 
- alert("Done!");
+ var loginid = document.getElementById("txtLoginID").value;
+ var transactionkey = document.getElementById("txtTransactionKey").value;
+ 
+ var allSamples = document.getElementsByClassName("sample-request");
+ 
+ for (var i = 0; i < allSamples.length; i++) {
+    
+	var sampleRequest = allSamples[i];
+	sampleRequest.value = sampleRequest.value.replace("mytestacct",loginid).replace("112223344",transactionkey);
+	}
+	
+	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
+		mode: 'xml',
+		lineNumbers: true
+	});
 }
+
 
 function selUrls_onChange(obj) {
   if (document.getElementById("selUrls").value) {
