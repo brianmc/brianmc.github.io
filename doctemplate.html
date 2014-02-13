@@ -73,7 +73,6 @@
 		<div class="bs-docs-section">
   <h1 id="authentication" class="page-header">Authentication</h1>
   <p>ALL calls to the Authorize.Net API require merchant authentication. If you do not have a test account you can sign up for one really quickly  <a href="https://developer.authorize.net/sandbox/" target="_blank">here</a></p>
- <div class="bs-example bs-example-tabs">
       <ul id="myTab" class="nav nav-tabs">
         <li class="active"><a href="#authentication-fields" data-toggle="tab">Fields</a></li>
 		<li><a href="#authentication-sample" data-toggle="tab">Sample</a></li>
@@ -127,14 +126,12 @@
 			</form>
         </div>
       </div>
-  </div>
  </div>
 {{#each this}}
 <div class="bs-docs-section">
   <h1 id="{{idFromTitle this.APIName}}" class="page-header">{{this.APIName}}</h1>
   <p class="lead">{{this.APIUsage}}</p>
   {{#each methods}}
-  <div class="bs-example bs-example-tabs">
   <h3 id="{{idFromTitle ../APIName}}-{{idFromTitle this.title}}">{{this.title}}</h3>
   <p>{{this.usage}}</p>
       <ul id="myTab" class="nav nav-tabs">
@@ -233,7 +230,7 @@
 
         </div>
       </div>
-    </div>
+
   {{/each}}
 </div>
 {{/each}}
