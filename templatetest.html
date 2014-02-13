@@ -29,6 +29,7 @@
 <![endif]-->
 
 <link href="dist/css/anet.css" rel="stylesheet">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css">
   
 <!-- Favicons -->
 <link href="http://developer.authorize.net/resources/images/favicon.ico" rel="shortcut icon" />
@@ -113,16 +114,16 @@
         </div>
         <div class="tab-pane fade" id="authentication-keys">
 		    <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-			<form role="form">
+			<form class="form-inline" role="form">
 			  <div class="form-group">
-				<label for="exampleInputEmail1">API Login ID</label>
-				<input type="email" class="form-control" id="exampleInputEmail1" placeholder="API Login ID">
+				<label class="sr-only" for="loginID">API Login ID</label>
+				<input type="text" class="form-control" id="loginID" placeholder="API Login ID">
 			  </div>
 			  <div class="form-group">
-				<label for="exampleInputPassword1">Transaction Key</label>
-				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Transaction Key">
+				<label class="sr-only" for="transactionKey">Transaction Key</label>
+				<input type="text" class="form-control" id="transactionKey" placeholder="Transaction Key">
 			  </div>
-			  <button type="submit" class="btn btn-default" onclick="return btnPopulateKeys_onclick()" >Populate sample requests</button>
+			  <button type="submit" class="btn btn-primary" onclick="return btnPopulateKeys_onclick()">Populate Sample Requests</button>
 			</form>
         </div>
       </div>
@@ -458,6 +459,7 @@ Required when using an EU payment processor.</td>
         </div>
         <div class="tab-pane fade" id="console-create-a-subscription">
            <form method="post" action="">
+		   <div><span class="header">Request:</span></div>
            <p>
               <textarea class="sample-request" id="txtReqXml-create-a-subscription" name="txtReqXml" cols="80" rows="6" style="">
               &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
@@ -497,6 +499,7 @@ AnetApiSchema.xsd&quot;&gt;
            </p>
     <p>
       <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
+	  <button type="button" id="btnReset" name="btnReset" class="btn" onclick="">Reset</button>
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
     <p>
@@ -604,6 +607,7 @@ AnetApiSchema.xsd&quot;&gt;
         </div>
         <div class="tab-pane fade" id="console-get-subscription-status">
            <form method="post" action="">
+		   <div><span class="header">Request:</span></div>
            <p>
               <textarea class="sample-request" id="txtReqXml-get-subscription-status" name="txtReqXml" cols="80" rows="6" style="">
               &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
@@ -619,6 +623,7 @@ AnetApiSchema.xsd&quot;&gt;
            </p>
     <p>
       <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
+	  <button type="button" id="btnReset" name="btnReset" class="btn" onclick="">Reset</button>
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
     <p>
@@ -956,6 +961,7 @@ Required when using an EU payment processor.</td>
         </div>
         <div class="tab-pane fade" id="console-update-a-subscription">
            <form method="post" action="">
+		   <div><span class="header">Request:</span></div>
            <p>
               <textarea class="sample-request" id="txtReqXml-update-a-subscription" name="txtReqXml" cols="80" rows="6" style="">
               &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
@@ -980,6 +986,7 @@ AnetApiSchema.xsd&quot;&gt;
            </p>
     <p>
       <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
+	  <button type="button" id="btnReset" name="btnReset" class="btn" onclick="">Reset</button>
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
     <p>
@@ -1079,6 +1086,7 @@ AnetApiSchema.xsd&quot;&gt;
         </div>
         <div class="tab-pane fade" id="console-cancel-a-subscription">
            <form method="post" action="">
+		   <div><span class="header">Request:</span></div>
            <p>
               <textarea class="sample-request" id="txtReqXml-cancel-a-subscription" name="txtReqXml" cols="80" rows="6" style="">
               &lt;ARBCancelSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/
@@ -1094,6 +1102,7 @@ AnetApiSchema.xsd&quot;&gt;
            </p>
     <p>
       <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
+	  <button type="button" id="btnReset" name="btnReset" class="btn" onclick="">Reset</button>
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
     <p>
@@ -1157,30 +1166,31 @@ AnetApiSchema.xsd&quot;&gt;
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="dist/js/bootstrap.min.js"></script>
 <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
-
+<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
 
 <script language="javascript" type="text/javascript">
- var myReqCodeMirror = CodeMirror.fromTextArea(txtReqXml, {"mode": "xml"});
  
 
 // <!CDATA[
 var requestEditor, responseEditor;
 
 $(document).ready(function() {
-	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml'), {
+	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
 		mode: 'xml',
 		lineNumbers: true
 	});
 
-	responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml'), {
+	responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-a-subscription'), {
 		mode: 'xml',
 		lineNumbers: true
 	});
 
-	$('#createTransactionTryIt').click(function() {
+	$('#create-a-subscriptionTryIt').click(function() {
 		setTimeout(redrawEditors, 250);
 	});
 });
+
 
 function redrawEditors() {
 	requestEditor.refresh();
