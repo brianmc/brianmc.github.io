@@ -62,3 +62,35 @@ table thead
     font-style: Italic;
     font-weight: normal !important;
 }
+.tab-content {
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+}
+
+.nav-tabs {
+    margin-bottom: 0 !important;
+}
+.nav-tabs > li > a
+{
+    background-color: #ededed !important;
+    color: #2e5c82 !important;
+    font-family: Arial !important;
+    font-weight: bold !important;
+    font-size: 11pt !important;
+}
+.nav-tabs > li.active > a
+{
+    background-color: #ffffff !important;
+}
+/*.bs-sidebar .nav > .active > a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a 
+{
+    border: none !important;
+}
+li.active a
+{
+	background-image: url(dist/images/Carrot.gif) !important;
+	background-repeat: no-repeat;
+	background-position: left top;
+	margin-left: 30px !important;
+}*/
