@@ -105,12 +105,12 @@
       </table>
         </div>
 		 <div class="tab-pane fade in" id="authentication-sample">
-             <code>
-			    &lt;merchantAuthentication&gt;</br>
-		           &lt;name&gt;mytestacct&lt;/name&gt;</br>
-		           &lt;transactionKey&gt;112223344&lt;/transactionKey&gt;</br>
-	            &lt;/merchantAuthentication&gt;</br>
-			 </code>
+            <pre>
+                &lt;merchantAuthentication&gt;
+		           &lt;name&gt;mytestacct&lt;/name&gt;
+		           &lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
+	            &lt;/merchantAuthentication&gt;
+            </pre>
         </div>
         <div class="tab-pane fade" id="authentication-keys">
 		    <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
@@ -134,6 +134,7 @@
   <h1 id="recurring-billing" class="page-header">Recurring Billing</h1>
   <p class="lead">Recurring Billing API methods allow you to manage regular payment subscriptions.</p>
   
+  <div class="bs-example bs-example-tabs">
   <h3 id="recurring-billing-create-a-subscription">Create a Subscription</h3>
   <p>For subscriptions with a monthly interval, whose payments begin on the 31st of a month, payments for months with less than 31 days will occur on the last day of the month. </p>
       <ul id="myTab" class="nav nav-tabs">
@@ -519,8 +520,9 @@ AnetApiSchema.xsd&quot;&gt;
 
         </div>
       </div>
-
+    </div>
   
+  <div class="bs-example bs-example-tabs">
   <h3 id="recurring-billing-get-subscription-status">Get Subscription Status</h3>
   <p>Retrieves the status of an existing ARB subscription.</p>
       <ul id="myTab" class="nav nav-tabs">
@@ -640,8 +642,9 @@ XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; 
 
         </div>
       </div>
-
+    </div>
   
+  <div class="bs-example bs-example-tabs">
   <h3 id="recurring-billing-update-a-subscription">Update a Subscription</h3>
   <p>Used to update an existing ARB subscription. Only the subscription ID and fields that you wish to modify need to be submitted.</p>
       <ul id="myTab" class="nav nav-tabs">
@@ -1001,8 +1004,9 @@ AnetApiSchema.xsd&quot;&gt;
 
         </div>
       </div>
-
+    </div>
   
+  <div class="bs-example bs-example-tabs">
   <h3 id="recurring-billing-cancel-a-subscription">Cancel a Subscription</h3>
   <p>Used to cancel an existing subscription.</p>
       <ul id="myTab" class="nav nav-tabs">
@@ -1115,15 +1119,15 @@ AnetApiSchema.xsd&quot;&gt;
 
         </div>
       </div>
-
+    </div>
   
 </div>
 
 
  </div>
         <div class="col-md-3">
-          <div class="bs-sidebar hidden-print" role="complementary">
-            <ul class="nav bs-sidenav">
+          <div class="bs-docs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-docs-sidenav">
 			<li>
             <a href="#authentication">Authentication</a>
 			</li>
@@ -1177,6 +1181,7 @@ $(document).ready(function() {
 		mode: 'xml',
 		lineNumbers: true
 	});
+	
 
 	$('#create-a-subscriptionTryIt').click(function() {
 		setTimeout(redrawEditors, 250);
