@@ -71,7 +71,60 @@
 		<div class="bs-docs-section">
   <h1 id="authentication" class="page-header">Authentication</h1>
   <p>ALL calls to the Authorize.Net API require merchant authentication. If you do not have a test account you can sign up for one really quickly  <a href="https://developer.authorize.net/sandbox/" target="_blank">here</a></p>
-
+ <div class="bs-example bs-example-tabs">
+      <ul id="myTab" class="nav nav-tabs">
+        <li class="active"><a href="#authentication-fields" data-toggle="tab">Fields</a></li>
+		<li><a href="#authentication-sample" data-toggle="tab">Sample</a></li>
+        <li><a href="#authentication-keys" data-toggle="tab">Sandbox Credentials</a></li>
+      </ul>
+      <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" id="authentication-fields">
+		<p><em>merchantAuthentication</em></p>
+    <table class="table table-condensed">
+        <thead>
+          <tr>
+            <th>Element</th>
+            <th>Description</th>
+            <th>Format</th>
+          </tr>
+        </thead>
+        <tbody>         
+          <tr>
+            <td>name</td>
+            <td><strong>Required.</strong><br/>The merchant’s valid API login ID.<br/>Submit the API login ID used to submit transactions.</td>
+            <td>Up to 25 characters.</td>
+          </tr>        
+          <tr>
+            <td>transactionKey</td>
+            <td><strong>Required.</strong><br/>The merchant’s valid transaction key.<br/>Submit the transaction key obtained by the merchant from the Merchant Interface.</td>
+            <td>16 characters.</td>
+          </tr>
+		  
+        </tbody>
+      </table>
+        </div>
+		 <div class="tab-pane fade in" id="authentication-sample">
+             <code>
+			    &lt;merchantAuthentication&gt;
+		           &lt;name&gt;mytestacct&lt;/name&gt;
+		           &lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
+	            &lt;/merchantAuthentication&gt;
+			 </code>
+        </div>
+        <div class="tab-pane fade" id="authentication-keys">
+			<form role="form">
+			  <div class="form-group">
+				<label for="exampleInputEmail1">API Login ID</label>
+				<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+			  </div>
+			  <div class="form-group">
+				<label for="exampleInputPassword1">Transaction Key</label>
+				<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+			  </div>
+			  <button type="submit" class="btn btn-default" onclick="return btnPopulateKeys_onclick()" >Submit</button>
+			</form>
+        </div>
+      </div>
   </div>
 {{#each this}}
 <div class="bs-docs-section">
@@ -161,7 +214,7 @@
         <div class="tab-pane fade" id="console-{{idFromTitle this.title}}">
            <form method="post" action="">
            <p>
-              <textarea id="txtReqXml-{{idFromTitle this.title}}" name="txtReqXml" cols="80" rows="6" style="">
+              <textarea class="sample-request" id="txtReqXml-{{idFromTitle this.title}}" name="txtReqXml" cols="80" rows="6" style="">
               {{this.request.sample}}
               </textarea>
            </p>
@@ -170,7 +223,7 @@
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
     <p>
-      <textarea id="txtRespXml-{{idFromTitle this.title}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
+      <textarea class="sample-response" id="txtRespXml-{{idFromTitle this.title}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
     </p>
   </form>
 
@@ -215,6 +268,108 @@
 <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 
 
+<script language="javascript" type="text/javascript">
+ var myReqCodeMirror = CodeMirror.fromTextArea(txtReqXml, {"mode": "xml"});
+ 
+
+// <!CDATA[
+var requestEditor, responseEditor;
+
+$(document).ready(function() {
+	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml'), {
+		mode: 'xml',
+		lineNumbers: true
+	});
+
+	responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml'), {
+		mode: 'xml',
+		lineNumbers: true
+	});
+
+	$('#createTransactionTryIt').click(function() {
+		setTimeout(redrawEditors, 250);
+	});
+});
+
+function redrawEditors() {
+	requestEditor.refresh();
+	responseEditor.refresh();
+}
+
+function XHConn()
+{
+  var xmlhttp, bComplete = false;
+  try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); }
+  catch (e) { try { xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
+  catch (e) { try { xmlhttp = new XMLHttpRequest(); }
+  catch (e) { xmlhttp = false; }}}
+  if (!xmlhttp) return null;
+
+  this.connect = function(sURL, sPostData, fnDone)
+  {
+    if (!xmlhttp) return false;
+    bComplete = false;
+
+    try {
+      xmlhttp.open("POST", sURL, true);
+      xmlhttp.setRequestHeader("Method", "POST "+sURL+" HTTP/1.1");
+      xmlhttp.setRequestHeader("Content-Type", "text/xml");
+      xmlhttp.onreadystatechange = function(){
+        if (xmlhttp.readyState == 4 && !bComplete)
+        {
+          bComplete = true;
+          fnDone(xmlhttp);
+        }
+      };
+      xmlhttp.send(sPostData);
+    }
+    catch(z) {
+      alert(z);
+      return false;
+    }
+    return true;
+  };
+  return this;
+}
+
+var g_xc = new XHConn();
+
+function btnSend_onclick() {
+
+  document.getElementById("btnSend").disabled = true;
+  document.getElementById("txtRespXml").innerHTML = "";
+  document.getElementById("spnStatusCode").innerHTML = "";
+  var fnWhenDone = function (oXML) {
+    if (oXML.status && oXML.status != "200") {
+      document.getElementById("spnStatusCode").innerHTML = "HTTP status code: " + oXML.status.toString().replace(/</g, "&lt;");
+    }
+    var txt = oXML.responseText;
+    txt = txt.replace(/></g, "> <");
+    txt = txt.replace(/</g, "&lt;");
+    txt = txt.replace(/>/g, "&gt;");
+     // Temp of course
+     txt = "&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;createTransactionResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt; &lt;refId&gt;123456&lt;/refId&gt; &lt;messages&gt; &lt;resultCode&gt;Ok&lt;/resultCode&gt; &lt;message&gt; &lt;code&gt;I00001&lt;/code&gt; &lt;text&gt;Successful.&lt;/text&gt; &lt;/message&gt; &lt;/messages&gt; &lt;transactionResponse&gt; &lt;responseCode&gt;1&lt;/responseCode&gt; &lt;authCode&gt;000000&lt;/authCode&gt; &lt;avsResultCode&gt;P&lt;/avsResultCode&gt; &lt;cvvResultCode /&gt; &lt;cavvResultCode /&gt; &lt;transId&gt;0&lt;/transId&gt; &lt;refTransID /&gt; &lt;transHash&gt;B363D5C80A9195B54FD915C7D9B41F67&lt;/transHash&gt; &lt;testRequest&gt;1&lt;/testRequest&gt; &lt;accountNumber&gt;XXXX0015&lt;/accountNumber&gt; &lt;accountType&gt;MasterCard&lt;/accountType&gt; &lt;messages&gt; &lt;message&gt; &lt;code&gt;1&lt;/code&gt; &lt;description&gt;This transaction has been approved.&lt;/description&gt; &lt;/message&gt; &lt;/messages&gt; &lt;/transactionResponse&gt; &lt;/createTransactionResponse&gt;"
+
+    document.getElementById("txtRespXml").innerHTML = txt;
+    document.getElementById("btnSend").disabled = false;
+    var myRespCodeMirror = CodeMirror.fromTextArea(txtRespXml, {"mode": "xml"});
+  };
+  g_xc.connect("https://apitest.authorize.net/xml/v1/request.api", document.getElementById("txtReqXml").value, fnWhenDone);
+}
+
+function btnPopulateKeys_onclick() {
+
+ alert("Done!");
+}
+
+function selUrls_onChange(obj) {
+  if (document.getElementById("selUrls").value) {
+    document.getElementById("txtUrl").value = document.getElementById("selUrls").value;
+  }
+}
+
+// ]]>
+</script>
 
   </body>
 </html>
