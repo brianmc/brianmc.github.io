@@ -16,10 +16,8 @@
 function XHConn()
 {
   var xmlhttp, bComplete = false;
-  try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); }
-  catch (e) { try { xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
-  catch (e) { try { xmlhttp = new XMLHttpRequest(); }
-  catch (e) { xmlhttp = false; }}}
+  try { xmlhttp = new XMLHttpRequest(); }
+  catch (e) { xmlhttp = false; }
   if (!xmlhttp) return null;
   this.connect = function(sURL, sPostData, fnDone)
   {
