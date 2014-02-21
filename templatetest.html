@@ -7789,8 +7789,8 @@ function XHConn()
 
     try {
       xmlhttp.open("POST", sURL, true);
-      xmlhttp.setRequestHeader("Method", "POST "+sURL+" HTTP/1.1");
-      xmlhttp.setRequestHeader("Content-Type", "text/xml");
+      xmlhttp.setRequestHeader("method", "POST "+sURL+" HTTP/1.1");
+      xmlhttp.setRequestHeader("content-type", "text/xml");
       xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState == 4 && !bComplete)
         {
@@ -7814,7 +7814,7 @@ var g_xc = new XHConn();
 function btnSend_onclick() {
 
   document.getElementById("btnSend").disabled = true;
-  document.getElementById("txtRespXml").innerHTML = "";
+  document.getElementById("txtRespXml-create-a-subscription").innerHTML = "";
   document.getElementById("spnStatusCode").innerHTML = "";
   var fnWhenDone = function (oXML) {
     if (oXML.status && oXML.status != "200") {
@@ -7824,14 +7824,12 @@ function btnSend_onclick() {
     txt = txt.replace(/></g, "> <");
     txt = txt.replace(/</g, "&lt;");
     txt = txt.replace(/>/g, "&gt;");
-     // Temp of course
-     txt = "&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;createTransactionResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt; &lt;refId&gt;123456&lt;/refId&gt; &lt;messages&gt; &lt;resultCode&gt;Ok&lt;/resultCode&gt; &lt;message&gt; &lt;code&gt;I00001&lt;/code&gt; &lt;text&gt;Successful.&lt;/text&gt; &lt;/message&gt; &lt;/messages&gt; &lt;transactionResponse&gt; &lt;responseCode&gt;1&lt;/responseCode&gt; &lt;authCode&gt;000000&lt;/authCode&gt; &lt;avsResultCode&gt;P&lt;/avsResultCode&gt; &lt;cvvResultCode /&gt; &lt;cavvResultCode /&gt; &lt;transId&gt;0&lt;/transId&gt; &lt;refTransID /&gt; &lt;transHash&gt;B363D5C80A9195B54FD915C7D9B41F67&lt;/transHash&gt; &lt;testRequest&gt;1&lt;/testRequest&gt; &lt;accountNumber&gt;XXXX0015&lt;/accountNumber&gt; &lt;accountType&gt;MasterCard&lt;/accountType&gt; &lt;messages&gt; &lt;message&gt; &lt;code&gt;1&lt;/code&gt; &lt;description&gt;This transaction has been approved.&lt;/description&gt; &lt;/message&gt; &lt;/messages&gt; &lt;/transactionResponse&gt; &lt;/createTransactionResponse&gt;"
-
-    document.getElementById("txtRespXml").innerHTML = txt;
+     
+    document.getElementById("txtRespXml-create-a-subscription").innerHTML = txt;
     document.getElementById("btnSend").disabled = false;
     var myRespCodeMirror = CodeMirror.fromTextArea(txtRespXml, {"mode": "xml"});
   };
-  g_xc.connect("https://apitest.authorize.net/xml/v1/request.api", document.getElementById("txtReqXml").value, fnWhenDone);
+  g_xc.connect("https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api", document.getElementById("txtReqXml-create-a-subscription").value, fnWhenDone);
 }
 
 function btnPopulateKeys_onclick() {
