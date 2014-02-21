@@ -689,7 +689,7 @@ xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
               </textarea>
            </p>
     <p>
-      <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
+      <button type="button" id="btnSubSend" name="btnSubSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
 	  <button type="button" id="btnReset" name="btnReset" class="btn" onclick="">Reset</button>
     </p>
     <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
@@ -7827,7 +7827,10 @@ function btnSend_onclick() {
      
     document.getElementById("txtRespXml-create-a-subscription").innerHTML = txt;
     document.getElementById("btnSend").disabled = false;
-    var myRespCodeMirror = CodeMirror.fromTextArea(txtRespXml, {"mode": "xml"});
+    responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-a-subscription'), {
+		mode: 'xml',
+		lineNumbers: true
+	});
   };
   g_xc.connect("https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api", document.getElementById("txtReqXml-create-a-subscription").value, fnWhenDone);
 }
