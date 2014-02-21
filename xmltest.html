@@ -26,8 +26,8 @@ function XHConn()
     sURL = "https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api";
     try {
       xmlhttp.open("POST", sURL, true);
-      xmlhttp.setRequestHeader("Method", "POST "+sURL+" HTTP/1.1");
-      xmlhttp.setRequestHeader("Content-Type", "text/xml");
+      xmlhttp.setRequestHeader("method", "POST "+sURL+" HTTP/1.1");
+      xmlhttp.setRequestHeader("content-type", "text/xml");
       xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState == 4 && !bComplete)
         {
