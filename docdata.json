@@ -4368,6 +4368,297 @@
 	}
 },
 {
+	"title": "Authorize and Capture a Customer Profile",
+	"usage": "This function is used to authorize and capture a customer profile from an existing customer profile. This transaction type generates a customer receipt email. ",
+	"request": {
+		"name": "Input Elements for createCustomerProfileTransactionRequest (for Authorize and Capture Transactions)",
+		"children": [
+			{
+				"name": "refId",
+				"value": "Merchant-assigned reference ID for the request.",
+				"format": "Up to 20 characters.",
+				"required": false,
+				"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications."
+			},
+			{
+				"name": "transaction",
+				"value": "Contains transaction information.",
+				"format": "",
+				"required": false,
+				"notes": "",
+				"children": [
+					{
+						"name": "profileTransAuthCapture",
+						"value": "The transaction type that is being requested.",
+						"format": "",
+						"required": false,
+						"notes": "Only one transaction type is allowed per request.",
+						"children": [
+							{
+								"name": "amount",
+								"value": "The total amount of the transaction.",
+								"format": "Up to 4 digits after the decimal point (no dollar symbol).\nFor example, 12.99 or 12.9999",
+								"required": false,
+								"notes": "This amount should include all other amounts such as tax amount, shipping amount, etc."
+							},
+							{
+								"name": "tax",
+								"value": "Contains tax information for the transaction.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "amount",
+										"value": "The tax amount for the transaction.",
+										"format": "Up to 4 digits after the decimal point (no dollar symbol).\nFor example, 12.99 or 12.9999",
+										"required": false,
+										"notes": "This amount must be included in the total amount for the transaction."
+									},
+									{
+										"name": "name",
+										"value": "The name of the tax for the transaction.",
+										"format": "Up to 31 characters.",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "description",
+										"value": "The tax description for the transaction.",
+										"format": "Up to 255 characters.",
+										"required": false,
+										"notes": ""
+									}
+								]
+							},
+							{
+								"name": "shipping",
+								"value": "Contains shipping information for the transaction.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "amount",
+										"value": "The shipping amount for the transaction.",
+										"format": "Up to 4 digits after the decimal point (no dollar symbol).\nFor example, 12.99 or 12.9999",
+										"required": false,
+										"notes": "This amount must be included in the total amount for the transaction."
+									},
+									{
+										"name": "name",
+										"value": "The name of the shipping for the transaction.",
+										"format": "Up to 31 characters.",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "description",
+										"value": "The shipping description for the transaction.",
+										"format": "Up to 255 characters.",
+										"required": false,
+										"notes": ""
+									}
+								]
+							},
+							{
+								"name": "duty",
+								"value": "Contains duty information for the transaction.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "amount",
+										"value": "The duty amount for the transaction.",
+										"format": "Up to 4 digits after the decimal point (no dollar symbol).\nFor example, 12.99 or 12.9999",
+										"required": false,
+										"notes": "This amount must be included in the total amount for the transaction."
+									},
+									{
+										"name": "name",
+										"value": "The name of the duty for the transaction.",
+										"format": "Up to 31 characters.",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "description",
+										"value": "The duty description for the transaction.",
+										"format": "Up to 255 characters.",
+										"required": false,
+										"notes": ""
+									}
+								]
+							},
+							{
+								"name": "lineItems",
+								"value": "Contains line item details about the order.",
+								"format": "",
+								"required": false,
+								"notes": "Up to 30 distinct instances of this parameter and its children can be included per transaction to describe items included in the order.",
+								"children": [
+									{
+										"name": "itemId",
+										"value": "The ID assigned to the item.",
+										"format": "Up to 31 characters.",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "name",
+										"value": "A short description of an item.",
+										"format": "Up to 31 characters.",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "description",
+										"value": "A detailed description of an item.",
+										"format": "Up to 255 characters.",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "quantity",
+										"value": "The quantity of an item.",
+										"format": "Up to 4 digits (up to two decimal places).",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "unitPrice",
+										"value": "Cost of an item per unit excluding tax, freight, and duty.",
+										"format": "Up to 4 digits with a decimal point (no dollar symbol).\nFor example, 4.95",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "taxable",
+										"value": "Indicates whether the item is subject to tax.",
+										"format": "TRUE or FALSE",
+										"required": false,
+										"notes": ""
+									}
+								]
+							},
+							{
+								"name": "customerProfileId",
+								"value": "Payment gateway-assigned ID associated with the customer profile.",
+								"format": "Numeric.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "customerPaymentProfileId",
+								"value": "Payment gateway-assigned ID associated with the customer payment profile.",
+								"format": "Numeric.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "customerShippingAddressId",
+								"value": "Payment gateway-assigned ID associated with the customer shipping address.",
+								"format": "Numeric.",
+								"required": false,
+								"notes": "If customerShippingAddressId is not passed, shipping information will not be included with the transaction."
+							},
+							{
+								"name": "order",
+								"value": "Contains information about the order.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "invoiceNumber",
+										"value": "The merchant-assigned invoice number for the transaction.",
+										"format": "Up to 20 characters (no symbols).",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "description",
+										"value": "The transaction description.",
+										"format": "Up to 255 characters (no symbols).",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "purchaseOrderNumber",
+										"value": "The merchant-assigned purchase order number.",
+										"format": "Up to 25 characters (no symbols).",
+										"required": false,
+										"notes": ""
+									}
+								]
+							},
+							{
+								"name": "taxExempt",
+								"value": "The tax exempt status.",
+								"format": "TRUE or FALSE",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "recurringBilling",
+								"value": "The recurring billing status.",
+								"format": "TRUE or FALSE",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "cardCode",
+								"value": "The customer’s card code (the three- or four-digit number on the back or front of a credit card).",
+								"format": "3 to 4 digits.",
+								"required": false,
+								"notes": "This field is required if the merchant would like to use the Card Code Verification (CCV) security feature."
+							},
+							{
+								"name": "splitTenderId",
+								"value": "The payment gateway-assigned number associated with the order.",
+								"format": "Up to 6 digits.",
+								"required": false,
+								"notes": "This field is required for second and subsequent transactions related to a partial authorization transaction."
+							}
+						]
+					}
+				]
+			},
+			{
+				"name": "extraOptions",
+				"value": "Information in name/value pair format that does not exist within CIM, such as customer IP address, etc.",
+				"format": "String.",
+				"required": false,
+				"notes": "For a complete list of the transaction variable names available, review the AIM Implementation Guide located at http://www.authorize.net/support/AIM_guide.pdf."
+			}
+		],
+		"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>YourUserLogin</name>\n    <transactionKey>YourTranKey</transactionKey>\n  </merchantAuthentication>\n  <transaction>\n    <profileTransAuthCapture>\n      <amount>10.95</amount>\n<tax>\n        <amount>1.00</amount>\n        <name>WA state sales tax</name>\n\n <description>Washington state sales tax</description>\n      </tax>\n      <shipping>\n        <amount>2.00</amount>\n        <name>ground based shipping</name>\n        <description>Ground based 5 to 10 day shipping</description>\n      </shipping>\n      <lineItems>\n        <itemId>ITEM00001</itemId>\n        <name>name of item sold</name>\n        <description>Description of item sold</description>\n        <quantity>1</quantity>\n    <unitPrice>6.95</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n<lineItems>\n        <itemId>ITEM00002</itemId>\n        <name>name of other item sold</name>\n        <description>Description of other item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>1.00</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n      <customerProfileId>10000</customerProfileId>\n      <customerPaymentProfileId>20000</customerPaymentProfileId>\n    <customerShippingAddressId>30000</customerShippingAddressId>\n<order>\n        <invoiceNumber>INV000001</invoiceNumber>\n        <description>description of transaction</description>\n        <purchaseOrderNumber>PONUM000001</purchaseOrderNumber>\n      </order>\n      <taxExempt>false</taxExempt>\n      <recurringBilling>false</recurringBilling>\n      <cardCode>000</cardCode>\n      <splitTenderId>123456</splitTenderId>\n    </profileTransAuthCapture>\n  </transaction>\n  <extraOptions><![CDATA[x_customer_ip=100.0.0.1]]></extraOptions>\n</createCustomerProfileTransactionRequest>"
+	},
+	"response": {
+		"name": "Output for createCustomerProfileTransactionResponse",
+		"children": [
+			{
+				"name": "refId",
+				"value": "Merchant-assigned reference ID for the request.",
+				"format": "Up to 20 characters.",
+				"required": false,
+				"notes": "If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications.",
+				"children": [
+					{
+						"name": "directResponse",
+						"value": "Contains detailed information about the result of the transaction.",
+						"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+						"required": false,
+						"notes": "Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced."
+					}
+				]
+			}
+		],
+		"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileTransactionResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <directResponse>1,1,1,This transaction has been approved.,000000,Y,2000000001,INV000001,description of transaction,10.95,CC,auth_capture,custId123,John,Doe,,123 Main St.,Bellevue,WA,98004,USA,000-000-0000,,mark@example.com,John,Doe,,123 Main St.,Bellevue,WA,98004,USA,1.00,0.00,2.00,FALSE,PONUM000001,\nD18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n  </directResponse>\n</createCustomerProfileTransactionResponse>"
+	}
+},
+{
 	"title": "Authorizing and Capturing a Transaction from a Customer Profile",
 	"usage": "This function is used to authorize and capture a transaction from an existing customer profile. ",
 	"request": {
