@@ -3592,7 +3592,7 @@
 				"notes": "For more information on use and restrictions of validationMode, see \"The validationMode Parameter.\""
 			}
 		],
-		"sample": ""
+		"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<updateCustomerPaymentProfileRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>YourUserLogin</name>\n    <transactionKey>YourTranKey</transactionKey>\n  </merchantAuthentication>\n  <customerProfileId>10000</customerProfileId>\n  <paymentProfile>\n    <billTo>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <company></company>\n      <address>123 Main St.</address>\n      <city>Bellevue</city>\n      <state>WA</state>\n      <zip>98004</zip>\n      <country>USA</country>\n      <phoneNumber>000-000-0000</phoneNumber>\n      <faxNumber></faxNumber>\n    </billTo>\n    <payment>\n      <creditCard>\n        <cardNumber>4111111111111111</cardNumber>\n        <expirationDate>2026-01</expirationDate>\n      </creditCard>\n    </payment>\n    <customerPaymentProfileId>20000</customerPaymentProfileId>\n  </paymentProfile>\n  <validationMode>liveMode</validationMode>\n</updateCustomerPaymentProfileRequest>"
 	},
 	"response": {
 		"name": "Output for updateCustomerPaymentProfileResponse",
@@ -6870,7 +6870,7 @@
 				"notes": ""
 			}
 		],
-		"sample": ""
+		"sample": "<getUnsettledTransactionListRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n    <merchantAuthentication>\n        <name>API_LOGIN_ID</name>\n        <transactionKey>API_TRANSACTION_KEY</transactionKey>\n    </merchantAuthentication>\n</getUnsettledTransactionListRequest>"
 	},
 	"response": {
 		"name": "getUnsettledTransactionListResponse",
@@ -6883,7 +6883,7 @@
 				"notes": ""
 			}
 		],
-		"sample": ""
+		"sample": "<getUnsettledTransactionListResponse xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n    <messages>\n        <resultCode>Ok</resultCode>\n        <message>\n            <code>I00001</code>\n            <text>Successful.</text>\n        </message>\n    </messages>\n    <transactions>\n        <transaction>\n            <transId>2158982012</transId>\n            <submitTimeUTC>2011-04-05T17:30:21Z</submitTimeUTC>\n            <submitTimeLocal>2011-04-05T18:30:21</submitTimeLocal>\n            <transactionStatus>authorizedPendingCapture</transactionStatus>\n            <invoiceNumber>123124123432</invoiceNumber>\n            <firstName>Unit</firstName>\n            <lastName>Tests</lastName>\n            <accountType>Visa</accountType>\n            <accountNumber>XXXX1111</accountNumber>\n            <settleAmount>1.11</settleAmount>\n        </transaction>\n    </transactions>\n</getUnsettledTransactionListResponse>"
 	}
 },
 {
