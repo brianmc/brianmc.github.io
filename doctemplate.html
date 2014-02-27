@@ -172,13 +172,13 @@
           </tr>
 		  {{#each this.children}}
 		  <tr>
-            <td>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;{{this.name}}</td>
+            <td class='oneBullet'>{{this.name}}</td>
             <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
-            <td>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;{{this.name}}</td>
+            <td class='twoBullet'>{{this.name}}</td>
             <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
@@ -207,13 +207,13 @@
           </tr>
 		  {{#each this.children}}
 		  <tr>
-            <td>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;{{this.name}}</td>
+            <td class='oneBullet'>{{this.name}}</td>
             <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
 		  {{#each this.children}}
 		  <tr>
-            <td>&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;*&nbsp;&nbsp;&nbsp;{{this.name}}</td>
+            <td class='twoBullet'>{{this.name}}</td>
             <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
@@ -282,127 +282,12 @@
 <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
 <script src="api.js"></script>
+<script src="formatting.js"></script>
 
-<script language="javascript" type="text/javascript">
+
  
 
-// <!CDATA[
 
-/*var requestEditor, responseEditor;
-
-$(document).ready(function() {
-	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
-		mode: 'xml',
-		lineNumbers: true
-	});
-
-	responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-a-subscription'), {
-		mode: 'xml',
-		lineNumbers: true
-	});
-	
-
-	$('#create-a-subscriptionTryIt').click(function() {
-		setTimeout(redrawEditors, 250);
-	});
-});
-
-
-function redrawEditors() {
-	requestEditor.refresh();
-	responseEditor.refresh();
-}
-
-function XHConn()
-{
-  var xmlhttp, bComplete = false;
-  try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); }
-  catch (e) { try { xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
-  catch (e) { try { xmlhttp = new XMLHttpRequest(); }
-  catch (e) { xmlhttp = false; }}}
-  if (!xmlhttp) return null;
-
-  this.connect = function(sURL, sPostData, fnDone)
-  {
-    if (!xmlhttp) return false;
-    bComplete = false;
-
-    try {
-      xmlhttp.open("POST", sURL, true);
-      xmlhttp.setRequestHeader("Method", "POST "+sURL+" HTTP/1.1");
-      xmlhttp.setRequestHeader("Content-Type", "text/xml");
-      xmlhttp.onreadystatechange = function(){
-        if (xmlhttp.readyState == 4 && !bComplete)
-        {
-          bComplete = true;
-          fnDone(xmlhttp);
-        }
-      };
-      xmlhttp.send(sPostData);
-    }
-    catch(z) {
-      alert(z);
-      return false;
-    }
-    return true;
-  };
-  return this;
-}
-
-var g_xc = new XHConn();
-
-function btnSend_onclick() {
-
-  document.getElementById("btnSend").disabled = true;
-  document.getElementById("txtRespXml").innerHTML = "";
-  document.getElementById("spnStatusCode").innerHTML = "";
-  var fnWhenDone = function (oXML) {
-    if (oXML.status && oXML.status != "200") {
-      document.getElementById("spnStatusCode").innerHTML = "HTTP status code: " + oXML.status.toString().replace(/</g, "&lt;");
-    }
-    var txt = oXML.responseText;
-    txt = txt.replace(/></g, "> <");
-    txt = txt.replace(/</g, "&lt;");
-    txt = txt.replace(/>/g, "&gt;");
-     // Temp of course
-     txt = "&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;createTransactionResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt; &lt;refId&gt;123456&lt;/refId&gt; &lt;messages&gt; &lt;resultCode&gt;Ok&lt;/resultCode&gt; &lt;message&gt; &lt;code&gt;I00001&lt;/code&gt; &lt;text&gt;Successful.&lt;/text&gt; &lt;/message&gt; &lt;/messages&gt; &lt;transactionResponse&gt; &lt;responseCode&gt;1&lt;/responseCode&gt; &lt;authCode&gt;000000&lt;/authCode&gt; &lt;avsResultCode&gt;P&lt;/avsResultCode&gt; &lt;cvvResultCode /&gt; &lt;cavvResultCode /&gt; &lt;transId&gt;0&lt;/transId&gt; &lt;refTransID /&gt; &lt;transHash&gt;B363D5C80A9195B54FD915C7D9B41F67&lt;/transHash&gt; &lt;testRequest&gt;1&lt;/testRequest&gt; &lt;accountNumber&gt;XXXX0015&lt;/accountNumber&gt; &lt;accountType&gt;MasterCard&lt;/accountType&gt; &lt;messages&gt; &lt;message&gt; &lt;code&gt;1&lt;/code&gt; &lt;description&gt;This transaction has been approved.&lt;/description&gt; &lt;/message&gt; &lt;/messages&gt; &lt;/transactionResponse&gt; &lt;/createTransactionResponse&gt;"
-
-    document.getElementById("txtRespXml").innerHTML = txt;
-    document.getElementById("btnSend").disabled = false;
-    var myRespCodeMirror = CodeMirror.fromTextArea(txtRespXml, {"mode": "xml"});
-  };
-  g_xc.connect("https://apitest.authorize.net/xml/v1/request.api", document.getElementById("txtReqXml").value, fnWhenDone);
-}
-
-function btnPopulateKeys_onclick() {
-
- var loginid = document.getElementById("txtLoginID").value;
- var transactionkey = document.getElementById("txtTransactionKey").value;
- 
- var allSamples = document.getElementsByClassName("sample-request");
- 
- for (var i = 0; i < allSamples.length; i++) {
-    
-	var sampleRequest = allSamples[i];
-	sampleRequest.value = sampleRequest.value.replace("mytestacct",loginid).replace("112223344",transactionkey);
-	}
-	
-	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
-		mode: 'xml',
-		lineNumbers: true
-	});
-	
-	return false;
-}
-
-
-function selUrls_onChange(obj) {
-  if (document.getElementById("selUrls").value) {
-    document.getElementById("txtUrl").value = document.getElementById("selUrls").value;
-  }
-}*/
-
-// ]]>
 </script>
 
   </body>

@@ -85,3 +85,15 @@ li.active a
 	background-position: left top;
 	margin-left: 30px !important;
 }*/
+
+.oneBullet:before{
+    content:   "   •   " ; 
+
+}
+
+/*• ●   &nbsp;&nbsp;&nbsp;&#8226;&nbsp;&nbsp;&nbsp;*/
+
+
+.twoBullet:before{
+    content:"      •     •   ";
+}

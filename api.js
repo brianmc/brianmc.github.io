@@ -1,24 +1,13 @@
 var requestEditor, responseEditor, codeEditorsID=[];
-//var id;
 
 $(document).ready(function() {
 
   $("textarea").each(function(ind, ele){
     var id = $(ele).attr('id');
     codeEditorsID[id] =  CodeMirror.fromTextArea(document.getElementById(id), { mode: 'xml',lineNumbers: true});
-
-    //codeEditorsID[id].setLine(1,"<?xml version='1.0' encoding='utf-8'?>");
   });
 
-/*	 requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
-    mode: 'xml',
-    lineNumbers: true
-  });
 
-  responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-a-subscription'), {
-    mode: 'xml',
-    lineNumbers: true
-  });*/
 
   $('a').click(function(event){ 
     if($(event.currentTarget).html()==="Try it")
@@ -33,7 +22,6 @@ $(document).ready(function() {
   $('button').click(function(event){ 
     if($(event.currentTarget).attr('name')==="btnSend")
     {
-     // id = this.id
       btnSend_onclick(this.id);
     } 
   });
@@ -43,11 +31,7 @@ $(document).ready(function() {
 
 
 function redrawEditors(id) {
-	//requestEditor.refresh();
-	//responseEditor.refresh();
   codeEditorsID[id].refresh();
-  
-
 }
 
 function XHConn()
@@ -88,8 +72,7 @@ function XHConn()
 
 var g_xc = new XHConn();
 var genericId;
-function btnSend_onclick(id) {     //txtReqXml-create-a-transaction //btnSend-create-a-transaction//txtRespXml-create-a-transaction
-
+function btnSend_onclick(id) {    
   document.getElementById(id).disabled = true;
   
   genericId = id.substring(7,id.length);
@@ -104,30 +87,26 @@ function btnSend_onclick(id) {     //txtReqXml-create-a-transaction //btnSend-cr
       }
       var txt = oXML.responseText;
       txt = txt.replace(/></g, "> <");
-     // txt = txt.replace(/</g, "&lt;");
-     // txt = txt.replace(/>/g, "&gt;");
       codeEditorsID["txtRespXml"+genericId].setValue(txt);
-     // document.getElementById("txtRespXml"+genericId).innerHTML = txt;
+      reFormatCodeMirror("txtRespXml"+genericId);
       document.getElementById("btnSend"+genericId).disabled = false;
-      /*codeEditorsID['txtRespXml-'+genericId] = CodeMirror.fromTextArea(document.getElementById('txtRespXml'+genericId), {
-      mode: 'xml',
-      lineNumbers: true
-    });*/
-    setTimeout(function() { redrawEditors('txtRespXml'+genericId) }, 250);
-  };//$("#txtReqXml"+genericId).val()
+  };
   g_xc.connect("https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api",codeEditorsID["txtReqXml"+genericId].getValue() , fnWhenDone);
 }
 
-function btnPopulateKeys_onclick() {
+function reFormatCodeMirror(id){
+    var totalLines = codeEditorsID[id].lineCount();
+    var totalChars = codeEditorsID[id].getTextArea().value.length;
+    codeEditorsID[id].autoFormatRange({line:0, ch:0}, {line:totalLines, ch:totalChars});
+    CodeMirror.commands['goPageUp'](codeEditorsID[id]);
+    $("#"+id).trigger({type: 'keypress', which: 13});
+}
 
+function btnPopulateKeys_onclick() {
  var loginid = document.getElementById("txtLoginID").value;                                 
-                                                                                            
  var transactionkey = document.getElementById("txtTransactionKey").value;
- 
  var allSamples = document.getElementsByClassName("sample-request");
- 
  for (var i = 0; i < allSamples.length; i++) {
-    
 	var sampleRequest = codeEditorsID[allSamples[i].id];
 	sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
 	sampleRequest.refresh();
@@ -135,7 +114,6 @@ function btnPopulateKeys_onclick() {
 	
 	return false;
 }
-
 
 function selUrls_onChange(obj) {
   if (document.getElementById("selUrls").value) {
