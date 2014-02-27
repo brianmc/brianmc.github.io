@@ -230,10 +230,10 @@
               </textarea>
            </p>
     <p>
-      <button type="button" id="btnSend" name="btnSend" class="btn btn-primary" onclick="return btnSend_onclick()">SEND</button>
+      <button type="button" id="btnSend-{{idFromTitle this.title}}" name="btnSend" class="btn btn-primary" >SEND</button>
 	  <button type="button" id="btnReset" name="btnReset" class="btn" onclick="">Reset</button>
     </p>
-    <div><span class="header">Response:</span> <span id="spnStatusCode" class="error"></span></div>
+    <div><span class="header">Response:</span> <span id="spnStatusCode-{{idFromTitle this.title}}" class="error"></span></div>
     <p>
       <textarea class="sample-response" id="txtRespXml-{{idFromTitle this.title}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
     </p>
@@ -280,12 +280,14 @@
 <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
+<script src="api.js"></script>
 
 <script language="javascript" type="text/javascript">
  
 
 // <!CDATA[
-var requestEditor, responseEditor;
+
+/*var requestEditor, responseEditor;
 
 $(document).ready(function() {
 	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
@@ -397,7 +399,7 @@ function selUrls_onChange(obj) {
   if (document.getElementById("selUrls").value) {
     document.getElementById("txtUrl").value = document.getElementById("selUrls").value;
   }
-}
+}*/
 
 // ]]>
 </script>
