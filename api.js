@@ -128,14 +128,10 @@ function btnPopulateKeys_onclick() {
  
  for (var i = 0; i < allSamples.length; i++) {
     
-	var sampleRequest = allSamples[i];
-	sampleRequest.value = sampleRequest.value.replace("mytestacct",loginid).replace("112223344",transactionkey);
+	var sampleRequest = codeEditorsID[allSamples[i].id];
+	sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
+	sampleRequest.refresh();
 	}
-	
-	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
-		mode: 'xml',
-		lineNumbers: true
-	});
 	
 	return false;
 }
