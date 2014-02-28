@@ -2,7 +2,7 @@ var requestEditor, responseEditor, codeEditorsID=[];
 
 $(document).ready(function() {
 
-  $("framediv").hide();
+  $(".authenticationDiv").hide();
   $("#feedbackLinkID").click(function (e) {
       $(".popup").show();
   });
@@ -88,10 +88,17 @@ function XHConn()
 
 var g_xc = new XHConn();
 var genericId;
-function btnSend_onclick(id) {    
+function btnSend_onclick(id) { 
+  genericId = id.substring(7,id.length);
+
+  /*if(codeEditorsID["txtReqXml"+genericId].getValue().indexOf("API_LOGIN_ID")>-1){
+    
+    $("#auth"+genericId).show('slow')  ;
+    return;
+  }   */
   document.getElementById(id).disabled = true;
   
-  genericId = id.substring(7,id.length);
+ 
   
   console.log(id);
   document.getElementById("txtRespXml"+genericId).innerHTML = "";
@@ -127,7 +134,7 @@ function btnPopulateKeys_onclick() {
 	sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
 	sampleRequest.refresh();
 	}
-	
+	$(".authenticationDiv").hide("slow");
 	return false;
 }
 

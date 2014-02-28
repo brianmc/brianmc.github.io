@@ -131,4 +131,10 @@ z-index: 1001;
 iframe {
     padding: 0;
     margin: 0;
+    border: 1px solid rgb(170, 170, 170);
+}
+.authenticationDiv{
+    border: 1px solid rgb(170, 170, 170);
+    padding: 10px;
+    border-radius: 3px;
 }

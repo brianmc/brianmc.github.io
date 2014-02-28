@@ -240,11 +240,26 @@
       <button type="button" id="btnSend-{{idFromTitle this.title}}" name="btnSend" class="btn btn-primary" >SEND</button>
 	  <button type="button" id="btnReset" name="btnReset" class="btn" onclick="">Reset</button>
     </p>
+    </form>
+    <div class="authenticationDiv" id="auth-{{idFromTitle this.title}}">
+      <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+        <div class="form-group">
+          <label class="sr-only" for="loginID">API Login ID</label>
+          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+        </div>
+        <div class="form-group">
+        <label class="sr-only" for="transactionKey">Transaction Key</label>
+        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        </div>
+        <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+      </form>
+    </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-{{idFromTitle this.title}}" class="error"></span></div>
     <p>
       <textarea class="sample-response" id="txtRespXml-{{idFromTitle this.title}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
     </p>
-  </form>
+  
 
         </div>
       </div>
