@@ -91,11 +91,11 @@ var genericId;
 function btnSend_onclick(id) { 
   genericId = id.substring(7,id.length);
 
-  /*if(codeEditorsID["txtReqXml"+genericId].getValue().indexOf("API_LOGIN_ID")>-1){
+  if(codeEditorsID["txtReqXml"+genericId].getValue().indexOf("API_LOGIN_ID")>-1){
     
     $("#auth"+genericId).show('slow')  ;
     return;
-  }   */
+  }   
   document.getElementById(id).disabled = true;
   
  
