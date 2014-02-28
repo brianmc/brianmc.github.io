@@ -97,3 +97,38 @@ li.active a
 .twoBullet:before{
     content:"      •     •   ";
 }
+
+.feedback{
+background: #fff;
+padding: 1%;
+width: 75%;
+position: relative;
+top: 5%;
+left: 50%;
+margin: 0 0 0 -37%; /* add negative left margin for half the width to center the div */
+cursor: default;
+border-radius: 4px;
+box-shadow: 0 0 5px rgba(0,0,0,0.9);
+}
+
+.popup{
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+height:100%;
+width: 100%;
+cursor: pointer;
+background: #000; /* fallback */
+background: rgba(0,0,0,0.75);
+z-index: 1001;
+}
+.closePopup{
+    float: right;
+    top: 10px;
+    position: absolute;
+}
+iframe {
+    padding: 0;
+    margin: 0;
+}

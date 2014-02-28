@@ -2,6 +2,22 @@ var requestEditor, responseEditor, codeEditorsID=[];
 
 $(document).ready(function() {
 
+  $("framediv").hide();
+  $("#feedbackLinkID").click(function (e) {
+      $(".popup").show();
+  });
+
+ $(".popup").click(function (e) {
+      $(".popup").hide();
+  });
+ $('.feedback').click(function(){
+    return false;
+  });
+
+  $('.close').click(function(){
+    $(".popup").hide();
+  });
+
   $("textarea").each(function(ind, ele){
     var id = $(ele).attr('id');
     codeEditorsID[id] =  CodeMirror.fromTextArea(document.getElementById(id), { mode: 'xml',lineNumbers: true});
