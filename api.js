@@ -92,22 +92,25 @@ function btnSend_onclick(id) {
   genericId = id.substring(7,id.length);
 
   if(codeEditorsID["txtReqXml"+genericId].getValue().indexOf("API_LOGIN_ID")>-1){
-    
     $("#auth"+genericId).show('slow')  ;
     return;
   }   
   document.getElementById(id).disabled = true;
   
- 
-  
-  console.log(id);
-  document.getElementById("txtRespXml"+genericId).innerHTML = "";
+  codeEditorsID["txtRespXml"+genericId].setValue("");
   document.getElementById("spnStatusCode"+genericId).innerHTML = "";
   
   var fnWhenDone = function (oXML) {
       if (oXML.status && oXML.status != "200") {
         document.getElementById("spnStatusCode"+genericId).innerHTML = "HTTP status code: " + oXML.status.toString().replace(/</g, "&lt;");
       }
+       if(oXML.responseText.indexOf("Error")>-1){
+          var errorTxt = oXML.responseText.split("text>");
+          $("#spnStatusCode"+genericId).text(errorTxt[1].substring(0,errorTxt[1].length-2));
+        }
+        else{
+          $("#spnStatusCode"+genericId).text('');
+        }
       var txt = oXML.responseText;
       txt = txt.replace(/></g, "> <");
       codeEditorsID["txtRespXml"+genericId].setValue(txt);
