@@ -4,10 +4,11 @@ $(document).ready(function() {
 
   $(".authenticationDiv").hide();
   $("#feedbackLinkID").click(function (e) {
-      $(".popup").show();
+     
+      fsLightbox1687734.show() ;
   });
 
- $(".popup").click(function (e) {
+/* $(".popup").click(function (e) {
       $(".popup").hide();
   });
  $('.feedback').click(function(){
@@ -16,7 +17,7 @@ $(document).ready(function() {
 
   $('.close').click(function(){
     $(".popup").hide();
-  });
+  });*/
 
   $("textarea").each(function(ind, ele){
     var id = $(ele).attr('id');
@@ -42,8 +43,17 @@ $(document).ready(function() {
     } 
   });
 
+    initializelightBox();
+
 	
 });
+function initializelightBox(){
+            var fsLightbox1687734 = new FSLightbox({form: 1687734,
+              handleText: "API Documentation Beta Feedback", handlePosition: "left", handleImage: "https://www.formstack.com/forms/lightboxHandle.php?str=API+Documentation+Beta+Feedback",
+              handle: null
+          });
+
+}
 
 
 function redrawEditors(id) {
