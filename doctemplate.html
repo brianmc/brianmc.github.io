@@ -197,6 +197,13 @@
             <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
+		   {{#each this.children}}
+		  <tr>
+            <td class='threeBullet'>{{this.name}}</td>
+            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
+            <td>{{this.format}}</td>
+          </tr>
+		  {{/each}}
 		  {{/each}}
 		  {{/each}}
           {{/each}}
@@ -232,6 +239,13 @@
             <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
             <td>{{this.format}}</td>
           </tr>
+		  {{#each this.children}}
+		  <tr>
+            <td class='threeBullet'>{{this.name}}</td>
+            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
+            <td>{{this.format}}</td>
+          </tr>
+		  {{/each}}
 		  {{/each}}
 		  {{/each}}
           {{/each}}
@@ -240,7 +254,7 @@
         </div>
         <div class="tab-pane fade" id="console-{{idFromTitle this.title}}">
            <form method="post" action="">
-		   <p>If you would like to see a sample SOAP Request/Response please check out our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op=ARBCreateSubscription">SOAP Method Documentation</a><p>
+		   <p>If you would like to see a sample SOAP Request/Response please check out our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op={{this.soap}}">SOAP Method Documentation</a><p>
 		   <div><span class="header">Request:</span></div>
            <p>
               <textarea class="sample-request" id="txtReqXml-{{idFromTitle this.title}}" name="txtReqXml" cols="80" rows="6" style="">{{this.request.sample}}</textarea>

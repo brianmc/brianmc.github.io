@@ -88,6 +88,10 @@ table thead
     content:"      •     •   ";
 }
 
+.threeBullet:before{
+    content:"      •     •     •   ";
+}
+
 .feedback{
 background: #fff;
 padding: 1%;
