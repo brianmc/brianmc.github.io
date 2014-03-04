@@ -2,30 +2,17 @@ var requestEditor, responseEditor, codeEditorsID=[];
 
 $(document).ready(function() {
 
+  initAPI();
+
+	
+});
+
+function initAPI(){
   $(".authenticationDiv").hide();
-  $("#feedbackLinkID").click(function (e) {
-     
-      fsLightbox1687734.show() ;
-  });
-
-/* $(".popup").click(function (e) {
-      $(".popup").hide();
-  });
- $('.feedback').click(function(){
-    return false;
-  });
-
-  $('.close').click(function(){
-    $(".popup").hide();
-  });*/
-
   $("textarea").each(function(ind, ele){
     var id = $(ele).attr('id');
     codeEditorsID[id] =  CodeMirror.fromTextArea(document.getElementById(id), { mode: 'xml',lineNumbers: true});
   });
-
-
-
   $('a').click(function(event){ 
     if($(event.currentTarget).html()==="Try it")
     {
@@ -45,14 +32,10 @@ $(document).ready(function() {
   });
 
     initializelightBox();
+}
 
-	
-});
 function initializelightBox(){
-    var fsLightbox1687734 = new FSLightbox({form: 1687734,
-      handleText: "API Documentation Beta Feedback", handlePosition: "left", handleImage: "https://www.formstack.com/forms/lightboxHandle.php?str=API+Documentation+Beta+Feedback",
-      handle: null
-  });
+    var fsLightbox1687734 = new FSLightbox({form: 1687734,handle: "feedbackLinkID" });
 
 }
 
