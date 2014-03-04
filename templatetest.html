@@ -45,7 +45,6 @@
         
         </div>
   </div>
-
   <!-- <div class="popup">
     <div class="feedback">
       <div class="close">x</div>
@@ -87,9 +86,12 @@
   <div class="container">
     We're releasing this new documentation in BETA. Please feel free to send us your 
     <strong>
-       <a id="feedbackLinkID" class='fsLightboxHandle' >feedback</a></strong>, or join the 
+       <a id="feedbackLinkID" target="frame1" href="https://www.formstack.com/forms/AuthorizeNet-betadocumentationfeedback">feedback</a>
+    </strong>
+  , or join the 
   <strong>
-      <a target="_blank" href="http://community.developer.authorize.net/t5/Community-Feedback/say-hello-to-everyone-in-this-forum/td-p/35575">community discussion</a></strong>.
+      <a target="_blank" href="http://community.developer.authorize.net/t5/Community-Feedback/say-hello-to-everyone-in-this-forum/td-p/35575">community discussion</a>
+    </strong>.
   </div>
 </div>
 
@@ -139,14 +141,14 @@
         </div>
         <div class="tab-pane fade" id="authentication-keys">
         <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" role="form" id="populateKeyForm-main" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
         <label class="sr-only" for="loginID">API Login ID</label>
-        <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+        <input type="text" class="form-control" id="txtLoginID-main" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-main" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
@@ -709,20 +711,20 @@ xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
     </form>
     <div class="authenticationDiv" id="auth-create-a-transaction">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-create-a-transaction" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-create-a-transaction" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-create-a-transaction" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-create-a-transaction" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-create-a-transaction" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createTransactionResponse 
 xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;
@@ -764,7 +766,11 @@ piSchema.xsd&quot;&gt;
     &lt;/userFields&gt;
   &lt;/transactionResponse&gt;
 &lt;/createTransactionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-create-a-transaction" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -1144,20 +1150,20 @@ AnetApiSchema.xsd&quot;&gt;
     </form>
     <div class="authenticationDiv" id="auth-create-a-subscription">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-create-a-subscription" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-create-a-subscription" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-create-a-subscription" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-create-a-subscription" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-create-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCreateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
@@ -1171,7 +1177,11 @@ AnetApiSchema.xsd&quot;&gt;
   &lt;/messages&gt;
   &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBCreateSubscriptionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-create-a-subscription" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -1280,20 +1290,20 @@ AnetApiSchema.xsd&quot;&gt;
     </form>
     <div class="authenticationDiv" id="auth-get-subscription-status">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-subscription-status" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-subscription-status" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-subscription-status" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-subscription-status" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-subscription-status" name="txtRespXml" cols="80" rows="6">&lt;ARBGetSubscriptionStatusResponse xmlns:xsi=&quot;http://www.w3.org/2001/
 XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;refId&gt;Sample&lt;/refId&gt;
@@ -1306,7 +1316,11 @@ XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; 
   &lt;/messages&gt;
   &lt;Status&gt;active&lt;/Status&gt;
 &lt;/ARBGetSubscriptionStatusResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-subscription-status" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -1655,20 +1669,20 @@ AnetApiSchema.xsd&quot;&gt;
     </form>
     <div class="authenticationDiv" id="auth-update-a-subscription">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-update-a-subscription" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-update-a-subscription" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-update-a-subscription" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-update-a-subscription" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-update-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBUpdateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
@@ -1681,7 +1695,11 @@ AnetApiSchema.xsd&quot;&gt;
     &lt;/message&gt;
   &lt;/messages&gt;
 &lt;/ARBUpdateSubscriptionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-update-a-subscription" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -1783,20 +1801,20 @@ AnetApiSchema.xsd&quot;&gt;
     </form>
     <div class="authenticationDiv" id="auth-cancel-a-subscription">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-cancel-a-subscription" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-cancel-a-subscription" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-cancel-a-subscription" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-cancel-a-subscription" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-cancel-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCancelSubscriptionResponsexmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
@@ -1809,7 +1827,11 @@ AnetApiSchema.xsd&quot;&gt;
     &lt;/message&gt;
   &lt;/messages&gt;
 &lt;/ARBCancelSubscriptionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-cancel-a-subscription" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -2218,20 +2240,20 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
     </form>
     <div class="authenticationDiv" id="auth-create-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-create-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-create-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-create-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-create-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-create-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -2257,7 +2279,11 @@ John,Doe,,123 Main St.,Bellevue,WA,98004,USA,000-000-0000,,mark@example.com,,,,,
 D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,&lt;/string&gt;
   &lt;/validationDirectResponseList&gt;  
 &lt;/createCustomerProfileResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-create-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -2425,20 +2451,20 @@ All sensitive payment information in the output is masked.</td>
     </form>
     <div class="authenticationDiv" id="auth-get-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;getCustomerProfileResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -2510,7 +2536,11 @@ All sensitive payment information in the output is masked.</td>
     &lt;/shipToList&gt;
   &lt;/profile&gt;
 &lt;/getCustomerProfileResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -2617,20 +2647,20 @@ All sensitive payment information in the output is masked.</td>
     </form>
     <div class="authenticationDiv" id="auth-get-customer-profile-ids">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-customer-profile-ids" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-customer-profile-ids" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-customer-profile-ids" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-customer-profile-ids" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-customer-profile-ids" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;getCustomerProfileIdsResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -2646,7 +2676,11 @@ All sensitive payment information in the output is masked.</td>
     &lt;numericString&gt;10002&lt;/numericString&gt;
   &lt;/ids&gt;
 &lt;/getCustomerProfileIdsResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-customer-profile-ids" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -2773,20 +2807,20 @@ All sensitive payment information in the output is masked.</td>
     </form>
     <div class="authenticationDiv" id="auth-update-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-update-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-update-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-update-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-update-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-update-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;updateCustomerProfileResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -2797,7 +2831,11 @@ All sensitive payment information in the output is masked.</td>
     &lt;/message&gt;
   &lt;/messages&gt;
 &lt;/updateCustomerProfileResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-update-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -2884,20 +2922,20 @@ All sensitive payment information in the output is masked.</td>
     </form>
     <div class="authenticationDiv" id="auth-delete-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-delete-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-delete-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-delete-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-delete-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-delete-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;deleteCustomerProfileResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -2908,7 +2946,11 @@ All sensitive payment information in the output is masked.</td>
     &lt;/message&gt;
   &lt;/messages&gt;
 &lt;/deleteCustomerProfileResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-delete-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -3196,20 +3238,20 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
     </form>
     <div class="authenticationDiv" id="auth-create-customer-payment-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-create-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-create-customer-payment-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-create-customer-payment-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-create-customer-payment-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-create-customer-payment-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerPaymentProfileResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -3226,7 +3268,11 @@ John,Doe,,123 Main St.,Bellevue,WA,98004,USA,000-000-0000,,mark@example.com,,,,,
 D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/validationDirectResponse&gt;
 &lt;/createCustomerPaymentProfileResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-create-customer-payment-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -3513,20 +3559,20 @@ All sensitive payment information in the output is masked.</td>
     </form>
     <div class="authenticationDiv" id="auth-get-customer-payment-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-customer-payment-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-customer-payment-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-customer-payment-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-customer-payment-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;getCustomerPaymentProfileResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -3558,7 +3604,11 @@ All sensitive payment information in the output is masked.</td>
     &lt;/payment&gt;
   &lt;/paymentProfile&gt;
 &lt;/getCustomerPaymentProfileResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-customer-payment-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -3679,20 +3729,20 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
     </form>
     <div class="authenticationDiv" id="auth-validate-customer-payment-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-validate-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-validate-customer-payment-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-validate-customer-payment-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-validate-customer-payment-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-validate-customer-payment-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;validateCustomerPaymentProfileResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -3707,7 +3757,11 @@ John,Doe,,123 Main St.,Bellevue,WA,98004,USA,000-000-0000,,mark@example.com,John
 D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/validateCustomerPaymentProfileResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-validate-customer-payment-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -4000,20 +4054,20 @@ This output is only present if the ValidationMode input element is passed with a
     </form>
     <div class="authenticationDiv" id="auth-update-customer-payment-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-update-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-update-customer-payment-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-update-customer-payment-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-update-customer-payment-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-update-customer-payment-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;updateCustomerPaymentProfileResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -4024,7 +4078,11 @@ This output is only present if the ValidationMode input element is passed with a
     &lt;/message&gt;
   &lt;/messages&gt;
 &lt;/updateCustomerPaymentProfileResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-update-customer-payment-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -4119,20 +4177,20 @@ This output is only present if the ValidationMode input element is passed with a
     </form>
     <div class="authenticationDiv" id="auth-delete-customer-payment-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-delete-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-delete-customer-payment-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-delete-customer-payment-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-delete-customer-payment-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-delete-customer-payment-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;deleteCustomerPaymentProfileResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -4143,7 +4201,11 @@ This output is only present if the ValidationMode input element is passed with a
     &lt;/message&gt;
   &lt;/messages&gt;
 &lt;/deleteCustomerPaymentProfileResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-delete-customer-payment-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -4328,20 +4390,20 @@ For example, (123)123-1234</td>
     </form>
     <div class="authenticationDiv" id="auth-create-customer-shipping-address">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-create-customer-shipping-address" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-create-customer-shipping-address" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-create-customer-shipping-address" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-create-customer-shipping-address" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-create-customer-shipping-address" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerShippingAddressResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -4353,7 +4415,11 @@ For example, (123)123-1234</td>
   &lt;/messages&gt;
   &lt;customerAddressId&gt;30000&lt;/customerAddressId&gt;
 &lt;/createCustomerShippingAddressResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-create-customer-shipping-address" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -4517,20 +4583,20 @@ For example, (123)123-1234</td>
     </form>
     <div class="authenticationDiv" id="auth-get-customer-shipping-address">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-customer-shipping-address" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-customer-shipping-address" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-customer-shipping-address" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-customer-shipping-address" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-customer-shipping-address" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;getCustomerShippingAddressResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -4554,7 +4620,11 @@ For example, (123)123-1234</td>
     &lt;customerShippingAddressId&gt;30000&lt;/customerShippingAddressId&gt;
   &lt;/address&gt;
 &lt;/getCustomerShippingAddressResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-customer-shipping-address" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -4740,20 +4810,20 @@ For example, (123)123-1234</td>
     </form>
     <div class="authenticationDiv" id="auth-update-customer-shipping-address">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-update-customer-shipping-address" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-update-customer-shipping-address" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-update-customer-shipping-address" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-update-customer-shipping-address" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-update-customer-shipping-address" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;updateCustomerShippingAddressResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -4764,7 +4834,11 @@ For example, (123)123-1234</td>
     &lt;/message&gt;
   &lt;/messages&gt;
 &lt;/updateCustomerShippingAddressResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-update-customer-shipping-address" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -4859,20 +4933,20 @@ For example, (123)123-1234</td>
     </form>
     <div class="authenticationDiv" id="auth-delete-customer-shipping-address">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-delete-customer-shipping-address" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-delete-customer-shipping-address" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-delete-customer-shipping-address" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-delete-customer-shipping-address" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-delete-customer-shipping-address" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;deleteCustomerShippingAddressResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -4883,7 +4957,11 @@ For example, (123)123-1234</td>
     &lt;/message&gt;
   &lt;/messages&gt;
 &lt;/deleteCustomerShippingAddressResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-delete-customer-shipping-address" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -5117,20 +5195,20 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
     </form>
     <div class="authenticationDiv" id="auth-authorize-a-transaction-from-a-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-authorize-a-transaction-from-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-authorize-a-transaction-from-a-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-authorize-a-transaction-from-a-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-authorize-a-transaction-from-a-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-authorize-a-transaction-from-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -5144,7 +5222,11 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/createCustomerProfileTransactionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-authorize-a-transaction-from-a-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -5376,20 +5458,20 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
     </form>
     <div class="authenticationDiv" id="auth-authorize-and-capture-a-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-authorize-and-capture-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-authorize-and-capture-a-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-authorize-and-capture-a-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-authorize-and-capture-a-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-authorize-and-capture-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -5403,7 +5485,11 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/createCustomerProfileTransactionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-authorize-and-capture-a-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -5604,20 +5690,20 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
     </form>
     <div class="authenticationDiv" id="auth-authorizing-and-capturing-a-transaction-from-a-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-authorizing-and-capturing-a-transaction-from-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-authorizing-and-capturing-a-transaction-from-a-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-authorizing-and-capturing-a-transaction-from-a-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-authorizing-and-capturing-a-transaction-from-a-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-authorizing-and-capturing-a-transaction-from-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -5631,7 +5717,11 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/createCustomerProfileTransactionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-authorizing-and-capturing-a-transaction-from-a-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -5870,20 +5960,20 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
     </form>
     <div class="authenticationDiv" id="auth-capture-a-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-capture-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-capture-a-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-capture-a-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-capture-a-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-capture-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -5897,7 +5987,11 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/createCustomerProfileTransactionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-capture-a-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -6157,20 +6251,20 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
     </form>
     <div class="authenticationDiv" id="auth-refunding-a-transaction-for-a-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-refunding-a-transaction-for-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-refunding-a-transaction-for-a-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-refunding-a-transaction-for-a-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-refunding-a-transaction-for-a-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-refunding-a-transaction-for-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -6184,7 +6278,11 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/createCustomerProfileTransactionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-refunding-a-transaction-for-a-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -6317,20 +6415,20 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
     </form>
     <div class="authenticationDiv" id="auth-voiding-transactions-for-a-customer-profile">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-voiding-transactions-for-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-voiding-transactions-for-a-customer-profile" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-voiding-transactions-for-a-customer-profile" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-voiding-transactions-for-a-customer-profile" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-voiding-transactions-for-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -6344,7 +6442,11 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/createCustomerProfileTransactionResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-voiding-transactions-for-a-customer-profile" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -6476,20 +6578,20 @@ For more complete information on how to use hosted CIM access, see &quot;Using a
     </form>
     <div class="authenticationDiv" id="auth-get-hosted-profile-page">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-hosted-profile-page" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-hosted-profile-page" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-hosted-profile-page" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-hosted-profile-page" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-hosted-profile-page" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;getHostedProfilePageResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -6501,7 +6603,11 @@ For more complete information on how to use hosted CIM access, see &quot;Using a
   &lt;/messages&gt;
   &lt;token&gt;+ZeWDaUOPoQPRGTHcKd7DYbMfcAFDrhO8GPOFNt+ACzJnvkz+aWO0SYSAA9x602jAIKKfUHUt2ybwQRaG8LzHluuR5dRgsuh+kjarKvD0hpieGjLHmnz0LHmFv1Xe9P3zpmawqBCSB/d4jcSg9dAxecNBUzMwIuYzY+vGUGLUXgr9QPaRh93HqWZrV4Mbwop&lt;/token&gt;
 &lt;/getHostedProfilePageResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-hosted-profile-page" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -6596,20 +6702,20 @@ For more complete information on how to use hosted CIM access, see &quot;Using a
     </form>
     <div class="authenticationDiv" id="auth-update-split-tender-group">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-update-split-tender-group" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-update-split-tender-group" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-update-split-tender-group" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-update-split-tender-group" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-update-split-tender-group" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;updateSplitTenderGroupResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
@@ -6620,7 +6726,11 @@ For more complete information on how to use hosted CIM access, see &quot;Using a
     &lt;/message&gt;
   &lt;/messages&gt;
 &lt;/updateSplitTenderGroupResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-update-split-tender-group" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -6834,20 +6944,20 @@ HH:MM:SS</td>
     </form>
     <div class="authenticationDiv" id="auth-get-settled-batch-list">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-settled-batch-list" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-settled-batch-list" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-settled-batch-list" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-settled-batch-list" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-settled-batch-list" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;getSettledBatchListResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
 &lt;GetSettledBatchListResponse xmlns=&quot;https://api.authorize.net/soap/v1/&quot;&gt;
@@ -6934,7 +7044,11 @@ HH:MM:SS</td>
     &lt;/batch&gt;
   &lt;/batchList&gt;
 &lt;/getSettledBatchListResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-settled-batch-list" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -7152,20 +7266,20 @@ eCheck</td>
     </form>
     <div class="authenticationDiv" id="auth-get-transaction-list">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-transaction-list" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-transaction-list" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-transaction-list" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-transaction-list" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-transaction-list" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;getTransactionListResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
 &lt;messages&gt;
@@ -7202,7 +7316,11 @@ eCheck</td>
     &lt;/transaction&gt;
   &lt;/transactions&gt;
 &lt;/getTransactionListResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-transaction-list" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -7895,20 +8013,20 @@ pendingSettlement</td>
     </form>
     <div class="authenticationDiv" id="auth-get-transaction-details">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-transaction-details" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-transaction-details" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-transaction-details" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-transaction-details" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-transaction-details" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;getTransactionDetailsResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
 &lt;messages&gt;
@@ -8036,7 +8154,11 @@ pendingSettlement</td>
     &lt;customerIP&gt;0.0.0.0&lt;/customerIP&gt;
     &lt;/transaction&gt;
 &lt;/getTransactionDetailsResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-transaction-details" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -8116,20 +8238,20 @@ No input parameters are required, other than the authentication information. </p
     </form>
     <div class="authenticationDiv" id="auth-get-unsettled-transaction-list">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-unsettled-transaction-list" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-unsettled-transaction-list" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-unsettled-transaction-list" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-unsettled-transaction-list" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-unsettled-transaction-list" name="txtRespXml" cols="80" rows="6">&lt;getUnsettledTransactionListResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
     &lt;messages&gt;
         &lt;resultCode&gt;Ok&lt;/resultCode&gt;
@@ -8153,7 +8275,11 @@ No input parameters are required, other than the authentication information. </p
         &lt;/transaction&gt;
     &lt;/transactions&gt;
 &lt;/getUnsettledTransactionListResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-unsettled-transaction-list" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -8307,20 +8433,20 @@ No input parameters are required, other than the authentication information. </p
     </form>
     <div class="authenticationDiv" id="auth-get-batch-statistics">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-get-batch-statistics" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-get-batch-statistics" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-get-batch-statistics" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-get-batch-statistics" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-get-batch-statistics" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;getBatchStatisticsResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
        &lt;messages&gt;
@@ -8350,7 +8476,11 @@ No input parameters are required, other than the authentication information. </p
               &lt;/statistics&gt;
        &lt;/batch&gt;
 &lt;/getBatchStatisticsResponse&gt;</textarea>
-    </p>
+      <div id="txtRespLoader-get-batch-statistics" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>

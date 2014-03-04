@@ -36,12 +36,21 @@
 
   </head>
   <body>
-  <div class="popup">
+  <div id="fsLightbox1687734" class="fsLightbox" style="display:none;">
+        <div align="right" style="padding-bottom:5px;">
+          <a id="fsLightboxClose1687734" href="#" title="close"><img src="https://www.formstack.com/forms/images/2/cross.gif" border="0" /></a>
+        </div>
+        <div id="fsLightboxContent1687734" style="height:450px; width:650px; padding-top:0px; overflow:auto;">
+          <script type="text/javascript" src="https://www.formstack.com/forms/js.php?1687734-JTjHUklIow-v3"></script>
+        
+        </div>
+  </div>
+  <!-- <div class="popup">
     <div class="feedback">
       <div class="close">x</div>
       <iframe width="100%" height="650px" name="frame1" ></iframe>
     </div>  
-  </div>
+  </div> -->
     <a class="sr-only" href="#content">Skip to main content</a>
 
     <!-- Docs master nav -->
@@ -132,17 +141,17 @@
         </div>
         <div class="tab-pane fade" id="authentication-keys">
 		    <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-			<form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
-			  <div class="form-group">
-				<label class="sr-only" for="loginID">API Login ID</label>
-				<input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
-			  </div>
-			  <div class="form-group">
-				<label class="sr-only" for="transactionKey">Transaction Key</label>
-				<input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
-			  </div>
-			  <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
-			</form>
+			<form class="form-inline" role="form" id="populateKeyForm-main" onsubmit="return btnPopulateKeys_onclick(this)">
+        <div class="form-group">
+        <label class="sr-only" for="loginID">API Login ID</label>
+        <input type="text" class="form-control" id="txtLoginID-main" placeholder="API Login ID">
+        </div>
+        <div class="form-group">
+        <label class="sr-only" for="transactionKey">Transaction Key</label>
+        <input type="text" class="form-control" id="txtTransactionKey-main" placeholder="Transaction Key">
+        </div>
+        <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+      </form>
         </div>
       </div>
  </div>
@@ -243,22 +252,26 @@
     </form>
     <div class="authenticationDiv" id="auth-{{idFromTitle this.title}}">
       <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" role="form" onsubmit="return btnPopulateKeys_onclick()">
+      <form class="form-inline" id="populateKeyForm-{{idFromTitle this.title}}" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
         <div class="form-group">
           <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID" placeholder="API Login ID">
+          <input type="text" class="form-control" id="txtLoginID-{{idFromTitle this.title}}" placeholder="API Login ID">
         </div>
         <div class="form-group">
         <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey" placeholder="Transaction Key">
+        <input type="text" class="form-control" id="txtTransactionKey-{{idFromTitle this.title}}" placeholder="Transaction Key">
         </div>
         <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
       </form>
     </div>
     <div><span class="header">Response:</span> <span id="spnStatusCode-{{idFromTitle this.title}}" class="error"></span></div>
-    <p>
+    <div style="position:relative;">
       <textarea class="sample-response" id="txtRespXml-{{idFromTitle this.title}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
-    </p>
+      <div id="txtRespLoader-{{idFromTitle this.title}}" class="loaderContainer">
+        <div class="loaderbg">Loading...</div>
+        <div class="loader"></div>
+      </div>
+    </div>
   
 
         </div>
@@ -302,6 +315,7 @@
 <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
+<script type="text/javascript" src="https://www.formstack.com/forms/js/lightbox.js"></script>
 <script src="api.js"></script>
 <script src="formatting.js"></script>
 

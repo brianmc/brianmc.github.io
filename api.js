@@ -39,6 +39,7 @@ $(document).ready(function() {
   $('button').click(function(event){ 
     if($(event.currentTarget).attr('name')==="btnSend")
     {
+      
       btnSend_onclick(this.id);
     } 
   });
@@ -48,10 +49,10 @@ $(document).ready(function() {
 	
 });
 function initializelightBox(){
-            var fsLightbox1687734 = new FSLightbox({form: 1687734,
-              handleText: "API Documentation Beta Feedback", handlePosition: "left", handleImage: "https://www.formstack.com/forms/lightboxHandle.php?str=API+Documentation+Beta+Feedback",
-              handle: null
-          });
+    var fsLightbox1687734 = new FSLightbox({form: 1687734,
+      handleText: "API Documentation Beta Feedback", handlePosition: "left", handleImage: "https://www.formstack.com/forms/lightboxHandle.php?str=API+Documentation+Beta+Feedback",
+      handle: null
+  });
 
 }
 
@@ -100,17 +101,20 @@ var g_xc = new XHConn();
 var genericId;
 function btnSend_onclick(id) { 
   genericId = id.substring(7,id.length);
-
+ 
   if(codeEditorsID["txtReqXml"+genericId].getValue().indexOf("API_LOGIN_ID")>-1){
     $("#auth"+genericId).show('slow')  ;
     return;
-  }   
+  }
+
+  $("#txtRespLoader"+genericId).show();   
   document.getElementById(id).disabled = true;
   
   codeEditorsID["txtRespXml"+genericId].setValue("");
   document.getElementById("spnStatusCode"+genericId).innerHTML = "";
   
   var fnWhenDone = function (oXML) {
+       $("#txtRespLoader"+genericId).hide();
       if (oXML.status && oXML.status != "200") {
         document.getElementById("spnStatusCode"+genericId).innerHTML = "HTTP status code: " + oXML.status.toString().replace(/</g, "&lt;");
       }
@@ -138,9 +142,10 @@ function reFormatCodeMirror(id){
     $("#"+id).trigger({type: 'keypress', which: 13});
 }
 
-function btnPopulateKeys_onclick() {
- var loginid = document.getElementById("txtLoginID").value;                                 
- var transactionkey = document.getElementById("txtTransactionKey").value;
+function btnPopulateKeys_onclick(object) {
+    var id = object.id.split("populateKeyForm-")[1];
+ var loginid = document.getElementById("txtLoginID-"+id).value;                                 
+ var transactionkey = document.getElementById("txtTransactionKey-"+id).value;
  var allSamples = document.getElementsByClassName("sample-request");
  for (var i = 0; i < allSamples.length; i++) {
 	var sampleRequest = codeEditorsID[allSamples[i].id];

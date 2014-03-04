@@ -74,17 +74,7 @@ table thead
 {
     background-color: #ffffff !important;
 }
-/*.bs-sidebar .nav > .active > a, .bs-sidebar .nav > .active:hover > a, .bs-sidebar .nav > .active:focus > a 
-{
-    border: none !important;
-}
-li.active a
-{
-	background-image: url(dist/images/Carrot.gif) !important;
-	background-repeat: no-repeat;
-	background-position: left top;
-	margin-left: 30px !important;
-}*/
+
 
 .oneBullet:before{
     content:   "   •   " ; 
@@ -141,4 +131,24 @@ iframe {
 .error{
     color: white;
     background-color:  #b94a48;
+}
+.loaderbg{
+    background-image: url('ajax-loader.gif');
+    background-repeat: no-repeat;
+    position: relative;
+    top: 30%;
+    left: 40%;
+    height: 32px;
+    padding-left: 36px;
+    padding-top: 5px;
+}
+.loaderContainer{
+   position: absolute;
+   display: none;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,.8);
+    top: 0px;
+    z-index: 2;
+
 }
