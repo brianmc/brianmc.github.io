@@ -1,4 +1,5 @@
-var requestEditor, responseEditor, codeEditorsID=[];
+var requestEditor, responseEditor, codeEditorsID=[],transactionkey,loginid;
+
 
 $(document).ready(function() {
 
@@ -29,6 +30,12 @@ function initAPI(){
       
       btnSend_onclick(this.id);
     } 
+     if($(event.currentTarget).attr('name')==="btnReset")
+    {
+      
+      btnReset_onclick(this.id);
+    }
+
   });
 
     initializelightBox();
@@ -104,6 +111,7 @@ function btnSend_onclick(id) {
        if(oXML.responseText.indexOf("Error")>-1){
           var errorTxt = oXML.responseText.split("text>");
           $("#spnStatusCode"+genericId).text(errorTxt[1].substring(0,errorTxt[1].length-2));
+          $("#spnStatusCode"+genericId).show(200);
         }
         else{
           $("#spnStatusCode"+genericId).text('');
@@ -117,6 +125,17 @@ function btnSend_onclick(id) {
   g_xc.connect("https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api",codeEditorsID["txtReqXml"+genericId].getValue() , fnWhenDone);
 }
 
+function btnReset_onclick(id){
+   genericId = id.substring(8,id.length);
+   codeEditorsID["txtRespXml"+genericId].setValue($("#txtRespXml"+genericId).val());
+   codeEditorsID["txtRespXml"+genericId].refresh();
+   $("#spnStatusCode"+genericId).hide('easeIn', function(){
+     $("#spnStatusCode"+genericId).text('');
+   })
+   
+  
+}
+
 function reFormatCodeMirror(id){
     var totalLines = codeEditorsID[id].lineCount();
     var totalChars = codeEditorsID[id].getTextArea().value.length;
@@ -127,14 +146,14 @@ function reFormatCodeMirror(id){
 
 function btnPopulateKeys_onclick(object) {
     var id = object.id.split("populateKeyForm-")[1];
- var loginid = document.getElementById("txtLoginID-"+id).value;                                 
- var transactionkey = document.getElementById("txtTransactionKey-"+id).value;
- var allSamples = document.getElementsByClassName("sample-request");
- for (var i = 0; i < allSamples.length; i++) {
-	var sampleRequest = codeEditorsID[allSamples[i].id];
-	sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
-	sampleRequest.refresh();
-	}
+   loginid = document.getElementById("txtLoginID-"+id).value;                                 
+   transactionkey = document.getElementById("txtTransactionKey-"+id).value;
+   var allSamples = document.getElementsByClassName("sample-request");
+   for (var i = 0; i < allSamples.length; i++) {
+  	var sampleRequest = codeEditorsID[allSamples[i].id];
+  	sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
+  	sampleRequest.refresh();
+  	}
 	$(".authenticationDiv").hide("slow");
 	return false;
 }
