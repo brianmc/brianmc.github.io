@@ -1,7 +1,7 @@
 [
 {
 	"APIName": "Payment Transactions",
-	"APIUsage": "This API allows you to charge a card, refund a transaction, etc, etc",
+	"APIUsage": "This API enables you to submit transaction requests to the payment gateway.",
 	"API_ID": "payment-transactions",
 	"methods": [
 		{
@@ -66,7 +66,7 @@
 							{
 								"name": "amount",
 								"value": "Amount of the transaction.",
-								"format": "Up to 15 digits with a decimal point (no dollar symbol. For example, 8.95.",
+								"format": "Up to 15 digits with a decimal point (no dollar symbol. For example, 8.95",
 								"required": true,
 								"notes": "This is the total amount and must include tax, shipping, and any other charges. The amount can either be hard coded or posted to a script."
 							},
@@ -184,7 +184,7 @@
 																						"value": "Metadata string used to control how the request is ultimately processed.",
 																						"format": "String, 512 encoded characters",
 																						"required": false,
-																						"notes": "Contains key value pairs with the following format:\n\n* KEY_NAME=KEY_VALUE^KEYn_NAME=KEYn_VALUE\nWhere \nKEY_NAME is an alphanumeric identifier and may \ncontain a period (.), hyphen (-), and underscore (_).\n\n* = separates a key name and its value.\n\n* KEY_VALUE is the value of the preceding key. It \ncannot contain the following special characters: \n\\ , ; = < > % ^ \nThe \\ character can be used to escape special \ncharacters.\n\n* The ^ separator can be used between additional key value pairs.\n\nThe ENCODING that is used is based on the Encoding set in the request.\n\nMetadata is used to specify how the request should be processed. Currently, the required value in plain ASCII is: FID=IDTECH.UniMag.Android.Sdkv1\n\nNote that this string can be used with any supported platform, despite the term “android.”\n\nHex Encoded:\n4649443D4944544543482E556E694D61672E416E64726F69642E53646B7631\n\nBase64 Encoded:\nRklEPUlEVEVDSC5VbmlNYWcuQW5kcm9pZC5TZGt2MQ=="
+																						"notes": "Contains key value pairs with the following format:\n\n* KEY_NAME=KEY_VALUE^KEYn_NAME=KEYn_VALUE\nWhere \nKEY_NAME is an alphanumeric identifier and may \ncontain a period (.), hyphen (-), and underscore (_).\n\n* = separates a key name and its value.\n\n* KEY_VALUE is the value of the preceding key. It \ncannot contain the following special characters: \n\\ , ; = < > % ^ \nThe \\ character can be used to escape special \ncharacters.\n\n* The ^ separator can be used between additional key value pairs.\n\nThe ENCODING that is used is based on the Encoding set in the request.\n\nMetadata is used to specify how the request should be processed. Currently, the required value in plain ASCII is: FID=IDTECH.UniMag.Android.Sdkv1\n\nNote that this string can be used with any supported platform, despite the term “android.‿\n\nHex Encoded:\n4649443D4944544543482E556E694D61672E416E64726F69642E53646B7631\n\nBase64 Encoded:\nRklEPUlEVEVDSC5VbmlNYWcuQW5kcm9pZC5TZGt2MQ=="
 																					}
 																				]
 																			},
@@ -879,7 +879,7 @@
 							{
 								"name": "transId",
 								"value": "The payment gateway assigned identification number for transaction.",
-								"format": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be “0.”",
+								"format": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be “0.‿",
 								"required": false,
 								"notes": "This value must be used for any follow-on transactions such as a credit, prior auth capture, or void."
 							},
@@ -1001,7 +1001,7 @@
 												"value": "The payment gateway assigned identification number for the transaction.",
 												"format": "",
 												"required": false,
-												"notes": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be “0.”"
+												"notes": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be “0.‿"
 											},
 											{
 												"name": "responseCode",
@@ -1096,13 +1096,13 @@
 },
 {
 	"APIName": "Recurring Billing",
-	"APIUsage": "Recurring Billing API methods allow you to manage regular payment subscriptions.",
+	"APIUsage": "Recurring Billing API methods enable you to manage regular payment subscriptions.",
 	"API_ID": "recurring-billing",
 	"methods": [
 		{
 			"title": "Create a Subscription",
 			"id": "create-a-subscription",
-			"usage": "For subscriptions with a monthly interval, whose payments begin on the 31st of a month, payments for months with less than 31 days will occur on the last day of the month. ",
+			"usage": "For subscriptions with a monthly interval, whose payments begin on the 31st of a month, payments for months with fewer than 31 days  occur on the last day of the month. ",
 			"soap": "ARBCreateSubscription",
 			"request": {
 				"name": "ARBCreateSubscriptionRequest",
@@ -1112,14 +1112,14 @@
 						"value": "Merchant account credentials.",
 						"format": "",
 						"required": true,
-						"notes": "See Merchant authentication Section."
+						"notes": "See the Merchant Authentication section."
 					},
 					{
 						"name": "refId",
-						"value": "Merchant-assigned ID associated with the customer Profile.",
+						"value": "Merchant-assigned ID associated with the customer profile.",
 						"format": "Up to 20 characters.",
 						"required": false,
-						"notes": "If included in the request, this value will be included in the response."
+						"notes": "If included in the request, this value is included in the response."
 					},
 					{
 						"name": "subscription",
@@ -1170,21 +1170,21 @@
 										"value": "The date the subscription begins (also the date the initial billing occurs).",
 										"format": "YYYY-MM-DD",
 										"required": true,
-										"notes": "The date entered must be greater than or equal to the date the subscription was created.\n\nThe validation checks against local server date, which is Mountain Time. An error might possibly occur if you try to submit a subscription from a time zone where the resulting date is different; for example, if you are in the Pacific time zone and try to submit a subscription between 11:00 PM and midnight, with a start date set for today. \n\nIf the start date is the 31st, and the interval is monthly, the billing date is the last day of each month (even when the month does not have 31 days)."
+										"notes": "The date entered must be greater than or equal to the date the subscription was created.\n\nThe validation checks against local server date, which is Mountain Time. An error might occur if you try to submit a subscription from a time zone in which the resulting date is different; for example, if you are in the Pacific time zone and try to submit a subscription between 11:00 PM and midnight, with a start date set for today. \n\nIf the start date is the 31st, and the interval is monthly, the billing date is the last day of each month (even when the month does not have 31 days)."
 									},
 									{
 										"name": "totalOccurrences",
 										"value": "Number of billing occurrences or payments for the subscription.",
 										"format": "Up to 4 digits.",
 										"required": true,
-										"notes": "To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”\n\nIf a trial period is specified, this number should include the Trial Occurrences."
+										"notes": "To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of 9999.\n\nIf a trial period is specified, this number should include the trial occurrences."
 									},
 									{
 										"name": "trialOccurrences",
 										"value": "Number of billing occurrences or payments int he trial period.",
 										"format": "Numeric (up to 2 digits).",
 										"required": false,
-										"notes": "If a trial period is specified, this number must be included in the Total Occurences."
+										"notes": "If a trial period is specified, this number must be included in the total occurrences."
 									}
 								]
 							},
@@ -1193,7 +1193,7 @@
 								"value": "The amount to be billed to the customer for each payment in the subscription.",
 								"format": "Up to 15 digits.",
 								"required": true,
-								"notes": "If a trial period is specified, this is the amount that will be charged after the trial payments are complete."
+								"notes": "If a trial period is specified, this figure is the amount that will be charged after the trial payments are complete."
 							},
 							{
 								"name": "trialAmount",
@@ -1334,7 +1334,7 @@
 										"value": "The customer's email address.",
 										"format": "Up to 255 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "phoneNumber",
@@ -1385,35 +1385,35 @@
 										"value": "The customer's billing street address.",
 										"format": "Up to 60 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "city",
 										"value": "The city of the customer's billing address.",
 										"format": "Up to 40 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "state",
 										"value": "The state or province of the customer's billing address.",
 										"format": "2 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "zip",
 										"value": "The ZIP or Postal code of the customer's billing address.",
 										"format": "Up to 20 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "country",
 										"value": "The country of the customer's billing address.",
 										"format": "Up to 60 characters.",
 										"required": false,
-										"notes": "Must be valid two-character country code or full country name (in English).\n\nRequired when using an EU payment processor."
+										"notes": "Must be valid two-character country code or full country name (in English).\n\nRequired when you use an EU payment processor."
 									}
 								]
 							},
@@ -1528,7 +1528,7 @@
 						"value": "Merchant account credentials.",
 						"format": "",
 						"required": true,
-						"notes": "See Merchant authentication Section."
+						"notes": "See the Merchant Authentication Section."
 					},
 					{
 						"name": "refId",
@@ -1578,7 +1578,7 @@
 		{
 			"title": "Update a Subscription",
 			"id": "update-a-subscription",
-			"usage": "Used to update an existing ARB subscription. Only the subscription ID and fields that you wish to modify must be submitted.",
+			"usage": "Updates an existing ARB subscription. Only the subscription ID and fields that you wish to modify must be submitted.",
 			"soap": "ARBUpdateSubscription",
 			"request": {
 				"name": "ARBUpdateSubscriptionRequest",
@@ -1588,7 +1588,7 @@
 						"value": "Merchant account credentials.",
 						"format": "",
 						"required": true,
-						"notes": "See Merchant Authentication Section."
+						"notes": "See the Merchant Authentication section."
 					},
 					{
 						"name": "refId",
@@ -1630,21 +1630,21 @@
 										"value": "The date the subscription begins (also the date the initial billing occurs).",
 										"format": "YYYY-MM-DD",
 										"required": false,
-										"notes": "The start date can only be updated if no successful payments have been completed."
+										"notes": "The start date can be updated only if no successful payments have been completed."
 									},
 									{
 										"name": "totalOccurrences",
 										"value": "Number of billing occurrences or payments for the subscription.",
 										"format": "Up to 4 digits",
 										"required": true,
-										"notes": "To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of “9999.”\n\nIf a trial period is specified, this number should include the TrialOccurrences."
+										"notes": "To submit a subscription with no end date (an ongoing subscription), this field must be submitted with a value of 9999.\n\nIf a trial period is specified, this number should include the trialOccurrences."
 									},
 									{
 										"name": "trialOccurrences",
 										"value": "Number of billing occurrences or payments in the trial period.",
 										"format": "Numeric (up to 2 digits).",
 										"required": false,
-										"notes": "The number of trial occurrences can only be edited if the subscription has not started or is still in the trial period."
+										"notes": "The number of trial occurrences can be edited only if the subscription has not started or is still in the trial period."
 									}
 								]
 							},
@@ -1794,7 +1794,7 @@
 										"value": "The customer's email address.",
 										"format": "Up to 255 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "phoneNumber",
@@ -1845,35 +1845,35 @@
 										"value": "The customer's billing street address.",
 										"format": "Up to 60 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "city",
 										"value": "The city of the customer's billing address.",
 										"format": "Up to 40 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "state",
 										"value": "The state or province of the customer's billing address.",
 										"format": "2 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "zip",
 										"value": "The ZIP or Postal code of the customer's billing address.",
 										"format": "Up to 20 characters.",
 										"required": false,
-										"notes": "Required when using an EU payment processor."
+										"notes": "Required when you use an EU payment processor."
 									},
 									{
 										"name": "country",
 										"value": "The country of the customer's billing address.",
 										"format": "Up to 60 characters.",
 										"required": false,
-										"notes": "Must be valid two-character country code or full country name (in English).\n\nRequired when using an EU payment processor."
+										"notes": "Must be valid two-character country code or full country name (in English).\n\nRequired when you use an EU payment processor."
 									}
 								]
 							},
@@ -1971,7 +1971,7 @@
 		{
 			"title": "Cancel a Subscription",
 			"id": "cancel-a-subscription",
-			"usage": "Used to cancel an existing subscription.",
+			"usage": "Cancels an existing subscription.",
 			"soap": "ARBCancelSubscription",
 			"request": {
 				"name": "ARBCancelSubscriptionRequest",
@@ -1981,7 +1981,7 @@
 						"value": "Merchant account credentials.",
 						"format": "",
 						"required": true,
-						"notes": "See Merchant authentication Section."
+						"notes": "See Merchant Authentication section."
 					},
 					{
 						"name": "refId",
