@@ -145,17 +145,18 @@ function reFormatCodeMirror(id){
 }
 
 function btnPopulateKeys_onclick(object) {
-    var id = object.id.split("populateKeyForm-")[1];
+   var id = object.id.split("populateKeyForm-")[1];
    loginid = document.getElementById("txtLoginID-"+id).value;                                 
    transactionkey = document.getElementById("txtTransactionKey-"+id).value;
    var allSamples = document.getElementsByClassName("sample-request");
    for (var i = 0; i < allSamples.length; i++) {
-  	var sampleRequest = codeEditorsID[allSamples[i].id];
-  	sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
-  	sampleRequest.refresh();
+    	var sampleRequest = codeEditorsID[allSamples[i].id];
+    	sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
+    	sampleRequest.refresh();
   	}
-	$(".authenticationDiv").hide("slow");
-	return false;
+   $(object).find(".btn-primary").attr("disabled","disabled");
+   $(".authenticationDiv").hide("slow");
+	 return false;
 }
 
 function selUrls_onChange(obj) {
