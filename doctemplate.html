@@ -1,71 +1,66 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Meta, title, CSS, favicons, etc. -->
     <meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Authorize.Net API Documentation">
-<meta name="keywords" content="AIM ARB CIM Reporting">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Authorize.Net API Documentation">
+    <meta name="keywords" content="AIM ARB CIM Reporting">
 
-<title>
-  
-  Authorize.Net API Documentation
-  
-</title>
+    <title>
 
-<!-- Bootstrap core CSS -->
-<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+        Authorize.Net API Documentation
 
-<!-- Documentation extras -->
-<link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
-<!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    </title>
 
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Documentation extras -->
+    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+    <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
   <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
   <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 <![endif]-->
 
-<link href="dist/css/anet.css" rel="stylesheet">
-<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css">
-  
-<!-- Favicons -->
-<link href="http://developer.authorize.net/resources/images/favicon.ico" rel="shortcut icon" />
+    <link href="dist/css/anet.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css">
 
-  </head>
-  <body>
-  <div id="fsLightbox1687734" class="fsLightbox" style="display:none;">
+    <!-- Favicons -->
+    <link href="http://developer.authorize.net/resources/images/favicon.ico" rel="shortcut icon" />
+
+</head>
+
+<body>
+    <div id="fsLightbox1687734" class="fsLightbox" style="display:none;">
         <div align="right" style="padding-bottom:5px;">
-          <a id="fsLightboxClose1687734" href="#" title="close"><img src="https://www.formstack.com/forms/images/2/cross.gif" border="0" /></a>
+            <a id="fsLightboxClose1687734" href="#" title="close">
+                <img src="https://www.formstack.com/forms/images/2/cross.gif" border="0" />
+            </a>
         </div>
         <div id="fsLightboxContent1687734" style="height:450px; max-width:650px; padding-top:0px; overflow:auto;">
-          <script type="text/javascript" src="https://www.formstack.com/forms/js.php?1687734-JTjHUklIow-v3"></script>
-        
+            <script type="text/javascript" src="https://www.formstack.com/forms/js.php?1687734-JTjHUklIow-v3"></script>
+
         </div>
-  </div>
-  <!-- <div class="popup">
-    <div class="feedback">
-      <div class="close">x</div>
-      <iframe width="100%" height="650px" name="frame1" ></iframe>
-    </div>  
-  </div> -->
+    </div>
+
     <a class="sr-only" href="#content">Skip to main content</a>
 
     <!-- Docs master nav -->
     <header class="navbar navbar-static-top bs-docs-nav" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="../" class="navbar-brand">Authorize</a>
-    </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <a href="../" class="navbar-brand">Authorize</a>
+                <div class="navbar-brand" style="padding-top: 8px;height:100%;">
+                    <h4>API Reference Guide<span style="font-size: 0.8em;"> ( BETA )</span></h4>
+                </div>
+            </div>
+            <!--  <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
       <ul class="nav navbar-nav">
         <li>
           <a href="../getting-started">Getting Started</a>
@@ -77,267 +72,293 @@
           <a href="../client-libraries">Client Libraries</a>
         </li>
       </ul>
-    </nav>
-  </div>
-</header>
+    </nav> -->
+        </div>
+    </header>
 
 
- <div class="banner">
-  <div class="container">
-    We're releasing this new documentation in BETA. Please feel free to send us your 
-    <strong>
-       <a id="feedbackLinkID" href="#">feedback</a>
-    </strong>
-	, or join the 
-	<strong>
-      <a target="_blank" href="http://community.developer.authorize.net/t5/Community-Feedback/say-hello-to-everyone-in-this-forum/td-p/35575">community discussion</a>
-    </strong>.
-  </div>
-</div>
+    <div class="banner">
+        <div class="container">
+            We're releasing this new documentation in BETA. Please feel free to send us your
+            <strong>
+           <a id="feedbackLinkID" href="#">feedback</a></strong>, or join the community
+            <strong>
+          <a target="_blank" href="http://community.developer.authorize.net/t5/Community-Feedback/say-hello-to-everyone-in-this-forum/td-p/35575">discussion</a></strong>.
+        </div>
+    </div>
 
     <div class="container bs-docs-container">
-      <div class="row">
-        <div class="col-md-9" role="main">
-		<div class="bs-docs-section">
-  <h1 id="authentication" class="page-header">Authentication</h1>
-  <p>All calls to the Authorize.Net API require merchant authentication. If you do not have a sandbox account you can sign up for one really quickly  <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
-      <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#authentication-fields" data-toggle="tab">Fields</a></li>
-		<li><a href="#authentication-sample" data-toggle="tab">Sample</a></li>
-        <li><a href="#authentication-keys" data-toggle="tab">Sandbox Credentials</a></li>
-      </ul>
-      <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="authentication-fields">
-		<p><em>merchantAuthentication</em></p>
-    <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>Element</th>
-            <th>Description</th>
-            <th>Format</th>
-          </tr>
-        </thead>
-        <tbody>         
-          <tr>
-            <td>name</td>
-            <td><strong>Required.</strong><br/>The merchant’s valid API login ID.<br/>Submit the API login ID used to submit transactions.</td>
-            <td>Up to 25 characters.</td>
-          </tr>        
-          <tr>
-            <td>transactionKey</td>
-            <td><strong>Required.</strong><br/>The merchant’s valid transaction key.<br/>Submit the transaction key obtained by the merchant from the Merchant Interface.</td>
-            <td>16 characters.</td>
-          </tr>		  
-        </tbody>
-      </table>
-        </div>
-		 <div class="tab-pane fade in" id="authentication-sample">
-            <pre>
+        <div class="row">
+            <div class="col-md-9" role="main">
+                <div class="bs-docs-section">
+                    <h1 id="authentication" class="page-header">Authentication</h1>
+                    <p>All calls to the Authorize.Net API require merchant authentication. If you do not have a sandbox account you can sign up for one really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a>
+                    </p>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#authentication-fields" data-toggle="tab">Fields</a>
+                        </li>
+                        <li><a href="#authentication-sample" data-toggle="tab">Sample</a>
+                        </li>
+                        <li><a href="#authentication-keys" data-toggle="tab">Sandbox Credentials</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="authentication-fields">
+                            <p><em>merchantAuthentication</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>name</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>The merchant’s valid API login ID.
+                                            <br/>Submit the API login ID used to submit transactions.</td>
+                                        <td>Up to 25 characters.</td>
+                                    </tr>
+                                    <tr>
+                                        <td>transactionKey</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>The merchant’s valid transaction key.
+                                            <br/>Submit the transaction key obtained by the merchant from the Merchant Interface.</td>
+                                        <td>16 characters.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade in" id="authentication-sample">
+                            <pre>
                 &lt;merchantAuthentication&gt;
-		           &lt;name&gt;mytestacct&lt;/name&gt;
-		           &lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
-	            &lt;/merchantAuthentication&gt;
+               &lt;name&gt;mytestacct&lt;/name&gt;
+               &lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
+              &lt;/merchantAuthentication&gt;
             </pre>
-        </div>
-        <div class="tab-pane fade" id="authentication-keys">
-		    <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-			<form class="form-inline" role="form" id="populateKeyForm-main" onsubmit="return btnPopulateKeys_onclick(this)">
-        <div class="form-group">
-        <label class="sr-only" for="loginID">API Login ID</label>
-        <input type="text" class="form-control" id="txtLoginID-main" placeholder="API Login ID">
-        </div>
-        <div class="form-group">
-        <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey-main" placeholder="Transaction Key">
-        </div>
-        <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
-      </form>
-        </div>
-      </div>
- </div>
-{{#each this}}
-<div class="bs-docs-section">
-  <h1 id="{{idFromTitle this.APIName}}" class="page-header">{{this.APIName}}</h1>
-  <p class="lead">{{this.APIUsage}}</p>
-  {{#each methods}}
-  <h3 id="{{idFromTitle ../APIName}}-{{idFromTitle this.title}}">{{this.title}}</h3>
-  <p>{{this.usage}}</p>
-      <ul id="myTab" class="nav nav-tabs">
-        <li class="active"><a href="#homereq-{{idFromTitle this.title}}" data-toggle="tab">Request</a></li>
-		<li><a href="#homeresp-{{idFromTitle this.title}}" data-toggle="tab">Response</a></li>
-        <li><a id="{{idFromTitle this.title}}TryIt" href="#console-{{idFromTitle this.title}}" data-toggle="tab">Try it</a></li>
-      </ul>
-      <div id="myTabContent" class="tab-content">
-        <div class="tab-pane fade in active" id="homereq-{{idFromTitle this.title}}">
-		<p><em>{{this.request.name}}</em></p>
-    <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>Element</th>
-            <th>Description</th>
-            <th>Format</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each request.children}}
-          <tr>
-            <td>{{this.name}}</td>
-            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
-            <td>{{this.format}}</td>
-          </tr>
-		  {{#each this.children}}
-		  <tr>
-            <td class='oneBullet'>{{this.name}}</td>
-            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
-            <td>{{this.format}}</td>
-          </tr>
-		  {{#each this.children}}
-		  <tr>
-            <td class='twoBullet'>{{this.name}}</td>
-            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
-            <td>{{this.format}}</td>
-          </tr>
-		   {{#each this.children}}
-		  <tr>
-            <td class='threeBullet'>{{this.name}}</td>
-            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
-            <td>{{this.format}}</td>
-          </tr>
-		  {{/each}}
-		  {{/each}}
-		  {{/each}}
-          {{/each}}
-        </tbody>
-      </table>
-        </div>
-		 <div class="tab-pane fade in" id="homeresp-{{idFromTitle this.title}}">
-		 <p><em>{{this.response.name}}</em></p>
-    <table class="table table-condensed">
-        <thead>
-          <tr>
-            <th>Element</th>
-            <th>Description</th>
-            <th>Format</th>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each response.children}}
-          <tr>
-            <td>{{this.name}}</td>
-            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
-            <td>{{this.format}}</td>
-          </tr>
-		  {{#each this.children}}
-		  <tr>
-            <td class='oneBullet'>{{this.name}}</td>
-            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
-            <td>{{this.format}}</td>
-          </tr>
-		  {{#each this.children}}
-		  <tr>
-            <td class='twoBullet'>{{this.name}}</td>
-            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
-            <td>{{this.format}}</td>
-          </tr>
-		  {{#each this.children}}
-		  <tr>
-            <td class='threeBullet'>{{this.name}}</td>
-            <td>{{#if this.required}}<strong>Required.</strong><br/>{{/if}}{{this.value}}<br/>{{this.notes}}</td>
-            <td>{{this.format}}</td>
-          </tr>
-		  {{/each}}
-		  {{/each}}
-		  {{/each}}
-          {{/each}}
-        </tbody>
-      </table>
-        </div>
-        <div class="tab-pane fade" id="console-{{idFromTitle this.title}}">
-           <form method="post" action="">
-		   <p>If you would like to see a sample SOAP Request/Response please check out our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op={{this.soap}}">SOAP Method Documentation</a><p>
-		   <div><span class="header">Request:</span></div>
-           <p>
-              <textarea class="sample-request" id="txtReqXml-{{idFromTitle this.title}}" name="txtReqXml" cols="80" rows="6" style="">{{this.request.sample}}</textarea>
-           </p>
-    <p>
-      <button type="button" id="btnSend-{{idFromTitle this.title}}" name="btnSend" class="btn btn-primary" >SEND</button>
-	  <button type="button" id="btnReset" name="btnReset" class="btn" onclick="">Reset</button>
-    </p>
-    </form>
-    <div class="authenticationDiv" id="auth-{{idFromTitle this.title}}">
-      <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
-      <form class="form-inline" id="populateKeyForm-{{idFromTitle this.title}}" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
-        <div class="form-group">
-          <label class="sr-only" for="loginID">API Login ID</label>
-          <input type="text" class="form-control" id="txtLoginID-{{idFromTitle this.title}}" placeholder="API Login ID">
-        </div>
-        <div class="form-group">
-        <label class="sr-only" for="transactionKey">Transaction Key</label>
-        <input type="text" class="form-control" id="txtTransactionKey-{{idFromTitle this.title}}" placeholder="Transaction Key">
-        </div>
-        <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
-      </form>
-    </div>
-    <div><span class="header">Response:</span> <span id="spnStatusCode-{{idFromTitle this.title}}" class="error"></span></div>
-    <div style="position:relative;">
-      <textarea class="sample-response" id="txtRespXml-{{idFromTitle this.title}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
-      <div id="txtRespLoader-{{idFromTitle this.title}}" class="loaderContainer">
-        <div class="loaderbg">Loading...</div>
-        <div class="loader"></div>
-      </div>
-    </div>
-  
+                        </div>
+                        <div class="tab-pane fade" id="authentication-keys">
+                            <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                            <form class="form-inline" role="form" id="populateKeyForm-main" onsubmit="return btnPopulateKeys_onclick(this)">
+                                <div class="form-group">
+                                    <label class="sr-only" for="loginID">API Login ID</label>
+                                    <input type="text" class="form-control" id="txtLoginID-main" placeholder="API Login ID">
+                                </div>
+                                <div class="form-group">
+                                    <label class="sr-only" for="transactionKey">Transaction Key</label>
+                                    <input type="text" class="form-control" id="txtTransactionKey-main" placeholder="Transaction Key">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                {{#each this}}
+                <div class="bs-docs-section">
+                    <h1 id="{{idFromTitle this.APIName}}" class="page-header">{{this.APIName}}</h1>
+                    <p class="lead">{{this.APIUsage}}</p>
+                    {{#each methods}}
+                    <h3 id="{{idFromTitle ../APIName}}-{{idFromTitle this.title}}">{{this.title}}</h3>
+                    <p>{{this.usage}}</p>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#homereq-{{idFromTitle this.title}}" data-toggle="tab">Request</a>
+                        </li>
+                        <li><a href="#homeresp-{{idFromTitle this.title}}" data-toggle="tab">Response</a>
+                        </li>
+                        <li><a id="{{idFromTitle this.title}}TryIt" href="#console-{{idFromTitle this.title}}" data-toggle="tab">Try it</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="homereq-{{idFromTitle this.title}}">
+                            <p><em>{{this.request.name}}</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each request.children}}
+                                    <tr>
+                                        <td>{{this.name}}</td>
+                                        <td>{{#if this.required}}<strong>Required.</strong>
+                                            <br/>{{/if}}{{this.value}}
+                                            <br/>{{this.notes}}</td>
+                                        <td>{{this.format}}</td>
+                                    </tr>
+                                    {{#each this.children}}
+                                    <tr>
+                                        <td class='oneBullet'>{{this.name}}</td>
+                                        <td>{{#if this.required}}<strong>Required.</strong>
+                                            <br/>{{/if}}{{this.value}}
+                                            <br/>{{this.notes}}</td>
+                                        <td>{{this.format}}</td>
+                                    </tr>
+                                    {{#each this.children}}
+                                    <tr>
+                                        <td class='twoBullet'>{{this.name}}</td>
+                                        <td>{{#if this.required}}<strong>Required.</strong>
+                                            <br/>{{/if}}{{this.value}}
+                                            <br/>{{this.notes}}</td>
+                                        <td>{{this.format}}</td>
+                                    </tr>
+                                    {{#each this.children}}
+                                    <tr>
+                                        <td class='threeBullet'>{{this.name}}</td>
+                                        <td>{{#if this.required}}<strong>Required.</strong>
+                                            <br/>{{/if}}{{this.value}}
+                                            <br/>{{this.notes}}</td>
+                                        <td>{{this.format}}</td>
+                                    </tr>
+                                    {{/each}} {{/each}} {{/each}} {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade in" id="homeresp-{{idFromTitle this.title}}">
+                            <p><em>{{this.response.name}}</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each response.children}}
+                                    <tr>
+                                        <td>{{this.name}}</td>
+                                        <td>{{#if this.required}}<strong>Required.</strong>
+                                            <br/>{{/if}}{{this.value}}
+                                            <br/>{{this.notes}}</td>
+                                        <td>{{this.format}}</td>
+                                    </tr>
+                                    {{#each this.children}}
+                                    <tr>
+                                        <td class='oneBullet'>{{this.name}}</td>
+                                        <td>{{#if this.required}}<strong>Required.</strong>
+                                            <br/>{{/if}}{{this.value}}
+                                            <br/>{{this.notes}}</td>
+                                        <td>{{this.format}}</td>
+                                    </tr>
+                                    {{#each this.children}}
+                                    <tr>
+                                        <td class='twoBullet'>{{this.name}}</td>
+                                        <td>{{#if this.required}}<strong>Required.</strong>
+                                            <br/>{{/if}}{{this.value}}
+                                            <br/>{{this.notes}}</td>
+                                        <td>{{this.format}}</td>
+                                    </tr>
+                                    {{#each this.children}}
+                                    <tr>
+                                        <td class='threeBullet'>{{this.name}}</td>
+                                        <td>{{#if this.required}}<strong>Required.</strong>
+                                            <br/>{{/if}}{{this.value}}
+                                            <br/>{{this.notes}}</td>
+                                        <td>{{this.format}}</td>
+                                    </tr>
+                                    {{/each}} {{/each}} {{/each}} {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="console-{{idFromTitle this.title}}">
+                            <form method="post" action="">
+                                <p>If you would like to see a sample SOAP Request/Response please check out our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op={{this.soap}}">SOAP Method Documentation</a>
+                                    <p>
+                                        <div><span class="header">Request:</span>
+                                        </div>
+                                        <p>
+                                            <textarea class="sample-request" id="txtReqXml-{{idFromTitle this.title}}" name="txtReqXml" cols="80" rows="6" style="">{{this.request.sample}}</textarea>
+                                        </p>
+                                        <p>
+                                            <button type="button" id="btnSend-{{idFromTitle this.title}}" name="btnSend" class="btn btn-primary">SEND</button>
+                                            <button type="button" id="btnReset" name="btnReset" class="btn" onclick="">Reset</button>
+                                        </p>
+                            </form>
+                            <div class="authenticationDiv" id="auth-{{idFromTitle this.title}}">
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <form class="form-inline" id="populateKeyForm-{{idFromTitle this.title}}" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="loginID">API Login ID</label>
+                                        <input type="text" class="form-control" id="txtLoginID-{{idFromTitle this.title}}" placeholder="API Login ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="transactionKey">Transaction Key</label>
+                                        <input type="text" class="form-control" id="txtTransactionKey-{{idFromTitle this.title}}" placeholder="Transaction Key">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                </form>
+                            </div>
+                            <div><span class="header">Response:</span>  <span id="spnStatusCode-{{idFromTitle this.title}}" class="error"></span>
+                            </div>
+                            <div style="position:relative;">
+                                <textarea class="sample-response" id="txtRespXml-{{idFromTitle this.title}}" name="txtRespXml" cols="80" rows="6">{{this.response.sample}}</textarea>
+                                <div id="txtRespLoader-{{idFromTitle this.title}}" class="loaderContainer">
+                                    <div class="loaderbg">Loading...</div>
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
 
-        </div>
-      </div>
 
-  {{/each}}
-</div>
-{{/each}}
+                        </div>
+                    </div>
 
- </div>
-        <div class="col-md-3">
-          <div class="bs-docs-sidebar hidden-print" role="complementary">
-            <ul class="nav bs-docs-sidenav">
-			<li>
-            <a href="#authentication">Authentication</a>
-			</li>
-            {{#each this}}
-            <li>
-			    <a href="#{{idFromTitle this.APIName}}">{{this.APIName}}</a>
-				<ul class="nav">
-                {{#each methods}}
-				    <li><a href="#{{idFromTitle ../APIName}}-{{idFromTitle this.title}}">{{this.title}}</a></li>
+                    {{/each}}
+                </div>
                 {{/each}}
-				</ul>
-            </li>
-           {{/each}}
-		   
-            </ul>
-          </div>
+
+            </div>
+            <div class="col-md-3">
+                <div class="bs-docs-sidebar hidden-print" role="complementary">
+                    <ul class="nav bs-docs-sidenav">
+                        <li>
+                            <a href="#authentication">Authentication</a>
+                        </li>
+                        {{#each this}}
+                        <li>
+                            <a href="#{{idFromTitle this.APIName}}">{{this.APIName}}</a>
+                            <ul class="nav">
+                                {{#each methods}}
+                                <li><a href="#{{idFromTitle ../APIName}}-{{idFromTitle this.title}}">{{this.title}}</a>
+                                </li>
+                                {{/each}}
+                            </ul>
+                        </li>
+                        {{/each}}
+
+                    </ul>
+                </div>
+            </div>
         </div>
-      </div>
 
     </div>
 
 
-<!-- Bootstrap core JavaScript
+    <!-- Bootstrap core JavaScript
 ================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="dist/js/bootstrap.min.js"></script>
-<script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
-<script type="text/javascript" src="https://www.formstack.com/forms/js/lightbox.js"></script>
-<script src="api.js"></script>
-<script src="formatting.js"></script>
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
+    <script type="text/javascript" src="https://www.formstack.com/forms/js/lightbox.js"></script>
+    <script src="api.js"></script>
+    <script src="formatting.js"></script>
 
 
- 
 
 
-</script>
 
-  </body>
+    </script>
+
+</body>
+
 </html>
