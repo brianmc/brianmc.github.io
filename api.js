@@ -122,7 +122,7 @@ function btnSend_onclick(id) {
       reFormatCodeMirror("txtRespXml"+genericId);
       document.getElementById("btnSend"+genericId).disabled = false;
   };
-  g_xc.connect("https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api",codeEditorsID["txtReqXml"+genericId].getValue() , fnWhenDone);
+  g_xc.connect("https://apitest.authorize.net/xml/v1/request.api",codeEditorsID["txtReqXml"+genericId].getValue() , fnWhenDone);
 }
 
 function btnReset_onclick(id){
