@@ -55,7 +55,7 @@
     <header class="navbar navbar-static-top bs-docs-nav" role="banner">
         <div class="container">
             <div class="navbar-header">
-                <div class="navbar-brand"><img src="Logo-White.png"></div>
+                <div class="navbar-brand"><img src="dist/css/Logo-White.png"></div>
                 <div class="navbar-brand" style="margin-bottom: 29px;padding-top: 13px;">
                     <h4>API Reference Guide<span style="font-size: 0.8em;"> ( BETA )</span></h4>
                 </div>
@@ -141,7 +141,7 @@
             </pre>
                         </div>
                         <div class="tab-pane fade" id="authentication-keys">
-                            <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                            <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                             <form class="form-inline" role="form" id="populateKeyForm-main" onsubmit="return btnPopulateKeys_onclick(this)">
                                 <div class="form-group">
                                     <label class="sr-only" for="loginID">API Login ID</label>
@@ -1307,7 +1307,7 @@ B = CAVV passed validation, information only, no liability shift.</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-create-a-transaction">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-create-a-transaction" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -1837,35 +1837,35 @@ Required when you use an EU payment processor.</td>
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-create-a-subscription" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCreateSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscription&gt;
-        &lt;name&gt;Sample subscription&lt;/name&gt;
-        &lt;paymentSchedule&gt;
-            &lt;interval&gt;
-                &lt;length&gt;1&lt;/length&gt;
-                &lt;unit&gt;months&lt;/unit&gt;
-            &lt;/interval&gt;
-            &lt;startDate&gt;2020-08-30&lt;/startDate&gt;
-            &lt;totalOccurrences&gt;12&lt;/totalOccurrences&gt;
-            &lt;trialOccurrences&gt;1&lt;/trialOccurrences&gt;
-        &lt;/paymentSchedule&gt;
-        &lt;amount&gt;10.29&lt;/amount&gt;
-        &lt;trialAmount&gt;0.00&lt;/trialAmount&gt;
-        &lt;payment&gt;
-            &lt;creditCard&gt;
-                &lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
-                &lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
-            &lt;/creditCard&gt;
-        &lt;/payment&gt;
-        &lt;billTo&gt;
-            &lt;firstName&gt;John&lt;/firstName&gt;
-            &lt;lastName&gt;Smith&lt;/lastName&gt;
-        &lt;/billTo&gt;
-    &lt;/subscription&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscription&gt;
+		&lt;name&gt;Sample subscription&lt;/name&gt;
+		&lt;paymentSchedule&gt;
+			&lt;interval&gt;
+				&lt;length&gt;1&lt;/length&gt;
+				&lt;unit&gt;months&lt;/unit&gt;
+			&lt;/interval&gt;
+			&lt;startDate&gt;2020-08-30&lt;/startDate&gt;
+			&lt;totalOccurrences&gt;12&lt;/totalOccurrences&gt;
+			&lt;trialOccurrences&gt;1&lt;/trialOccurrences&gt;
+		&lt;/paymentSchedule&gt;
+		&lt;amount&gt;10.29&lt;/amount&gt;
+		&lt;trialAmount&gt;0.00&lt;/trialAmount&gt;
+		&lt;payment&gt;
+			&lt;creditCard&gt;
+				&lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
+				&lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
+			&lt;/creditCard&gt;
+		&lt;/payment&gt;
+		&lt;billTo&gt;
+			&lt;firstName&gt;John&lt;/firstName&gt;
+			&lt;lastName&gt;Smith&lt;/lastName&gt;
+		&lt;/billTo&gt;
+	&lt;/subscription&gt;
 &lt;/ARBCreateSubscriptionRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -1874,7 +1874,7 @@ Required when you use an EU payment processor.</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-create-a-subscription">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-create-a-subscription" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -1893,15 +1893,15 @@ Required when you use an EU payment processor.</td>
                                 <textarea class="sample-response" id="txtRespXml-create-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCreateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful.&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBCreateSubscriptionResponse&gt;</textarea>
                                 <div id="txtRespLoader-create-a-subscription" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2010,12 +2010,12 @@ AnetApiSchema.xsd&quot;&gt;
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-get-subscription-status" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBGetSubscriptionStatusRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBGetSubscriptionStatusRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -2024,7 +2024,7 @@ AnetApiSchema.xsd&quot;&gt;
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-subscription-status">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-subscription-status" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -2042,15 +2042,15 @@ AnetApiSchema.xsd&quot;&gt;
                             <div style="position:relative;">
                                 <textarea class="sample-response" id="txtRespXml-get-subscription-status" name="txtRespXml" cols="80" rows="6">&lt;ARBGetSubscriptionStatusResponse xmlns:xsi=&quot;http://www.w3.org/2001/
 XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
-    &lt;Status&gt;active&lt;/Status&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
+	&lt;Status&gt;active&lt;/Status&gt;
 &lt;/ARBGetSubscriptionStatusResponse&gt;</textarea>
                                 <div id="txtRespLoader-get-subscription-status" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2482,20 +2482,20 @@ Required when you use an EU payment processor.</td>
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-update-a-subscription" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBUpdateSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
-    &lt;subscription&gt;
-        &lt;payment&gt;
-            &lt;creditCard&gt;
-                &lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
-                &lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
-            &lt;/creditCard&gt;
-        &lt;/payment&gt;
-    &lt;/subscription&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;subscription&gt;
+		&lt;payment&gt;
+			&lt;creditCard&gt;
+				&lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
+				&lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
+			&lt;/creditCard&gt;
+		&lt;/payment&gt;
+	&lt;/subscription&gt;
 &lt;/ARBUpdateSubscriptionRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -2504,7 +2504,7 @@ Required when you use an EU payment processor.</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-update-a-subscription">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-update-a-subscription" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -2523,14 +2523,14 @@ Required when you use an EU payment processor.</td>
                                 <textarea class="sample-response" id="txtRespXml-update-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBUpdateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful.&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
 &lt;/ARBUpdateSubscriptionResponse&gt;</textarea>
                                 <div id="txtRespLoader-update-a-subscription" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2631,12 +2631,12 @@ AnetApiSchema.xsd&quot;&gt;
                                         </div>
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-cancel-a-subscription" name="txtReqXml" cols="80" rows="6" style="">&lt;ARBCancelSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBCancelSubscriptionRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -2645,7 +2645,7 @@ AnetApiSchema.xsd&quot;&gt;
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-cancel-a-subscription">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-cancel-a-subscription" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -2663,14 +2663,14 @@ AnetApiSchema.xsd&quot;&gt;
                             <div style="position:relative;">
                                 <textarea class="sample-response" id="txtRespXml-cancel-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCancelSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful.&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
 &lt;/ARBCancelSubscriptionResponse&gt;</textarea>
                                 <div id="txtRespLoader-cancel-a-subscription" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -3105,7 +3105,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
            &lt;/payment&gt;
       &lt;/paymentProfiles&gt;
     &lt;/profile&gt;
-    &lt;validationMode&gt;testMode&lt;/validationMode&gt;
+	&lt;validationMode&gt;testMode&lt;/validationMode&gt;
   &lt;/createCustomerProfileRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -3114,7 +3114,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-create-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-create-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -3442,7 +3442,7 @@ For example, (123)123-1234</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -3646,7 +3646,7 @@ For example, (123)123-1234</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-customer-profile-ids">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-customer-profile-ids" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -3814,7 +3814,7 @@ For example, (123)123-1234</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-update-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-update-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -3937,7 +3937,7 @@ For example, (123)123-1234</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-delete-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-delete-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -4282,7 +4282,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-create-customer-payment-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-create-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -4630,7 +4630,7 @@ All sensitive payment information in the output is masked.</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-customer-payment-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -4807,7 +4807,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-validate-customer-payment-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-validate-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -5178,7 +5178,7 @@ This output is only present if the ValidationMode input element is passed with a
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-update-customer-payment-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-update-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -5309,7 +5309,7 @@ This output is only present if the ValidationMode input element is passed with a
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-delete-customer-payment-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-delete-customer-payment-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -5530,7 +5530,7 @@ For example, (123)123-1234</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-create-customer-shipping-address">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-create-customer-shipping-address" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -5741,7 +5741,7 @@ For example, (123)123-1234</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-customer-shipping-address">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-customer-shipping-address" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -5976,7 +5976,7 @@ For example, (123)123-1234</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-update-customer-shipping-address">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-update-customer-shipping-address" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -6107,7 +6107,7 @@ For example, (123)123-1234</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-delete-customer-shipping-address">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-delete-customer-shipping-address" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -6519,7 +6519,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-authorize-a-transaction-from-a-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-authorize-a-transaction-from-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -6932,7 +6932,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-authorize-and-capture-a-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-authorize-and-capture-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -7290,7 +7290,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-authorizing-and-capturing-a-transaction-from-a-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-authorizing-and-capturing-a-transaction-from-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -7711,7 +7711,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-capture-a-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-capture-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -8153,7 +8153,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-refunding-a-transaction-for-a-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-refunding-a-transaction-for-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -8329,7 +8329,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-voiding-transactions-for-a-customer-profile">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-voiding-transactions-for-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -8500,7 +8500,7 @@ For more complete information on how to use hosted CIM access, see &quot;Using a
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-hosted-profile-page">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-hosted-profile-page" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -8633,7 +8633,7 @@ For more complete information on how to use hosted CIM access, see &quot;Using a
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-update-split-tender-group">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-update-split-tender-group" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -8897,7 +8897,7 @@ HH:MM:SS</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-settled-batch-list">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-settled-batch-list" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -9239,7 +9239,7 @@ eCheck</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-transaction-list">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-transaction-list" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -10117,7 +10117,7 @@ DinersClub</td>
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-transaction-details">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-transaction-details" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -10350,7 +10350,7 @@ No input parameters are required, other than the authentication information. </p
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-unsettled-transaction-list">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-unsettled-transaction-list" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
@@ -10622,7 +10622,7 @@ eCheck
                                         </p>
                             </form>
                             <div class="authenticationDiv" id="auth-get-batch-statistics">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account.</p>
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
                                 <form class="form-inline" id="populateKeyForm-get-batch-statistics" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
