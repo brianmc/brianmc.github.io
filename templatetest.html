@@ -907,7 +907,7 @@ This field is currently supported through Chase Paymentech, FDMS Nashville, Glob
                                     
                                     <tr>
                                         <td class='oneBullet'>resultCode</td>
-                                        <td>Ok or Error
+                                        <td>Ok or Error.
                                             <br/>Contains additional information about the status of the request. </td>
                                         <td></td>
                                     </tr>
@@ -1017,8 +1017,8 @@ B = CAVV passed validation, information only, no liability shift.</td>
                                     <tr>
                                         <td class='oneBullet'>transId</td>
                                         <td>The payment gateway assigned identification number for transaction.
-                                            <br/>This value must be used for any follow-on transactions such as a credit, prior auth capture, or void.</td>
-                                        <td>When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be “0.‿</td>
+                                            <br/>The transId value must be used for any follow-on transactions such as a credit, prior authorization and capture, or void.</td>
+                                        <td>When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.</td>
                                     </tr>
                                      
                                     <tr>
@@ -1039,7 +1039,7 @@ B = CAVV passed validation, information only, no liability shift.</td>
                                         <td class='oneBullet'>testRequest</td>
                                         <td>
                                             <br/>Indicates whether or not to treat this request as a test transaction. </td>
-                                        <td>true, false,1,0</td>
+                                        <td>true, false,1,0.</td>
                                     </tr>
                                      
                                     <tr>
@@ -1072,7 +1072,7 @@ B = CAVV passed validation, information only, no liability shift.</td>
                                     
                                     <tr>
                                         <td class='threeBullet'>code</td>
-                                        <td>Response code that represents the status
+                                        <td>Response code that represents the status.
                                             <br/></td>
                                         <td></td>
                                     </tr>
@@ -1129,7 +1129,7 @@ B = CAVV passed validation, information only, no liability shift.</td>
                                     <tr>
                                         <td class='threeBullet'>transId</td>
                                         <td>The payment gateway assigned identification number for the transaction.
-                                            <br/>When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be “0.‿</td>
+                                            <br/>When the testRequest field is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.</td>
                                         <td></td>
                                     </tr>
                                     
@@ -1163,22 +1163,22 @@ B = CAVV passed validation, information only, no liability shift.</td>
                                     
                                     <tr>
                                         <td class='threeBullet'>accountType</td>
-                                        <td>Visa, MasterCard, American Express, Discover, Diners Club, or JCB
+                                        <td>Visa, MasterCard, American Express, Discover, Diners Club, or JCB.
                                             <br/></td>
-                                        <td>Text</td>
+                                        <td>Text.</td>
                                     </tr>
                                     
                                     <tr>
                                         <td class='threeBullet'>requestedAmount</td>
                                         <td>Amount requested in original authorization.
-                                            <br/>Present if the current transaction is for a prepaid card or if a splitTenderId was sent in.</td>
+                                            <br/>Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in.</td>
                                         <td>Numeric.</td>
                                     </tr>
                                     
                                     <tr>
                                         <td class='threeBullet'>approvedAmount</td>
                                         <td>Amount approved.
-                                            <br/>Present if the current transaction is for a prepaid card or if a splitTenderId was sent in.</td>
+                                            <br/>Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in.</td>
                                         <td></td>
                                     </tr>
                                     
@@ -1814,7 +1814,7 @@ Required when you use an EU payment processor.</td>
                                     <tr>
                                         <td>messages</td>
                                         <td>Contains Information about the results of the request.
-                                            <br/>See response code guide.</td>
+                                            <br/></td>
                                         <td></td>
                                     </tr>
                                      
@@ -1987,7 +1987,7 @@ AnetApiSchema.xsd&quot;&gt;
                                     <tr>
                                         <td>messages</td>
                                         <td>Contains Information about the results of the request.
-                                            <br/>See response code guide.</td>
+                                            <br/></td>
                                         <td></td>
                                     </tr>
                                      
@@ -1995,7 +1995,7 @@ AnetApiSchema.xsd&quot;&gt;
                                         <td>status</td>
                                         <td>Contains information about the subscription status.
                                             <br/></td>
-                                        <td>active, expired, suspended, cancelled, terminated</td>
+                                        <td>Values include: active, expired, suspended, cancelled, or terminated.</td>
                                     </tr>
                                      
                                 </tbody>
@@ -2466,7 +2466,7 @@ Required when you use an EU payment processor.</td>
                                     <tr>
                                         <td>messages</td>
                                         <td>Contains Information about the results of the request.
-                                            <br/>See response code guide.</td>
+                                            <br/></td>
                                         <td></td>
                                     </tr>
                                      
@@ -2616,7 +2616,7 @@ AnetApiSchema.xsd&quot;&gt;
                                     <tr>
                                         <td>messages</td>
                                         <td>Contains information about the results of the request.
-                                            <br/>See response code guide.</td>
+                                            <br/></td>
                                         <td></td>
                                     </tr>
                                      
@@ -2687,12 +2687,12 @@ AnetApiSchema.xsd&quot;&gt;
                 
                 <div class="bs-docs-section">
                     <h1 id="customer-profiles" class="page-header">Customer Profiles</h1>
-                    <p class="lead">This API allows you to store customer payment and address data for subsequent use.</p>
+                    <p class="lead">This API enables you to store customer payment and address data for subsequent use.</p>
                     
                     <h3 id="customer-profiles-create-customer-profile">Create Customer Profile</h3>
-                    <p>This function is used to create a new customer profile including any customer payment profiles and customer shipping addresses.
+                    <p>Use this function to create a new customer profile including any customer payment profiles and customer shipping addresses.
 
-Note: The createCustomerProfileResponse returns only the assigned customerProfileId for the created profile. To retrieve the customerPaymentProfileId and the customerShippingId that may also be created when using the createCustomerProfile function, you must submit the getCustomerProfileRequest function using the assigned customerProfileId for that customer profile.</p>
+Note: The createCustomerProfileResponse field returns only the assigned customerProfileId element for the created profile. To retrieve the customerPaymentProfileId element and the customerShippingId element that may also be created when using the createCustomerProfile function, you must submit the getCustomerProfileRequest function using the assigned customerProfileId element for that customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-create-customer-profile" data-toggle="tab">Request</a>
                         </li>
@@ -2732,23 +2732,23 @@ Note: The createCustomerProfileResponse returns only the assigned customerProfil
                                     <tr>
                                         <td class='oneBullet'>merchantCustomerId</td>
                                         <td>Merchant assigned ID for the customer.
-                                            <br/>Required only if no values for both description and email are submitted.</td>
+                                            <br/>Required only when no values for description and email are submitted.</td>
                                         <td>Up to 20 characters.</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='oneBullet'>description</td>
                                         <td>Description of the customer or customer profile.
-                                            <br/>Required only if no values for both merchantCustomerId and email are submitted.</td>
+                                            <br/>Required only when no values for merchantCustomerId and email are submitted.</td>
                                         <td>Up to 255 characters.</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='oneBullet'>email</td>
                                         <td>Email address associated with the customer profile.
-                                            <br/>Required if no values for both description and merchantCustomerId are submitted.
+                                            <br/>Required when no values for description and merchantCustomerId are submitted.
 
-Required only when using a European payment processor.</td>
+Required only when you use a European payment processor.</td>
                                         <td>Up to 255 characters.</td>
                                     </tr>
                                      
@@ -2776,14 +2776,14 @@ Required only when using a European payment processor.</td>
                                     <tr>
                                         <td class='twoBullet'>firstName</td>
                                         <td>The customer’s first name.
-                                            <br/>Required only when using a European payment processor.</td>
+                                            <br/>Required only when you use a European payment processor.</td>
                                         <td>Up to 50 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>lastName</td>
                                         <td>The customer’s last name.
-                                            <br/>Required only when using a European payment processor.</td>
+                                            <br/>Required only when you use a European payment processor.</td>
                                         <td>Up to 50 characters (no symbols).</td>
                                     </tr>
                                      
@@ -2797,35 +2797,35 @@ Required only when using a European payment processor.</td>
                                     <tr>
                                         <td class='twoBullet'>address</td>
                                         <td>The customer’s address.
-                                            <br/>Required only when using a European payment processor.</td>
+                                            <br/>Required only when you use a European payment processor.</td>
                                         <td>Up to 60 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>city</td>
                                         <td>The city of the customer’s address.
-                                            <br/>Required only when using a European payment processor.</td>
+                                            <br/>Required only when you use a European payment processor.</td>
                                         <td>Up to 40 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>state</td>
                                         <td>The state of the customer’s address.
-                                            <br/>Required only when using a European payment processor.</td>
+                                            <br/>Required only when you use a European payment processor.</td>
                                         <td>Up to 40 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>zip</td>
                                         <td>The ZIP code of the customer’s address.
-                                            <br/>Required only when using a European payment processor.</td>
+                                            <br/>Required only when you use a European payment processor.</td>
                                         <td>Up to 20 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>country</td>
                                         <td>The country of the customer’s address.
-                                            <br/>Required only when using a European payment processor.</td>
+                                            <br/>Required only when you use a European payment processor.</td>
                                         <td>Up to 60 characters (no symbols).</td>
                                     </tr>
                                      
@@ -2855,7 +2855,7 @@ For example, (123)123-1234</td>
                                     <tr>
                                         <td class='twoBullet'>creditCard</td>
                                         <td>Contains credit card payment information for the payment profile.
-                                            <br/>This element is only required when the payment profile is credit card.</td>
+                                            <br/>This element is required only when the payment profile is credit card.</td>
                                         <td></td>
                                     </tr>
                                      
@@ -2878,7 +2878,7 @@ For example, (123)123-1234</td>
                                         <td>The three- or four-digit number on the back of a credit card (on the front for American Express).
                                             <br/>This field is required if the merchant would like to use the Card Code Verification (CCV) security feature.
 
-cardCode is used only for validation and is not stored in the customer profile. Use it only when submitting validationMode with a value of testMode or liveMode.</td>
+The cardCode element is used only for validation and is not stored in the customer profile. Use it only when submitting the validationMode element with a value of testMode or liveMode.</td>
                                         <td>Numeric.</td>
                                     </tr>
                                      
@@ -3013,7 +3013,7 @@ For example, (123)123-1234</td>
                                     <tr>
                                         <td>validationMode</td>
                                         <td>Indicates the processing mode for the request.
-                                            <br/>For more information on use and restrictions of validationMode, see &quot;The validationMode Parameter.&quot;</td>
+                                            <br/></td>
                                         <td>none, testMode, or liveMode</td>
                                     </tr>
                                      
@@ -3072,7 +3072,7 @@ The shipping profile IDs are returned in the same order as they were in the requ
 
 The list is returned in the same order as the payment profiles were submitted in the request.</td>
                                         <td>String.
-See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.</td>
+</td>
                                     </tr>
                                       
                                 </tbody>
@@ -3167,7 +3167,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,&lt;/string&gt;
 
                     
                     <h3 id="customer-profiles-get-customer-profile">Get Customer Profile</h3>
-                    <p>This function is used to retrieve an existing customer profile along with all the associated payment profiles and shipping addresses.</p>
+                    <p>Use this function to retrieve an existing customer profile along with all the associated payment profiles and shipping addresses.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-customer-profile" data-toggle="tab">Request</a>
                         </li>
@@ -3414,7 +3414,7 @@ For example, (123)123-1234</td>
                                         <td>The fax number associated with the customer’s shipping address.
                                             <br/></td>
                                         <td>Up to 25 digits (no letters).
-For example, (123)123-1234</td>
+For example, (123)123-1234.</td>
                                     </tr>
                                        
                                 </tbody>
@@ -3541,7 +3541,7 @@ For example, (123)123-1234</td>
 
                     
                     <h3 id="customer-profiles-get-customer-profile-ids">Get Customer Profile IDs</h3>
-                    <p>This function is used to retrieve all existing customer profile IDs.</p>
+                    <p>Use this function to retrieve all existing customer profile IDs.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-customer-profile-ids" data-toggle="tab">Request</a>
                         </li>
@@ -3689,7 +3689,7 @@ For example, (123)123-1234</td>
 
                     
                     <h3 id="customer-profiles-update-customer-profile">Update Customer Profile</h3>
-                    <p>This function is used to update an existing customer profile.</p>
+                    <p>Use this function to update an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-update-customer-profile" data-toggle="tab">Request</a>
                         </li>
@@ -3780,7 +3780,7 @@ For example, (123)123-1234</td>
                                     <tr>
                                         <td>UpdateCustomerProfileResult</td>
                                         <td>Contains the result of the API request to update a customer profile.
-                                            <br/>See the &quot;Response Codes&quot; section for possible values.</td>
+                                            <br/></td>
                                         <td></td>
                                     </tr>
                                      
@@ -3852,7 +3852,7 @@ For example, (123)123-1234</td>
 
                     
                     <h3 id="customer-profiles-delete-customer-profile">Delete Customer Profile</h3>
-                    <p>This function is used to delete an existing customer profile along with all associated customer payment profiles and customer shipping addresses.</p>
+                    <p>Use this function to delete an existing customer profile along with all associated customer payment profiles and customer shipping addresses.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-delete-customer-profile" data-toggle="tab">Request</a>
                         </li>
@@ -3975,7 +3975,7 @@ For example, (123)123-1234</td>
 
                     
                     <h3 id="customer-profiles-create-customer-payment-profile">Create Customer Payment Profile</h3>
-                    <p>This function is used to create a new customer payment profile for an existing customer profile.</p>
+                    <p>Use this function to create a new customer payment profile for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-create-customer-payment-profile" data-toggle="tab">Request</a>
                         </li>
@@ -4021,9 +4021,9 @@ For example, (123)123-1234</td>
                                     
                                     <tr>
                                         <td class='oneBullet'>customerType</td>
-                                        <td>
+                                        <td>individual or business
                                             <br/></td>
-                                        <td>individual or business</td>
+                                        <td></td>
                                     </tr>
                                      
                                     <tr>
@@ -4138,7 +4138,7 @@ For example, (123)123-1234</td>
                                         <td>The three- or four-digit number on the back of a credit card (on the front for American Express).
                                             <br/>This field is required if the merchant would like to use the Card Code Verification (CCV) security feature.
 
-cardCode is used only for validation and is not stored in the customer profile. Use it only when submitting validationMode with a value of testMode or liveMode.</td>
+The cardCode element is used only for validation and is not stored in the customer profile. Use it only when submitting validationMode with a value of testMode or liveMode.</td>
                                         <td>Numeric.</td>
                                     </tr>
                                      
@@ -4194,7 +4194,7 @@ cardCode is used only for validation and is not stored in the customer profile. 
                                     <tr>
                                         <td>validationMode</td>
                                         <td>Indicates the processing mode for the request.
-                                            <br/>For more information on use and restrictions of validationMode, see &quot;The validationMode Parameter.&quot;</td>
+                                            <br/></td>
                                         <td>none, testMode, or liveMode</td>
                                     </tr>
                                      
@@ -4232,8 +4232,7 @@ cardCode is used only for validation and is not stored in the customer profile. 
                                         <td class='oneBullet'>validationDirectResponse</td>
                                         <td>Contains detailed information about the result of the transaction.
                                             <br/>This output is present only if the ValidationMode input parameter is passed with a value of testMode or liveMode.</td>
-                                        <td>String.
-See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.</td>
+                                        <td>String.</td>
                                     </tr>
                                       
                                 </tbody>
@@ -4326,7 +4325,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
                     
                     <h3 id="customer-profiles-get-customer-payment-profile">Get Customer Payment Profile</h3>
-                    <p>This function is used to retrieve a customer payment profile for an existing customer profile.</p>
+                    <p>Use this function to retrieve a customer payment profile for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-customer-payment-profile" data-toggle="tab">Request</a>
                         </li>
@@ -4404,7 +4403,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                         <td class='oneBullet'>customerType</td>
                                         <td>
                                             <br/></td>
-                                        <td>individual or business</td>
+                                        <td>individual or business.</td>
                                     </tr>
                                      
                                     <tr>
@@ -4475,7 +4474,8 @@ D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                         <td>The phone number associated with the customer’s address.
                                             <br/></td>
                                         <td>Up to 25 digits (no letters).
-For example, (123)123-1234</td>
+
+For example, (123)123-1234.</td>
                                     </tr>
                                      
                                     <tr>
@@ -4483,7 +4483,8 @@ For example, (123)123-1234</td>
                                         <td>The fax number associated with the customer’s address.
                                             <br/></td>
                                         <td>Up to 25 digits (no letters).
-For example, (123)123-1234</td>
+
+For example, (123)123-1234.</td>
                                     </tr>
                                       
                                     <tr>
@@ -4525,7 +4526,7 @@ For example, (123)123-1234</td>
                                         <td class='twoBullet'>accountType</td>
                                         <td>The type of bank account for the payment profile.
                                             <br/></td>
-                                        <td>checking, savings, or businessChecking</td>
+                                        <td>checking, savings, or businessChecking.</td>
                                     </tr>
                                      
                                     <tr>
@@ -4553,7 +4554,7 @@ For example, (123)123-1234</td>
                                         <td class='twoBullet'>echeckType</td>
                                         <td>The type of electronic check transaction.
                                             <br/>Currently, the CIM API does not support ARC or BOC transaction types.</td>
-                                        <td>CCD, PPD, TEL, or WEB</td>
+                                        <td>CCD, PPD, TEL, or WEB.</td>
                                     </tr>
                                      
                                     <tr>
@@ -4689,7 +4690,7 @@ All sensitive payment information in the output is masked.</td>
 
                     
                     <h3 id="customer-profiles-validate-customer-payment-profile">Validate Customer Payment Profile</h3>
-                    <p>This function is used to verify an existing customer payment profile by generating a test transaction. No customer receipt emails are sent when validateCustomerPaymentProfileRequest is called.</p>
+                    <p>Use this function to generating a test transaction that verifies an existing customer payment profile. No customer receipt emails are sent when the  validateCustomerPaymentProfileRequest element is called.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-validate-customer-payment-profile" data-toggle="tab">Request</a>
                         </li>
@@ -4745,14 +4746,14 @@ All sensitive payment information in the output is masked.</td>
                                         <td>The three- or four-digit number on the back of a credit card (on the front for American Express).
                                             <br/>This field is required if the merchant would like to use the Card Code Verification (CCV) security feature. 
 
-cardCode is used only for validation and is not stored in the customer profile. It should be used only when submitting validationMode with a value of testMode or liveMode.</td>
+cardCode is used only for validation and is not stored in the customer profile. It should be used only when you submit validationMode with a value of testMode or liveMode.</td>
                                         <td>Numeric.</td>
                                     </tr>
                                      
                                     <tr>
                                         <td>validationMode</td>
                                         <td>Indicates the processing mode for the request.
-                                            <br/>For more information on use and restrictions of validationMode, see &quot;The validationMode Parameter.&quot;</td>
+                                            <br/></td>
                                         <td>testMode or liveMode</td>
                                     </tr>
                                      
@@ -4776,8 +4777,7 @@ cardCode is used only for validation and is not stored in the customer profile. 
                                         <td>directResponse</td>
                                         <td>Contains detailed information about the result of the transaction.
                                             <br/></td>
-                                        <td>String.
-See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.</td>
+                                        <td>String.</td>
                                     </tr>
                                      
                                 </tbody>
@@ -4849,11 +4849,11 @@ D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
                     
                     <h3 id="customer-profiles-update-customer-payment-profile">Update Customer Payment Profile</h3>
-                    <p>This function is used to update a payment profile for an existing customer profile.
+                    <p>Use this function to update a payment profile for an existing customer profile.
 
-Note: If some fields in this request are not submitted or are submitted with a blank value, the values in the original profile are removed. As a best practice to prevent this from happening, call getCustomerPaymentProfileRequest before calling updateCustomerPaymentProfileRequest. That will return all current information including masked payment information. Then, simply change the field that needs updating and use that to call updateCustomerPaymentProfileRequest.
+Note that if some fields in this request are not submitted or are submitted with a blank value, the values in the original profile are removed. As a best practice to prevent this from happening, call getCustomerPaymentProfileRequest before calling updateCustomerPaymentProfileRequest. This action returns all current information including masked payment information. Then, simply change the field that needs updating and use that field to call updateCustomerPaymentProfileRequest.
 
-To test the validity of new payment information, call validateCustomerPaymentProfileRequest after successfully updating the payment profile. See &quot;Input Parameters for validateCustomerPaymentProfileRequest&quot; for more information.</p>
+To test the validity of new payment information, call validateCustomerPaymentProfileRequest after successfully updating the payment profile. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-update-customer-payment-profile" data-toggle="tab">Request</a>
                         </li>
@@ -4900,7 +4900,7 @@ To test the validity of new payment information, call validateCustomerPaymentPro
                                     <tr>
                                         <td class='oneBullet'>customerType</td>
                                         <td>
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>individual or business</td>
                                     </tr>
                                      
@@ -4909,28 +4909,28 @@ To test the validity of new payment information, call validateCustomerPaymentPro
                                         <td>
                                             <br/>If this entire section is not submitted, the original billing information for the profile will stay the same. 
 
-If updating only one or more elements under billTo, all elements must be submitted with their valid values to prevent the original values from being removed.</td>
+If you update only one or more elements under billTo, all elements must be submitted with their valid values to prevent the original values from being removed.</td>
                                         <td></td>
                                     </tr>
                                     
                                     <tr>
                                         <td class='twoBullet'>firstName</td>
                                         <td>The customer’s first name.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 50 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>lastName</td>
                                         <td>The customer’s last name.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 50 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>company</td>
                                         <td>The name of the company associated with the customer, if applicable.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 50 characters (no symbols).</td>
                                     </tr>
                                      
@@ -4944,35 +4944,35 @@ If updating only one or more elements under billTo, all elements must be submitt
                                     <tr>
                                         <td class='twoBullet'>city</td>
                                         <td>The city of the customer’s shipping address.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 40 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>state</td>
                                         <td>The state of the customer’s address.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 40 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>zip</td>
                                         <td>The ZIP code of the customer’s address.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 20 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>country</td>
                                         <td>The country of the customer’s address.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 60 characters (no symbols).</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>phoneNumber</td>
                                         <td>The phone number associated with the customer’s address.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 25 digits (no letters).
 For example, (123)123-1234</td>
                                     </tr>
@@ -4980,7 +4980,7 @@ For example, (123)123-1234</td>
                                     <tr>
                                         <td class='twoBullet'>faxNumber</td>
                                         <td>The fax number associated with the customer’s address.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 25 digits (no letters).
 For example, (123)123-1234</td>
                                     </tr>
@@ -4995,7 +4995,7 @@ For example, (123)123-1234</td>
                                     <tr>
                                         <td class='twoBullet'>creditCard</td>
                                         <td>Contains credit card payment information for the customer profile.
-                                            <br/>This parameter and its children are only required when the payment profile is credit card.</td>
+                                            <br/>This parameter and its children are required only when the payment profile is credit card.</td>
                                         <td></td>
                                     </tr>
                                      
@@ -5031,7 +5031,7 @@ cardCode is only used for validation and is not stored in the customer profile. 
                                     <tr>
                                         <td class='twoBullet'>bankAccount</td>
                                         <td>Contains bank account payment information for the customer profile.
-                                            <br/>This parameter and its children are only required when the payment profile is bank account.</td>
+                                            <br/>This parameter and its children are required only when the payment profile is bank account.</td>
                                         <td></td>
                                     </tr>
                                      
@@ -5065,7 +5065,7 @@ Number can also be masked, for example, XXXX1111</td>
                                     <tr>
                                         <td class='twoBullet'>nameOnAccount</td>
                                         <td>The customer’s full name as listed on the bank account.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 22 characters.</td>
                                     </tr>
                                      
@@ -5074,14 +5074,14 @@ Number can also be masked, for example, XXXX1111</td>
                                         <td>The type of electronic check transaction.
                                             <br/>Currently, the CIM API does not support ARC or BOC transaction types.
 
-If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>CCD, PPD, TEL, or WEB</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>bankName</td>
                                         <td>The name of the bank associated with the bank account number.
-                                            <br/>If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile.</td>
+                                            <br/>If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile.</td>
                                         <td>Up to 50 characters.</td>
                                     </tr>
                                       
@@ -5095,7 +5095,7 @@ If this field is not submitted in the request, or submitted with a blank value, 
                                     <tr>
                                         <td>validationMode</td>
                                         <td>Indicates the processing mode for the request.
-                                            <br/>For more information on use and restrictions of validationMode, see &quot;The validationMode Parameter.&quot;</td>
+                                            <br/></td>
                                         <td>none, testMode, or liveMode</td>
                                     </tr>
                                      
@@ -5125,9 +5125,7 @@ If this field is not submitted in the request, or submitted with a blank value, 
                                     <tr>
                                         <td>validationDirectResponse</td>
                                         <td>Contains detailed information about the result of the transaction.
-                                            <br/>See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.
-
-This output is only present if the ValidationMode input element is passed with a value of testMode or liveMode.</td>
+                                            <br/>This output is only present if the ValidationMode input element is passed with a value of testMode or liveMode.</td>
                                         <td>String.</td>
                                     </tr>
                                      
@@ -5216,7 +5214,7 @@ This output is only present if the ValidationMode input element is passed with a
 
                     
                     <h3 id="customer-profiles-delete-customer-payment-profile">Delete Customer Payment Profile</h3>
-                    <p>This function is used to delete a customer payment profile from an existing customer profile.</p>
+                    <p>Use this function to delete a customer payment profile from an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-delete-customer-payment-profile" data-toggle="tab">Request</a>
                         </li>
@@ -5347,7 +5345,7 @@ This output is only present if the ValidationMode input element is passed with a
 
                     
                     <h3 id="customer-profiles-create-customer-shipping-address">Create Customer Shipping Address</h3>
-                    <p>This function is used to create a new customer shipping address for an existing customer profile.</p>
+                    <p>Use this function to create a new customer shipping address for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-create-customer-shipping-address" data-toggle="tab">Request</a>
                         </li>
@@ -5569,7 +5567,7 @@ For example, (123)123-1234</td>
 
                     
                     <h3 id="customer-profiles-get-customer-shipping-address">Get Customer Shipping Address</h3>
-                    <p>This function is used to retrieve a customer shipping address for an existing customer profile.</p>
+                    <p>Use this function to retrieve a customer shipping address for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-customer-shipping-address" data-toggle="tab">Request</a>
                         </li>
@@ -5704,7 +5702,8 @@ For example, (123)123-1234</td>
                                         <td>The phone number associated with the customer’s address.
                                             <br/></td>
                                         <td>Up to 25 digits (no letters).
-For examaple, (123)123-1234</td>
+
+For examaple, (123)123-1234.</td>
                                     </tr>
                                      
                                     <tr>
@@ -5712,7 +5711,8 @@ For examaple, (123)123-1234</td>
                                         <td>The fax number associated with the customer’s address.
                                             <br/></td>
                                         <td>Up to 25 digits (no letters).
-For example, (123)123-1234</td>
+
+For example, (123)123-1234.</td>
                                     </tr>
                                        
                                 </tbody>
@@ -5792,7 +5792,7 @@ For example, (123)123-1234</td>
 
                     
                     <h3 id="customer-profiles-update-customer-shipping-address">Update Customer Shipping Address</h3>
-                    <p>This function is used to update a shipping address for an existing customer profile.</p>
+                    <p>Use this function to update a shipping address for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-update-customer-shipping-address" data-toggle="tab">Request</a>
                         </li>
@@ -6014,7 +6014,7 @@ For example, (123)123-1234</td>
 
                     
                     <h3 id="customer-profiles-delete-customer-shipping-address">Delete Customer Shipping Address</h3>
-                    <p>This function is used to delete a customer shipping address from an existing customer profile.</p>
+                    <p>Use this function to delete a customer shipping address from an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-delete-customer-shipping-address" data-toggle="tab">Request</a>
                         </li>
@@ -6145,7 +6145,7 @@ For example, (123)123-1234</td>
 
                     
                     <h3 id="customer-profiles-authorize-a-transaction-from-a-customer-profile">Authorize a Transaction from a Customer Profile</h3>
-                    <p>This function is used to authorize a transaction from an existing customer profile. This transaction type generates a customer receipt email. </p>
+                    <p>Use this function to authorize a transaction from an existing customer profile. This transaction type generates a customer receipt email. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-authorize-a-transaction-from-a-customer-profile" data-toggle="tab">Request</a>
                         </li>
@@ -6192,7 +6192,7 @@ For example, (123)123-1234</td>
                                     <tr>
                                         <td class='twoBullet'>amount</td>
                                         <td>The total amount of the transaction.
-                                            <br/>This amount should include all other amounts such as tax amount, shipping amount, etc.</td>
+                                            <br/>This amount should include all other amounts such as tax and shipping.</td>
                                         <td>Up to 4 digits after the decimal point (no dollar symbol).
 For example, 12.99 or 12.9999</td>
                                     </tr>
@@ -6400,7 +6400,7 @@ For example, 4.95</td>
                                     <tr>
                                         <td class='twoBullet'>cardCode</td>
                                         <td>The customer’s card code (the three- or four-digit number on the back or front of a credit card).
-                                            <br/>This field is required if the merchant would like to use the Card Code Verification (CCV) security feature.</td>
+                                            <br/>This field is required if the merchant wants to use the Card Code Verification (CCV) security feature.</td>
                                         <td>3 to 4 digits.</td>
                                     </tr>
                                      
@@ -6413,8 +6413,8 @@ For example, 4.95</td>
                                        
                                     <tr>
                                         <td>extraOptions</td>
-                                        <td>Information in name/value pair format that does not exist within CIM, such as customer IP address, etc.
-                                            <br/>For a complete list of the transaction variable names available, review the AIM Implementation Guide located at http://www.authorize.net/support/AIM_guide.pdf.</td>
+                                        <td>Information in name/value pair format that does not exist within CIM, such as customer IP address.
+                                            <br/>For a complete list of the transaction variable names available, review the AIM Developer Guide located at: http://www.authorize.net/support/AIM_guide.pdf.</td>
                                         <td>String.</td>
                                     </tr>
                                      
@@ -6444,9 +6444,8 @@ For example, 4.95</td>
                                     <tr>
                                         <td class='oneBullet'>directResponse</td>
                                         <td>Contains detailed information about the result of the transaction.
-                                            <br/>Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced.</td>
-                                        <td>String.
-See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.</td>
+                                            <br/>Transactions created from a customer profile behave like regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced.</td>
+                                        <td>String.</td>
                                     </tr>
                                       
                                 </tbody>
@@ -6559,18 +6558,18 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-authorize-and-capture-a-customer-profile">Authorize and Capture a Customer Profile</h3>
-                    <p>This function is used to authorize and capture a customer profile from an existing customer profile. This transaction type generates a customer receipt email. </p>
+                    <h3 id="customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">Authorize and Capture a Transaction from a Customer Profile</h3>
+                    <p>Use this function to authorize and capture a customer profile from an existing customer profile, for an Authorize and Capture transaction. This transaction type generates a customer receipt email. </p>
                     <ul id="myTab" class="nav nav-tabs">
-                        <li class="active"><a href="#homereq-authorize-and-capture-a-customer-profile" data-toggle="tab">Request</a>
+                        <li class="active"><a href="#homereq-authorize-and-capture-a-transaction-from-a-customer-profile" data-toggle="tab">Request</a>
                         </li>
-                        <li><a href="#homeresp-authorize-and-capture-a-customer-profile" data-toggle="tab">Response</a>
+                        <li><a href="#homeresp-authorize-and-capture-a-transaction-from-a-customer-profile" data-toggle="tab">Response</a>
                         </li>
-                        <li><a id="authorize-and-capture-a-customer-profileTryIt" href="#console-authorize-and-capture-a-customer-profile" data-toggle="tab">Try it</a>
+                        <li><a id="authorize-and-capture-a-transaction-from-a-customer-profileTryIt" href="#console-authorize-and-capture-a-transaction-from-a-customer-profile" data-toggle="tab">Try it</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade in active" id="homereq-authorize-and-capture-a-customer-profile">
+                        <div class="tab-pane fade in active" id="homereq-authorize-and-capture-a-transaction-from-a-customer-profile">
                             <p><em>Input Elements for createCustomerProfileTransactionRequest (for Authorize and Capture Transactions)</em>
                             </p>
                             <table class="table table-condensed">
@@ -6607,7 +6606,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                     <tr>
                                         <td class='twoBullet'>amount</td>
                                         <td>The total amount of the transaction.
-                                            <br/>This amount should include all other amounts such as tax amount, shipping amount, etc.</td>
+                                            <br/>This amount should include all other amounts.</td>
                                         <td>Up to 4 digits after the decimal point (no dollar symbol).
 For example, 12.99 or 12.9999</td>
                                     </tr>
@@ -6828,15 +6827,15 @@ For example, 4.95</td>
                                        
                                     <tr>
                                         <td>extraOptions</td>
-                                        <td>Information in name/value pair format that does not exist within CIM, such as customer IP address, etc.
-                                            <br/>For a complete list of the transaction variable names available, review the AIM Implementation Guide located at http://www.authorize.net/support/AIM_guide.pdf.</td>
+                                        <td>Information in name/value pair format that does not exist within CIM, such as customer IP address.
+                                            <br/>For a complete list of the transaction variable names available, review the AIM Developer Guide, located at: http://www.authorize.net/support/AIM_guide.pdf.</td>
                                         <td>String.</td>
                                     </tr>
                                      
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade in" id="homeresp-authorize-and-capture-a-customer-profile">
+                        <div class="tab-pane fade in" id="homeresp-authorize-and-capture-a-transaction-from-a-customer-profile">
                             <p><em>Output for createCustomerProfileTransactionResponse</em>
                             </p>
                             <table class="table table-condensed">
@@ -6860,21 +6859,20 @@ For example, 4.95</td>
                                         <td class='oneBullet'>directResponse</td>
                                         <td>Contains detailed information about the result of the transaction.
                                             <br/>Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced.</td>
-                                        <td>String.
-See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.</td>
+                                        <td>String.</td>
                                     </tr>
                                       
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade" id="console-authorize-and-capture-a-customer-profile">
+                        <div class="tab-pane fade" id="console-authorize-and-capture-a-transaction-from-a-customer-profile">
                             <form method="post" action="">
                                 <p>If you would like to see a sample SOAP Request/Response please check out our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op=CreateCustomerProfileTransaction">SOAP Method Documentation</a>
                                     <p>
                                         <div><span class="header">Request:</span>
                                         </div>
                                         <p>
-                                            <textarea class="sample-request" id="txtReqXml-authorize-and-capture-a-customer-profile" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+                                            <textarea class="sample-request" id="txtReqXml-authorize-and-capture-a-transaction-from-a-customer-profile" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;merchantAuthentication&gt;
     &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
@@ -6927,28 +6925,28 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 &lt;/createCustomerProfileTransactionRequest&gt;</textarea>
                                         </p>
                                         <p>
-                                            <button type="button" id="btnSend-authorize-and-capture-a-customer-profile" name="btnSend" class="btn btn-primary">SEND</button>
-                                            <button type="button" id="btnReset-authorize-and-capture-a-customer-profile" name="btnReset" class="btn btn" onclick="">Reset</button>
+                                            <button type="button" id="btnSend-authorize-and-capture-a-transaction-from-a-customer-profile" name="btnSend" class="btn btn-primary">SEND</button>
+                                            <button type="button" id="btnReset-authorize-and-capture-a-transaction-from-a-customer-profile" name="btnReset" class="btn btn" onclick="">Reset</button>
                                         </p>
                             </form>
-                            <div class="authenticationDiv" id="auth-authorize-and-capture-a-customer-profile">
+                            <div class="authenticationDiv" id="auth-authorize-and-capture-a-transaction-from-a-customer-profile">
                                 <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
-                                <form class="form-inline" id="populateKeyForm-authorize-and-capture-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
+                                <form class="form-inline" id="populateKeyForm-authorize-and-capture-a-transaction-from-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
-                                        <input type="text" class="form-control" id="txtLoginID-authorize-and-capture-a-customer-profile" placeholder="API Login ID">
+                                        <input type="text" class="form-control" id="txtLoginID-authorize-and-capture-a-transaction-from-a-customer-profile" placeholder="API Login ID">
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="transactionKey">Transaction Key</label>
-                                        <input type="text" class="form-control" id="txtTransactionKey-authorize-and-capture-a-customer-profile" placeholder="Transaction Key">
+                                        <input type="text" class="form-control" id="txtTransactionKey-authorize-and-capture-a-transaction-from-a-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
                                 </form>
                             </div>
-                            <div><span class="header">Response:</span>  <span id="spnStatusCode-authorize-and-capture-a-customer-profile" class="error"></span>
+                            <div><span class="header">Response:</span>  <span id="spnStatusCode-authorize-and-capture-a-transaction-from-a-customer-profile" class="error"></span>
                             </div>
                             <div style="position:relative;">
-                                <textarea class="sample-response" id="txtRespXml-authorize-and-capture-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+                                <textarea class="sample-response" id="txtRespXml-authorize-and-capture-a-transaction-from-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
     &lt;resultCode&gt;Ok&lt;/resultCode&gt;
@@ -6961,7 +6959,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/createCustomerProfileTransactionResponse&gt;</textarea>
-                                <div id="txtRespLoader-authorize-and-capture-a-customer-profile" class="loaderContainer">
+                                <div id="txtRespLoader-authorize-and-capture-a-transaction-from-a-customer-profile" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
                                     <div class="loader"></div>
                                 </div>
@@ -6972,19 +6970,19 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-authorizing-and-capturing-a-transaction-from-a-customer-profile">Authorizing and Capturing a Transaction from a Customer Profile</h3>
-                    <p>This function is used to authorize and capture a transaction from an existing customer profile. </p>
+                    <h3 id="customer-profiles-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">Authorizing and Capturing a Transaction from a Customer Profile (</h3>
+                    <p>This function is used to authorize and capture a transaction from an existing customer profile, for Prior Authorization and Capture Transaction.</p>
                     <ul id="myTab" class="nav nav-tabs">
-                        <li class="active"><a href="#homereq-authorizing-and-capturing-a-transaction-from-a-customer-profile" data-toggle="tab">Request</a>
+                        <li class="active"><a href="#homereq-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" data-toggle="tab">Request</a>
                         </li>
-                        <li><a href="#homeresp-authorizing-and-capturing-a-transaction-from-a-customer-profile" data-toggle="tab">Response</a>
+                        <li><a href="#homeresp-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" data-toggle="tab">Response</a>
                         </li>
-                        <li><a id="authorizing-and-capturing-a-transaction-from-a-customer-profileTryIt" href="#console-authorizing-and-capturing-a-transaction-from-a-customer-profile" data-toggle="tab">Try it</a>
+                        <li><a id="authorizing-and-capturing-a-transaction-from-a-customer-profile-(TryIt" href="#console-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" data-toggle="tab">Try it</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade in active" id="homereq-authorizing-and-capturing-a-transaction-from-a-customer-profile">
-                            <p><em>Input Elements for createCustomerProfileTransactionRequest (For Prior Authorization and Capture Transactions)</em>
+                        <div class="tab-pane fade in active" id="homereq-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">
+                            <p><em>Input Elements for createCustomerProfileTransactionRequest</em>
                             </p>
                             <table class="table table-condensed">
                                 <thead>
@@ -7202,7 +7200,7 @@ For example, 4.95</td>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade in" id="homeresp-authorizing-and-capturing-a-transaction-from-a-customer-profile">
+                        <div class="tab-pane fade in" id="homeresp-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">
                             <p><em>Output for createCustomerProfileTransactionResponse</em>
                             </p>
                             <table class="table table-condensed">
@@ -7226,21 +7224,20 @@ For example, 4.95</td>
                                         <td class='oneBullet'>directResponse</td>
                                         <td>Contains detailed information about the result of the transaction.
                                             <br/>Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced.</td>
-                                        <td>String.
-See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.</td>
+                                        <td>String.</td>
                                     </tr>
                                       
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade" id="console-authorizing-and-capturing-a-transaction-from-a-customer-profile">
+                        <div class="tab-pane fade" id="console-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">
                             <form method="post" action="">
                                 <p>If you would like to see a sample SOAP Request/Response please check out our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op=CreateCustomerProfileTransaction">SOAP Method Documentation</a>
                                     <p>
                                         <div><span class="header">Request:</span>
                                         </div>
                                         <p>
-                                            <textarea class="sample-request" id="txtReqXml-authorizing-and-capturing-a-transaction-from-a-customer-profile" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+                                            <textarea class="sample-request" id="txtReqXml-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;merchantAuthentication&gt;
     &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
@@ -7285,28 +7282,28 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 &lt;/createCustomerProfileTransactionRequest&gt;</textarea>
                                         </p>
                                         <p>
-                                            <button type="button" id="btnSend-authorizing-and-capturing-a-transaction-from-a-customer-profile" name="btnSend" class="btn btn-primary">SEND</button>
-                                            <button type="button" id="btnReset-authorizing-and-capturing-a-transaction-from-a-customer-profile" name="btnReset" class="btn btn" onclick="">Reset</button>
+                                            <button type="button" id="btnSend-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" name="btnSend" class="btn btn-primary">SEND</button>
+                                            <button type="button" id="btnReset-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" name="btnReset" class="btn btn" onclick="">Reset</button>
                                         </p>
                             </form>
-                            <div class="authenticationDiv" id="auth-authorizing-and-capturing-a-transaction-from-a-customer-profile">
+                            <div class="authenticationDiv" id="auth-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">
                                 <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
-                                <form class="form-inline" id="populateKeyForm-authorizing-and-capturing-a-transaction-from-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
+                                <form class="form-inline" id="populateKeyForm-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
-                                        <input type="text" class="form-control" id="txtLoginID-authorizing-and-capturing-a-transaction-from-a-customer-profile" placeholder="API Login ID">
+                                        <input type="text" class="form-control" id="txtLoginID-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" placeholder="API Login ID">
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="transactionKey">Transaction Key</label>
-                                        <input type="text" class="form-control" id="txtTransactionKey-authorizing-and-capturing-a-transaction-from-a-customer-profile" placeholder="Transaction Key">
+                                        <input type="text" class="form-control" id="txtTransactionKey-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
                                 </form>
                             </div>
-                            <div><span class="header">Response:</span>  <span id="spnStatusCode-authorizing-and-capturing-a-transaction-from-a-customer-profile" class="error"></span>
+                            <div><span class="header">Response:</span>  <span id="spnStatusCode-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" class="error"></span>
                             </div>
                             <div style="position:relative;">
-                                <textarea class="sample-response" id="txtRespXml-authorizing-and-capturing-a-transaction-from-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+                                <textarea class="sample-response" id="txtRespXml-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
     &lt;resultCode&gt;Ok&lt;/resultCode&gt;
@@ -7319,7 +7316,7 @@ See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide
 D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/createCustomerProfileTransactionResponse&gt;</textarea>
-                                <div id="txtRespLoader-authorizing-and-capturing-a-transaction-from-a-customer-profile" class="loaderContainer">
+                                <div id="txtRespLoader-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
                                     <div class="loader"></div>
                                 </div>
@@ -7331,7 +7328,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
                     
                     <h3 id="customer-profiles-capture-a-customer-profile">Capture a Customer Profile</h3>
-                    <p>This function is used to capture a customer profile from an existing customer profile. </p>
+                    <p>Use this function to capture a customer profile from an existing customer profile. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-capture-a-customer-profile" data-toggle="tab">Request</a>
                         </li>
@@ -7378,7 +7375,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                     <tr>
                                         <td class='twoBullet'>amount</td>
                                         <td>The total amount of the transaction.
-                                            <br/>This amount should include all other amounts such as tax amount, shipping amount, etc.</td>
+                                            <br/>This amount should include all other amounts.</td>
                                         <td>Up to 4 digits after the decimal point (no dollar symbol).
 For example, 12.99 or 12.9999</td>
                                     </tr>
@@ -7593,7 +7590,7 @@ For example, 4.95</td>
                                     <tr>
                                         <td class='twoBullet'>splitTenderId</td>
                                         <td>Payment gateway-assigned number associated with the order.
-                                            <br/>This field is only required for second and subsequent transactions related to a partial authorization transaction.</td>
+                                            <br/>This field is required only for second and subsequent transactions related to a partial authorization transaction.</td>
                                         <td>Up to 6 digits.</td>
                                     </tr>
                                      
@@ -7606,8 +7603,8 @@ For example, 4.95</td>
                                        
                                     <tr>
                                         <td>extraOptions</td>
-                                        <td>Information in name/value pair format that does not exist within CIM, such as customer IP address, etc.
-                                            <br/>For a complete list of the transaction variable names available, review the AIM Implementation Guide located at http://www.authorize.net/support/AIM_guide.pdf.</td>
+                                        <td>Information in name/value pair format that does not exist within CIM, such as customer IP address.
+                                            <br/>For a complete list of the transaction variable names available, review the AIM Developer Guide located at: http://www.authorize.net/support/AIM_guide.pdf.</td>
                                         <td>String.</td>
                                     </tr>
                                      
@@ -7638,8 +7635,7 @@ For example, 4.95</td>
                                         <td class='oneBullet'>directResponse</td>
                                         <td>Contains detailed information about the result of the transaction.
                                             <br/>Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced.</td>
-                                        <td>String.
-See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.</td>
+                                        <td>String.</td>
                                     </tr>
                                       
                                 </tbody>
@@ -7752,7 +7748,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
                     
                     <h3 id="customer-profiles-refunding-a-transaction-for-a-customer-profile">Refunding a Transaction for a Customer Profile</h3>
-                    <p>This function is used to refund transactions from an existing customer profile. This transaction type generates a customer receipt email. 
+                    <p>Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email. 
 
 If you are submitting a refund against a previous CIM transaction, the following guidelines apply: 
 * include customerProfileId, customerPaymentProfileId, and transId
@@ -7815,7 +7811,7 @@ You can also issue an unlinked refund for a CIM transaction. In this case, the f
                                     <tr>
                                         <td class='twoBullet'>amount</td>
                                         <td>The total amount to be refunded.
-                                            <br/>This amount should include all other amounts such as tax amount, shipping amount, etc.</td>
+                                            <br/>This amount should include all other amounts.</td>
                                         <td>Up to 4 digits after the decimal point (no dollar symbol).
 For example, 12.99 or 12.9999</td>
                                     </tr>
@@ -7960,36 +7956,28 @@ For example, 4.95</td>
                                     <tr>
                                         <td class='twoBullet'>customerProfileId</td>
                                         <td>Payment gateway assigned ID associated with the customer profile.
-                                            <br/>If a value is submitted for this field, it must be the same ID used for the original transaction.
-
-For more complete information, see &quot;For Refund Transactions.&quot;</td>
+                                            <br/>If a value is submitted for this field, it must be the same ID used for the original transaction.</td>
                                         <td>Numeric.</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>customerPaymentProfileId</td>
                                         <td>Payment gateway assigned ID associated with the customer payment profile.
-                                            <br/>If a value is submitted for this field, it must be the same ID used for the original transaction.
-
-For more complete information, see &quot;For Refund Transactions.&quot;</td>
+                                            <br/>If a value is submitted for this field, it must be the same ID used for the original transaction.</td>
                                         <td>Numeric.</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>customerShippingAddressId</td>
                                         <td>Payment gateway assigned ID associated with the customer shipping address.
-                                            <br/>If a value is submitted for this field, it must be the same ID used for the original authorization transaction.
-
-For more complete information, see &quot;For Refund Transactions.&quot;</td>
+                                            <br/>If a value is submitted for this field, it must be the same ID used for the original authorization transaction.</td>
                                         <td>Numeric.</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='twoBullet'>creditCardNumberMasked</td>
                                         <td>The last four digits of the credit card number to be refunded.
-                                            <br/>If a value is submitted, the last four digits must be the same ones used for the original transaction.
-
-For more complete information, see &quot;For Refund Transactions.&quot;</td>
+                                            <br/>If a value is submitted, the last four digits must be the same ones used for the original transaction.</td>
                                         <td>Four Xs followed by the last four digits of the credit card number to be refunded.
 For example, XXXX1234</td>
                                     </tr>
@@ -8007,9 +7995,7 @@ For example, XXXX1234</td>
                                     <tr>
                                         <td class='twoBullet'>bankAccountNumberMasked</td>
                                         <td>The last four digits of the bank account number to be refunded.
-                                            <br/>If a value is submitted, the last four digits must be the same ones used for the original transaction.
-
-For more complete information, see &quot;For Refund Transactions.&quot;</td>
+                                            <br/>If a value is submitted, the last four digits must be the same ones used for the original transaction.</td>
                                         <td>Four Xs followed by the last four digits of the bank account to be refunded.
 For example, XXXX1234</td>
                                     </tr>
@@ -8045,14 +8031,14 @@ For example, XXXX1234</td>
                                     <tr>
                                         <td class='twoBullet'>transId</td>
                                         <td>The payment gateway assigned transaction ID of the original transaction
-                                            <br/>For more complete information, see &quot;For Refund Transactions.&quot;</td>
+                                            <br/></td>
                                         <td>Numeric.</td>
                                     </tr>
                                        
                                     <tr>
                                         <td>extraOptions</td>
                                         <td>Information in name/value pair format that does not exist within CIM, such as customer IP address, etc.
-                                            <br/>For a complete list of the transaction variable names available, review the AIM Implementation Guide located at http://www.authorize.net/support/AIM_guide.pdf.</td>
+                                            <br/>For a complete list of the transaction variable names available, review the AIM Developer Guide located at: http://www.authorize.net/support/AIM_guide.pdf.</td>
                                         <td>String.</td>
                                     </tr>
                                      
@@ -8083,8 +8069,7 @@ For example, XXXX1234</td>
                                         <td class='oneBullet'>directResponse</td>
                                         <td>Contains detailed information about the result of the transaction.
                                             <br/>Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced.</td>
-                                        <td>String.
-See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.</td>
+                                        <td>String.</td>
                                     </tr>
                                       
                                 </tbody>
@@ -8194,7 +8179,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
                     
                     <h3 id="customer-profiles-voiding-transactions-for-a-customer-profile">Voiding Transactions for a Customer Profile</h3>
-                    <p>This function is used to void transactions for an existing customer profile. </p>
+                    <p>Use this function to void transactions for an existing customer profile. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-voiding-transactions-for-a-customer-profile" data-toggle="tab">Request</a>
                         </li>
@@ -8293,8 +8278,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                         <td class='oneBullet'>directResponse</td>
                                         <td>Contains detailed information about the result of the transaction.
                                             <br/>Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced.</td>
-                                        <td>String.
-See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.</td>
+                                        <td>String.</td>
                                     </tr>
                                       
                                 </tbody>
@@ -8370,7 +8354,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
                     
                     <h3 id="customer-profiles-get-hosted-profile-page">Get Hosted Profile Page</h3>
-                    <p>Use this function to initiate a request for direct access to the Authorize.Net website. For more information on using the hosted form, see &quot;Using a Hosted Form.&quot;</p>
+                    <p>Use this function to initiate a request for direct access to the Authorize.Net website.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-hosted-profile-page" data-toggle="tab">Request</a>
                         </li>
@@ -8429,7 +8413,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                      
                                     <tr>
                                         <td class='oneBullet'>settingValue</td>
-                                        <td>See &quot;Guidelines for Parameter Settings&quot; for a detailed description of these parameters.
+                                        <td>
                                             <br/></td>
                                         <td></td>
                                     </tr>
@@ -8455,9 +8439,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                         <td>An encrypted string that the merchant must include when posting to the Authorize.Net web page.
                                             <br/>If not used within 15 minutes of the original API call, this token expires.
 
-The customer’s browser posts the token, Authorize.Net validates it, and makes sure the timestamp is less than 15 minutes old. 
-
-For more complete information on how to use hosted CIM access, see &quot;Using a Hosted Form.&quot;</td>
+The customer’s browser posts the token, Authorize.Net validates it, and makes sure the timestamp is less than 15 minutes old. </td>
                                         <td>String.</td>
                                     </tr>
                                      
@@ -8539,7 +8521,7 @@ For more complete information on how to use hosted CIM access, see &quot;Using a
 
                     
                     <h3 id="customer-profiles-update-split-tender-group">Update Split Tender Group</h3>
-                    <p>This function is used to update the status of an existing order that contains multiple transactions with the same splitTenderId. </p>
+                    <p>Use this function to update the status of an existing order that contains multiple transactions with the same splitTenderId value. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-update-split-tender-group" data-toggle="tab">Request</a>
                         </li>
@@ -8674,14 +8656,14 @@ For more complete information on how to use hosted CIM access, see &quot;Using a
                 
                 <div class="bs-docs-section">
                     <h1 id="transaction-reporting" class="page-header">Transaction Reporting</h1>
-                    <p class="lead">Allows developers to access transaction history and details programmatically</p>
+                    <p class="lead">Enables developers to access transaction history and details programmatically</p>
                     
                     <h3 id="transaction-reporting-get-settled-batch-list">Get Settled Batch List</h3>
                     <p>This function returns Batch ID, Settlement Time, &amp; Settlement State for all settled batches with a range of dates. If you specify includeStatistics, you also receive batch statistics by payment type and batch totals. All input parameters are optional.
 
-If no dates are specified, then the default is the last 24 hours (ending at the time of the call to getSettledBatchListRequest). The input and output for all dates defaults to the merchant’s local time, unless UTC time is specified.
+If no dates are specified, then the default is the past 24 hours (ending at the time of the call to getSettledBatchListRequest). The input and output for all dates default to the merchant’s local time, unless UTC time is specified.
 
-If the time in the firstSettlementDate and lastSettlementDate ends with a Z (for example, &quot;2010-09-21T16:00:00Z&quot;) then this is UTC time and not the merchant’s local time. 
+If the time in the firstSettlementDate and lastSettlementDate ends with a Z (for example, 2010-09-21T16:00:00Z) then this is UTC time and not the merchant’s local time. 
 
 The default date range is one day (the previous 24 hour period). The maximum date range is 31 days. The merchant time zone is taken into consideration when calculating the batch date range, unless the Z is specified in the first and last settlement dates. 
 
@@ -8695,7 +8677,7 @@ The firstSettlementDate parameter cannot precede January 1, two years before the
 
 Possible errors returned are:
 
-* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: “firstSettlementDate is greater than the lastSettelementDate”
+* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: &quot;firstSettlementDate is greater than the lastSettelementDate&quot;
 
 * If the difference between the firstSettlementDate and lastSettelementDate is more than 31 days, then the error message is Err_Invalid_field: “The date range cannot exceed 31 days.” 
 
@@ -8705,7 +8687,7 @@ Possible errors returned are:
 
 * If the lastSettlementDate is in the future, the message returned is Err_Invalid_field: “lastSettlementDate cannot be in the future.” 
 
-* If no rows are found, then the message returned is “No records found”</p>
+* If no rows are found, the message returned is “No records found”</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-settled-batch-list" data-toggle="tab">Request</a>
                         </li>
@@ -8730,22 +8712,22 @@ Possible errors returned are:
                                     
                                     <tr>
                                         <td>includeStatistics</td>
-                                        <td>true or false
-                                            <br/>Optional. The default is false</td>
+                                        <td>true or false.
+                                            <br/>Optional. The default is false.</td>
                                         <td></td>
                                     </tr>
                                      
                                     <tr>
                                         <td>firstSettlementDate</td>
                                         <td>
-                                            <br/>Include this value if you want data for a range of dates other than the last 24 hrs. </td>
+                                            <br/>Include this value if you want data for a range of dates other than the past 24 hrs. </td>
                                         <td>yyyy-mm-ddTHH:MM:SS</td>
                                     </tr>
                                      
                                     <tr>
                                         <td>lastSettlementDate</td>
                                         <td>
-                                            <br/>Include this value if you want data for a range of dates other than the last 24 hours. The maximum date range is 31 days. </td>
+                                            <br/>Include this value if you want data for a range of dates other than the past 24 hours. The maximum date range is 31 days. </td>
                                         <td>yyyy-mm-ddTHH:MM:SS</td>
                                     </tr>
                                      
@@ -8840,7 +8822,7 @@ HH:MM:SS</td>
                                         <td class='twoBullet'>settlementState</td>
                                         <td>Status of the batch.
                                             <br/></td>
-                                        <td>settledSuccessfully or error</td>
+                                        <td>settledSuccessfully or error.</td>
                                     </tr>
                                      
                                     <tr>
@@ -9108,7 +9090,7 @@ HH:MM:SS</td>
                                     
                                     <tr>
                                         <td class='twoBullet'>transId</td>
-                                        <td>The transaction ID
+                                        <td>The transaction ID.
                                             <br/></td>
                                         <td></td>
                                     </tr>
@@ -9303,7 +9285,7 @@ eCheck</td>
 
                     
                     <h3 id="transaction-reporting-get-transaction-details">Get Transaction Details</h3>
-                    <p>Use this function to get detailed information about one specific transaction.</p>
+                    <p>Use this function to get detailed information about a specific transaction.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-transaction-details" data-toggle="tab">Request</a>
                         </li>
@@ -9401,21 +9383,21 @@ eCheck</td>
                                     <tr>
                                         <td class='oneBullet'>refTransID</td>
                                         <td>The transaction ID of the original transaction.
-                                            <br/>This only appears for linked credits (transaction type refundTransaction).</td>
+                                            <br/>This appears only for linked credits (transaction type refundTransaction).</td>
                                         <td></td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='oneBullet'>splitTenderId</td>
                                         <td>Identifies the split tender order, if applicable.
-                                            <br/>This only appears for transactions that are part of a larger partial authorization order. </td>
+                                            <br/>This appears only for transactions that are part of a larger partial authorization order. </td>
                                         <td></td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='oneBullet'>submitTimeUTC</td>
                                         <td>Date and time the transaction was submitted.
-                                            <br/>The “T” character separates the date from the time. This field returns the time as Universal Time (UTC)</td>
+                                            <br/>The “T” character separates the date from the time. This field returns the time as Universal Time (UTC).</td>
                                         <td></td>
                                     </tr>
                                      
@@ -9435,7 +9417,7 @@ Example:
                                         <td class='oneBullet'>transactionType</td>
                                         <td>The type of transaction that was originally submitted.
                                             <br/></td>
-                                        <td>authCaptureTransaction, authOnlyTransaction, captureOnlyTransaction, or refundTransaction </td>
+                                        <td>authCaptureTransaction, authOnlyTransaction, captureOnlyTransaction, or refundTransaction.</td>
                                     </tr>
                                      
                                     <tr>
@@ -9561,7 +9543,7 @@ report</td>
                                     
                                     <tr>
                                         <td class='oneBullet'>FDSFilters</td>
-                                        <td>Contains information for any fraud filters that might have been applied.
+                                        <td>Contains information for any fraud filters that have been applied.
                                             <br/></td>
                                         <td></td>
                                     </tr>
@@ -9582,7 +9564,7 @@ report</td>
                                     
                                     <tr>
                                         <td class='threeBullet'>action</td>
-                                        <td>The setting for the filter. FDSFilterAction above will be the most restrictive action setting for all the filters.
+                                        <td>The setting for the filter. The FDSFilterAction setting will be the most restrictive action setting for all the filters.
                                             <br/></td>
                                         <td></td>
                                     </tr>
@@ -9664,7 +9646,7 @@ pendingSettlement</td>
                                     <tr>
                                         <td class='twoBullet'>requestedAmount</td>
                                         <td>The amount requested.
-                                            <br/>This will only be present for partial authorization transactions. For other transactions it is not listed because it is always the same as authAmount.</td>
+                                            <br/>This will only be present for partial authorization transactions. For other transactions it is not listed because it is always the same as the authAmount value.</td>
                                         <td></td>
                                     </tr>
                                      
@@ -9678,7 +9660,7 @@ pendingSettlement</td>
                                     <tr>
                                         <td class='twoBullet'>settleAmount</td>
                                         <td>The amount that was submitted for settlement. 
-                                            <br/>This will be the same as authAmount with the exception of voids, which will show $0.00, and potentially Prior Auth Capture transactions, which could have an amount less than authAmount. For declined and errored transactions, this will not be $0.00.</td>
+                                            <br/>This will be the same as the authAmount element, with the exception of voids, which will show $0.00, and potentially Prior Authorize and Capture transactions, which could have an amount less than the authAmount value. For declined and errored transactions, this will not be $0.00.</td>
                                         <td></td>
                                     </tr>
                                       
@@ -9782,28 +9764,28 @@ pendingSettlement</td>
                                     
                                     <tr>
                                         <td class='threeBullet'>name</td>
-                                        <td>item name.
+                                        <td>Item name.
                                             <br/>A short description of an item. </td>
                                         <td>Up to 31 characters.</td>
                                     </tr>
                                     
                                     <tr>
                                         <td class='threeBullet'>description</td>
-                                        <td>item description.
+                                        <td>Item description.
                                             <br/>A detailed description of an item. </td>
                                         <td>Up to 255 characters.</td>
                                     </tr>
                                     
                                     <tr>
                                         <td class='threeBullet'>quantity</td>
-                                        <td>item quantity.
+                                        <td>Item quantity.
                                             <br/>The number of items sold. </td>
                                         <td>Up to four decimal places.</td>
                                     </tr>
                                     
                                     <tr>
                                         <td class='threeBullet'>unitPrice</td>
-                                        <td>item price (unit cost).
+                                        <td>Item price (unit cost).
                                             <br/>Cost of an item per unit, excluding tax, freight, and duty.</td>
                                         <td>Up to two decimal places.</td>
                                     </tr>
@@ -9906,7 +9888,7 @@ DinersClub</td>
                                      
                                     <tr>
                                         <td class='twoBullet'>echeckType</td>
-                                        <td>PPD, WEB, CCD, TEL
+                                        <td>PPD, WEB, CCD, or TEL.
                                             <br/></td>
                                         <td></td>
                                     </tr>
@@ -9920,7 +9902,7 @@ DinersClub</td>
                                     
                                     <tr>
                                         <td class='twoBullet'>type</td>
-                                        <td>individual, business
+                                        <td>individual or business.
                                             <br/></td>
                                         <td></td>
                                     </tr>
@@ -10011,7 +9993,7 @@ DinersClub</td>
                                      
                                     <tr>
                                         <td class='twoBullet'>faxNumber</td>
-                                        <td>The fax number for the customer&#x27;s billing address
+                                        <td>The fax number for the customer&#x27;s billing address.
                                             <br/></td>
                                         <td></td>
                                     </tr>
@@ -10083,7 +10065,7 @@ DinersClub</td>
                                         <td class='oneBullet'>recurringBilling</td>
                                         <td>Indicates whether or not this is a recurring transaction.
                                             <br/></td>
-                                        <td>true or false</td>
+                                        <td>true or false.</td>
                                     </tr>
                                      
                                     <tr>
@@ -10274,7 +10256,7 @@ DinersClub</td>
                     <h3 id="transaction-reporting-get-unsettled-transaction-list">Get Unsettled Transaction List</h3>
                     <p>Use this function to get data for unsettled transactions. The function will return data for up to 1000 of the most recent transactions. 
 
-No input parameters are required, other than the authentication information. </p>
+No input parameters are required other than the authentication information. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-unsettled-transaction-list" data-toggle="tab">Request</a>
                         </li>
@@ -10458,7 +10440,7 @@ No input parameters are required, other than the authentication information. </p
                                         <td class='oneBullet'>resultCode</td>
                                         <td>Contains additional information about the results of the request.
                                             <br/></td>
-                                        <td>OK or Error</td>
+                                        <td>OK or Error.</td>
                                     </tr>
                                      
                                     <tr>
@@ -10493,7 +10475,7 @@ No input parameters are required, other than the authentication information. </p
                                         <td class='oneBullet'>batchid</td>
                                         <td>The batch ID.
                                             <br/></td>
-                                        <td>12345</td>
+                                        <td>12345.</td>
                                     </tr>
                                      
                                     <tr>
@@ -10507,12 +10489,12 @@ No input parameters are required, other than the authentication information. </p
                                         <td class='oneBullet'>settlementState</td>
                                         <td>Status of the batch.
                                             <br/></td>
-                                        <td>settledSuccessfully or error</td>
+                                        <td>settledSuccessfully or error.</td>
                                     </tr>
                                      
                                     <tr>
                                         <td class='oneBullet'>paymentMethod</td>
-                                        <td>creditCard or eCheck
+                                        <td>creditCard or eCheck.
                                             <br/></td>
                                         <td></td>
                                     </tr>
@@ -10533,7 +10515,7 @@ No input parameters are required, other than the authentication information. </p
                                     
                                     <tr>
                                         <td class='threeBullet'>accountType</td>
-                                        <td>The card type for this transaction (including eCheck)
+                                        <td>The card type for this transaction (including eCheck).
 
 Possible values:
 
@@ -10767,10 +10749,10 @@ eCheck
                                 <li><a href="#customer-profiles-authorize-a-transaction-from-a-customer-profile">Authorize a Transaction from a Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-authorize-and-capture-a-customer-profile">Authorize and Capture a Customer Profile</a>
+                                <li><a href="#customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">Authorize and Capture a Transaction from a Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-authorizing-and-capturing-a-transaction-from-a-customer-profile">Authorizing and Capturing a Transaction from a Customer Profile</a>
+                                <li><a href="#customer-profiles-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">Authorizing and Capturing a Transaction from a Customer Profile (</a>
                                 </li>
                                 
                                 <li><a href="#customer-profiles-capture-a-customer-profile">Capture a Customer Profile</a>

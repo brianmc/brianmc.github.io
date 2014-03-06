@@ -184,7 +184,7 @@
 																						"value": "Metadata string used to control how the request is ultimately processed.",
 																						"format": "String, 512 encoded characters",
 																						"required": false,
-																						"notes": "Contains key value pairs with the following format:\n\n* KEY_NAME=KEY_VALUE^KEYn_NAME=KEYn_VALUE\nWhere \nKEY_NAME is an alphanumeric identifier and may \ncontain a period (.), hyphen (-), and underscore (_).\n\n* = separates a key name and its value.\n\n* KEY_VALUE is the value of the preceding key. It \ncannot contain the following special characters: \n\\ , ; = < > % ^ \nThe \\ character can be used to escape special \ncharacters.\n\n* The ^ separator can be used between additional key value pairs.\n\nThe ENCODING that is used is based on the Encoding set in the request.\n\nMetadata is used to specify how the request should be processed. Currently, the required value in plain ASCII is: FID=IDTECH.UniMag.Android.Sdkv1\n\nNote that this string can be used with any supported platform, despite the term “android.‿\n\nHex Encoded:\n4649443D4944544543482E556E694D61672E416E64726F69642E53646B7631\n\nBase64 Encoded:\nRklEPUlEVEVDSC5VbmlNYWcuQW5kcm9pZC5TZGt2MQ=="
+																						"notes": "Contains key value pairs with the following format:\n\n* KEY_NAME=KEY_VALUE^KEYn_NAME=KEYn_VALUE\nWhere \nKEY_NAME is an alphanumeric identifier and may \ncontain a period (.), hyphen (-), and underscore (_).\n\n* = separates a key name and its value.\n\n* KEY_VALUE is the value of the preceding key. It \ncannot contain the following special characters: \n\\ , ; = < > % ^ \nThe \\ character can be used to escape special \ncharacters.\n\n* The ^ separator can be used between additional key value pairs.\n\nThe ENCODING that is used is based on the Encoding set in the request.\n\nMetadata is used to specify how the request should be processed. Currently, the required value in plain ASCII is: FID=IDTECH.UniMag.Android.Sdkv1\n\nNote that this string can be used with any supported platform, despite the term “android.�?\n\nHex Encoded:\n4649443D4944544543482E556E694D61672E416E64726F69642E53646B7631\n\nBase64 Encoded:\nRklEPUlEVEVDSC5VbmlNYWcuQW5kcm9pZC5TZGt2MQ=="
 																					}
 																				]
 																			},
@@ -797,7 +797,7 @@
 						"children": [
 							{
 								"name": "resultCode",
-								"value": "Ok or Error",
+								"value": "Ok or Error.",
 								"format": "",
 								"required": false,
 								"notes": "Contains additional information about the status of the request. "
@@ -879,9 +879,9 @@
 							{
 								"name": "transId",
 								"value": "The payment gateway assigned identification number for transaction.",
-								"format": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be “0.‿",
+								"format": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.",
 								"required": false,
-								"notes": "This value must be used for any follow-on transactions such as a credit, prior auth capture, or void."
+								"notes": "The transId value must be used for any follow-on transactions such as a credit, prior authorization and capture, or void."
 							},
 							{
 								"name": "reftransId",
@@ -900,7 +900,7 @@
 							{
 								"name": "testRequest",
 								"value": "",
-								"format": "true, false,1,0",
+								"format": "true, false,1,0.",
 								"required": false,
 								"notes": "Indicates whether or not to treat this request as a test transaction. "
 							},
@@ -934,7 +934,7 @@
 										"children": [
 											{
 												"name": "code",
-												"value": "Response code that represents the status",
+												"value": "Response code that represents the status.",
 												"format": "",
 												"required": false,
 												"notes": ""
@@ -1001,7 +1001,7 @@
 												"value": "The payment gateway assigned identification number for the transaction.",
 												"format": "",
 												"required": false,
-												"notes": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be “0.‿"
+												"notes": "When the testRequest field is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0."
 											},
 											{
 												"name": "responseCode",
@@ -1033,8 +1033,8 @@
 											},
 											{
 												"name": "accountType",
-												"value": "Visa, MasterCard, American Express, Discover, Diners Club, or JCB",
-												"format": "Text",
+												"value": "Visa, MasterCard, American Express, Discover, Diners Club, or JCB.",
+												"format": "Text.",
 												"required": false,
 												"notes": ""
 											},
@@ -1043,14 +1043,14 @@
 												"value": "Amount requested in original authorization.",
 												"format": "Numeric.",
 												"required": false,
-												"notes": "Present if the current transaction is for a prepaid card or if a splitTenderId was sent in."
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
 											},
 											{
 												"name": "approvedAmount",
 												"value": "Amount approved.",
 												"format": "",
 												"required": false,
-												"notes": "Present if the current transaction is for a prepaid card or if a splitTenderId was sent in."
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
 											},
 											{
 												"name": "balanceOnCard",
@@ -1502,7 +1502,7 @@
 						"value": "Contains Information about the results of the request.",
 						"format": "",
 						"required": false,
-						"notes": "See response code guide."
+						"notes": ""
 					},
 					{
 						"name": "subscriptionId",
@@ -1562,12 +1562,12 @@
 						"value": "Contains Information about the results of the request.",
 						"format": "",
 						"required": false,
-						"notes": "See response code guide."
+						"notes": ""
 					},
 					{
 						"name": "status",
 						"value": "Contains information about the subscription status.",
-						"format": "active, expired, suspended, cancelled, terminated",
+						"format": "Values include: active, expired, suspended, cancelled, or terminated.",
 						"required": false,
 						"notes": ""
 					}
@@ -1962,7 +1962,7 @@
 						"value": "Contains Information about the results of the request.",
 						"format": "",
 						"required": false,
-						"notes": "See response code guide."
+						"notes": ""
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ARBUpdateSubscriptionResponse xmlns=\"AnetApi/xml/v1/schema/\nAnetApiSchema.xsd\">\n\t<refId>Sample</refId>\n\t<messages>\n\t\t<resultCode>Ok</resultCode>\n\t\t<message>\n\t\t\t<code>I00001</code>\n\t\t\t<text>Successful.</text>\n\t\t</message>\n\t</messages>\n</ARBUpdateSubscriptionResponse>"
@@ -2015,7 +2015,7 @@
 						"value": "Contains information about the results of the request.",
 						"format": "",
 						"required": false,
-						"notes": "See response code guide."
+						"notes": ""
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<ARBCancelSubscriptionResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n\t<refId>Sample</refId>\n\t<messages>\n\t\t<resultCode>Ok</resultCode>\n\t\t<message>\n\t\t\t<code>I00001</code>\n\t\t\t<text>Successful.</text>\n\t\t</message>\n\t</messages>\n</ARBCancelSubscriptionResponse>"
@@ -2025,13 +2025,13 @@
 },
 {
 	"APIName": "Customer Profiles",
-	"APIUsage": "This API allows you to store customer payment and address data for subsequent use.",
+	"APIUsage": "This API enables you to store customer payment and address data for subsequent use.",
 	"API_ID": "customer-profiles",
 	"methods": [
 		{
 			"title": "Create Customer Profile",
 			"id": "create-customer-profile",
-			"usage": "This function is used to create a new customer profile including any customer payment profiles and customer shipping addresses.\n\nNote: The createCustomerProfileResponse returns only the assigned customerProfileId for the created profile. To retrieve the customerPaymentProfileId and the customerShippingId that may also be created when using the createCustomerProfile function, you must submit the getCustomerProfileRequest function using the assigned customerProfileId for that customer profile.",
+			"usage": "Use this function to create a new customer profile including any customer payment profiles and customer shipping addresses.\n\nNote: The createCustomerProfileResponse field returns only the assigned customerProfileId element for the created profile. To retrieve the customerPaymentProfileId element and the customerShippingId element that may also be created when using the createCustomerProfile function, you must submit the getCustomerProfileRequest function using the assigned customerProfileId element for that customer profile.",
 			"soap": "CreateCustomerProfile",
 			"request": {
 				"name": "Input Elements for createCustomerProfileRequest",
@@ -2055,21 +2055,21 @@
 								"value": "Merchant assigned ID for the customer.",
 								"format": "Up to 20 characters.",
 								"required": false,
-								"notes": "Required only if no values for both description and email are submitted."
+								"notes": "Required only when no values for description and email are submitted."
 							},
 							{
 								"name": "description",
 								"value": "Description of the customer or customer profile.",
 								"format": "Up to 255 characters.",
 								"required": false,
-								"notes": "Required only if no values for both merchantCustomerId and email are submitted."
+								"notes": "Required only when no values for merchantCustomerId and email are submitted."
 							},
 							{
 								"name": "email",
 								"value": "Email address associated with the customer profile.",
 								"format": "Up to 255 characters.",
 								"required": false,
-								"notes": "Required if no values for both description and merchantCustomerId are submitted.\n\nRequired only when using a European payment processor."
+								"notes": "Required when no values for description and merchantCustomerId are submitted.\n\nRequired only when you use a European payment processor."
 							},
 							{
 								"name": "paymentProfiles",
@@ -2097,14 +2097,14 @@
 										"value": "The customer’s first name.",
 										"format": "Up to 50 characters (no symbols).",
 										"required": false,
-										"notes": "Required only when using a European payment processor."
+										"notes": "Required only when you use a European payment processor."
 									},
 									{
 										"name": "lastName",
 										"value": "The customer’s last name.",
 										"format": "Up to 50 characters (no symbols).",
 										"required": false,
-										"notes": "Required only when using a European payment processor."
+										"notes": "Required only when you use a European payment processor."
 									},
 									{
 										"name": "company",
@@ -2118,35 +2118,35 @@
 										"value": "The customer’s address.",
 										"format": "Up to 60 characters (no symbols).",
 										"required": false,
-										"notes": "Required only when using a European payment processor."
+										"notes": "Required only when you use a European payment processor."
 									},
 									{
 										"name": "city",
 										"value": "The city of the customer’s address.",
 										"format": "Up to 40 characters (no symbols).",
 										"required": false,
-										"notes": "Required only when using a European payment processor."
+										"notes": "Required only when you use a European payment processor."
 									},
 									{
 										"name": "state",
 										"value": "The state of the customer’s address.",
 										"format": "Up to 40 characters (no symbols).",
 										"required": false,
-										"notes": "Required only when using a European payment processor."
+										"notes": "Required only when you use a European payment processor."
 									},
 									{
 										"name": "zip",
 										"value": "The ZIP code of the customer’s address.",
 										"format": "Up to 20 characters (no symbols).",
 										"required": false,
-										"notes": "Required only when using a European payment processor."
+										"notes": "Required only when you use a European payment processor."
 									},
 									{
 										"name": "country",
 										"value": "The country of the customer’s address.",
 										"format": "Up to 60 characters (no symbols).",
 										"required": false,
-										"notes": "Required only when using a European payment processor."
+										"notes": "Required only when you use a European payment processor."
 									},
 									{
 										"name": "phoneNumber",
@@ -2176,7 +2176,7 @@
 										"value": "Contains credit card payment information for the payment profile.",
 										"format": "",
 										"required": false,
-										"notes": "This element is only required when the payment profile is credit card."
+										"notes": "This element is required only when the payment profile is credit card."
 									},
 									{
 										"name": "cardNumber",
@@ -2197,7 +2197,7 @@
 										"value": "The three- or four-digit number on the back of a credit card (on the front for American Express).",
 										"format": "Numeric.",
 										"required": false,
-										"notes": "This field is required if the merchant would like to use the Card Code Verification (CCV) security feature.\n\ncardCode is used only for validation and is not stored in the customer profile. Use it only when submitting validationMode with a value of testMode or liveMode."
+										"notes": "This field is required if the merchant would like to use the Card Code Verification (CCV) security feature.\n\nThe cardCode element is used only for validation and is not stored in the customer profile. Use it only when submitting the validationMode element with a value of testMode or liveMode."
 									},
 									{
 										"name": "bankAccount",
@@ -2338,7 +2338,7 @@
 						"value": "Indicates the processing mode for the request.",
 						"format": "none, testMode, or liveMode",
 						"required": false,
-						"notes": "For more information on use and restrictions of validationMode, see \"The validationMode Parameter.\""
+						"notes": ""
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">  \n   <merchantAuthentication>\n     <name>API_LOGIN_ID</name>\n     <transactionKey>API_TRANSACTION_KEY</transactionKey>\n    </merchantAuthentication>\n   <profile>\n     <merchantCustomerId>Merchant_Customer_ID</merchantCustomerId>\n     <description>Profile description here</description>\n     <email>customer-profile-email@here.com</email>\n     <paymentProfiles>\n       <customerType>individual</customerType>\n          <payment>\n             <creditCard>\n                <cardNumber>4111111111111111</cardNumber>\n                <expirationDate>2020-12</expirationDate>\n              </creditCard>\n           </payment>\n      </paymentProfiles>\n    </profile>\n\t<validationMode>testMode</validationMode>\n  </createCustomerProfileRequest>"
@@ -2377,7 +2377,7 @@
 							{
 								"name": "validationDirectResponseList",
 								"value": "A list of the direct response results for the validation transaction for each payment profile.",
-								"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+								"format": "String.\n",
 								"required": false,
 								"notes": "This output is present only if the ValidationMode input element is passed with a value of testMode or liveMode.\n\nThe list is returned in the same order as the payment profiles were submitted in the request."
 							}
@@ -2390,7 +2390,7 @@
 		{
 			"title": "Get Customer Profile",
 			"id": "get-customer-profile",
-			"usage": "This function is used to retrieve an existing customer profile along with all the associated payment profiles and shipping addresses.",
+			"usage": "Use this function to retrieve an existing customer profile along with all the associated payment profiles and shipping addresses.",
 			"soap": "GetCustomerProfile",
 			"request": {
 				"name": "Input Elements for getCustomerProfileRequest",
@@ -2638,7 +2638,7 @@
 											{
 												"name": "faxNumber",
 												"value": "The fax number associated with the customer’s shipping address.",
-												"format": "Up to 25 digits (no letters).\nFor example, (123)123-1234",
+												"format": "Up to 25 digits (no letters).\nFor example, (123)123-1234.",
 												"required": false,
 												"notes": ""
 											}
@@ -2655,7 +2655,7 @@
 		{
 			"title": "Get Customer Profile IDs",
 			"id": "get-customer-profile-ids",
-			"usage": "This function is used to retrieve all existing customer profile IDs.",
+			"usage": "Use this function to retrieve all existing customer profile IDs.",
 			"soap": "GetCustomerProfileIds",
 			"request": {
 				"name": "Input Elements for getCustomerProfileIdsRequest",
@@ -2717,7 +2717,7 @@
 		{
 			"title": "Update Customer Profile",
 			"id": "update-customer-profile",
-			"usage": "This function is used to update an existing customer profile.",
+			"usage": "Use this function to update an existing customer profile.",
 			"soap": "UpdateCustomerProfile",
 			"request": {
 				"name": "Input Elements for updateCustomerProfileRequest",
@@ -2784,7 +2784,7 @@
 						"value": "Contains the result of the API request to update a customer profile.",
 						"format": "",
 						"required": false,
-						"notes": "See the \"Response Codes\" section for possible values."
+						"notes": ""
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<updateCustomerProfileResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n</updateCustomerProfileResponse>"
@@ -2793,7 +2793,7 @@
 		{
 			"title": "Delete Customer Profile",
 			"id": "delete-customer-profile",
-			"usage": "This function is used to delete an existing customer profile along with all associated customer payment profiles and customer shipping addresses.",
+			"usage": "Use this function to delete an existing customer profile along with all associated customer payment profiles and customer shipping addresses.",
 			"soap": "DeleteCustomerProfile",
 			"request": {
 				"name": "Input Elements for deleteCustomerProfileRequest",
@@ -2832,7 +2832,7 @@
 		{
 			"title": "Create Customer Payment Profile",
 			"id": "create-customer-payment-profile",
-			"usage": "This function is used to create a new customer payment profile for an existing customer profile.",
+			"usage": "Use this function to create a new customer payment profile for an existing customer profile.",
 			"soap": "CreateCustomerPaymentProfile",
 			"request": {
 				"name": "Input Elements for createCustomerPaymentProfileRequest",
@@ -2860,8 +2860,8 @@
 						"children": [
 							{
 								"name": "customerType",
-								"value": "",
-								"format": "individual or business",
+								"value": "individual or business",
+								"format": "",
 								"required": false,
 								"notes": ""
 							},
@@ -2977,7 +2977,7 @@
 										"value": "The three- or four-digit number on the back of a credit card (on the front for American Express).",
 										"format": "Numeric.",
 										"required": false,
-										"notes": "This field is required if the merchant would like to use the Card Code Verification (CCV) security feature.\n\ncardCode is used only for validation and is not stored in the customer profile. Use it only when submitting validationMode with a value of testMode or liveMode."
+										"notes": "This field is required if the merchant would like to use the Card Code Verification (CCV) security feature.\n\nThe cardCode element is used only for validation and is not stored in the customer profile. Use it only when submitting validationMode with a value of testMode or liveMode."
 									},
 									{
 										"name": "bankAccount",
@@ -3037,7 +3037,7 @@
 						"value": "Indicates the processing mode for the request.",
 						"format": "none, testMode, or liveMode",
 						"required": false,
-						"notes": "For more information on use and restrictions of validationMode, see \"The validationMode Parameter.\""
+						"notes": ""
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerPaymentProfileRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <customerProfileId>10000</customerProfileId>\n  <paymentProfile>\n    <billTo>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <company></company>\n      <address>123 Main St.</address>\n      <city>Bellevue</city>\n      <state>WA</state>\n      <zip>98004</zip>\n      <country>USA</country>\n      <phoneNumber>000-000-0000</phoneNumber>\n      <faxNumber></faxNumber>\n    </billTo>\n    <payment>\n      <creditCard>\n        <cardNumber>4111111111111111</cardNumber>\n        <expirationDate>2023-12</expirationDate>\n      </creditCard>\n    </payment>\n  </paymentProfile>\n  <validationMode>liveMode</validationMode>\n</createCustomerPaymentProfileRequest>"
@@ -3062,7 +3062,7 @@
 							{
 								"name": "validationDirectResponse",
 								"value": "Contains detailed information about the result of the transaction.",
-								"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+								"format": "String.",
 								"required": false,
 								"notes": "This output is present only if the ValidationMode input parameter is passed with a value of testMode or liveMode."
 							}
@@ -3075,7 +3075,7 @@
 		{
 			"title": "Get Customer Payment Profile",
 			"id": "get-customer-payment-profile",
-			"usage": "This function is used to retrieve a customer payment profile for an existing customer profile.",
+			"usage": "Use this function to retrieve a customer payment profile for an existing customer profile.",
 			"soap": "GetCustomerPaymentProfile",
 			"request": {
 				"name": "Input Elements for getCustomerPaymentProfileRequest",
@@ -3124,7 +3124,7 @@
 							{
 								"name": "customerType",
 								"value": "",
-								"format": "individual or business",
+								"format": "individual or business.",
 								"required": false,
 								"notes": ""
 							},
@@ -3194,14 +3194,14 @@
 									{
 										"name": "phoneNumber",
 										"value": "The phone number associated with the customer’s address.",
-										"format": "Up to 25 digits (no letters).\nFor example, (123)123-1234",
+										"format": "Up to 25 digits (no letters).\n\nFor example, (123)123-1234.",
 										"required": false,
 										"notes": ""
 									},
 									{
 										"name": "faxNumber",
 										"value": "The fax number associated with the customer’s address.",
-										"format": "Up to 25 digits (no letters).\nFor example, (123)123-1234",
+										"format": "Up to 25 digits (no letters).\n\nFor example, (123)123-1234.",
 										"required": false,
 										"notes": ""
 									}
@@ -3245,7 +3245,7 @@
 									{
 										"name": "accountType",
 										"value": "The type of bank account for the payment profile.",
-										"format": "checking, savings, or businessChecking",
+										"format": "checking, savings, or businessChecking.",
 										"required": false,
 										"notes": ""
 									},
@@ -3273,7 +3273,7 @@
 									{
 										"name": "echeckType",
 										"value": "The type of electronic check transaction.",
-										"format": "CCD, PPD, TEL, or WEB",
+										"format": "CCD, PPD, TEL, or WEB.",
 										"required": false,
 										"notes": "Currently, the CIM API does not support ARC or BOC transaction types."
 									},
@@ -3332,7 +3332,7 @@
 		{
 			"title": "Validate Customer Payment Profile",
 			"id": "validate-customer-payment-profile",
-			"usage": "This function is used to verify an existing customer payment profile by generating a test transaction. No customer receipt emails are sent when validateCustomerPaymentProfileRequest is called.",
+			"usage": "Use this function to generating a test transaction that verifies an existing customer payment profile. No customer receipt emails are sent when the  validateCustomerPaymentProfileRequest element is called.",
 			"soap": "ValidateCustomerPaymentProfile",
 			"request": {
 				"name": "Input Elements for validateCustomerPaymentProfileRequest",
@@ -3370,14 +3370,14 @@
 						"value": "The three- or four-digit number on the back of a credit card (on the front for American Express).",
 						"format": "Numeric.",
 						"required": false,
-						"notes": "This field is required if the merchant would like to use the Card Code Verification (CCV) security feature. \n\ncardCode is used only for validation and is not stored in the customer profile. It should be used only when submitting validationMode with a value of testMode or liveMode."
+						"notes": "This field is required if the merchant would like to use the Card Code Verification (CCV) security feature. \n\ncardCode is used only for validation and is not stored in the customer profile. It should be used only when you submit validationMode with a value of testMode or liveMode."
 					},
 					{
 						"name": "validationMode",
 						"value": "Indicates the processing mode for the request.",
 						"format": "testMode or liveMode",
 						"required": false,
-						"notes": "For more information on use and restrictions of validationMode, see \"The validationMode Parameter.\""
+						"notes": ""
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<validateCustomerPaymentProfileRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <customerProfileId>10000</customerProfileId>\n  <customerPaymentProfileId>20000</customerPaymentProfileId>\n  <validationMode>liveMode</validationMode>\n</validateCustomerPaymentProfileRequest>"
@@ -3388,7 +3388,7 @@
 					{
 						"name": "directResponse",
 						"value": "Contains detailed information about the result of the transaction.",
-						"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+						"format": "String.",
 						"required": false,
 						"notes": ""
 					}
@@ -3399,7 +3399,7 @@
 		{
 			"title": "Update Customer Payment Profile",
 			"id": "update-customer-payment-profile",
-			"usage": "This function is used to update a payment profile for an existing customer profile.\n\nNote: If some fields in this request are not submitted or are submitted with a blank value, the values in the original profile are removed. As a best practice to prevent this from happening, call getCustomerPaymentProfileRequest before calling updateCustomerPaymentProfileRequest. That will return all current information including masked payment information. Then, simply change the field that needs updating and use that to call updateCustomerPaymentProfileRequest.\n\nTo test the validity of new payment information, call validateCustomerPaymentProfileRequest after successfully updating the payment profile. See \"Input Parameters for validateCustomerPaymentProfileRequest\" for more information.",
+			"usage": "Use this function to update a payment profile for an existing customer profile.\n\nNote that if some fields in this request are not submitted or are submitted with a blank value, the values in the original profile are removed. As a best practice to prevent this from happening, call getCustomerPaymentProfileRequest before calling updateCustomerPaymentProfileRequest. This action returns all current information including masked payment information. Then, simply change the field that needs updating and use that field to call updateCustomerPaymentProfileRequest.\n\nTo test the validity of new payment information, call validateCustomerPaymentProfileRequest after successfully updating the payment profile. ",
 			"soap": "UpdateCustomerPaymentProfile ",
 			"request": {
 				"name": "Input Elements for updateCustomerPaymentProfileRequest",
@@ -3430,35 +3430,35 @@
 								"value": "",
 								"format": "individual or business",
 								"required": false,
-								"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+								"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 							},
 							{
 								"name": "billTo",
 								"value": "",
 								"format": "",
 								"required": false,
-								"notes": "If this entire section is not submitted, the original billing information for the profile will stay the same. \n\nIf updating only one or more elements under billTo, all elements must be submitted with their valid values to prevent the original values from being removed.",
+								"notes": "If this entire section is not submitted, the original billing information for the profile will stay the same. \n\nIf you update only one or more elements under billTo, all elements must be submitted with their valid values to prevent the original values from being removed.",
 								"children": [
 									{
 										"name": "firstName",
 										"value": "The customer’s first name.",
 										"format": "Up to 50 characters (no symbols).",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "lastName",
 										"value": "The customer’s last name.",
 										"format": "Up to 50 characters (no symbols).",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "company",
 										"value": "The name of the company associated with the customer, if applicable.",
 										"format": "Up to 50 characters (no symbols).",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "address",
@@ -3472,42 +3472,42 @@
 										"value": "The city of the customer’s shipping address.",
 										"format": "Up to 40 characters (no symbols).",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "state",
 										"value": "The state of the customer’s address.",
 										"format": "Up to 40 characters (no symbols).",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "zip",
 										"value": "The ZIP code of the customer’s address.",
 										"format": "Up to 20 characters (no symbols).",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "country",
 										"value": "The country of the customer’s address.",
 										"format": "Up to 60 characters (no symbols).",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "phoneNumber",
 										"value": "The phone number associated with the customer’s address.",
 										"format": "Up to 25 digits (no letters).\nFor example, (123)123-1234",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "faxNumber",
 										"value": "The fax number associated with the customer’s address.",
 										"format": "Up to 25 digits (no letters).\nFor example, (123)123-1234",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									}
 								]
 							},
@@ -3523,7 +3523,7 @@
 										"value": "Contains credit card payment information for the customer profile.",
 										"format": "",
 										"required": false,
-										"notes": "This parameter and its children are only required when the payment profile is credit card."
+										"notes": "This parameter and its children are required only when the payment profile is credit card."
 									},
 									{
 										"name": "cardNumber",
@@ -3553,7 +3553,7 @@
 										"value": "Contains bank account payment information for the customer profile.",
 										"format": "",
 										"required": false,
-										"notes": "This parameter and its children are only required when the payment profile is bank account."
+										"notes": "This parameter and its children are required only when the payment profile is bank account."
 									},
 									{
 										"name": "accountType",
@@ -3583,21 +3583,21 @@
 										"value": "The customer’s full name as listed on the bank account.",
 										"format": "Up to 22 characters.",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "echeckType",
 										"value": "The type of electronic check transaction.",
 										"format": "CCD, PPD, TEL, or WEB",
 										"required": false,
-										"notes": "Currently, the CIM API does not support ARC or BOC transaction types.\n\nIf this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "Currently, the CIM API does not support ARC or BOC transaction types.\n\nIf this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									},
 									{
 										"name": "bankName",
 										"value": "The name of the bank associated with the bank account number.",
 										"format": "Up to 50 characters.",
 										"required": false,
-										"notes": "If this field is not submitted in the request, or submitted with a blank value, the original value will be removed from the profile."
+										"notes": "If this field is not submitted in the request, or is submitted with a blank value, the original value will be removed from the profile."
 									}
 								]
 							},
@@ -3615,7 +3615,7 @@
 						"value": "Indicates the processing mode for the request.",
 						"format": "none, testMode, or liveMode",
 						"required": false,
-						"notes": "For more information on use and restrictions of validationMode, see \"The validationMode Parameter.\""
+						"notes": ""
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<updateCustomerPaymentProfileRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <customerProfileId>10000</customerProfileId>\n  <paymentProfile>\n    <billTo>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <company></company>\n      <address>123 Main St.</address>\n      <city>Bellevue</city>\n      <state>WA</state>\n      <zip>98004</zip>\n      <country>USA</country>\n      <phoneNumber>000-000-0000</phoneNumber>\n      <faxNumber></faxNumber>\n    </billTo>\n    <payment>\n      <creditCard>\n        <cardNumber>4111111111111111</cardNumber>\n        <expirationDate>2026-01</expirationDate>\n      </creditCard>\n    </payment>\n    <customerPaymentProfileId>20000</customerPaymentProfileId>\n  </paymentProfile>\n  <validationMode>liveMode</validationMode>\n</updateCustomerPaymentProfileRequest>"
@@ -3635,7 +3635,7 @@
 						"value": "Contains detailed information about the result of the transaction.",
 						"format": "String.",
 						"required": false,
-						"notes": "See the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.\n\nThis output is only present if the ValidationMode input element is passed with a value of testMode or liveMode."
+						"notes": "This output is only present if the ValidationMode input element is passed with a value of testMode or liveMode."
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<updateCustomerPaymentProfileResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n</updateCustomerPaymentProfileResponse>"
@@ -3644,7 +3644,7 @@
 		{
 			"title": "Delete Customer Payment Profile",
 			"id": "delete-customer-payment-profile",
-			"usage": "This function is used to delete a customer payment profile from an existing customer profile.",
+			"usage": "Use this function to delete a customer payment profile from an existing customer profile.",
 			"soap": "DeleteCustomerPaymentProfile ",
 			"request": {
 				"name": "Input Elements for deleteCustomerPaymentProfileRequest",
@@ -3690,7 +3690,7 @@
 		{
 			"title": "Create Customer Shipping Address",
 			"id": "create-customer-shipping-address",
-			"usage": "This function is used to create a new customer shipping address for an existing customer profile.",
+			"usage": "Use this function to create a new customer shipping address for an existing customer profile.",
 			"soap": "CreateCustomerShippingAddress",
 			"request": {
 				"name": "Input Elements for createCustomerShippingAddressRequest",
@@ -3817,7 +3817,7 @@
 		{
 			"title": "Get Customer Shipping Address",
 			"id": "get-customer-shipping-address",
-			"usage": "This function is used to retrieve a customer shipping address for an existing customer profile.",
+			"usage": "Use this function to retrieve a customer shipping address for an existing customer profile.",
 			"soap": "GetCustomerShippingAddress",
 			"request": {
 				"name": "Input Elements for getCustomerShippingAddressRequest",
@@ -3922,14 +3922,14 @@
 									{
 										"name": "phoneNumber",
 										"value": "The phone number associated with the customer’s address.",
-										"format": "Up to 25 digits (no letters).\nFor examaple, (123)123-1234",
+										"format": "Up to 25 digits (no letters).\n\nFor examaple, (123)123-1234.",
 										"required": false,
 										"notes": ""
 									},
 									{
 										"name": "faxNumber",
 										"value": "The fax number associated with the customer’s address.",
-										"format": "Up to 25 digits (no letters).\nFor example, (123)123-1234",
+										"format": "Up to 25 digits (no letters).\n\nFor example, (123)123-1234.",
 										"required": false,
 										"notes": ""
 									}
@@ -3944,7 +3944,7 @@
 		{
 			"title": "Update Customer Shipping Address",
 			"id": "update-customer-shipping-address",
-			"usage": "This function is used to update a shipping address for an existing customer profile.",
+			"usage": "Use this function to update a shipping address for an existing customer profile.",
 			"soap": "UpdateCustomerShippingAddress",
 			"request": {
 				"name": "Input Elements for updateCustomerShippingAddressRequest",
@@ -4069,7 +4069,7 @@
 		{
 			"title": "Delete Customer Shipping Address",
 			"id": "delete-customer-shipping-address",
-			"usage": "This function is used to delete a customer shipping address from an existing customer profile.",
+			"usage": "Use this function to delete a customer shipping address from an existing customer profile.",
 			"soap": "DeleteCustomerShippingAddress",
 			"request": {
 				"name": "Input Elements for deleteCustomerShippingAddressRequest",
@@ -4115,7 +4115,7 @@
 		{
 			"title": "Authorize a Transaction from a Customer Profile",
 			"id": "authorize-a-transaction-from-a-customer-profile",
-			"usage": "This function is used to authorize a transaction from an existing customer profile. This transaction type generates a customer receipt email. ",
+			"usage": "Use this function to authorize a transaction from an existing customer profile. This transaction type generates a customer receipt email. ",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
 				"name": "Input Elements for createCustomerProfileTransactionRequest (Authorization Only Transactions)",
@@ -4146,7 +4146,7 @@
 										"value": "The total amount of the transaction.",
 										"format": "Up to 4 digits after the decimal point (no dollar symbol).\nFor example, 12.99 or 12.9999",
 										"required": false,
-										"notes": "This amount should include all other amounts such as tax amount, shipping amount, etc."
+										"notes": "This amount should include all other amounts such as tax and shipping."
 									},
 									{
 										"name": "tax",
@@ -4359,7 +4359,7 @@
 										"value": "The customer’s card code (the three- or four-digit number on the back or front of a credit card).",
 										"format": "3 to 4 digits.",
 										"required": false,
-										"notes": "This field is required if the merchant would like to use the Card Code Verification (CCV) security feature."
+										"notes": "This field is required if the merchant wants to use the Card Code Verification (CCV) security feature."
 									},
 									{
 										"name": "splitTenderId",
@@ -4374,10 +4374,10 @@
 					},
 					{
 						"name": "extraOptions",
-						"value": "Information in name/value pair format that does not exist within CIM, such as customer IP address, etc.",
+						"value": "Information in name/value pair format that does not exist within CIM, such as customer IP address.",
 						"format": "String.",
 						"required": false,
-						"notes": "For a complete list of the transaction variable names available, review the AIM Implementation Guide located at http://www.authorize.net/support/AIM_guide.pdf."
+						"notes": "For a complete list of the transaction variable names available, review the AIM Developer Guide located at: http://www.authorize.net/support/AIM_guide.pdf."
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <transaction>\n    <profileTransAuthOnly>\n      <amount>10.95</amount>\n      <tax>\n        <amount>1.00</amount>\n        <name>WA state sales tax</name>\n        <description>Washington state sales tax</description>\n      </tax>\n<shipping>\n        <amount>2.00</amount>\n        <name>ground based shipping</name>\n        <description>Ground based 5 to 10 day shipping\n        </description>\n      </shipping>\n<lineItems>\n        <itemId>ITEM00001</itemId>\n        <name>name of item sold</name>\n        <description>Description of item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>6.95</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n      <lineItems>\n        <itemId>ITEM00002</itemId>\n        <name>name of other item sold</name>\n        <description>Description of other item sold\n        </description>\n        <quantity>1</quantity>\n        <unitPrice>1.00</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n      <customerProfileId>10000</customerProfileId>\n      <customerPaymentProfileId>20000</customerPaymentProfileId>\n    <customerShippingAddressId>30000</customerShippingAddressId>\n\n <order>\n        <invoiceNumber>INV000001</invoiceNumber>\n        <description>description of transaction</description>\n        <purchaseOrderNumber>PONUM000001</purchaseOrderNumber>\n      </order>\n      <taxExempt>false</taxExempt>\n      <recurringBilling>false</recurringBilling>\n      <cardCode>000</cardCode>\n    </profileTransAuthOnly>\n  </transaction>\n  <extraOptions><![CDATA[x_customer_ip=100.0.0.1]]></extraOptions>\n</createCustomerProfileTransactionRequest>"
@@ -4395,9 +4395,9 @@
 							{
 								"name": "directResponse",
 								"value": "Contains detailed information about the result of the transaction.",
-								"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+								"format": "String.",
 								"required": false,
-								"notes": "Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced."
+								"notes": "Transactions created from a customer profile behave like regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced."
 							}
 						]
 					}
@@ -4406,9 +4406,9 @@
 			}
 		},
 		{
-			"title": "Authorize and Capture a Customer Profile",
-			"id": "authorize-and-capture-a-customer-profile",
-			"usage": "This function is used to authorize and capture a customer profile from an existing customer profile. This transaction type generates a customer receipt email. ",
+			"title": "Authorize and Capture a Transaction from a Customer Profile",
+			"id": "authorize-and-capture-a-transaction-from-a-customer-profile",
+			"usage": "Use this function to authorize and capture a customer profile from an existing customer profile, for an Authorize and Capture transaction. This transaction type generates a customer receipt email. ",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
 				"name": "Input Elements for createCustomerProfileTransactionRequest (for Authorize and Capture Transactions)",
@@ -4439,7 +4439,7 @@
 										"value": "The total amount of the transaction.",
 										"format": "Up to 4 digits after the decimal point (no dollar symbol).\nFor example, 12.99 or 12.9999",
 										"required": false,
-										"notes": "This amount should include all other amounts such as tax amount, shipping amount, etc."
+										"notes": "This amount should include all other amounts."
 									},
 									{
 										"name": "tax",
@@ -4667,10 +4667,10 @@
 					},
 					{
 						"name": "extraOptions",
-						"value": "Information in name/value pair format that does not exist within CIM, such as customer IP address, etc.",
+						"value": "Information in name/value pair format that does not exist within CIM, such as customer IP address.",
 						"format": "String.",
 						"required": false,
-						"notes": "For a complete list of the transaction variable names available, review the AIM Implementation Guide located at http://www.authorize.net/support/AIM_guide.pdf."
+						"notes": "For a complete list of the transaction variable names available, review the AIM Developer Guide, located at: http://www.authorize.net/support/AIM_guide.pdf."
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <transaction>\n    <profileTransAuthCapture>\n      <amount>10.95</amount>\n<tax>\n        <amount>1.00</amount>\n        <name>WA state sales tax</name>\n\n <description>Washington state sales tax</description>\n      </tax>\n      <shipping>\n        <amount>2.00</amount>\n        <name>ground based shipping</name>\n        <description>Ground based 5 to 10 day shipping</description>\n      </shipping>\n      <lineItems>\n        <itemId>ITEM00001</itemId>\n        <name>name of item sold</name>\n        <description>Description of item sold</description>\n        <quantity>1</quantity>\n    <unitPrice>6.95</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n<lineItems>\n        <itemId>ITEM00002</itemId>\n        <name>name of other item sold</name>\n        <description>Description of other item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>1.00</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n      <customerProfileId>10000</customerProfileId>\n      <customerPaymentProfileId>20000</customerPaymentProfileId>\n    <customerShippingAddressId>30000</customerShippingAddressId>\n<order>\n        <invoiceNumber>INV000001</invoiceNumber>\n        <description>description of transaction</description>\n        <purchaseOrderNumber>PONUM000001</purchaseOrderNumber>\n      </order>\n      <taxExempt>false</taxExempt>\n      <recurringBilling>false</recurringBilling>\n      <cardCode>000</cardCode>\n    </profileTransAuthCapture>\n  </transaction>\n  <extraOptions><![CDATA[x_customer_ip=100.0.0.1]]></extraOptions>\n</createCustomerProfileTransactionRequest>"
@@ -4688,7 +4688,7 @@
 							{
 								"name": "directResponse",
 								"value": "Contains detailed information about the result of the transaction.",
-								"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+								"format": "String.",
 								"required": false,
 								"notes": "Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced."
 							}
@@ -4699,12 +4699,12 @@
 			}
 		},
 		{
-			"title": "Authorizing and Capturing a Transaction from a Customer Profile",
-			"id": "authorizing-and-capturing-a-transaction-from-a-customer-profile",
-			"usage": "This function is used to authorize and capture a transaction from an existing customer profile. ",
+			"title": "Authorizing and Capturing a Transaction from a Customer Profile (",
+			"id": "authorizing-and-capturing-a-transaction-from-a-customer-profile-(",
+			"usage": "This function is used to authorize and capture a transaction from an existing customer profile, for Prior Authorization and Capture Transaction.",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
-				"name": "Input Elements for createCustomerProfileTransactionRequest (For Prior Authorization and Capture Transactions)",
+				"name": "Input Elements for createCustomerProfileTransactionRequest",
 				"children": [
 					{
 						"name": "refId",
@@ -4930,7 +4930,7 @@
 							{
 								"name": "directResponse",
 								"value": "Contains detailed information about the result of the transaction.",
-								"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+								"format": "String.",
 								"required": false,
 								"notes": "Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced."
 							}
@@ -4943,7 +4943,7 @@
 		{
 			"title": "Capture a Customer Profile",
 			"id": "capture-a-customer-profile",
-			"usage": "This function is used to capture a customer profile from an existing customer profile. ",
+			"usage": "Use this function to capture a customer profile from an existing customer profile. ",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
 				"name": "Input Elements for createCustomerProfileTransactionRequest (For Capture Only Transactions)",
@@ -4974,7 +4974,7 @@
 										"value": "The total amount of the transaction.",
 										"format": "Up to 4 digits after the decimal point (no dollar symbol).\nFor example, 12.99 or 12.9999",
 										"required": false,
-										"notes": "This amount should include all other amounts such as tax amount, shipping amount, etc."
+										"notes": "This amount should include all other amounts."
 									},
 									{
 										"name": "tax",
@@ -5194,7 +5194,7 @@
 										"value": "Payment gateway-assigned number associated with the order.",
 										"format": "Up to 6 digits.",
 										"required": false,
-										"notes": "This field is only required for second and subsequent transactions related to a partial authorization transaction."
+										"notes": "This field is required only for second and subsequent transactions related to a partial authorization transaction."
 									},
 									{
 										"name": "approvalCode",
@@ -5209,10 +5209,10 @@
 					},
 					{
 						"name": "extraOptions",
-						"value": "Information in name/value pair format that does not exist within CIM, such as customer IP address, etc.",
+						"value": "Information in name/value pair format that does not exist within CIM, such as customer IP address.",
 						"format": "String.",
 						"required": false,
-						"notes": "For a complete list of the transaction variable names available, review the AIM Implementation Guide located at http://www.authorize.net/support/AIM_guide.pdf."
+						"notes": "For a complete list of the transaction variable names available, review the AIM Developer Guide located at: http://www.authorize.net/support/AIM_guide.pdf."
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <transaction>\n    <profileTransCaptureOnly>\n            <amount>10.95</amount>\n      <tax>\n        <amount>1.00</amount>\n        <name>WA state sales tax</name>\n        <description>Washington state sales tax</description>\n      </tax>\n<shipping>\n        <amount>2.00</amount>\n        <name>ground based shipping</name>\n        <description>Ground based 5 to 10 day shipping</description>\n      </shipping>\n\n <lineItems>\n        <itemId>ITEM00001</itemId>\n        <name>name of item sold</name>\n        <description>Description of item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>6.95</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n      <lineItems>\n        <itemId>ITEM00002</itemId>\n        <name>name of other item sold</name>\n        <description>Description of other item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>1.00</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n<customerProfileId>10000</customerProfileId>\n      <customerPaymentProfileId>20000</customerPaymentProfileId>\n    <customerShippingAddressId>30000</customerShippingAddressId>\n      <order>\n        <invoiceNumber>INV000001</invoiceNumber>\n        <description>description of transaction</description>\n        <purchaseOrderNumber>PONUM000001</purchaseOrderNumber>\n      </order>\n      <taxExempt>false</taxExempt>\n      <recurringBilling>false</recurringBilling>\n      <cardCode>000</cardCode>\n      <approvalCode>000000</approvalCode>\n    </profileTransCaptureOnly>\n  </transaction>\n  <extraOptions><![CDATA[x_customer_ip=100.0.0.1]]></extraOptions>\n</createCustomerProfileTransactionRequest>"
@@ -5230,7 +5230,7 @@
 							{
 								"name": "directResponse",
 								"value": "Contains detailed information about the result of the transaction.",
-								"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+								"format": "String.",
 								"required": false,
 								"notes": "Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced."
 							}
@@ -5243,7 +5243,7 @@
 		{
 			"title": "Refunding a Transaction for a Customer Profile",
 			"id": "refunding-a-transaction-for-a-customer-profile",
-			"usage": "This function is used to refund transactions from an existing customer profile. This transaction type generates a customer receipt email. \n\nIf you are submitting a refund against a previous CIM transaction, the following guidelines apply: \n* include customerProfileId, customerPaymentProfileId, and transId\n* customerShippingAddressId is optional\n* creditCardNumberMasked, bankRoutingNumberMasked, and bankAccountNumberMasked do not need to be included, but they will be validated if they are included\n\nIf you are submitting a refund for a non-CIM transaction, the following guidelines apply: \n* you must include transId, creditCardNumberMasked (or bankRoutingNumberMasked and bankAccountNumberMasked)\n* do not include customerProfileId, customerPaymentProfileId, or customerShippingAddressId\n\nYou can also issue an unlinked refund for a CIM transaction. In this case, the following rules apply:\n* you must be enrolled in Expanded Credit Capabilities (ECC). For more information about ECC, go to http://www.authorize.net/files/ecc.pdf\n* you must include customerProfileId and customerPaymentProfileId\n* customerShippingAddressId is optional\n* do not include transId, creditCardNumberMasked, bankRoutingNumberMasked, or bankAccountNumberMasked\n",
+			"usage": "Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email. \n\nIf you are submitting a refund against a previous CIM transaction, the following guidelines apply: \n* include customerProfileId, customerPaymentProfileId, and transId\n* customerShippingAddressId is optional\n* creditCardNumberMasked, bankRoutingNumberMasked, and bankAccountNumberMasked do not need to be included, but they will be validated if they are included\n\nIf you are submitting a refund for a non-CIM transaction, the following guidelines apply: \n* you must include transId, creditCardNumberMasked (or bankRoutingNumberMasked and bankAccountNumberMasked)\n* do not include customerProfileId, customerPaymentProfileId, or customerShippingAddressId\n\nYou can also issue an unlinked refund for a CIM transaction. In this case, the following rules apply:\n* you must be enrolled in Expanded Credit Capabilities (ECC). For more information about ECC, go to http://www.authorize.net/files/ecc.pdf\n* you must include customerProfileId and customerPaymentProfileId\n* customerShippingAddressId is optional\n* do not include transId, creditCardNumberMasked, bankRoutingNumberMasked, or bankAccountNumberMasked\n",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
 				"name": "Input Elements for createCustomerProfileTransactionRequest (For Refund Transactions)",
@@ -5274,7 +5274,7 @@
 										"value": "The total amount to be refunded.",
 										"format": "Up to 4 digits after the decimal point (no dollar symbol).\nFor example, 12.99 or 12.9999",
 										"required": false,
-										"notes": "This amount should include all other amounts such as tax amount, shipping amount, etc."
+										"notes": "This amount should include all other amounts."
 									},
 									{
 										"name": "tax",
@@ -5422,28 +5422,28 @@
 										"value": "Payment gateway assigned ID associated with the customer profile.",
 										"format": "Numeric.",
 										"required": false,
-										"notes": "If a value is submitted for this field, it must be the same ID used for the original transaction.\n\nFor more complete information, see \"For Refund Transactions.\""
+										"notes": "If a value is submitted for this field, it must be the same ID used for the original transaction."
 									},
 									{
 										"name": "customerPaymentProfileId",
 										"value": "Payment gateway assigned ID associated with the customer payment profile.",
 										"format": "Numeric.",
 										"required": false,
-										"notes": "If a value is submitted for this field, it must be the same ID used for the original transaction.\n\nFor more complete information, see \"For Refund Transactions.\""
+										"notes": "If a value is submitted for this field, it must be the same ID used for the original transaction."
 									},
 									{
 										"name": "customerShippingAddressId",
 										"value": "Payment gateway assigned ID associated with the customer shipping address.",
 										"format": "Numeric.",
 										"required": false,
-										"notes": "If a value is submitted for this field, it must be the same ID used for the original authorization transaction.\n\nFor more complete information, see \"For Refund Transactions.\""
+										"notes": "If a value is submitted for this field, it must be the same ID used for the original authorization transaction."
 									},
 									{
 										"name": "creditCardNumberMasked",
 										"value": "The last four digits of the credit card number to be refunded.",
 										"format": "Four Xs followed by the last four digits of the credit card number to be refunded.\nFor example, XXXX1234",
 										"required": false,
-										"notes": "If a value is submitted, the last four digits must be the same ones used for the original transaction.\n\nFor more complete information, see \"For Refund Transactions.\""
+										"notes": "If a value is submitted, the last four digits must be the same ones used for the original transaction."
 									},
 									{
 										"name": "bankRoutingNumberMasked",
@@ -5457,7 +5457,7 @@
 										"value": "The last four digits of the bank account number to be refunded.",
 										"format": "Four Xs followed by the last four digits of the bank account to be refunded.\nFor example, XXXX1234",
 										"required": false,
-										"notes": "If a value is submitted, the last four digits must be the same ones used for the original transaction.\n\nFor more complete information, see \"For Refund Transactions.\""
+										"notes": "If a value is submitted, the last four digits must be the same ones used for the original transaction."
 									},
 									{
 										"name": "order",
@@ -5494,7 +5494,7 @@
 										"value": "The payment gateway assigned transaction ID of the original transaction",
 										"format": "Numeric.",
 										"required": false,
-										"notes": "For more complete information, see \"For Refund Transactions.\""
+										"notes": ""
 									}
 								]
 							}
@@ -5505,7 +5505,7 @@
 						"value": "Information in name/value pair format that does not exist within CIM, such as customer IP address, etc.",
 						"format": "String.",
 						"required": false,
-						"notes": "For a complete list of the transaction variable names available, review the AIM Implementation Guide located at http://www.authorize.net/support/AIM_guide.pdf."
+						"notes": "For a complete list of the transaction variable names available, review the AIM Developer Guide located at: http://www.authorize.net/support/AIM_guide.pdf."
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <transaction>\n    <profileTransRefund>\n      <amount>10.95</amount>\n      <tax>\n        <amount>1.00</amount>\n        <name>WA state sales tax</name>\n        <description>Washington state sales tax</description>\n      </tax>\n      <shipping>\n        <amount>2.00</amount>\n        <name>ground based shipping</name>\n        <description>Ground based 5 to 10 day shipping</description>\n      </shipping>\n<lineItems>\n        <itemId>ITEM00001</itemId>\n        <name>name of item sold</name>\n        <description>Description of item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>6.95</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n<lineItems>\n        <itemId>ITEM00002</itemId>\n        <name>name of other item sold</name>\n        <description>Description of other item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>1.00</unitPrice>\n        <taxable>true</taxable>\n      </lineItems>\n<customerProfileId>10000</customerProfileId>\n      <customerPaymentProfileId>20000</customerPaymentProfileId>\n    <customerShippingAddressId>30000</customerShippingAddressId>\n      <creditCardNumberMasked>XXXX1111</creditCardNumberMasked>\n<order>\n        <invoiceNumber>INV000001</invoiceNumber>\n        <description>description of transaction</description>\n        <purchaseOrderNumber>PONUM000001</purchaseOrderNumber>\n      </order>\n      <transId>40000</transId>\n    </profileTransRefund>\n  </transaction>\n  <extraOptions><![CDATA[]]></extraOptions>\n</createCustomerProfileTransactionRequest>"
@@ -5523,7 +5523,7 @@
 							{
 								"name": "directResponse",
 								"value": "Contains detailed information about the result of the transaction.",
-								"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+								"format": "String.",
 								"required": false,
 								"notes": "Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced."
 							}
@@ -5536,7 +5536,7 @@
 		{
 			"title": "Voiding Transactions for a Customer Profile",
 			"id": "voiding-transactions-for-a-customer-profile",
-			"usage": "This function is used to void transactions for an existing customer profile. ",
+			"usage": "Use this function to void transactions for an existing customer profile. ",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
 				"name": "Input Elements for createCustomerProfileTransactionRequest (For a Void Transaction)",
@@ -5610,7 +5610,7 @@
 							{
 								"name": "directResponse",
 								"value": "Contains detailed information about the result of the transaction.",
-								"format": "String.\nSee the Advanced Integration Guide at http://www.authorize.net/support/AIM_guide.pdf for details about information included in the payment gateway transaction response.",
+								"format": "String.",
 								"required": false,
 								"notes": "Transactions created from a customer profile behave the same as regular transactions - you and your customer will receive all associated email notifications. Additionally, all fraud settings, including FDS filters and AVS and CCV settings, will be enforced."
 							}
@@ -5623,7 +5623,7 @@
 		{
 			"title": "Get Hosted Profile Page",
 			"id": "get-hosted-profile-page",
-			"usage": "Use this function to initiate a request for direct access to the Authorize.Net website. For more information on using the hosted form, see \"Using a Hosted Form.\"",
+			"usage": "Use this function to initiate a request for direct access to the Authorize.Net website.",
 			"soap": "GetHostedProfilePage",
 			"request": {
 				"name": "Input Elements for getHostedProfilePageRequest",
@@ -5658,7 +5658,7 @@
 							},
 							{
 								"name": "settingValue",
-								"value": "See \"Guidelines for Parameter Settings\" for a detailed description of these parameters.",
+								"value": "",
 								"format": "",
 								"required": false,
 								"notes": ""
@@ -5676,7 +5676,7 @@
 						"value": "An encrypted string that the merchant must include when posting to the Authorize.Net web page.",
 						"format": "String.",
 						"required": false,
-						"notes": "If not used within 15 minutes of the original API call, this token expires.\n\nThe customer’s browser posts the token, Authorize.Net validates it, and makes sure the timestamp is less than 15 minutes old. \n\nFor more complete information on how to use hosted CIM access, see \"Using a Hosted Form.\""
+						"notes": "If not used within 15 minutes of the original API call, this token expires.\n\nThe customer’s browser posts the token, Authorize.Net validates it, and makes sure the timestamp is less than 15 minutes old. "
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getHostedProfilePageResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <token>+ZeWDaUOPoQPRGTHcKd7DYbMfcAFDrhO8GPOFNt+ACzJnvkz+aWO0SYSAA9x602jAIKKfUHUt2ybwQRaG8LzHluuR5dRgsuh+kjarKvD0hpieGjLHmnz0LHmFv1Xe9P3zpmawqBCSB/d4jcSg9dAxecNBUzMwIuYzY+vGUGLUXgr9QPaRh93HqWZrV4Mbwop</token>\n</getHostedProfilePageResponse>"
@@ -5685,7 +5685,7 @@
 		{
 			"title": "Update Split Tender Group",
 			"id": "update-split-tender-group",
-			"usage": "This function is used to update the status of an existing order that contains multiple transactions with the same splitTenderId. ",
+			"usage": "Use this function to update the status of an existing order that contains multiple transactions with the same splitTenderId value. ",
 			"soap": "UpdateSplitTenderGroup",
 			"request": {
 				"name": "Input Elements for updateSplitTenderGroupRequest",
@@ -5732,37 +5732,37 @@
 },
 {
 	"APIName": "Transaction Reporting",
-	"APIUsage": "Allows developers to access transaction history and details programmatically",
+	"APIUsage": "Enables developers to access transaction history and details programmatically",
 	"API_ID": "transaction-reporting",
 	"methods": [
 		{
 			"title": "Get Settled Batch List",
 			"id": "get-settled-batch-list",
-			"usage": "This function returns Batch ID, Settlement Time, & Settlement State for all settled batches with a range of dates. If you specify includeStatistics, you also receive batch statistics by payment type and batch totals. All input parameters are optional.\n\nIf no dates are specified, then the default is the last 24 hours (ending at the time of the call to getSettledBatchListRequest). The input and output for all dates defaults to the merchant’s local time, unless UTC time is specified.\n\nIf the time in the firstSettlementDate and lastSettlementDate ends with a Z (for example, \"2010-09-21T16:00:00Z\") then this is UTC time and not the merchant’s local time. \n\nThe default date range is one day (the previous 24 hour period). The maximum date range is 31 days. The merchant time zone is taken into consideration when calculating the batch date range, unless the Z is specified in the first and last settlement dates. \n\nIf you specify includeStatistics=true, then statistics are included for the entire range, including the first and last settlement dates. \n\nThe search results are inclusive of the date range. \n\nIf the merchant sends in a time of 00:00:00 for lastSettlementDate, then one day is added to this day in the search (so that it includes the date specified). The 31-day check happens before this day is added.\n\nThe firstSettlementDate parameter cannot precede January 1, two years before the current year. For example, if the current date is September 1, 2010, firstSettlementDate must be January 1, 2008 or later. \n\nPossible errors returned are:\n\n* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: “firstSettlementDate is greater than the lastSettelementDate”\n\n* If the difference between the firstSettlementDate and lastSettelementDate is more than 31 days, then the error message is Err_Invalid_field: “The date range cannot exceed 31 days.” \n\n* If the firstSettlementDate is older than the allowed firstSettlementDate, then the error is Err_Invalid_field: “firstSettlementDate cannot be older than the year of {nn}”, where nn is 2 years prior to the current year. \n\n* If only one of firstSettlementDate or lastSettlementDate is specified, the message returned is Err_Required_Field: \"firstSettlementDate is required when lastSettlementDate is present.\"; \"lastSettlementDate is required when firstSettlementDate is present.\"\n\n* If the lastSettlementDate is in the future, the message returned is Err_Invalid_field: “lastSettlementDate cannot be in the future.” \n\n* If no rows are found, then the message returned is “No records found”",
+			"usage": "This function returns Batch ID, Settlement Time, & Settlement State for all settled batches with a range of dates. If you specify includeStatistics, you also receive batch statistics by payment type and batch totals. All input parameters are optional.\n\nIf no dates are specified, then the default is the past 24 hours (ending at the time of the call to getSettledBatchListRequest). The input and output for all dates default to the merchant’s local time, unless UTC time is specified.\n\nIf the time in the firstSettlementDate and lastSettlementDate ends with a Z (for example, 2010-09-21T16:00:00Z) then this is UTC time and not the merchant’s local time. \n\nThe default date range is one day (the previous 24 hour period). The maximum date range is 31 days. The merchant time zone is taken into consideration when calculating the batch date range, unless the Z is specified in the first and last settlement dates. \n\nIf you specify includeStatistics=true, then statistics are included for the entire range, including the first and last settlement dates. \n\nThe search results are inclusive of the date range. \n\nIf the merchant sends in a time of 00:00:00 for lastSettlementDate, then one day is added to this day in the search (so that it includes the date specified). The 31-day check happens before this day is added.\n\nThe firstSettlementDate parameter cannot precede January 1, two years before the current year. For example, if the current date is September 1, 2010, firstSettlementDate must be January 1, 2008 or later. \n\nPossible errors returned are:\n\n* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: \"firstSettlementDate is greater than the lastSettelementDate\"\n\n* If the difference between the firstSettlementDate and lastSettelementDate is more than 31 days, then the error message is Err_Invalid_field: “The date range cannot exceed 31 days.” \n\n* If the firstSettlementDate is older than the allowed firstSettlementDate, then the error is Err_Invalid_field: “firstSettlementDate cannot be older than the year of {nn}”, where nn is 2 years prior to the current year. \n\n* If only one of firstSettlementDate or lastSettlementDate is specified, the message returned is Err_Required_Field: \"firstSettlementDate is required when lastSettlementDate is present.\"; \"lastSettlementDate is required when firstSettlementDate is present.\"\n\n* If the lastSettlementDate is in the future, the message returned is Err_Invalid_field: “lastSettlementDate cannot be in the future.” \n\n* If no rows are found, the message returned is “No records found”",
 			"soap": "GetSettledBatchList",
 			"request": {
 				"name": "getSettledBatchListRequest",
 				"children": [
 					{
 						"name": "includeStatistics",
-						"value": "true or false",
+						"value": "true or false.",
 						"format": "",
 						"required": false,
-						"notes": "Optional. The default is false"
+						"notes": "Optional. The default is false."
 					},
 					{
 						"name": "firstSettlementDate",
 						"value": "",
 						"format": "yyyy-mm-ddTHH:MM:SS",
 						"required": false,
-						"notes": "Include this value if you want data for a range of dates other than the last 24 hrs. "
+						"notes": "Include this value if you want data for a range of dates other than the past 24 hrs. "
 					},
 					{
 						"name": "lastSettlementDate",
 						"value": "",
 						"format": "yyyy-mm-ddTHH:MM:SS",
 						"required": false,
-						"notes": "Include this value if you want data for a range of dates other than the last 24 hours. The maximum date range is 31 days. "
+						"notes": "Include this value if you want data for a range of dates other than the past 24 hours. The maximum date range is 31 days. "
 					}
 				],
 				"sample": "<getSettledBatchListRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <includeStatistics>true</includeStatistics>\n  <firstSettlementDate>2020-05-01T16:00:00Z</firstSettlementDate>\n  <lastSettlementDate>2020-05-31T16:00:00Z</lastSettlementDate>\n</getSettledBatchListRequest>"
@@ -5847,7 +5847,7 @@
 									{
 										"name": "settlementState",
 										"value": "Status of the batch.",
-										"format": "settledSuccessfully or error",
+										"format": "settledSuccessfully or error.",
 										"required": false,
 										"notes": ""
 									},
@@ -5897,7 +5897,7 @@
 													},
 													{
 														"name": "chargeCount",
-														"value": "The number of credit card transactions .",
+														"value": "The number of credit card transactions.",
 														"format": "",
 														"required": false,
 														"notes": ""
@@ -6109,7 +6109,7 @@
 								"children": [
 									{
 										"name": "transId",
-										"value": "The transaction ID",
+										"value": "The transaction ID.",
 										"format": "",
 										"required": false,
 										"notes": ""
@@ -6188,7 +6188,7 @@
 		{
 			"title": "Get Transaction Details",
 			"id": "get-transaction-details",
-			"usage": "Use this function to get detailed information about one specific transaction.",
+			"usage": "Use this function to get detailed information about a specific transaction.",
 			"soap": "GetTransactionDetails",
 			"request": {
 				"name": "getTransactionDetailsRequest",
@@ -6264,21 +6264,21 @@
 								"value": "The transaction ID of the original transaction.",
 								"format": "",
 								"required": false,
-								"notes": "This only appears for linked credits (transaction type refundTransaction)."
+								"notes": "This appears only for linked credits (transaction type refundTransaction)."
 							},
 							{
 								"name": "splitTenderId",
 								"value": "Identifies the split tender order, if applicable.",
 								"format": "",
 								"required": false,
-								"notes": "This only appears for transactions that are part of a larger partial authorization order. "
+								"notes": "This appears only for transactions that are part of a larger partial authorization order. "
 							},
 							{
 								"name": "submitTimeUTC",
 								"value": "Date and time the transaction was submitted.",
 								"format": "",
 								"required": false,
-								"notes": "The “T” character separates the date from the time. This field returns the time as Universal Time (UTC)"
+								"notes": "The “T” character separates the date from the time. This field returns the time as Universal Time (UTC)."
 							},
 							{
 								"name": "submitTimeLocal",
@@ -6290,7 +6290,7 @@
 							{
 								"name": "transactionType",
 								"value": "The type of transaction that was originally submitted.",
-								"format": "authCaptureTransaction, authOnlyTransaction, captureOnlyTransaction, or refundTransaction ",
+								"format": "authCaptureTransaction, authOnlyTransaction, captureOnlyTransaction, or refundTransaction.",
 								"required": false,
 								"notes": ""
 							},
@@ -6361,7 +6361,7 @@
 						"children": [
 							{
 								"name": "FDSFilters",
-								"value": "Contains information for any fraud filters that might have been applied.",
+								"value": "Contains information for any fraud filters that have been applied.",
 								"format": "",
 								"required": false,
 								"notes": "",
@@ -6382,7 +6382,7 @@
 											},
 											{
 												"name": "action",
-												"value": "The setting for the filter. FDSFilterAction above will be the most restrictive action setting for all the filters.",
+												"value": "The setting for the filter. The FDSFilterAction setting will be the most restrictive action setting for all the filters.",
 												"format": "",
 												"required": false,
 												"notes": ""
@@ -6461,7 +6461,7 @@
 										"value": "The amount requested.",
 										"format": "",
 										"required": false,
-										"notes": "This will only be present for partial authorization transactions. For other transactions it is not listed because it is always the same as authAmount."
+										"notes": "This will only be present for partial authorization transactions. For other transactions it is not listed because it is always the same as the authAmount value."
 									},
 									{
 										"name": "authAmount",
@@ -6475,7 +6475,7 @@
 										"value": "The amount that was submitted for settlement. ",
 										"format": "",
 										"required": false,
-										"notes": "This will be the same as authAmount with the exception of voids, which will show $0.00, and potentially Prior Auth Capture transactions, which could have an amount less than authAmount. For declined and errored transactions, this will not be $0.00."
+										"notes": "This will be the same as the authAmount element, with the exception of voids, which will show $0.00, and potentially Prior Authorize and Capture transactions, which could have an amount less than the authAmount value. For declined and errored transactions, this will not be $0.00."
 									}
 								]
 							},
@@ -6585,28 +6585,28 @@
 										"children": [
 											{
 												"name": "name",
-												"value": "item name.",
+												"value": "Item name.",
 												"format": "Up to 31 characters.",
 												"required": false,
 												"notes": "A short description of an item. "
 											},
 											{
 												"name": "description",
-												"value": "item description.",
+												"value": "Item description.",
 												"format": "Up to 255 characters.",
 												"required": false,
 												"notes": "A detailed description of an item. "
 											},
 											{
 												"name": "quantity",
-												"value": "item quantity.",
+												"value": "Item quantity.",
 												"format": "Up to four decimal places.",
 												"required": false,
 												"notes": "The number of items sold. "
 											},
 											{
 												"name": "unitPrice",
-												"value": "item price (unit cost).",
+												"value": "Item price (unit cost).",
 												"format": "Up to two decimal places.",
 												"required": false,
 												"notes": "Cost of an item per unit, excluding tax, freight, and duty."
@@ -6712,7 +6712,7 @@
 									},
 									{
 										"name": "echeckType",
-										"value": "PPD, WEB, CCD, TEL",
+										"value": "PPD, WEB, CCD, or TEL.",
 										"format": "",
 										"required": false,
 										"notes": ""
@@ -6728,7 +6728,7 @@
 								"children": [
 									{
 										"name": "type",
-										"value": "individual, business",
+										"value": "individual or business.",
 										"format": "",
 										"required": false,
 										"notes": ""
@@ -6821,7 +6821,7 @@
 									},
 									{
 										"name": "faxNumber",
-										"value": "The fax number for the customer's billing address",
+										"value": "The fax number for the customer's billing address.",
 										"format": "",
 										"required": false,
 										"notes": ""
@@ -6896,7 +6896,7 @@
 							{
 								"name": "recurringBilling",
 								"value": "Indicates whether or not this is a recurring transaction.",
-								"format": "true or false",
+								"format": "true or false.",
 								"required": false,
 								"notes": ""
 							},
@@ -6916,7 +6916,7 @@
 		{
 			"title": "Get Unsettled Transaction List",
 			"id": "get-unsettled-transaction-list",
-			"usage": "Use this function to get data for unsettled transactions. The function will return data for up to 1000 of the most recent transactions. \n\nNo input parameters are required, other than the authentication information. ",
+			"usage": "Use this function to get data for unsettled transactions. The function will return data for up to 1000 of the most recent transactions. \n\nNo input parameters are required other than the authentication information. ",
 			"soap": "GetUnsettledTransactionList",
 			"request": {
 				"name": "getTransactionDetailsRequest",
@@ -6976,7 +6976,7 @@
 							{
 								"name": "resultCode",
 								"value": "Contains additional information about the results of the request.",
-								"format": "OK or Error",
+								"format": "OK or Error.",
 								"required": false,
 								"notes": ""
 							},
@@ -7015,7 +7015,7 @@
 							{
 								"name": "batchid",
 								"value": "The batch ID.",
-								"format": "12345",
+								"format": "12345.",
 								"required": false,
 								"notes": ""
 							},
@@ -7029,13 +7029,13 @@
 							{
 								"name": "settlementState",
 								"value": "Status of the batch.",
-								"format": "settledSuccessfully or error",
+								"format": "settledSuccessfully or error.",
 								"required": false,
 								"notes": ""
 							},
 							{
 								"name": "paymentMethod",
-								"value": "creditCard or eCheck",
+								"value": "creditCard or eCheck.",
 								"format": "",
 								"required": false,
 								"notes": ""
@@ -7056,7 +7056,7 @@
 										"children": [
 											{
 												"name": "accountType",
-												"value": "The card type for this transaction (including eCheck)\n\nPossible values:\n\nVisa\nMasterCard\nAmericanExpress\nDiscover\nJCB\nDinersClub\neCheck",
+												"value": "The card type for this transaction (including eCheck).\n\nPossible values:\n\nVisa\nMasterCard\nAmericanExpress\nDiscover\nJCB\nDinersClub\neCheck",
 												"format": "",
 												"required": false,
 												"notes": "A batch will contain either credit card or eCheck statistics, because eCheck transactions go in their own batch. "
