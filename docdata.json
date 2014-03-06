@@ -4699,8 +4699,8 @@
 			}
 		},
 		{
-			"title": "Authorizing and Capturing a Transaction from a Customer Profile (",
-			"id": "authorizing-and-capturing-a-transaction-from-a-customer-profile-(",
+			"title": "Authorizing and Capturing a Transaction from a Customer Profile",
+			"id": "authorizing-and-capturing-a-transaction-from-a-customer-profile",
 			"usage": "This function is used to authorize and capture a transaction from an existing customer profile, for Prior Authorization and Capture Transaction.",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
