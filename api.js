@@ -1,4 +1,7 @@
 var requestEditor, responseEditor, codeEditorsID=[],transactionkey,loginid;
+//var sURL = "https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api";
+var sURL = "https://apitest.authorize.net/xml/v1/request.api";
+
 
 
 $(document).ready(function() {
@@ -51,22 +54,37 @@ function redrawEditors(id) {
   codeEditorsID[id].refresh();
 }
 
+
+
+
 function XHConn()
 {
   var xmlhttp, bComplete = false;
+  var method = "POST";
   try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); }
   catch (e) { try { xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
-  catch (e) { try { xmlhttp = new XMLHttpRequest(); }
+  catch (e) { try { xmlhttp = new XMLHttpRequest();}
   catch (e) { xmlhttp = false; }}}
   if (!xmlhttp) return null;
 
-  this.connect = function(sURL, sPostData, fnDone)
-  {
-    if (!xmlhttp) return false;
-    bComplete = false;
+  this.connect = function( sPostData, fnDone)
+  { 
+    
 
     try {
-      xmlhttp.open("POST", sURL, true);
+      
+      bComplete = false;
+       if ("withCredentials" in xmlhttp) {
+          // XHR for Chrome/Firefox/Opera/Safari.
+          xmlhttp.open(method, sURL, true);
+        } else if (typeof XDomainRequest != "undefined") {
+          // XDomainRequest for IE.
+          xmlhttp = new XDomainRequest();
+          xmlhttp.open(method, sURL);
+        } else {
+          return false;
+        }
+      
       xmlhttp.setRequestHeader("method", "POST "+sURL+" HTTP/1.1");
       xmlhttp.setRequestHeader("content-type", "text/xml");
       xmlhttp.onreadystatechange = function(){
@@ -122,7 +140,7 @@ function btnSend_onclick(id) {
       reFormatCodeMirror("txtRespXml"+genericId);
       document.getElementById("btnSend"+genericId).disabled = false;
   };
-  g_xc.connect("https://apitest.authorize.net/xml/v1/request.api",codeEditorsID["txtReqXml"+genericId].getValue() , fnWhenDone);
+  g_xc.connect(codeEditorsID["txtReqXml"+genericId].getValue() , fnWhenDone);
 }
 
 function btnReset_onclick(id){
