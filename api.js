@@ -1,6 +1,6 @@
 var requestEditor, responseEditor, codeEditorsID=[],transactionkey,loginid;
-//var sURL = "https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api";
-var sURL = "https://apitest.authorize.net/xml/v1/request.api";
+var sURL = "http://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api";
+//var sURL = "https://apitest.authorize.net/xml/v1/request.api";
 
 
 
@@ -8,7 +8,7 @@ $(document).ready(function() {
 
   initAPI();
 
-	
+  
 });
 
 function initAPI(){
@@ -55,7 +55,22 @@ function redrawEditors(id) {
 }
 
 
-
+function IEXHConn()
+{
+    var xdr;
+    var method = "POST";
+        // Use Microsoft XDR
+    xdr = new XDomainRequest();
+    xdr.open(method, sURL);
+   
+    this.connect = function(postData,fnComplete)   {
+        xdr.onload = function() {
+            fnComplete(xdr);
+        };
+        xdr.send(postData);
+    } 
+    return this;
+}
 
 function XHConn()
 {
@@ -69,22 +84,10 @@ function XHConn()
 
   this.connect = function( sPostData, fnDone)
   { 
-    
-
     try {
       
       bComplete = false;
-       if ("withCredentials" in xmlhttp) {
-          // XHR for Chrome/Firefox/Opera/Safari.
-          xmlhttp.open(method, sURL, true);
-        } else if (typeof XDomainRequest != "undefined") {
-          // XDomainRequest for IE.
-          xmlhttp = new XDomainRequest();
-          xmlhttp.open(method, sURL);
-        } else {
-          return false;
-        }
-      
+      xmlhttp.open(method, sURL, true);
       xmlhttp.setRequestHeader("method", "POST "+sURL+" HTTP/1.1");
       xmlhttp.setRequestHeader("content-type", "text/xml");
       xmlhttp.onreadystatechange = function(){
@@ -105,7 +108,13 @@ function XHConn()
   return this;
 }
 
-var g_xc = new XHConn();
+var g_xc;
+  if (window.XDomainRequest) { 
+            g_xc =   new IEXHConn();
+            }
+            else{
+            g_xc =  new XHConn();
+            };
 var genericId;
 function btnSend_onclick(id) { 
   genericId = id.substring(7,id.length);
@@ -168,13 +177,13 @@ function btnPopulateKeys_onclick(object) {
    transactionkey = document.getElementById("txtTransactionKey-"+id).value;
    var allSamples = document.getElementsByClassName("sample-request");
    for (var i = 0; i < allSamples.length; i++) {
-    	var sampleRequest = codeEditorsID[allSamples[i].id];
-    	sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
-    	sampleRequest.refresh();
-  	}
+      var sampleRequest = codeEditorsID[allSamples[i].id];
+      sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
+      sampleRequest.refresh();
+    }
    $(object).find(".btn-primary").attr("disabled","disabled");
    $(".authenticationDiv").hide("slow");
-	 return false;
+   return false;
 }
 
 function selUrls_onChange(obj) {
