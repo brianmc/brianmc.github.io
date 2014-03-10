@@ -13,7 +13,7 @@ $(document).ready(function() {
 
 function initAPI(){
   $(".authenticationDiv").hide();
-  $("textarea").each(function(ind, ele){
+  $("textarea.sample-request, textarea.sample-response").each(function(ind, ele){
     var id = $(ele).attr('id');
     codeEditorsID[id] =  CodeMirror.fromTextArea(document.getElementById(id), { mode: 'xml',lineNumbers: true});
   });
@@ -46,6 +46,7 @@ function initAPI(){
 
 function initializelightBox(){
     var fsLightbox1687734 = new FSLightbox({form: 1687734,handle: "feedbackLinkID" });
+    getInternetExplorerVersion();
 
 }
 
@@ -190,4 +191,31 @@ function selUrls_onChange(obj) {
   if (document.getElementById("selUrls").value) {
     document.getElementById("txtUrl").value = document.getElementById("selUrls").value;
   }
+}
+
+// Returns the version of Internet Explorer or a -1
+// (indicating the use of another browser).
+function getInternetExplorerVersion()
+{
+  
+  if (navigator.appName == 'Microsoft Internet Explorer')
+  {
+    var ua = navigator.userAgent;
+    var re  = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+    if (re.exec(ua) != null){
+      rv = parseFloat( RegExp.$1 );
+    }
+    if(rv<=9){
+      $('form button').prop('disabled', true);
+      $('form .ie9msg').show();
+    }
+    else{
+      $('form .ie9msg').hide();
+    }
+    
+  }
+  else{
+     $('form .ie9msg').hide();
+  }
+  
 }
