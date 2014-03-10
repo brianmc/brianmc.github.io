@@ -1,13 +1,9 @@
 var requestEditor, responseEditor, codeEditorsID=[],transactionkey,loginid;
-var sURL = "http://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api";
+var sURL = "https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api";
 //var sURL = "https://apitest.authorize.net/xml/v1/request.api";
 
-
-
 $(document).ready(function() {
-
   initAPI();
-
   
 });
 
@@ -47,40 +43,19 @@ function initAPI(){
 function initializelightBox(){
     var fsLightbox1687734 = new FSLightbox({form: 1687734,handle: "feedbackLinkID" });
     getInternetExplorerVersion();
-
 }
-
 
 function redrawEditors(id) {
   codeEditorsID[id].refresh();
-}
-
-
-function IEXHConn()
-{
-    var xdr;
-    var method = "POST";
-        // Use Microsoft XDR
-    xdr = new XDomainRequest();
-    xdr.open(method, sURL);
-   
-    this.connect = function(postData,fnComplete)   {
-        xdr.onload = function() {
-            fnComplete(xdr);
-        };
-        xdr.send(postData);
-    } 
-    return this;
 }
 
 function XHConn()
 {
   var xmlhttp, bComplete = false;
   var method = "POST";
-  try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); }
-  catch (e) { try { xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
-  catch (e) { try { xmlhttp = new XMLHttpRequest();}
-  catch (e) { xmlhttp = false; }}}
+  try { 
+    xmlhttp = new XMLHttpRequest();
+  }catch (e) { xmlhttp = false; }
   if (!xmlhttp) return null;
 
   this.connect = function( sPostData, fnDone)
@@ -110,13 +85,9 @@ function XHConn()
 }
 
 var g_xc;
-  if (window.XDomainRequest) { 
-            g_xc =   new IEXHConn();
-            }
-            else{
-            g_xc =  new XHConn();
-            };
+g_xc =  new XHConn();
 var genericId;
+
 function btnSend_onclick(id) { 
   genericId = id.substring(7,id.length);
  
@@ -127,7 +98,6 @@ function btnSend_onclick(id) {
 
   $("#txtRespLoader"+genericId).show();   
   document.getElementById(id).disabled = true;
-  
   codeEditorsID["txtRespXml"+genericId].setValue("");
   document.getElementById("spnStatusCode"+genericId).innerHTML = "";
   
@@ -160,8 +130,6 @@ function btnReset_onclick(id){
    $("#spnStatusCode"+genericId).hide('easeIn', function(){
      $("#spnStatusCode"+genericId).text('');
    })
-   
-  
 }
 
 function reFormatCodeMirror(id){
@@ -193,11 +161,10 @@ function selUrls_onChange(obj) {
   }
 }
 
-// Returns the version of Internet Explorer or a -1
-// (indicating the use of another browser).
+// If for Browser if its below IE9
+// shows a notice 
 function getInternetExplorerVersion()
 {
-  
   if (navigator.appName == 'Microsoft Internet Explorer')
   {
     var ua = navigator.userAgent;
@@ -206,13 +173,12 @@ function getInternetExplorerVersion()
       rv = parseFloat( RegExp.$1 );
     }
     if(rv<=9){
-      $('form button').prop('disabled', true);
+      $('[id^="btnSend"],[id^="btnReset"]').prop('disabled', true);
       $('form .ie9msg').show();
     }
     else{
       $('form .ie9msg').hide();
     }
-    
   }
   else{
      $('form .ie9msg').hide();
