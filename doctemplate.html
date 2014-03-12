@@ -19,7 +19,7 @@
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Documentation extras -->
-    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+    <link href="dist/css/docs.min.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -29,7 +29,7 @@
 <![endif]-->
 
     <link href="dist/css/anet.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css">
+    <link rel="stylesheet" href="dist/css/codemirror.min.css">
 
     <!-- Favicons -->
     <link href="http://developer.authorize.net/resources/images/favicon.ico" rel="shortcut icon" />
@@ -133,12 +133,12 @@
                             </table>
                         </div>
                         <div class="tab-pane fade in" id="authentication-sample">
-                            <pre>
-                &lt;merchantAuthentication&gt;
-               &lt;name&gt;mytestacct&lt;/name&gt;
-               &lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
-              &lt;/merchantAuthentication&gt;
-            </pre>
+                            <textarea id="authentication-sample-Code">
+    &lt;merchantAuthentication&gt;
+        &lt;name&gt;mytestacct&lt;/name&gt;
+        &lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
+    &lt;/merchantAuthentication&gt;
+            </textarea>
                         </div>
                         <div class="tab-pane fade" id="authentication-keys">
                             <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
@@ -152,6 +152,7 @@
                                     <input type="text" class="form-control" id="txtTransactionKey-main" placeholder="Transaction Key">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                <p class="bg-danger btn required" style="display:none;cursor: auto">Both are required fields</p>
                             </form>
                         </div>
                     </div>
@@ -295,6 +296,7 @@
                                         <input type="text" class="form-control" id="txtTransactionKey-{{idFromTitle this.title}}" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-{{idFromTitle this.title}}" class="error"></span>
@@ -345,14 +347,15 @@
     <!-- Bootstrap core JavaScript
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="dist/js/bootstrap.min.js"></script>
-    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
+    <script src="dist/js/doc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
     <script type="text/javascript" src="https://www.formstack.com/forms/js/lightbox.js"></script>
     <script src="api.js"></script>
     <script src="formatting.js"></script>
+
 
 
 

@@ -13,6 +13,10 @@ function initAPI(){
     var id = $(ele).attr('id');
     codeEditorsID[id] =  CodeMirror.fromTextArea(document.getElementById(id), { mode: 'xml',lineNumbers: true});
   });
+  // Sample API readonly code mirror
+  codeEditorsID['authentication-sample-Code'] = CodeMirror.fromTextArea(document.getElementById('authentication-sample-Code'), { mode: 'xml',lineNumbers: true,readOnly:true});
+  codeEditorsID['authentication-sample-Code'].setSize(null,85);
+
   $('a').click(function(event){ 
     if($(event.currentTarget).html()==="Try it")
     {
@@ -20,6 +24,10 @@ function initAPI(){
       id = id.substring(0,id.length-5);
        setTimeout(function() {  redrawEditors('txtReqXml-'+id); redrawEditors('txtRespXml-'+id) }, 250);
     } 
+    else if($(event.currentTarget).html() == 'Sample')
+    {
+      setTimeout(function() {  redrawEditors('authentication-sample-Code'); }, 250);
+    }
   });
 
  
@@ -144,14 +152,27 @@ function btnPopulateKeys_onclick(object) {
    var id = object.id.split("populateKeyForm-")[1];
    loginid = document.getElementById("txtLoginID-"+id).value;                                 
    transactionkey = document.getElementById("txtTransactionKey-"+id).value;
+   if(loginid==="" || transactionkey==="" ){
+    $("#"+object.id+" div").addClass("has-error");
+    $("form .required").show();
+    
+    return false;
+   }
+   
+  
+   
    var allSamples = document.getElementsByClassName("sample-request");
    for (var i = 0; i < allSamples.length; i++) {
       var sampleRequest = codeEditorsID[allSamples[i].id];
       sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
       sampleRequest.refresh();
     }
-   $(object).find(".btn-primary").attr("disabled","disabled");
+   $(object).find(".btn-primary").attr("disabled","disabled").addClass("btn-success").removeClass("btn-primary").text("Done!!");
    $(".authenticationDiv").hide("slow");
+   $("form .required").hide();
+   $("#"+object.id+" div").removeClass("has-error");
+   $("#txtLoginID-"+id).val('');
+   $("#txtTransactionKey-"+id).val('');
    return false;
 }
 

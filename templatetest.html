@@ -19,7 +19,7 @@
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Documentation extras -->
-    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+    <link href="dist/css/docs.min.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -29,7 +29,7 @@
 <![endif]-->
 
     <link href="dist/css/anet.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css">
+    <link rel="stylesheet" href="dist/css/codemirror.min.css">
 
     <!-- Favicons -->
     <link href="http://developer.authorize.net/resources/images/favicon.ico" rel="shortcut icon" />
@@ -133,12 +133,12 @@
                             </table>
                         </div>
                         <div class="tab-pane fade in" id="authentication-sample">
-                            <pre>
-                &lt;merchantAuthentication&gt;
-               &lt;name&gt;mytestacct&lt;/name&gt;
-               &lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
-              &lt;/merchantAuthentication&gt;
-            </pre>
+                            <textarea id="authentication-sample-Code">
+    &lt;merchantAuthentication&gt;
+        &lt;name&gt;mytestacct&lt;/name&gt;
+        &lt;transactionKey&gt;112223344&lt;/transactionKey&gt;
+    &lt;/merchantAuthentication&gt;
+            </textarea>
                         </div>
                         <div class="tab-pane fade" id="authentication-keys">
                             <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
@@ -152,6 +152,7 @@
                                     <input type="text" class="form-control" id="txtTransactionKey-main" placeholder="Transaction Key">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                <p class="bg-danger btn required" style="display:none;cursor: auto">Both are required fields</p>
                             </form>
                         </div>
                     </div>
@@ -1319,6 +1320,7 @@ B = CAVV passed validation, information only, no liability shift.</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-create-a-transaction" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-create-a-transaction" class="error"></span>
@@ -1887,6 +1889,7 @@ Required when you use an EU payment processor.</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-create-a-subscription" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-create-a-subscription" class="error"></span>
@@ -2038,6 +2041,7 @@ AnetApiSchema.xsd&quot;&gt;
                                         <input type="text" class="form-control" id="txtTransactionKey-get-subscription-status" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-subscription-status" class="error"></span>
@@ -2519,6 +2523,7 @@ Required when you use an EU payment processor.</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-update-a-subscription" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-update-a-subscription" class="error"></span>
@@ -2661,6 +2666,7 @@ AnetApiSchema.xsd&quot;&gt;
                                         <input type="text" class="form-control" id="txtTransactionKey-cancel-a-subscription" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-cancel-a-subscription" class="error"></span>
@@ -3131,6 +3137,7 @@ The list is returned in the same order as the payment profiles were submitted in
                                         <input type="text" class="form-control" id="txtTransactionKey-create-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-create-customer-profile" class="error"></span>
@@ -3460,6 +3467,7 @@ For example, (123)123-1234.</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-get-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-customer-profile" class="error"></span>
@@ -3665,6 +3673,7 @@ For example, (123)123-1234.</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-get-customer-profile-ids" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-customer-profile-ids" class="error"></span>
@@ -3834,6 +3843,7 @@ For example, (123)123-1234.</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-update-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-update-customer-profile" class="error"></span>
@@ -3958,6 +3968,7 @@ For example, (123)123-1234.</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-delete-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-delete-customer-profile" class="error"></span>
@@ -4303,6 +4314,7 @@ The cardCode element is used only for validation and is not stored in the custom
                                         <input type="text" class="form-control" id="txtTransactionKey-create-customer-payment-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-create-customer-payment-profile" class="error"></span>
@@ -4654,6 +4666,7 @@ All sensitive payment information in the output is masked.</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-get-customer-payment-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-customer-payment-profile" class="error"></span>
@@ -4831,6 +4844,7 @@ cardCode is used only for validation and is not stored in the customer profile. 
                                         <input type="text" class="form-control" id="txtTransactionKey-validate-customer-payment-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-validate-customer-payment-profile" class="error"></span>
@@ -5201,6 +5215,7 @@ If this field is not submitted in the request, or is submitted with a blank valu
                                         <input type="text" class="form-control" id="txtTransactionKey-update-customer-payment-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-update-customer-payment-profile" class="error"></span>
@@ -5333,6 +5348,7 @@ If this field is not submitted in the request, or is submitted with a blank valu
                                         <input type="text" class="form-control" id="txtTransactionKey-delete-customer-payment-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-delete-customer-payment-profile" class="error"></span>
@@ -5555,6 +5571,7 @@ For example, (123)123-1234</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-create-customer-shipping-address" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-create-customer-shipping-address" class="error"></span>
@@ -5769,6 +5786,7 @@ For example, (123)123-1234.</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-get-customer-shipping-address" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-customer-shipping-address" class="error"></span>
@@ -6005,6 +6023,7 @@ For example, (123)123-1234</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-update-customer-shipping-address" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-update-customer-shipping-address" class="error"></span>
@@ -6137,6 +6156,7 @@ For example, (123)123-1234</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-delete-customer-shipping-address" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-delete-customer-shipping-address" class="error"></span>
@@ -6549,6 +6569,7 @@ For example, 4.95</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-authorize-a-transaction-from-a-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-authorize-a-transaction-from-a-customer-profile" class="error"></span>
@@ -6962,6 +6983,7 @@ For example, 4.95</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-authorize-and-capture-a-transaction-from-a-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-authorize-and-capture-a-transaction-from-a-customer-profile" class="error"></span>
@@ -7320,6 +7342,7 @@ For example, 4.95</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-authorizing-and-capturing-a-transaction-from-a-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-authorizing-and-capturing-a-transaction-from-a-customer-profile" class="error"></span>
@@ -7741,6 +7764,7 @@ For example, 4.95</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-capture-a-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-capture-a-customer-profile" class="error"></span>
@@ -8173,6 +8197,7 @@ For example, XXXX1234</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-refunding-a-transaction-for-a-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-refunding-a-transaction-for-a-customer-profile" class="error"></span>
@@ -8349,6 +8374,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                         <input type="text" class="form-control" id="txtTransactionKey-voiding-transactions-for-a-customer-profile" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-voiding-transactions-for-a-customer-profile" class="error"></span>
@@ -8519,6 +8545,7 @@ The customer’s browser posts the token, Authorize.Net validates it, and makes 
                                         <input type="text" class="form-control" id="txtTransactionKey-get-hosted-profile-page" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-hosted-profile-page" class="error"></span>
@@ -8653,6 +8680,7 @@ The customer’s browser posts the token, Authorize.Net validates it, and makes 
                                         <input type="text" class="form-control" id="txtTransactionKey-update-split-tender-group" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-update-split-tender-group" class="error"></span>
@@ -8918,6 +8946,7 @@ HH:MM:SS</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-get-settled-batch-list" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-settled-batch-list" class="error"></span>
@@ -9261,6 +9290,7 @@ eCheck</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-get-transaction-list" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-transaction-list" class="error"></span>
@@ -10140,6 +10170,7 @@ DinersClub</td>
                                         <input type="text" class="form-control" id="txtTransactionKey-get-transaction-details" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-transaction-details" class="error"></span>
@@ -10374,6 +10405,7 @@ No input parameters are required other than the authentication information. </p>
                                         <input type="text" class="form-control" id="txtTransactionKey-get-unsettled-transaction-list" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-unsettled-transaction-list" class="error"></span>
@@ -10647,6 +10679,7 @@ eCheck
                                         <input type="text" class="form-control" id="txtTransactionKey-get-batch-statistics" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
                             <div><span class="header">Response:</span>  <span id="spnStatusCode-get-batch-statistics" class="error"></span>
@@ -10839,14 +10872,15 @@ eCheck
     <!-- Bootstrap core JavaScript
 ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script src="dist/js/bootstrap.min.js"></script>
-    <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
+    <script src="dist/js/doc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
     <script type="text/javascript" src="https://www.formstack.com/forms/js/lightbox.js"></script>
     <script src="api.js"></script>
     <script src="formatting.js"></script>
+
 
 
 
