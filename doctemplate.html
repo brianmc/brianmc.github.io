@@ -271,8 +271,10 @@
                         </div>
                         <div class="tab-pane fade" id="console-{{idFromTitle this.title}}">
                             <form method="post" action="">
+                            {{#if this.soap}}
                                 <p>For a SOAP Request/Response sample, see our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op={{this.soap}}">SOAP method documentation.</a></p>
                                     <p/>
+                             {{/if}}       
                                         <div><span class="header">Request:</span>
                                         </div>
                                         <p>
@@ -357,6 +359,16 @@
     <script src="formatting.js"></script>
 
 
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20120532-1']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
 
 
 
