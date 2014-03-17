@@ -58,9 +58,20 @@
     google.setOnLoadCallback(drawVisualization);
     
     function drawVisualization() {
+
+        var tweetCount = 0;
+
+        $.ajax({
+                url: 'http://www.bmg-tech.com/tweets?topic=authorizenet&period=day',
+                cache: false                  
+        })
+          .done(function( data ) {
+            tweetCount = data.count;
+          });
+
         var data = google.visualization.arrayToDataTable([
           ['Label', 'Value'],
-          ['Tweets', 1]
+          ['Tweets', tweetCount]
         ]);
 
         var options = {
