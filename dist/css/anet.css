@@ -160,3 +160,14 @@ iframe {
     background-color: aliceblue;
     padding: 5px; 
 }
+.footerTradmark{
+    width: 100%;
+    background-color: #2e5c82;
+    color: white;
+    position: relative;
+    text-align: center;
+}
+.watermark{
+    opacity: 0.65;
+    font-weight: bold;
+}
