@@ -34,12 +34,10 @@ function initAPI(){
   $('button').click(function(event){ 
     if($(event.currentTarget).attr('name')==="btnSend")
     {
-      
       btnSend_onclick(this.id);
     } 
      if($(event.currentTarget).attr('name')==="btnReset")
     {
-      
       btnReset_onclick(this.id);
     }
 
@@ -133,6 +131,8 @@ function btnSend_onclick(id) {
 
 function btnReset_onclick(id){
    genericId = id.substring(8,id.length);
+   codeEditorsID["txtReqXml"+genericId].setValue($("#txtReqXml"+genericId).val().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
+   codeEditorsID["txtReqXml"+genericId].refresh();
    codeEditorsID["txtRespXml"+genericId].setValue($("#txtRespXml"+genericId).val());
    codeEditorsID["txtRespXml"+genericId].refresh();
    $("#spnStatusCode"+genericId).hide('easeIn', function(){
@@ -155,12 +155,8 @@ function btnPopulateKeys_onclick(object) {
    if(loginid==="" || transactionkey==="" ){
     $("#"+object.id+" div").addClass("has-error");
     $("form .required").show();
-    
     return false;
-   }
-   
-  
-   
+   }   
    var allSamples = document.getElementsByClassName("sample-request");
    for (var i = 0; i < allSamples.length; i++) {
       var sampleRequest = codeEditorsID[allSamples[i].id];
@@ -182,8 +178,8 @@ function selUrls_onChange(obj) {
   }
 }
 
-// If for Browser if its below IE9
-// shows a notice 
+// If  Browser is below IE9
+// it shows a notice 
 function getInternetExplorerVersion()
 {
   if (navigator.appName == 'Microsoft Internet Explorer')
@@ -204,5 +200,4 @@ function getInternetExplorerVersion()
   else{
      $('form .ie9msg').hide();
   }
-  
 }
