@@ -333,8 +333,7 @@ Note: Starting and ending sentinel characters must be discarded before submittin
 
 This is sensitive cardholder information and must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. 
 
-For more information about PCI, see the Developer Security Best Practices White Paper at 
-http://www.authorize.net/files/developerbestpractices.pdf.</td>
+For more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training.</td>
                                         <td>Between 13 and 16 digits without spaces
 
 Only the last four digits are required for credit card transactions.</td>
@@ -348,8 +347,7 @@ Only the last four digits are required for credit card transactions.</td>
 
 This is sensitive cardholder information and must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. 
 
-For more information about PCI, see the Developer Security Best Practices White Paper at 
-http://www.authorize.net/files/developerbestpractices.pdf.</td>
+For more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training.</td>
                                         <td>One of the following:
 
 MMYY, 
@@ -368,8 +366,7 @@ This field is required if the merchant would like to use the Card Code Verificat
 
 Cardholder information must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. 
 
-See the Developer Security Best Practices White Paper at 
-http://www.authorize.net/files/developerbestpractices.pdf for more information.</td>
+For more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training.</td>
                                         <td>Numeric</td>
                                     </tr>
                                      
@@ -1841,35 +1838,35 @@ Required when you use an EU payment processor.</td>
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-create-a-subscription" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCreateSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscription&gt;
-        &lt;name&gt;Sample subscription&lt;/name&gt;
-        &lt;paymentSchedule&gt;
-            &lt;interval&gt;
-                &lt;length&gt;1&lt;/length&gt;
-                &lt;unit&gt;months&lt;/unit&gt;
-            &lt;/interval&gt;
-            &lt;startDate&gt;2020-08-30&lt;/startDate&gt;
-            &lt;totalOccurrences&gt;12&lt;/totalOccurrences&gt;
-            &lt;trialOccurrences&gt;1&lt;/trialOccurrences&gt;
-        &lt;/paymentSchedule&gt;
-        &lt;amount&gt;10.29&lt;/amount&gt;
-        &lt;trialAmount&gt;0.00&lt;/trialAmount&gt;
-        &lt;payment&gt;
-            &lt;creditCard&gt;
-                &lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
-                &lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
-            &lt;/creditCard&gt;
-        &lt;/payment&gt;
-        &lt;billTo&gt;
-            &lt;firstName&gt;John&lt;/firstName&gt;
-            &lt;lastName&gt;Smith&lt;/lastName&gt;
-        &lt;/billTo&gt;
-    &lt;/subscription&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscription&gt;
+		&lt;name&gt;Sample subscription&lt;/name&gt;
+		&lt;paymentSchedule&gt;
+			&lt;interval&gt;
+				&lt;length&gt;1&lt;/length&gt;
+				&lt;unit&gt;months&lt;/unit&gt;
+			&lt;/interval&gt;
+			&lt;startDate&gt;2020-08-30&lt;/startDate&gt;
+			&lt;totalOccurrences&gt;12&lt;/totalOccurrences&gt;
+			&lt;trialOccurrences&gt;1&lt;/trialOccurrences&gt;
+		&lt;/paymentSchedule&gt;
+		&lt;amount&gt;10.29&lt;/amount&gt;
+		&lt;trialAmount&gt;0.00&lt;/trialAmount&gt;
+		&lt;payment&gt;
+			&lt;creditCard&gt;
+				&lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
+				&lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
+			&lt;/creditCard&gt;
+		&lt;/payment&gt;
+		&lt;billTo&gt;
+			&lt;firstName&gt;John&lt;/firstName&gt;
+			&lt;lastName&gt;Smith&lt;/lastName&gt;
+		&lt;/billTo&gt;
+	&lt;/subscription&gt;
 &lt;/ARBCreateSubscriptionRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -1899,15 +1896,15 @@ Required when you use an EU payment processor.</td>
                                 <textarea class="sample-response" id="txtRespXml-create-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCreateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful.&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBCreateSubscriptionResponse&gt;</textarea>
                                 <div id="txtRespLoader-create-a-subscription" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2018,12 +2015,12 @@ AnetApiSchema.xsd&quot;&gt;
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-get-subscription-status" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBGetSubscriptionStatusRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBGetSubscriptionStatusRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -2052,15 +2049,15 @@ AnetApiSchema.xsd&quot;&gt;
                             <div style="position:relative;">
                                 <textarea class="sample-response" id="txtRespXml-get-subscription-status" name="txtRespXml" cols="80" rows="6">&lt;ARBGetSubscriptionStatusResponse xmlns:xsi=&quot;http://www.w3.org/2001/
 XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
-    &lt;Status&gt;active&lt;/Status&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
+	&lt;Status&gt;active&lt;/Status&gt;
 &lt;/ARBGetSubscriptionStatusResponse&gt;</textarea>
                                 <div id="txtRespLoader-get-subscription-status" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2494,20 +2491,20 @@ Required when you use an EU payment processor.</td>
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-update-a-subscription" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBUpdateSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
-    &lt;subscription&gt;
-        &lt;payment&gt;
-            &lt;creditCard&gt;
-                &lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
-                &lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
-            &lt;/creditCard&gt;
-        &lt;/payment&gt;
-    &lt;/subscription&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;subscription&gt;
+		&lt;payment&gt;
+			&lt;creditCard&gt;
+				&lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
+				&lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
+			&lt;/creditCard&gt;
+		&lt;/payment&gt;
+	&lt;/subscription&gt;
 &lt;/ARBUpdateSubscriptionRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -2537,14 +2534,14 @@ Required when you use an EU payment processor.</td>
                                 <textarea class="sample-response" id="txtRespXml-update-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBUpdateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful.&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
 &lt;/ARBUpdateSubscriptionResponse&gt;</textarea>
                                 <div id="txtRespLoader-update-a-subscription" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2647,12 +2644,12 @@ AnetApiSchema.xsd&quot;&gt;
                                         </div>
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-cancel-a-subscription" name="txtReqXml" cols="80" rows="6" style="">&lt;ARBCancelSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBCancelSubscriptionRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -2681,14 +2678,14 @@ AnetApiSchema.xsd&quot;&gt;
                             <div style="position:relative;">
                                 <textarea class="sample-response" id="txtRespXml-cancel-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCancelSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful.&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
 &lt;/ARBCancelSubscriptionResponse&gt;</textarea>
                                 <div id="txtRespLoader-cancel-a-subscription" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2704,10 +2701,10 @@ AnetApiSchema.xsd&quot;&gt;
                 </div>
                 
                 <div class="bs-docs-section">
-                    <h1 id="customer-profiles" class="page-header">Customer Profiles</h1>
+                    <h1 id="manage-customer-profiles" class="page-header">Manage Customer Profiles</h1>
                     <p class="lead">This API enables you to store customer payment and address data for subsequent use.</p>
                     
-                    <h3 id="customer-profiles-create-customer-profile">Create Customer Profile</h3>
+                    <h3 id="manage-customer-profiles-create-customer-profile">Create Customer Profile</h3>
                     <p>Use this function to create a new customer profile including any customer payment profiles and customer shipping addresses.
 
 Note: The createCustomerProfileResponse field returns only the assigned customerProfileId element for the created profile. To retrieve the customerPaymentProfileId element and the customerShippingId element that may also be created when using the createCustomerProfile function, you must submit the getCustomerProfileRequest function using the assigned customerProfileId element for that customer profile.</p>
@@ -3125,7 +3122,7 @@ The list is returned in the same order as the payment profiles were submitted in
            &lt;/payment&gt;
       &lt;/paymentProfiles&gt;
     &lt;/profile&gt;
-    &lt;validationMode&gt;testMode&lt;/validationMode&gt;
+	&lt;validationMode&gt;testMode&lt;/validationMode&gt;
   &lt;/createCustomerProfileRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -3188,7 +3185,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,&lt;/string&gt;
                     </div>
 
                     
-                    <h3 id="customer-profiles-get-customer-profile">Get Customer Profile</h3>
+                    <h3 id="manage-customer-profiles-get-customer-profile">Get Customer Profile</h3>
                     <p>Use this function to retrieve an existing customer profile along with all the associated payment profiles and shipping addresses.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-customer-profile" data-toggle="tab">Request</a>
@@ -3566,7 +3563,7 @@ For example, (123)123-1234.</td>
                     </div>
 
                     
-                    <h3 id="customer-profiles-get-customer-profile-ids">Get Customer Profile IDs</h3>
+                    <h3 id="manage-customer-profiles-get-customer-profile-ids">Get Customer Profile IDs</h3>
                     <p>Use this function to retrieve all existing customer profile IDs.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-customer-profile-ids" data-toggle="tab">Request</a>
@@ -3718,7 +3715,7 @@ For example, (123)123-1234.</td>
                     </div>
 
                     
-                    <h3 id="customer-profiles-update-customer-profile">Update Customer Profile</h3>
+                    <h3 id="manage-customer-profiles-update-customer-profile">Update Customer Profile</h3>
                     <p>Use this function to update an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-update-customer-profile" data-toggle="tab">Request</a>
@@ -3885,7 +3882,7 @@ For example, (123)123-1234.</td>
                     </div>
 
                     
-                    <h3 id="customer-profiles-delete-customer-profile">Delete Customer Profile</h3>
+                    <h3 id="manage-customer-profiles-delete-customer-profile">Delete Customer Profile</h3>
                     <p>Use this function to delete an existing customer profile along with all associated customer payment profiles and customer shipping addresses.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-delete-customer-profile" data-toggle="tab">Request</a>
@@ -4012,7 +4009,7 @@ For example, (123)123-1234.</td>
                     </div>
 
                     
-                    <h3 id="customer-profiles-create-customer-payment-profile">Create Customer Payment Profile</h3>
+                    <h3 id="manage-customer-profiles-create-customer-payment-profile">Create Customer Payment Profile</h3>
                     <p>Use this function to create a new customer payment profile for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-create-customer-payment-profile" data-toggle="tab">Request</a>
@@ -4366,7 +4363,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-get-customer-payment-profile">Get Customer Payment Profile</h3>
+                    <h3 id="manage-customer-profiles-get-customer-payment-profile">Get Customer Payment Profile</h3>
                     <p>Use this function to retrieve a customer payment profile for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-customer-payment-profile" data-toggle="tab">Request</a>
@@ -4735,7 +4732,7 @@ All sensitive payment information in the output is masked.</td>
                     </div>
 
                     
-                    <h3 id="customer-profiles-validate-customer-payment-profile">Validate Customer Payment Profile</h3>
+                    <h3 id="manage-customer-profiles-validate-customer-payment-profile">Validate Customer Payment Profile</h3>
                     <p>Use this function to generating a test transaction that verifies an existing customer payment profile. No customer receipt emails are sent when the  validateCustomerPaymentProfileRequest element is called.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-validate-customer-payment-profile" data-toggle="tab">Request</a>
@@ -4898,7 +4895,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-update-customer-payment-profile">Update Customer Payment Profile</h3>
+                    <h3 id="manage-customer-profiles-update-customer-payment-profile">Update Customer Payment Profile</h3>
                     <p>Use this function to update a payment profile for an existing customer profile.
 
 Note that if some fields in this request are not submitted or are submitted with a blank value, the values in the original profile are removed. As a best practice to prevent this from happening, call getCustomerPaymentProfileRequest before calling updateCustomerPaymentProfileRequest. This action returns all current information including masked payment information. Then, simply change the field that needs updating and use that field to call updateCustomerPaymentProfileRequest.
@@ -5267,7 +5264,7 @@ If this field is not submitted in the request, or is submitted with a blank valu
                     </div>
 
                     
-                    <h3 id="customer-profiles-delete-customer-payment-profile">Delete Customer Payment Profile</h3>
+                    <h3 id="manage-customer-profiles-delete-customer-payment-profile">Delete Customer Payment Profile</h3>
                     <p>Use this function to delete a customer payment profile from an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-delete-customer-payment-profile" data-toggle="tab">Request</a>
@@ -5402,7 +5399,7 @@ If this field is not submitted in the request, or is submitted with a blank valu
                     </div>
 
                     
-                    <h3 id="customer-profiles-create-customer-shipping-address">Create Customer Shipping Address</h3>
+                    <h3 id="manage-customer-profiles-create-customer-shipping-address">Create Customer Shipping Address</h3>
                     <p>Use this function to create a new customer shipping address for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-create-customer-shipping-address" data-toggle="tab">Request</a>
@@ -5628,7 +5625,7 @@ For example, (123)123-1234</td>
                     </div>
 
                     
-                    <h3 id="customer-profiles-get-customer-shipping-address">Get Customer Shipping Address</h3>
+                    <h3 id="manage-customer-profiles-get-customer-shipping-address">Get Customer Shipping Address</h3>
                     <p>Use this function to retrieve a customer shipping address for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-customer-shipping-address" data-toggle="tab">Request</a>
@@ -5857,7 +5854,7 @@ For example, (123)123-1234.</td>
                     </div>
 
                     
-                    <h3 id="customer-profiles-update-customer-shipping-address">Update Customer Shipping Address</h3>
+                    <h3 id="manage-customer-profiles-update-customer-shipping-address">Update Customer Shipping Address</h3>
                     <p>Use this function to update a shipping address for an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-update-customer-shipping-address" data-toggle="tab">Request</a>
@@ -6083,7 +6080,7 @@ For example, (123)123-1234</td>
                     </div>
 
                     
-                    <h3 id="customer-profiles-delete-customer-shipping-address">Delete Customer Shipping Address</h3>
+                    <h3 id="manage-customer-profiles-delete-customer-shipping-address">Delete Customer Shipping Address</h3>
                     <p>Use this function to delete a customer shipping address from an existing customer profile.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-delete-customer-shipping-address" data-toggle="tab">Request</a>
@@ -6218,7 +6215,320 @@ For example, (123)123-1234</td>
                     </div>
 
                     
-                    <h3 id="customer-profiles-authorize-a-transaction-from-a-customer-profile">Authorize a Transaction from a Customer Profile</h3>
+                    <h3 id="manage-customer-profiles-get-hosted-profile-page">Get Hosted Profile Page</h3>
+                    <p>Use this function to initiate a request for direct access to the Authorize.Net website.</p>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#homereq-get-hosted-profile-page" data-toggle="tab">Request</a>
+                        </li>
+                        <li><a href="#homeresp-get-hosted-profile-page" data-toggle="tab">Response</a>
+                        </li>
+                        <li><a id="get-hosted-profile-pageTryIt" href="#console-get-hosted-profile-page" data-toggle="tab">Try it</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="homereq-get-hosted-profile-page">
+                            <p><em>Input Elements for getHostedProfilePageRequest</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>refId</td>
+                                        <td>Merchant-assigned reference ID for the request.
+                                            <br/>If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.</td>
+                                        <td>Up to 20 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td>customerProfileId</td>
+                                        <td>Payment gateway assigned ID associated with the customer profile.
+                                            <br/></td>
+                                        <td>Numeric.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td>hostedProfileSettings</td>
+                                        <td>This is an array of settings for the session (optional).
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='oneBullet'>settingName</td>
+                                        <td>Optional. One of:
+* hostedProfileReturnUrl
+* hostedProfileReturnUrlText
+* hostedProfileHeadingBgColor
+* hostedProfilePageBorderVisible
+* hostedProfileIFrameCommunicatorUrl
+* hostedProfileValidationMode
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>settingValue</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                      
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade in" id="homeresp-get-hosted-profile-page">
+                            <p><em>Output for getHostedProfilePageResponse</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>Token</td>
+                                        <td>An encrypted string that the merchant must include when posting to the Authorize.Net web page.
+                                            <br/>If not used within 15 minutes of the original API call, this token expires.
+
+The customer’s browser posts the token, Authorize.Net validates it, and makes sure the timestamp is less than 15 minutes old. </td>
+                                        <td>String.</td>
+                                    </tr>
+                                     
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="console-get-hosted-profile-page">
+                            <form method="post" action="">
+                            
+                                <p>For a SOAP Request/Response sample, see our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op=GetHostedProfilePage">SOAP method documentation.</a></p>
+                                    <p/>
+                                    
+                                        <div><span class="header">Request:</span>
+                                        </div>
+                                        <p>
+                                            <textarea class="sample-request" id="txtReqXml-get-hosted-profile-page" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;getHostedProfilePageRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
+  &lt;merchantAuthentication&gt;
+    &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+    &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+  &lt;/merchantAuthentication&gt;
+  &lt;customerProfileId&gt;YourProfileID&lt;/customerProfileId&gt;
+  &lt;hostedProfileSettings&gt;
+    &lt;setting&gt;
+      &lt;settingName&gt;hostedProfileReturnUrl&lt;/settingName&gt;
+      &lt;settingValue&gt;https://blah.com/blah/&lt;/settingValue&gt;
+    &lt;/setting&gt;
+    &lt;setting&gt;
+      &lt;settingName&gt;hostedProfileReturnUrlText&lt;/settingName&gt;
+      &lt;settingValue&gt;Continue to blah.&lt;/settingValue&gt;
+    &lt;/setting&gt;
+          &lt;setting&gt;
+                &lt;settingName&gt;hostedProfilePageBorderVisible&lt;/settingName&gt;
+                 &lt;settingValue&gt;true&lt;/settingValue&gt;
+          &lt;/setting&gt;
+ &lt;/hostedProfileSettings&gt;
+&lt;/getHostedProfilePageRequest&gt;</textarea>
+                                        </p>
+                                        <p>
+                                            <button type="button" id="btnSend-get-hosted-profile-page" name="btnSend" class="btn btn-primary">SEND</button>
+                                            <button type="button" id="btnReset-get-hosted-profile-page" name="btnReset" class="btn btn" onclick="">Reset</button>
+                                             <span class="ie9msg btn bg-danger" disabled="" style="font-style: italic;">Live API Console requests are not supported in IE9 or below.</span>
+                                        </p>
+                            </form>
+                            <div class="authenticationDiv" id="auth-get-hosted-profile-page">
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
+                                <form class="form-inline" id="populateKeyForm-get-hosted-profile-page" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="loginID">API Login ID</label>
+                                        <input type="text" class="form-control" id="txtLoginID-get-hosted-profile-page" placeholder="API Login ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="transactionKey">Transaction Key</label>
+                                        <input type="text" class="form-control" id="txtTransactionKey-get-hosted-profile-page" placeholder="Transaction Key">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
+                                </form>
+                            </div>
+                            <div><span class="header">Response:</span>  <span id="spnStatusCode-get-hosted-profile-page" class="error"></span>
+                            </div>
+                            <div style="position:relative;">
+                                <textarea class="sample-response" id="txtRespXml-get-hosted-profile-page" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;getHostedProfilePageResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
+  &lt;messages&gt;
+    &lt;resultCode&gt;Ok&lt;/resultCode&gt;
+    &lt;message&gt;
+      &lt;code&gt;I00001&lt;/code&gt;
+      &lt;text&gt;Successful.&lt;/text&gt;
+    &lt;/message&gt;
+  &lt;/messages&gt;
+  &lt;token&gt;+ZeWDaUOPoQPRGTHcKd7DYbMfcAFDrhO8GPOFNt+ACzJnvkz+aWO0SYSAA9x602jAIKKfUHUt2ybwQRaG8LzHluuR5dRgsuh+kjarKvD0hpieGjLHmnz0LHmFv1Xe9P3zpmawqBCSB/d4jcSg9dAxecNBUzMwIuYzY+vGUGLUXgr9QPaRh93HqWZrV4Mbwop&lt;/token&gt;
+&lt;/getHostedProfilePageResponse&gt;</textarea>
+                                <div id="txtRespLoader-get-hosted-profile-page" class="loaderContainer">
+                                    <div class="loaderbg">Loading...</div>
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    
+                    <h3 id="manage-customer-profiles-update-split-tender-group">Update Split Tender Group</h3>
+                    <p>Use this function to update the status of an existing order that contains multiple transactions with the same splitTenderId value. </p>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#homereq-update-split-tender-group" data-toggle="tab">Request</a>
+                        </li>
+                        <li><a href="#homeresp-update-split-tender-group" data-toggle="tab">Response</a>
+                        </li>
+                        <li><a id="update-split-tender-groupTryIt" href="#console-update-split-tender-group" data-toggle="tab">Try it</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="homereq-update-split-tender-group">
+                            <p><em>Input Elements for updateSplitTenderGroupRequest</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>refId</td>
+                                        <td>Merchant-assigned reference ID for the request.
+                                            <br/>If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.</td>
+                                        <td>Up to 20 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td>splitTenderId</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Payment gateway-assigned number associated with the order.
+                                            <br/></td>
+                                        <td>Numeric.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td>splitTenderStatus</td>
+                                        <td>Indicates the status of all transactions associated with the order.
+                                            <br/>Use voided to void the entire order; use completed to indicate there are no further transactions in this order.</td>
+                                        <td>voided or completed</td>
+                                    </tr>
+                                     
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade in" id="homeresp-update-split-tender-group">
+                            <p><em>Output for updateSplitTenderGroupResponse</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>refId</td>
+                                        <td>Merchant-assigned reference ID for the request.
+                                            <br/>If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications.</td>
+                                        <td>Up to 20 characters.</td>
+                                    </tr>
+                                     
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="console-update-split-tender-group">
+                            <form method="post" action="">
+                            
+                                <p>For a SOAP Request/Response sample, see our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op=UpdateSplitTenderGroup">SOAP method documentation.</a></p>
+                                    <p/>
+                                    
+                                        <div><span class="header">Request:</span>
+                                        </div>
+                                        <p>
+                                            <textarea class="sample-request" id="txtReqXml-update-split-tender-group" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;updateSplitTenderGroupRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
+  &lt;merchantAuthentication&gt;
+    &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+    &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+  &lt;/merchantAuthentication&gt;
+  &lt;splitTenderId&gt;123456&lt;/splitTenderId&gt;
+  &lt;splitTenderStatus&gt;voided&lt;/splitTenderStatus&gt;
+&lt;/updateSplitTenderGroupRequest&gt;</textarea>
+                                        </p>
+                                        <p>
+                                            <button type="button" id="btnSend-update-split-tender-group" name="btnSend" class="btn btn-primary">SEND</button>
+                                            <button type="button" id="btnReset-update-split-tender-group" name="btnReset" class="btn btn" onclick="">Reset</button>
+                                             <span class="ie9msg btn bg-danger" disabled="" style="font-style: italic;">Live API Console requests are not supported in IE9 or below.</span>
+                                        </p>
+                            </form>
+                            <div class="authenticationDiv" id="auth-update-split-tender-group">
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
+                                <form class="form-inline" id="populateKeyForm-update-split-tender-group" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="loginID">API Login ID</label>
+                                        <input type="text" class="form-control" id="txtLoginID-update-split-tender-group" placeholder="API Login ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="transactionKey">Transaction Key</label>
+                                        <input type="text" class="form-control" id="txtTransactionKey-update-split-tender-group" placeholder="Transaction Key">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
+                                </form>
+                            </div>
+                            <div><span class="header">Response:</span>  <span id="spnStatusCode-update-split-tender-group" class="error"></span>
+                            </div>
+                            <div style="position:relative;">
+                                <textarea class="sample-response" id="txtRespXml-update-split-tender-group" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;updateSplitTenderGroupResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
+  &lt;messages&gt;
+    &lt;resultCode&gt;Ok&lt;/resultCode&gt;
+    &lt;message&gt;
+      &lt;code&gt;I00001&lt;/code&gt;
+      &lt;text&gt;Successful.&lt;/text&gt;
+    &lt;/message&gt;
+  &lt;/messages&gt;
+&lt;/updateSplitTenderGroupResponse&gt;</textarea>
+                                <div id="txtRespLoader-update-split-tender-group" class="loaderContainer">
+                                    <div class="loaderbg">Loading...</div>
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    
+                </div>
+                
+                <div class="bs-docs-section">
+                    <h1 id="charge-customer-profiles" class="page-header">Charge Customer Profiles</h1>
+                    <p class="lead">This API enables you to store customer payment and address data for subsequent use.</p>
+                    
+                    <h3 id="charge-customer-profiles-authorize-a-transaction-from-a-customer-profile">Authorize a Transaction from a Customer Profile</h3>
                     <p>Use this function to authorize a transaction from an existing customer profile. This transaction type generates a customer receipt email. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-authorize-a-transaction-from-a-customer-profile" data-toggle="tab">Request</a>
@@ -6636,7 +6946,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">Authorize and Capture a Transaction from a Customer Profile</h3>
+                    <h3 id="charge-customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">Authorize and Capture a Transaction from a Customer Profile</h3>
                     <p>Use this function to authorize and capture a customer profile from an existing customer profile, for an Authorize and Capture transaction. This transaction type generates a customer receipt email. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-authorize-and-capture-a-transaction-from-a-customer-profile" data-toggle="tab">Request</a>
@@ -7052,18 +7362,18 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-authorizing-and-capturing-a-transaction-from-a-customer-profile">Authorizing and Capturing a Transaction from a Customer Profile</h3>
+                    <h3 id="charge-customer-profiles-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">Authorizing and Capturing a Transaction from a Customer Profile (</h3>
                     <p>This function is used to authorize and capture a transaction from an existing customer profile, for Prior Authorization and Capture Transaction.</p>
                     <ul id="myTab" class="nav nav-tabs">
-                        <li class="active"><a href="#homereq-authorizing-and-capturing-a-transaction-from-a-customer-profile" data-toggle="tab">Request</a>
+                        <li class="active"><a href="#homereq-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" data-toggle="tab">Request</a>
                         </li>
-                        <li><a href="#homeresp-authorizing-and-capturing-a-transaction-from-a-customer-profile" data-toggle="tab">Response</a>
+                        <li><a href="#homeresp-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" data-toggle="tab">Response</a>
                         </li>
-                        <li><a id="authorizing-and-capturing-a-transaction-from-a-customer-profileTryIt" href="#console-authorizing-and-capturing-a-transaction-from-a-customer-profile" data-toggle="tab">Try it</a>
+                        <li><a id="authorizing-and-capturing-a-transaction-from-a-customer-profile-(TryIt" href="#console-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" data-toggle="tab">Try it</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade in active" id="homereq-authorizing-and-capturing-a-transaction-from-a-customer-profile">
+                        <div class="tab-pane fade in active" id="homereq-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">
                             <p><em>Input Elements for createCustomerProfileTransactionRequest</em>
                             </p>
                             <table class="table table-condensed">
@@ -7282,7 +7592,7 @@ For example, 4.95</td>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade in" id="homeresp-authorizing-and-capturing-a-transaction-from-a-customer-profile">
+                        <div class="tab-pane fade in" id="homeresp-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">
                             <p><em>Output for createCustomerProfileTransactionResponse</em>
                             </p>
                             <table class="table table-condensed">
@@ -7312,7 +7622,7 @@ For example, 4.95</td>
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane fade" id="console-authorizing-and-capturing-a-transaction-from-a-customer-profile">
+                        <div class="tab-pane fade" id="console-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">
                             <form method="post" action="">
                             
                                 <p>For a SOAP Request/Response sample, see our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op=CreateCustomerProfileTransaction">SOAP method documentation.</a></p>
@@ -7321,7 +7631,7 @@ For example, 4.95</td>
                                         <div><span class="header">Request:</span>
                                         </div>
                                         <p>
-                                            <textarea class="sample-request" id="txtReqXml-authorizing-and-capturing-a-transaction-from-a-customer-profile" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+                                            <textarea class="sample-request" id="txtReqXml-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;merchantAuthentication&gt;
     &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
@@ -7366,30 +7676,30 @@ For example, 4.95</td>
 &lt;/createCustomerProfileTransactionRequest&gt;</textarea>
                                         </p>
                                         <p>
-                                            <button type="button" id="btnSend-authorizing-and-capturing-a-transaction-from-a-customer-profile" name="btnSend" class="btn btn-primary">SEND</button>
-                                            <button type="button" id="btnReset-authorizing-and-capturing-a-transaction-from-a-customer-profile" name="btnReset" class="btn btn" onclick="">Reset</button>
+                                            <button type="button" id="btnSend-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" name="btnSend" class="btn btn-primary">SEND</button>
+                                            <button type="button" id="btnReset-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" name="btnReset" class="btn btn" onclick="">Reset</button>
                                              <span class="ie9msg btn bg-danger" disabled="" style="font-style: italic;">Live API Console requests are not supported in IE9 or below.</span>
                                         </p>
                             </form>
-                            <div class="authenticationDiv" id="auth-authorizing-and-capturing-a-transaction-from-a-customer-profile">
+                            <div class="authenticationDiv" id="auth-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">
                                 <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
-                                <form class="form-inline" id="populateKeyForm-authorizing-and-capturing-a-transaction-from-a-customer-profile" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
+                                <form class="form-inline" id="populateKeyForm-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
                                     <div class="form-group">
                                         <label class="sr-only" for="loginID">API Login ID</label>
-                                        <input type="text" class="form-control" id="txtLoginID-authorizing-and-capturing-a-transaction-from-a-customer-profile" placeholder="API Login ID">
+                                        <input type="text" class="form-control" id="txtLoginID-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" placeholder="API Login ID">
                                     </div>
                                     <div class="form-group">
                                         <label class="sr-only" for="transactionKey">Transaction Key</label>
-                                        <input type="text" class="form-control" id="txtTransactionKey-authorizing-and-capturing-a-transaction-from-a-customer-profile" placeholder="Transaction Key">
+                                        <input type="text" class="form-control" id="txtTransactionKey-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" placeholder="Transaction Key">
                                     </div>
                                     <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
                                     <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
                                 </form>
                             </div>
-                            <div><span class="header">Response:</span>  <span id="spnStatusCode-authorizing-and-capturing-a-transaction-from-a-customer-profile" class="error"></span>
+                            <div><span class="header">Response:</span>  <span id="spnStatusCode-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" class="error"></span>
                             </div>
                             <div style="position:relative;">
-                                <textarea class="sample-response" id="txtRespXml-authorizing-and-capturing-a-transaction-from-a-customer-profile" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+                                <textarea class="sample-response" id="txtRespXml-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;createCustomerProfileTransactionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
   &lt;messages&gt;
     &lt;resultCode&gt;Ok&lt;/resultCode&gt;
@@ -7402,7 +7712,7 @@ For example, 4.95</td>
 D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
   &lt;/directResponse&gt;
 &lt;/createCustomerProfileTransactionResponse&gt;</textarea>
-                                <div id="txtRespLoader-authorizing-and-capturing-a-transaction-from-a-customer-profile" class="loaderContainer">
+                                <div id="txtRespLoader-authorizing-and-capturing-a-transaction-from-a-customer-profile-(" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
                                     <div class="loader"></div>
                                 </div>
@@ -7413,7 +7723,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-capture-a-customer-profile">Capture a Customer Profile</h3>
+                    <h3 id="charge-customer-profiles-capture-a-customer-profile">Capture a Customer Profile</h3>
                     <p>Use this function to capture a customer profile from an existing customer profile. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-capture-a-customer-profile" data-toggle="tab">Request</a>
@@ -7837,24 +8147,8 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-refunding-a-transaction-for-a-customer-profile">Refunding a Transaction for a Customer Profile</h3>
-                    <p>Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email. 
-
-If you are submitting a refund against a previous CIM transaction, the following guidelines apply: 
-* include customerProfileId, customerPaymentProfileId, and transId
-* customerShippingAddressId is optional
-* creditCardNumberMasked, bankRoutingNumberMasked, and bankAccountNumberMasked do not need to be included, but they will be validated if they are included
-
-If you are submitting a refund for a non-CIM transaction, the following guidelines apply: 
-* you must include transId, creditCardNumberMasked (or bankRoutingNumberMasked and bankAccountNumberMasked)
-* do not include customerProfileId, customerPaymentProfileId, or customerShippingAddressId
-
-You can also issue an unlinked refund for a CIM transaction. In this case, the following rules apply:
-* you must be enrolled in Expanded Credit Capabilities (ECC). For more information about ECC, go to http://www.authorize.net/files/ecc.pdf
-* you must include customerProfileId and customerPaymentProfileId
-* customerShippingAddressId is optional
-* do not include transId, creditCardNumberMasked, bankRoutingNumberMasked, or bankAccountNumberMasked
-</p>
+                    <h3 id="charge-customer-profiles-refunding-a-transaction-for-a-customer-profile">Refunding a Transaction for a Customer Profile</h3>
+                    <p>Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-refunding-a-transaction-for-a-customer-profile" data-toggle="tab">Request</a>
                         </li>
@@ -8272,7 +8566,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-voiding-transactions-for-a-customer-profile">Voiding Transactions for a Customer Profile</h3>
+                    <h3 id="charge-customer-profiles-voiding-transactions-for-a-customer-profile">Voiding Transactions for a Customer Profile</h3>
                     <p>Use this function to void transactions for an existing customer profile. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-voiding-transactions-for-a-customer-profile" data-toggle="tab">Request</a>
@@ -8451,313 +8745,6 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                     </div>
 
                     
-                    <h3 id="customer-profiles-get-hosted-profile-page">Get Hosted Profile Page</h3>
-                    <p>Use this function to initiate a request for direct access to the Authorize.Net website.</p>
-                    <ul id="myTab" class="nav nav-tabs">
-                        <li class="active"><a href="#homereq-get-hosted-profile-page" data-toggle="tab">Request</a>
-                        </li>
-                        <li><a href="#homeresp-get-hosted-profile-page" data-toggle="tab">Response</a>
-                        </li>
-                        <li><a id="get-hosted-profile-pageTryIt" href="#console-get-hosted-profile-page" data-toggle="tab">Try it</a>
-                        </li>
-                    </ul>
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade in active" id="homereq-get-hosted-profile-page">
-                            <p><em>Input Elements for getHostedProfilePageRequest</em>
-                            </p>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Element</th>
-                                        <th>Description</th>
-                                        <th>Format</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    <tr>
-                                        <td>refId</td>
-                                        <td>Merchant-assigned reference ID for the request.
-                                            <br/>If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.</td>
-                                        <td>Up to 20 characters.</td>
-                                    </tr>
-                                     
-                                    <tr>
-                                        <td>customerProfileId</td>
-                                        <td>Payment gateway assigned ID associated with the customer profile.
-                                            <br/></td>
-                                        <td>Numeric.</td>
-                                    </tr>
-                                     
-                                    <tr>
-                                        <td>hostedProfileSettings</td>
-                                        <td>This is an array of settings for the session (optional).
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='oneBullet'>settingName</td>
-                                        <td>Optional. One of:
-* hostedProfileReturnUrl
-* hostedProfileReturnUrlText
-* hostedProfileHeadingBgColor
-* hostedProfilePageBorderVisible
-* hostedProfileIFrameCommunicatorUrl
-* hostedProfileValidationMode
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
-                                     
-                                    <tr>
-                                        <td class='oneBullet'>settingValue</td>
-                                        <td>
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
-                                      
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane fade in" id="homeresp-get-hosted-profile-page">
-                            <p><em>Output for getHostedProfilePageResponse</em>
-                            </p>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Element</th>
-                                        <th>Description</th>
-                                        <th>Format</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    <tr>
-                                        <td>Token</td>
-                                        <td>An encrypted string that the merchant must include when posting to the Authorize.Net web page.
-                                            <br/>If not used within 15 minutes of the original API call, this token expires.
-
-The customer’s browser posts the token, Authorize.Net validates it, and makes sure the timestamp is less than 15 minutes old. </td>
-                                        <td>String.</td>
-                                    </tr>
-                                     
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane fade" id="console-get-hosted-profile-page">
-                            <form method="post" action="">
-                            
-                                <p>For a SOAP Request/Response sample, see our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op=GetHostedProfilePage">SOAP method documentation.</a></p>
-                                    <p/>
-                                    
-                                        <div><span class="header">Request:</span>
-                                        </div>
-                                        <p>
-                                            <textarea class="sample-request" id="txtReqXml-get-hosted-profile-page" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;getHostedProfilePageRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-  &lt;merchantAuthentication&gt;
-    &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-    &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-  &lt;/merchantAuthentication&gt;
-  &lt;customerProfileId&gt;YourProfileID&lt;/customerProfileId&gt;
-  &lt;hostedProfileSettings&gt;
-    &lt;setting&gt;
-      &lt;settingName&gt;hostedProfileReturnUrl&lt;/settingName&gt;
-      &lt;settingValue&gt;https://blah.com/blah/&lt;/settingValue&gt;
-    &lt;/setting&gt;
-    &lt;setting&gt;
-      &lt;settingName&gt;hostedProfileReturnUrlText&lt;/settingName&gt;
-      &lt;settingValue&gt;Continue to blah.&lt;/settingValue&gt;
-    &lt;/setting&gt;
-          &lt;setting&gt;
-                &lt;settingName&gt;hostedProfilePageBorderVisible&lt;/settingName&gt;
-                 &lt;settingValue&gt;true&lt;/settingValue&gt;
-          &lt;/setting&gt;
- &lt;/hostedProfileSettings&gt;
-&lt;/getHostedProfilePageRequest&gt;</textarea>
-                                        </p>
-                                        <p>
-                                            <button type="button" id="btnSend-get-hosted-profile-page" name="btnSend" class="btn btn-primary">SEND</button>
-                                            <button type="button" id="btnReset-get-hosted-profile-page" name="btnReset" class="btn btn" onclick="">Reset</button>
-                                             <span class="ie9msg btn bg-danger" disabled="" style="font-style: italic;">Live API Console requests are not supported in IE9 or below.</span>
-                                        </p>
-                            </form>
-                            <div class="authenticationDiv" id="auth-get-hosted-profile-page">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
-                                <form class="form-inline" id="populateKeyForm-get-hosted-profile-page" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
-                                    <div class="form-group">
-                                        <label class="sr-only" for="loginID">API Login ID</label>
-                                        <input type="text" class="form-control" id="txtLoginID-get-hosted-profile-page" placeholder="API Login ID">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="transactionKey">Transaction Key</label>
-                                        <input type="text" class="form-control" id="txtTransactionKey-get-hosted-profile-page" placeholder="Transaction Key">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
-                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
-                                </form>
-                            </div>
-                            <div><span class="header">Response:</span>  <span id="spnStatusCode-get-hosted-profile-page" class="error"></span>
-                            </div>
-                            <div style="position:relative;">
-                                <textarea class="sample-response" id="txtRespXml-get-hosted-profile-page" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;getHostedProfilePageResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-  &lt;messages&gt;
-    &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-    &lt;message&gt;
-      &lt;code&gt;I00001&lt;/code&gt;
-      &lt;text&gt;Successful.&lt;/text&gt;
-    &lt;/message&gt;
-  &lt;/messages&gt;
-  &lt;token&gt;+ZeWDaUOPoQPRGTHcKd7DYbMfcAFDrhO8GPOFNt+ACzJnvkz+aWO0SYSAA9x602jAIKKfUHUt2ybwQRaG8LzHluuR5dRgsuh+kjarKvD0hpieGjLHmnz0LHmFv1Xe9P3zpmawqBCSB/d4jcSg9dAxecNBUzMwIuYzY+vGUGLUXgr9QPaRh93HqWZrV4Mbwop&lt;/token&gt;
-&lt;/getHostedProfilePageResponse&gt;</textarea>
-                                <div id="txtRespLoader-get-hosted-profile-page" class="loaderContainer">
-                                    <div class="loaderbg">Loading...</div>
-                                    <div class="loader"></div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    
-                    <h3 id="customer-profiles-update-split-tender-group">Update Split Tender Group</h3>
-                    <p>Use this function to update the status of an existing order that contains multiple transactions with the same splitTenderId value. </p>
-                    <ul id="myTab" class="nav nav-tabs">
-                        <li class="active"><a href="#homereq-update-split-tender-group" data-toggle="tab">Request</a>
-                        </li>
-                        <li><a href="#homeresp-update-split-tender-group" data-toggle="tab">Response</a>
-                        </li>
-                        <li><a id="update-split-tender-groupTryIt" href="#console-update-split-tender-group" data-toggle="tab">Try it</a>
-                        </li>
-                    </ul>
-                    <div id="myTabContent" class="tab-content">
-                        <div class="tab-pane fade in active" id="homereq-update-split-tender-group">
-                            <p><em>Input Elements for updateSplitTenderGroupRequest</em>
-                            </p>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Element</th>
-                                        <th>Description</th>
-                                        <th>Format</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    <tr>
-                                        <td>refId</td>
-                                        <td>Merchant-assigned reference ID for the request.
-                                            <br/>If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.</td>
-                                        <td>Up to 20 characters.</td>
-                                    </tr>
-                                     
-                                    <tr>
-                                        <td>splitTenderId</td>
-                                        <td><strong>Required.</strong>
-                                            <br/>Payment gateway-assigned number associated with the order.
-                                            <br/></td>
-                                        <td>Numeric.</td>
-                                    </tr>
-                                     
-                                    <tr>
-                                        <td>splitTenderStatus</td>
-                                        <td>Indicates the status of all transactions associated with the order.
-                                            <br/>Use voided to void the entire order; use completed to indicate there are no further transactions in this order.</td>
-                                        <td>voided or completed</td>
-                                    </tr>
-                                     
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane fade in" id="homeresp-update-split-tender-group">
-                            <p><em>Output for updateSplitTenderGroupResponse</em>
-                            </p>
-                            <table class="table table-condensed">
-                                <thead>
-                                    <tr>
-                                        <th>Element</th>
-                                        <th>Description</th>
-                                        <th>Format</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    
-                                    <tr>
-                                        <td>refId</td>
-                                        <td>Merchant-assigned reference ID for the request.
-                                            <br/>If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications.</td>
-                                        <td>Up to 20 characters.</td>
-                                    </tr>
-                                     
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane fade" id="console-update-split-tender-group">
-                            <form method="post" action="">
-                            
-                                <p>For a SOAP Request/Response sample, see our <a target="_blank" href="https://api.authorize.net/soap/v1/Service.asmx?op=UpdateSplitTenderGroup">SOAP method documentation.</a></p>
-                                    <p/>
-                                    
-                                        <div><span class="header">Request:</span>
-                                        </div>
-                                        <p>
-                                            <textarea class="sample-request" id="txtReqXml-update-split-tender-group" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;updateSplitTenderGroupRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-  &lt;merchantAuthentication&gt;
-    &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-    &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-  &lt;/merchantAuthentication&gt;
-  &lt;splitTenderId&gt;123456&lt;/splitTenderId&gt;
-  &lt;splitTenderStatus&gt;voided&lt;/splitTenderStatus&gt;
-&lt;/updateSplitTenderGroupRequest&gt;</textarea>
-                                        </p>
-                                        <p>
-                                            <button type="button" id="btnSend-update-split-tender-group" name="btnSend" class="btn btn-primary">SEND</button>
-                                            <button type="button" id="btnReset-update-split-tender-group" name="btnReset" class="btn btn" onclick="">Reset</button>
-                                             <span class="ie9msg btn bg-danger" disabled="" style="font-style: italic;">Live API Console requests are not supported in IE9 or below.</span>
-                                        </p>
-                            </form>
-                            <div class="authenticationDiv" id="auth-update-split-tender-group">
-                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
-                                <form class="form-inline" id="populateKeyForm-update-split-tender-group" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
-                                    <div class="form-group">
-                                        <label class="sr-only" for="loginID">API Login ID</label>
-                                        <input type="text" class="form-control" id="txtLoginID-update-split-tender-group" placeholder="API Login ID">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="sr-only" for="transactionKey">Transaction Key</label>
-                                        <input type="text" class="form-control" id="txtTransactionKey-update-split-tender-group" placeholder="Transaction Key">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
-                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
-                                </form>
-                            </div>
-                            <div><span class="header">Response:</span>  <span id="spnStatusCode-update-split-tender-group" class="error"></span>
-                            </div>
-                            <div style="position:relative;">
-                                <textarea class="sample-response" id="txtRespXml-update-split-tender-group" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;updateSplitTenderGroupResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-  &lt;messages&gt;
-    &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-    &lt;message&gt;
-      &lt;code&gt;I00001&lt;/code&gt;
-      &lt;text&gt;Successful.&lt;/text&gt;
-    &lt;/message&gt;
-  &lt;/messages&gt;
-&lt;/updateSplitTenderGroupResponse&gt;</textarea>
-                                <div id="txtRespLoader-update-split-tender-group" class="loaderContainer">
-                                    <div class="loaderbg">Loading...</div>
-                                    <div class="loader"></div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                    
                 </div>
                 
                 <div class="bs-docs-section">
@@ -8765,35 +8752,7 @@ The customer’s browser posts the token, Authorize.Net validates it, and makes 
                     <p class="lead">Enables developers to access transaction history and details programmatically</p>
                     
                     <h3 id="transaction-reporting-get-settled-batch-list">Get Settled Batch List</h3>
-                    <p>This function returns Batch ID, Settlement Time, &amp; Settlement State for all settled batches with a range of dates. If you specify includeStatistics, you also receive batch statistics by payment type and batch totals. All input parameters are optional.
-
-If no dates are specified, then the default is the past 24 hours (ending at the time of the call to getSettledBatchListRequest). The input and output for all dates default to the merchant’s local time, unless UTC time is specified.
-
-If the time in the firstSettlementDate and lastSettlementDate ends with a Z (for example, 2010-09-21T16:00:00Z) then this is UTC time and not the merchant’s local time. 
-
-The default date range is one day (the previous 24 hour period). The maximum date range is 31 days. The merchant time zone is taken into consideration when calculating the batch date range, unless the Z is specified in the first and last settlement dates. 
-
-If you specify includeStatistics=true, then statistics are included for the entire range, including the first and last settlement dates. 
-
-The search results are inclusive of the date range. 
-
-If the merchant sends in a time of 00:00:00 for lastSettlementDate, then one day is added to this day in the search (so that it includes the date specified). The 31-day check happens before this day is added.
-
-The firstSettlementDate parameter cannot precede January 1, two years before the current year. For example, if the current date is September 1, 2010, firstSettlementDate must be January 1, 2008 or later. 
-
-Possible errors returned are:
-
-* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: &quot;firstSettlementDate is greater than the lastSettelementDate&quot;
-
-* If the difference between the firstSettlementDate and lastSettelementDate is more than 31 days, then the error message is Err_Invalid_field: “The date range cannot exceed 31 days.” 
-
-* If the firstSettlementDate is older than the allowed firstSettlementDate, then the error is Err_Invalid_field: “firstSettlementDate cannot be older than the year of {nn}”, where nn is 2 years prior to the current year. 
-
-* If only one of firstSettlementDate or lastSettlementDate is specified, the message returned is Err_Required_Field: &quot;firstSettlementDate is required when lastSettlementDate is present.&quot;; &quot;lastSettlementDate is required when firstSettlementDate is present.&quot;
-
-* If the lastSettlementDate is in the future, the message returned is Err_Invalid_field: “lastSettlementDate cannot be in the future.” 
-
-* If no rows are found, the message returned is “No records found”</p>
+                    <p>This function returns Batch ID, Settlement Time, &amp; Settlement State for all settled batches with a range of dates. If you specify includeStatistics, you also receive batch statistics by payment type and batch totals. All input parameters are optional. If no dates are specified, then the default is the past 24 hours (ending at the time of the call to getSettledBatchListRequest).</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-settled-batch-list" data-toggle="tab">Request</a>
                         </li>
@@ -10827,73 +10786,80 @@ eCheck
                         </li>
                         
                         <li>
-                            <a href="#customer-profiles">Customer Profiles</a>
+                            <a href="#manage-customer-profiles">Manage Customer Profiles</a>
                             <ul class="nav">
                                 
-                                <li><a href="#customer-profiles-create-customer-profile">Create Customer Profile</a>
+                                <li><a href="#manage-customer-profiles-create-customer-profile">Create Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-get-customer-profile">Get Customer Profile</a>
+                                <li><a href="#manage-customer-profiles-get-customer-profile">Get Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-get-customer-profile-ids">Get Customer Profile IDs</a>
+                                <li><a href="#manage-customer-profiles-get-customer-profile-ids">Get Customer Profile IDs</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-update-customer-profile">Update Customer Profile</a>
+                                <li><a href="#manage-customer-profiles-update-customer-profile">Update Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-delete-customer-profile">Delete Customer Profile</a>
+                                <li><a href="#manage-customer-profiles-delete-customer-profile">Delete Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-create-customer-payment-profile">Create Customer Payment Profile</a>
+                                <li><a href="#manage-customer-profiles-create-customer-payment-profile">Create Customer Payment Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-get-customer-payment-profile">Get Customer Payment Profile</a>
+                                <li><a href="#manage-customer-profiles-get-customer-payment-profile">Get Customer Payment Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-validate-customer-payment-profile">Validate Customer Payment Profile</a>
+                                <li><a href="#manage-customer-profiles-validate-customer-payment-profile">Validate Customer Payment Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-update-customer-payment-profile">Update Customer Payment Profile</a>
+                                <li><a href="#manage-customer-profiles-update-customer-payment-profile">Update Customer Payment Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-delete-customer-payment-profile">Delete Customer Payment Profile</a>
+                                <li><a href="#manage-customer-profiles-delete-customer-payment-profile">Delete Customer Payment Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-create-customer-shipping-address">Create Customer Shipping Address</a>
+                                <li><a href="#manage-customer-profiles-create-customer-shipping-address">Create Customer Shipping Address</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-get-customer-shipping-address">Get Customer Shipping Address</a>
+                                <li><a href="#manage-customer-profiles-get-customer-shipping-address">Get Customer Shipping Address</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-update-customer-shipping-address">Update Customer Shipping Address</a>
+                                <li><a href="#manage-customer-profiles-update-customer-shipping-address">Update Customer Shipping Address</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-delete-customer-shipping-address">Delete Customer Shipping Address</a>
+                                <li><a href="#manage-customer-profiles-delete-customer-shipping-address">Delete Customer Shipping Address</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-authorize-a-transaction-from-a-customer-profile">Authorize a Transaction from a Customer Profile</a>
+                                <li><a href="#manage-customer-profiles-get-hosted-profile-page">Get Hosted Profile Page</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">Authorize and Capture a Transaction from a Customer Profile</a>
+                                <li><a href="#manage-customer-profiles-update-split-tender-group">Update Split Tender Group</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-authorizing-and-capturing-a-transaction-from-a-customer-profile">Authorizing and Capturing a Transaction from a Customer Profile</a>
+                            </ul>
+                        </li>
+                        
+                        <li>
+                            <a href="#charge-customer-profiles">Charge Customer Profiles</a>
+                            <ul class="nav">
+                                
+                                <li><a href="#charge-customer-profiles-authorize-a-transaction-from-a-customer-profile">Authorize a Transaction from a Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-capture-a-customer-profile">Capture a Customer Profile</a>
+                                <li><a href="#charge-customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">Authorize and Capture a Transaction from a Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-refunding-a-transaction-for-a-customer-profile">Refunding a Transaction for a Customer Profile</a>
+                                <li><a href="#charge-customer-profiles-authorizing-and-capturing-a-transaction-from-a-customer-profile-(">Authorizing and Capturing a Transaction from a Customer Profile (</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-voiding-transactions-for-a-customer-profile">Voiding Transactions for a Customer Profile</a>
+                                <li><a href="#charge-customer-profiles-capture-a-customer-profile">Capture a Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-get-hosted-profile-page">Get Hosted Profile Page</a>
+                                <li><a href="#charge-customer-profiles-refunding-a-transaction-for-a-customer-profile">Refunding a Transaction for a Customer Profile</a>
                                 </li>
                                 
-                                <li><a href="#customer-profiles-update-split-tender-group">Update Split Tender Group</a>
+                                <li><a href="#charge-customer-profiles-voiding-transactions-for-a-customer-profile">Voiding Transactions for a Customer Profile</a>
                                 </li>
                                 
                             </ul>
@@ -10954,11 +10920,9 @@ eCheck
     })();
     </script>
 
-
-
-
     </script>
     <div class="footerTradmark" > © 2009, 2014. Authorize.Net is a registered trademark of CyberSource, a Visa company. All rights reserved.<br /><span class="watermark">Published on 03/15/2014.</span></div>
+
 </body>
 
 </html>

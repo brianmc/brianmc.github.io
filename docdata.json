@@ -226,21 +226,21 @@
 												"value": "The customer’s credit card number.",
 												"format": "Between 13 and 16 digits without spaces\n\nOnly the last four digits are required for credit card transactions.",
 												"required": true,
-												"notes": "Optional for Card Present.\n\nThis is sensitive cardholder information and must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. \n\nFor more information about PCI, see the Developer Security Best Practices White Paper at \nhttp://www.authorize.net/files/developerbestpractices.pdf."
+												"notes": "Optional for Card Present.\n\nThis is sensitive cardholder information and must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. \n\nFor more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training."
 											},
 											{
 												"name": "expirationDate",
 												"value": "The customer’s credit card expiration date.",
 												"format": "One of the following:\n\nMMYY, \nMM/YY, \nMM-YY, MMYYYY, \nMM/YYYY, \nMM-YYYY",
 												"required": true,
-												"notes": "Optional for Card Present.\n\nThis is sensitive cardholder information and must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. \n\nFor more information about PCI, see the Developer Security Best Practices White Paper at \nhttp://www.authorize.net/files/developerbestpractices.pdf."
+												"notes": "Optional for Card Present.\n\nThis is sensitive cardholder information and must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. \n\nFor more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training."
 											},
 											{
 												"name": "cardCode",
 												"value": "The customer’s card code.",
 												"format": "Numeric",
 												"required": false,
-												"notes": "The three- or four-digit number on the back of a credit card (on the front for American Express). \n\nThis field is required if the merchant would like to use the Card Code Verification (CCV) security feature. \n\nCardholder information must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. \n\nSee the Developer Security Best Practices White Paper at \nhttp://www.authorize.net/files/developerbestpractices.pdf for more information."
+												"notes": "The three- or four-digit number on the back of a credit card (on the front for American Express). \n\nThis field is required if the merchant would like to use the Card Code Verification (CCV) security feature. \n\nCardholder information must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. \n\nFor more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training."
 											}
 										]
 									},
@@ -2024,9 +2024,9 @@
 	]
 },
 {
-	"APIName": "Customer Profiles",
+	"APIName": "Manage Customer Profiles",
 	"APIUsage": "This API enables you to store customer payment and address data for subsequent use.",
-	"API_ID": "customer-profiles",
+	"API_ID": "manage-customer-profiles",
 	"methods": [
 		{
 			"title": "Create Customer Profile",
@@ -4113,6 +4113,121 @@
 			}
 		},
 		{
+			"title": "Get Hosted Profile Page",
+			"id": "get-hosted-profile-page",
+			"usage": "Use this function to initiate a request for direct access to the Authorize.Net website.",
+			"soap": "GetHostedProfilePage",
+			"request": {
+				"name": "Input Elements for getHostedProfilePageRequest",
+				"children": [
+					{
+						"name": "refId",
+						"value": "Merchant-assigned reference ID for the request.",
+						"format": "Up to 20 characters.",
+						"required": false,
+						"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications."
+					},
+					{
+						"name": "customerProfileId",
+						"value": "Payment gateway assigned ID associated with the customer profile.",
+						"format": "Numeric.",
+						"required": false,
+						"notes": ""
+					},
+					{
+						"name": "hostedProfileSettings",
+						"value": "This is an array of settings for the session (optional).",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "settingName",
+								"value": "Optional. One of:\n* hostedProfileReturnUrl\n* hostedProfileReturnUrlText\n* hostedProfileHeadingBgColor\n* hostedProfilePageBorderVisible\n* hostedProfileIFrameCommunicatorUrl\n* hostedProfileValidationMode",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "settingValue",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							}
+						]
+					}
+				],
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getHostedProfilePageRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <customerProfileId>YourProfileID</customerProfileId>\n  <hostedProfileSettings>\n    <setting>\n      <settingName>hostedProfileReturnUrl</settingName>\n      <settingValue>https://blah.com/blah/</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedProfileReturnUrlText</settingName>\n      <settingValue>Continue to blah.</settingValue>\n    </setting>\n          <setting>\n                <settingName>hostedProfilePageBorderVisible</settingName>\n                 <settingValue>true</settingValue>\n          </setting>\n </hostedProfileSettings>\n</getHostedProfilePageRequest>"
+			},
+			"response": {
+				"name": "Output for getHostedProfilePageResponse",
+				"children": [
+					{
+						"name": "Token",
+						"value": "An encrypted string that the merchant must include when posting to the Authorize.Net web page.",
+						"format": "String.",
+						"required": false,
+						"notes": "If not used within 15 minutes of the original API call, this token expires.\n\nThe customer’s browser posts the token, Authorize.Net validates it, and makes sure the timestamp is less than 15 minutes old. "
+					}
+				],
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getHostedProfilePageResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <token>+ZeWDaUOPoQPRGTHcKd7DYbMfcAFDrhO8GPOFNt+ACzJnvkz+aWO0SYSAA9x602jAIKKfUHUt2ybwQRaG8LzHluuR5dRgsuh+kjarKvD0hpieGjLHmnz0LHmFv1Xe9P3zpmawqBCSB/d4jcSg9dAxecNBUzMwIuYzY+vGUGLUXgr9QPaRh93HqWZrV4Mbwop</token>\n</getHostedProfilePageResponse>"
+			}
+		},
+		{
+			"title": "Update Split Tender Group",
+			"id": "update-split-tender-group",
+			"usage": "Use this function to update the status of an existing order that contains multiple transactions with the same splitTenderId value. ",
+			"soap": "UpdateSplitTenderGroup",
+			"request": {
+				"name": "Input Elements for updateSplitTenderGroupRequest",
+				"children": [
+					{
+						"name": "refId",
+						"value": "Merchant-assigned reference ID for the request.",
+						"format": "Up to 20 characters.",
+						"required": false,
+						"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications."
+					},
+					{
+						"name": "splitTenderId",
+						"value": "Payment gateway-assigned number associated with the order.",
+						"format": "Numeric.",
+						"required": true,
+						"notes": ""
+					},
+					{
+						"name": "splitTenderStatus",
+						"value": "Indicates the status of all transactions associated with the order.",
+						"format": "voided or completed",
+						"required": false,
+						"notes": "Use voided to void the entire order; use completed to indicate there are no further transactions in this order."
+					}
+				],
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<updateSplitTenderGroupRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <splitTenderId>123456</splitTenderId>\n  <splitTenderStatus>voided</splitTenderStatus>\n</updateSplitTenderGroupRequest>"
+			},
+			"response": {
+				"name": "Output for updateSplitTenderGroupResponse",
+				"children": [
+					{
+						"name": "refId",
+						"value": "Merchant-assigned reference ID for the request.",
+						"format": "Up to 20 characters.",
+						"required": false,
+						"notes": "If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications."
+					}
+				],
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<updateSplitTenderGroupResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n</updateSplitTenderGroupResponse>"
+			}
+		}
+	]
+},
+{
+	"APIName": "Charge Customer Profiles",
+	"APIUsage": "This API enables you to store customer payment and address data for subsequent use.",
+	"API_ID": "charge-customer-profiles",
+	"methods": [
+		{
 			"title": "Authorize a Transaction from a Customer Profile",
 			"id": "authorize-a-transaction-from-a-customer-profile",
 			"usage": "Use this function to authorize a transaction from an existing customer profile. This transaction type generates a customer receipt email. ",
@@ -4699,8 +4814,8 @@
 			}
 		},
 		{
-			"title": "Authorizing and Capturing a Transaction from a Customer Profile",
-			"id": "authorizing-and-capturing-a-transaction-from-a-customer-profile",
+			"title": "Authorizing and Capturing a Transaction from a Customer Profile (",
+			"id": "authorizing-and-capturing-a-transaction-from-a-customer-profile-(",
 			"usage": "This function is used to authorize and capture a transaction from an existing customer profile, for Prior Authorization and Capture Transaction.",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
@@ -5243,7 +5358,7 @@
 		{
 			"title": "Refunding a Transaction for a Customer Profile",
 			"id": "refunding-a-transaction-for-a-customer-profile",
-			"usage": "Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email. \n\nIf you are submitting a refund against a previous CIM transaction, the following guidelines apply: \n* include customerProfileId, customerPaymentProfileId, and transId\n* customerShippingAddressId is optional\n* creditCardNumberMasked, bankRoutingNumberMasked, and bankAccountNumberMasked do not need to be included, but they will be validated if they are included\n\nIf you are submitting a refund for a non-CIM transaction, the following guidelines apply: \n* you must include transId, creditCardNumberMasked (or bankRoutingNumberMasked and bankAccountNumberMasked)\n* do not include customerProfileId, customerPaymentProfileId, or customerShippingAddressId\n\nYou can also issue an unlinked refund for a CIM transaction. In this case, the following rules apply:\n* you must be enrolled in Expanded Credit Capabilities (ECC). For more information about ECC, go to http://www.authorize.net/files/ecc.pdf\n* you must include customerProfileId and customerPaymentProfileId\n* customerShippingAddressId is optional\n* do not include transId, creditCardNumberMasked, bankRoutingNumberMasked, or bankAccountNumberMasked\n",
+			"usage": "Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email.",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
 				"name": "Input Elements for createCustomerProfileTransactionRequest (For Refund Transactions)",
@@ -5620,114 +5735,6 @@
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileTransactionResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <directResponse>1,1,1,This transaction has been approved.,000000,Y,2000000001,INV000001,description of transaction,10.95,CC,auth_capture,custId123,John,Doe,,123 Main St.,Bellevue,WA,98004,USA,000-000-0000,,mark@example.com,John,Doe,,123 Main St.,Bellevue,WA,98004,USA,1.00,0.00,2.00,FALSE,PONUM000001,\nD18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n  </directResponse>\n</createCustomerProfileTransactionResponse>"
 			}
 		},
-		{
-			"title": "Get Hosted Profile Page",
-			"id": "get-hosted-profile-page",
-			"usage": "Use this function to initiate a request for direct access to the Authorize.Net website.",
-			"soap": "GetHostedProfilePage",
-			"request": {
-				"name": "Input Elements for getHostedProfilePageRequest",
-				"children": [
-					{
-						"name": "refId",
-						"value": "Merchant-assigned reference ID for the request.",
-						"format": "Up to 20 characters.",
-						"required": false,
-						"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications."
-					},
-					{
-						"name": "customerProfileId",
-						"value": "Payment gateway assigned ID associated with the customer profile.",
-						"format": "Numeric.",
-						"required": false,
-						"notes": ""
-					},
-					{
-						"name": "hostedProfileSettings",
-						"value": "This is an array of settings for the session (optional).",
-						"format": "",
-						"required": false,
-						"notes": "",
-						"children": [
-							{
-								"name": "settingName",
-								"value": "Optional. One of:\n* hostedProfileReturnUrl\n* hostedProfileReturnUrlText\n* hostedProfileHeadingBgColor\n* hostedProfilePageBorderVisible\n* hostedProfileIFrameCommunicatorUrl\n* hostedProfileValidationMode",
-								"format": "",
-								"required": false,
-								"notes": ""
-							},
-							{
-								"name": "settingValue",
-								"value": "",
-								"format": "",
-								"required": false,
-								"notes": ""
-							}
-						]
-					}
-				],
-				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getHostedProfilePageRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <customerProfileId>YourProfileID</customerProfileId>\n  <hostedProfileSettings>\n    <setting>\n      <settingName>hostedProfileReturnUrl</settingName>\n      <settingValue>https://blah.com/blah/</settingValue>\n    </setting>\n    <setting>\n      <settingName>hostedProfileReturnUrlText</settingName>\n      <settingValue>Continue to blah.</settingValue>\n    </setting>\n          <setting>\n                <settingName>hostedProfilePageBorderVisible</settingName>\n                 <settingValue>true</settingValue>\n          </setting>\n </hostedProfileSettings>\n</getHostedProfilePageRequest>"
-			},
-			"response": {
-				"name": "Output for getHostedProfilePageResponse",
-				"children": [
-					{
-						"name": "Token",
-						"value": "An encrypted string that the merchant must include when posting to the Authorize.Net web page.",
-						"format": "String.",
-						"required": false,
-						"notes": "If not used within 15 minutes of the original API call, this token expires.\n\nThe customer’s browser posts the token, Authorize.Net validates it, and makes sure the timestamp is less than 15 minutes old. "
-					}
-				],
-				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getHostedProfilePageResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <token>+ZeWDaUOPoQPRGTHcKd7DYbMfcAFDrhO8GPOFNt+ACzJnvkz+aWO0SYSAA9x602jAIKKfUHUt2ybwQRaG8LzHluuR5dRgsuh+kjarKvD0hpieGjLHmnz0LHmFv1Xe9P3zpmawqBCSB/d4jcSg9dAxecNBUzMwIuYzY+vGUGLUXgr9QPaRh93HqWZrV4Mbwop</token>\n</getHostedProfilePageResponse>"
-			}
-		},
-		{
-			"title": "Update Split Tender Group",
-			"id": "update-split-tender-group",
-			"usage": "Use this function to update the status of an existing order that contains multiple transactions with the same splitTenderId value. ",
-			"soap": "UpdateSplitTenderGroup",
-			"request": {
-				"name": "Input Elements for updateSplitTenderGroupRequest",
-				"children": [
-					{
-						"name": "refId",
-						"value": "Merchant-assigned reference ID for the request.",
-						"format": "Up to 20 characters.",
-						"required": false,
-						"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications."
-					},
-					{
-						"name": "splitTenderId",
-						"value": "Payment gateway-assigned number associated with the order.",
-						"format": "Numeric.",
-						"required": true,
-						"notes": ""
-					},
-					{
-						"name": "splitTenderStatus",
-						"value": "Indicates the status of all transactions associated with the order.",
-						"format": "voided or completed",
-						"required": false,
-						"notes": "Use voided to void the entire order; use completed to indicate there are no further transactions in this order."
-					}
-				],
-				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<updateSplitTenderGroupRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <splitTenderId>123456</splitTenderId>\n  <splitTenderStatus>voided</splitTenderStatus>\n</updateSplitTenderGroupRequest>"
-			},
-			"response": {
-				"name": "Output for updateSplitTenderGroupResponse",
-				"children": [
-					{
-						"name": "refId",
-						"value": "Merchant-assigned reference ID for the request.",
-						"format": "Up to 20 characters.",
-						"required": false,
-						"notes": "If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications."
-					}
-				],
-				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<updateSplitTenderGroupResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n</updateSplitTenderGroupResponse>"
-			}
-		}
 	]
 },
 {
@@ -5738,7 +5745,7 @@
 		{
 			"title": "Get Settled Batch List",
 			"id": "get-settled-batch-list",
-			"usage": "This function returns Batch ID, Settlement Time, & Settlement State for all settled batches with a range of dates. If you specify includeStatistics, you also receive batch statistics by payment type and batch totals. All input parameters are optional.\n\nIf no dates are specified, then the default is the past 24 hours (ending at the time of the call to getSettledBatchListRequest). The input and output for all dates default to the merchant’s local time, unless UTC time is specified.\n\nIf the time in the firstSettlementDate and lastSettlementDate ends with a Z (for example, 2010-09-21T16:00:00Z) then this is UTC time and not the merchant’s local time. \n\nThe default date range is one day (the previous 24 hour period). The maximum date range is 31 days. The merchant time zone is taken into consideration when calculating the batch date range, unless the Z is specified in the first and last settlement dates. \n\nIf you specify includeStatistics=true, then statistics are included for the entire range, including the first and last settlement dates. \n\nThe search results are inclusive of the date range. \n\nIf the merchant sends in a time of 00:00:00 for lastSettlementDate, then one day is added to this day in the search (so that it includes the date specified). The 31-day check happens before this day is added.\n\nThe firstSettlementDate parameter cannot precede January 1, two years before the current year. For example, if the current date is September 1, 2010, firstSettlementDate must be January 1, 2008 or later. \n\nPossible errors returned are:\n\n* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: \"firstSettlementDate is greater than the lastSettelementDate\"\n\n* If the difference between the firstSettlementDate and lastSettelementDate is more than 31 days, then the error message is Err_Invalid_field: “The date range cannot exceed 31 days.” \n\n* If the firstSettlementDate is older than the allowed firstSettlementDate, then the error is Err_Invalid_field: “firstSettlementDate cannot be older than the year of {nn}”, where nn is 2 years prior to the current year. \n\n* If only one of firstSettlementDate or lastSettlementDate is specified, the message returned is Err_Required_Field: \"firstSettlementDate is required when lastSettlementDate is present.\"; \"lastSettlementDate is required when firstSettlementDate is present.\"\n\n* If the lastSettlementDate is in the future, the message returned is Err_Invalid_field: “lastSettlementDate cannot be in the future.” \n\n* If no rows are found, the message returned is “No records found”",
+			"usage": "This function returns Batch ID, Settlement Time, & Settlement State for all settled batches with a range of dates. If you specify includeStatistics, you also receive batch statistics by payment type and batch totals. All input parameters are optional. If no dates are specified, then the default is the past 24 hours (ending at the time of the call to getSettledBatchListRequest).",
 			"soap": "GetSettledBatchList",
 			"request": {
 				"name": "getSettledBatchListRequest",
