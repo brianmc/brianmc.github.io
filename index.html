@@ -8148,7 +8148,7 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 
                     
                     <h3 id="charge-customer-profiles-refunding-a-transaction-for-a-customer-profile">Refunding a Transaction for a Customer Profile</h3>
-                    <p>Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email.</p>
+                    <p>Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email. For additional information on Customer Profile Refund use cases please see our CIM Guide at http://www.authorize.net/support/CIM_XML_guide.pdf.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-refunding-a-transaction-for-a-customer-profile" data-toggle="tab">Request</a>
                         </li>
@@ -8778,21 +8778,39 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                     <tr>
                                         <td>includeStatistics</td>
                                         <td>true or false.
-                                            <br/>Optional. The default is false.</td>
+                                            <br/>Optional. The default is false.
+
+If you specify includeStatistics=true, then statistics are included for the entire range, including the first and last settlement dates.</td>
                                         <td></td>
                                     </tr>
                                      
                                     <tr>
                                         <td>firstSettlementDate</td>
                                         <td>
-                                            <br/>Include this value if you want data for a range of dates other than the past 24 hrs. </td>
+                                            <br/>Include this value if you want data for a range of dates other than the past 24 hrs. 
+
+If the time in the firstSettlementDate ends with a Z (for example, 2010-09-21T16:00:00Z) then this is UTC time and not the merchant’s local time. 
+
+The default date range is one day (the previous 24 hour period). The maximum date range is 31 days. The merchant time zone is taken into consideration when calculating the batch date range, unless the Z is specified in the first and last settlement dates.
+
+The search results are inclusive of the date range.
+
+The firstSettlementDate parameter cannot precede January 1, two years before the current year. For example, if the current date is September 1, 2010, firstSettlementDate must be January 1, 2008 or later.   </td>
                                         <td>yyyy-mm-ddTHH:MM:SS</td>
                                     </tr>
                                      
                                     <tr>
                                         <td>lastSettlementDate</td>
                                         <td>
-                                            <br/>Include this value if you want data for a range of dates other than the past 24 hours. The maximum date range is 31 days. </td>
+                                            <br/>Include this value if you want data for a range of dates other than the past 24 hours. The maximum date range is 31 days. 
+
+If the time in the lastSettlementDate ends with a Z (for example, 2010-09-21T16:00:00Z) then this is UTC time and not the merchant’s local time. 
+
+The default date range is one day (the previous 24 hour period). The maximum date range is 31 days. The merchant time zone is taken into consideration when calculating the batch date range, unless the Z is specified in the first and last settlement dates. 
+
+The search results are inclusive of the date range.
+
+If the merchant sends in a time of 00:00:00 for lastSettlementDate, then one day is added to this day in the search (so that it includes the date specified). The 31-day check happens before this day is added. </td>
                                         <td>yyyy-mm-ddTHH:MM:SS</td>
                                     </tr>
                                      
@@ -8843,7 +8861,20 @@ D18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,
                                     <tr>
                                         <td class='twoBullet'>text</td>
                                         <td>A text description of the status.
-                                            <br/></td>
+                                            <br/>Possible errors returned are:
+
+* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: &amp;quot;firstSettlementDate is greater than the lastSettelementDate&amp;quot;
+
+* If the difference between the firstSettlementDate and lastSettelementDate is more than 31 days, then the error message is Err_Invalid_field: “The date range cannot exceed 31 days.” 
+
+* If the firstSettlementDate is older than the allowed firstSettlementDate, then the error is Err_Invalid_field: “firstSettlementDate cannot be older than the year of {nn}”, where nn is 2 years prior to the current year. 
+
+* If only one of firstSettlementDate or lastSettlementDate is specified, the message returned is Err_Required_Field: &amp;quot;firstSettlementDate is required when lastSettlementDate is present.&amp;quot;; &amp;quot;lastSettlementDate is required when firstSettlementDate is present.&amp;quot;
+
+* If the lastSettlementDate is in the future, the message returned is Err_Invalid_field: “lastSettlementDate cannot be in the future.” 
+
+* If no rows are found, the message returned is “No records found”
+</td>
                                         <td></td>
                                     </tr>
                                        

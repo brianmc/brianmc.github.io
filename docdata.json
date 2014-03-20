@@ -5358,7 +5358,7 @@
 		{
 			"title": "Refunding a Transaction for a Customer Profile",
 			"id": "refunding-a-transaction-for-a-customer-profile",
-			"usage": "Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email.",
+			"usage": "Use this function to refund transactions from an existing customer profile. This transaction type generates a customer receipt email. For additional information on Customer Profile Refund use cases please see our CIM Guide at http://www.authorize.net/support/CIM_XML_guide.pdf.",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
 				"name": "Input Elements for createCustomerProfileTransactionRequest (For Refund Transactions)",
@@ -5734,7 +5734,7 @@
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createCustomerProfileTransactionResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <directResponse>1,1,1,This transaction has been approved.,000000,Y,2000000001,INV000001,description of transaction,10.95,CC,auth_capture,custId123,John,Doe,,123 Main St.,Bellevue,WA,98004,USA,000-000-0000,,mark@example.com,John,Doe,,123 Main St.,Bellevue,WA,98004,USA,1.00,0.00,2.00,FALSE,PONUM000001,\nD18EB6B211FE0BBF556B271FDA6F92EE,M,2,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n  </directResponse>\n</createCustomerProfileTransactionResponse>"
 			}
-		},
+		}
 	]
 },
 {
@@ -5755,21 +5755,21 @@
 						"value": "true or false.",
 						"format": "",
 						"required": false,
-						"notes": "Optional. The default is false."
+						"notes": "Optional. The default is false.\n\nIf you specify includeStatistics=true, then statistics are included for the entire range, including the first and last settlement dates."
 					},
 					{
 						"name": "firstSettlementDate",
 						"value": "",
 						"format": "yyyy-mm-ddTHH:MM:SS",
 						"required": false,
-						"notes": "Include this value if you want data for a range of dates other than the past 24 hrs. "
+						"notes": "Include this value if you want data for a range of dates other than the past 24 hrs. \n\nIf the time in the firstSettlementDate ends with a Z (for example, 2010-09-21T16:00:00Z) then this is UTC time and not the merchant’s local time. \n\nThe default date range is one day (the previous 24 hour period). The maximum date range is 31 days. The merchant time zone is taken into consideration when calculating the batch date range, unless the Z is specified in the first and last settlement dates.\n\nThe search results are inclusive of the date range.\n\nThe firstSettlementDate parameter cannot precede January 1, two years before the current year. For example, if the current date is September 1, 2010, firstSettlementDate must be January 1, 2008 or later.   "
 					},
 					{
 						"name": "lastSettlementDate",
 						"value": "",
 						"format": "yyyy-mm-ddTHH:MM:SS",
 						"required": false,
-						"notes": "Include this value if you want data for a range of dates other than the past 24 hours. The maximum date range is 31 days. "
+						"notes": "Include this value if you want data for a range of dates other than the past 24 hours. The maximum date range is 31 days. \n\nIf the time in the lastSettlementDate ends with a Z (for example, 2010-09-21T16:00:00Z) then this is UTC time and not the merchant’s local time. \n\nThe default date range is one day (the previous 24 hour period). The maximum date range is 31 days. The merchant time zone is taken into consideration when calculating the batch date range, unless the Z is specified in the first and last settlement dates. \n\nThe search results are inclusive of the date range.\n\nIf the merchant sends in a time of 00:00:00 for lastSettlementDate, then one day is added to this day in the search (so that it includes the date specified). The 31-day check happens before this day is added. "
 					}
 				],
 				"sample": "<getSettledBatchListRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <includeStatistics>true</includeStatistics>\n  <firstSettlementDate>2020-05-01T16:00:00Z</firstSettlementDate>\n  <lastSettlementDate>2020-05-31T16:00:00Z</lastSettlementDate>\n</getSettledBatchListRequest>"
@@ -5810,7 +5810,7 @@
 										"value": "A text description of the status.",
 										"format": "",
 										"required": false,
-										"notes": ""
+										"notes": "Possible errors returned are:\n\n* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: &quot;firstSettlementDate is greater than the lastSettelementDate&quot;\n\n* If the difference between the firstSettlementDate and lastSettelementDate is more than 31 days, then the error message is Err_Invalid_field: “The date range cannot exceed 31 days.” \n\n* If the firstSettlementDate is older than the allowed firstSettlementDate, then the error is Err_Invalid_field: “firstSettlementDate cannot be older than the year of {nn}”, where nn is 2 years prior to the current year. \n\n* If only one of firstSettlementDate or lastSettlementDate is specified, the message returned is Err_Required_Field: &quot;firstSettlementDate is required when lastSettlementDate is present.&quot;; &quot;lastSettlementDate is required when firstSettlementDate is present.&quot;\n\n* If the lastSettlementDate is in the future, the message returned is Err_Invalid_field: “lastSettlementDate cannot be in the future.” \n\n* If no rows are found, the message returned is “No records found”\n"
 									}
 								]
 							}
