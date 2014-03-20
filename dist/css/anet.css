@@ -29,6 +29,7 @@ li.active a
 .bs-docs-section
 {
     margin-bottom: 25px !important;
+    margin-top: 25px !important;
 }
 .lead
 {
