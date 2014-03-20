@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Authorize.Net API Documentation">
+<meta name="keywords" content="AIM ARB CIM Reporting">
+
+<title>
+  
+  Authorize.Net API Documentation
+  
+</title>
+
+<!-- Bootstrap core CSS -->
+<link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Documentation extras -->
+<link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+<!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+<link href="dist/css/anet.css" rel="stylesheet">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css">
+  
+<!-- Favicons -->
+<link href="http://developer.authorize.net/resources/images/favicon.ico" rel="shortcut icon" />
+
+  </head>
+  <body>
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-static-top bs-docs-nav" role="banner">
+  <div class="container">
+    <div class="navbar-header">
+      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="../" class="navbar-brand">Authorize</a>
+    </div>
+    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="../getting-started">Getting Started</a>
+        </li>
+        <li>
+          <a href="../index">API</a>
+        </li>
+        <li class="active">
+          <a href="../clientlibraries">Client Libraries</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+
+    <div class="container bs-docs-container">
+      <div class="row">
+        <div class="col-md-9" role="main">
+		<div class="bs-docs-section">
+  <h1 id="dotnet" class="page-header">C#</h1>
+  <h3 id="dotnet-package" class="page-header">Package Reference</h3>
+  <p>show Nuget URL</p>
+  <h3 id="dotnet-source" class="page-header">Source</h3>
+  <p>github repo link here</p>
+  <h3 id="dotnet-zip" class="page-header">Download</h3>
+  <p>github repo link here</p>
+  
+ <h1 id="java" class="page-header">Java</h1>
+  <h3 id="java-package" class="page-header">Package Reference</h3>
+  <p>show Maven Coordinates</p>
+  <h3 id="java-source" class="page-header">Source</h3>
+  <p>github repo link here</p>
+  <h3 id="java-zip" class="page-header">Download</h3>
+  <p>Existing zip file download link here</p>
+  
+ <h1 id="ruby" class="page-header">Ruby</h1>
+  <h3 id="ruby-package" class="page-header">Package Reference</h3>
+  <p>show ruby gems reference</p>
+  <h3 id="ruby-source" class="page-header">Source</h3>
+  <p>github repo link here</p>
+  <h3 id="ruby-zip" class="page-header">Download</h3>
+  <p>Existing zip file download link here</p>
+ 
+  <h1 id="php" class="page-header">PHP</h1>
+  <h3 id="php-package" class="page-header">Package Reference</h3>
+  <p>show Packagist/Composer reference</p>
+  <h3 id="php-source" class="page-header">Source</h3>
+  <p>github repo link here</p>
+  <h3 id="php-zip" class="page-header">Download</h3>
+  <p>Existing zip file download link here</p>
+  <br/>
+  <br/>
+ <h1 id="community" class="page-header">Community Libraries</h1>
+  <p>Python:  https://github.com/jeffschenck/authorizesauce</p>
+ 
+       </div>
+    </div>
+
+        <div class="col-md-3">
+          <div class="bs-docs-sidebar hidden-print" role="complementary">
+            <ul class="nav bs-docs-sidenav">
+			<li>
+            <a href="#dotnet">C#</a>
+			</li>
+			<li>
+            <a href="#java">Java</a>
+			</li>
+			<li>
+            <a href="#ruby">Ruby</a>
+			</li>
+		    <li>
+            <a href="#php">PHP</a>
+			</li>
+			<li>
+            <a href="#community">Community Libraries</a>
+			</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
+<script src="api.js"></script>
+
+<script language="javascript" type="text/javascript">
+ 
+
+// <!CDATA[
+
+/*var requestEditor, responseEditor;
+
+$(document).ready(function() {
+	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
+		mode: 'xml',
+		lineNumbers: true
+	});
+
+	responseEditor = CodeMirror.fromTextArea(document.getElementById('txtRespXml-create-a-subscription'), {
+		mode: 'xml',
+		lineNumbers: true
+	});
+	
+
+	$('#create-a-subscriptionTryIt').click(function() {
+		setTimeout(redrawEditors, 250);
+	});
+});
+
+
+function redrawEditors() {
+	requestEditor.refresh();
+	responseEditor.refresh();
+}
+
+function XHConn()
+{
+  var xmlhttp, bComplete = false;
+  try { xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); }
+  catch (e) { try { xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); }
+  catch (e) { try { xmlhttp = new XMLHttpRequest(); }
+  catch (e) { xmlhttp = false; }}}
+  if (!xmlhttp) return null;
+
+  this.connect = function(sURL, sPostData, fnDone)
+  {
+    if (!xmlhttp) return false;
+    bComplete = false;
+
+    try {
+      xmlhttp.open("POST", sURL, true);
+      xmlhttp.setRequestHeader("Method", "POST "+sURL+" HTTP/1.1");
+      xmlhttp.setRequestHeader("Content-Type", "text/xml");
+      xmlhttp.onreadystatechange = function(){
+        if (xmlhttp.readyState == 4 && !bComplete)
+        {
+          bComplete = true;
+          fnDone(xmlhttp);
+        }
+      };
+      xmlhttp.send(sPostData);
+    }
+    catch(z) {
+      alert(z);
+      return false;
+    }
+    return true;
+  };
+  return this;
+}
+
+var g_xc = new XHConn();
+
+function btnSend_onclick() {
+
+  document.getElementById("btnSend").disabled = true;
+  document.getElementById("txtRespXml").innerHTML = "";
+  document.getElementById("spnStatusCode").innerHTML = "";
+  var fnWhenDone = function (oXML) {
+    if (oXML.status && oXML.status != "200") {
+      document.getElementById("spnStatusCode").innerHTML = "HTTP status code: " + oXML.status.toString().replace(/</g, "&lt;");
+    }
+    var txt = oXML.responseText;
+    txt = txt.replace(/></g, "> <");
+    txt = txt.replace(/</g, "&lt;");
+    txt = txt.replace(/>/g, "&gt;");
+     // Temp of course
+     txt = "&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;createTransactionResponse xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt; &lt;refId&gt;123456&lt;/refId&gt; &lt;messages&gt; &lt;resultCode&gt;Ok&lt;/resultCode&gt; &lt;message&gt; &lt;code&gt;I00001&lt;/code&gt; &lt;text&gt;Successful.&lt;/text&gt; &lt;/message&gt; &lt;/messages&gt; &lt;transactionResponse&gt; &lt;responseCode&gt;1&lt;/responseCode&gt; &lt;authCode&gt;000000&lt;/authCode&gt; &lt;avsResultCode&gt;P&lt;/avsResultCode&gt; &lt;cvvResultCode /&gt; &lt;cavvResultCode /&gt; &lt;transId&gt;0&lt;/transId&gt; &lt;refTransID /&gt; &lt;transHash&gt;B363D5C80A9195B54FD915C7D9B41F67&lt;/transHash&gt; &lt;testRequest&gt;1&lt;/testRequest&gt; &lt;accountNumber&gt;XXXX0015&lt;/accountNumber&gt; &lt;accountType&gt;MasterCard&lt;/accountType&gt; &lt;messages&gt; &lt;message&gt; &lt;code&gt;1&lt;/code&gt; &lt;description&gt;This transaction has been approved.&lt;/description&gt; &lt;/message&gt; &lt;/messages&gt; &lt;/transactionResponse&gt; &lt;/createTransactionResponse&gt;"
+
+    document.getElementById("txtRespXml").innerHTML = txt;
+    document.getElementById("btnSend").disabled = false;
+    var myRespCodeMirror = CodeMirror.fromTextArea(txtRespXml, {"mode": "xml"});
+  };
+  g_xc.connect("https://apitest.authorize.net/xml/v1/request.api", document.getElementById("txtReqXml").value, fnWhenDone);
+}
+
+function btnPopulateKeys_onclick() {
+
+ var loginid = document.getElementById("txtLoginID").value;
+ var transactionkey = document.getElementById("txtTransactionKey").value;
+ 
+ var allSamples = document.getElementsByClassName("sample-request");
+ 
+ for (var i = 0; i < allSamples.length; i++) {
+    
+	var sampleRequest = allSamples[i];
+	sampleRequest.value = sampleRequest.value.replace("mytestacct",loginid).replace("112223344",transactionkey);
+	}
+	
+	requestEditor = CodeMirror.fromTextArea(document.getElementById('txtReqXml-create-a-subscription'), {
+		mode: 'xml',
+		lineNumbers: true
+	});
+	
+	return false;
+}
+
+
+function selUrls_onChange(obj) {
+  if (document.getElementById("selUrls").value) {
+    document.getElementById("txtUrl").value = document.getElementById("selUrls").value;
+  }
+}*/
+
+// ]]>
+</script>
+
+  </body>
+</html>
