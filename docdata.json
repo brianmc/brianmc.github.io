@@ -4814,9 +4814,9 @@
 			}
 		},
 		{
-			"title": "Authorizing and Capturing a Transaction from a Customer Profile",
-			"id": "authorizing-and-capturing-a-transaction-from-a-customer-profile",
-			"usage": "This function is used to authorize and capture a transaction from an existing customer profile, for Prior Authorization and Capture Transaction.",
+			"title": "Capturing a Transaction with Prior Authorization from a Customer Profile",
+			"id": "prior-auth-capturing-a-transaction-from-a-customer-profile",
+			"usage": "This function is used to capture a transaction from an existing customer profile, where a prior Authorization Only transaction was successfully authorized through the payment gateway.",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
 				"name": "Input Elements for createCustomerProfileTransactionRequest",
@@ -5056,9 +5056,9 @@
 			}
 		},
 		{
-			"title": "Capture a Customer Profile",
+			"title": "Capture from a Customer Profile",
 			"id": "capture-a-customer-profile",
-			"usage": "Use this function to capture a customer profile from an existing customer profile. ",
+			"usage": "Use this function to capture a transaction from an existing customer profile where the authorization was NOT originally submitted through the payment gateway or that requires voice authorization.",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
 				"name": "Input Elements for createCustomerProfileTransactionRequest (For Capture Only Transactions)",
