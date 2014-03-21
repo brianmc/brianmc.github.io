@@ -80,11 +80,11 @@
           
           <div id="collapseOne" class="panel-body panel-collapse collapse in">
              <h3 id="dotnet-package" class="page-header">Package Reference</h3>
-              <p>show Nuget URL</p>
+              <code>nuget install AuthorizeNetSDK -version 1.8.0</code>
               <h3 id="dotnet-source" class="page-header">Source</h3>
-              <p>github repo link here</p>
+              <p>https://github.com/AuthorizeNet/sdk-dotnet</p>
               <h3 id="dotnet-zip" class="page-header">Download</h3>
-              <p>github repo link here</p>
+              <p>You can also download a zip file <a href="http://developer.authorize.net/downloads/#csharp_binary">here</a> if that's your thang!</p>
           </div>
          
         </div>
@@ -97,11 +97,16 @@
           </div>
           <div id="collapseTwo" class="panel-body panel-collapse collapse">
              <h3 id="java-package" class="page-header">Package Reference</h3>
-              <p>show Maven Coordinates</p>
+              <p>If you are using Maven, add the following dependency to your POM:</p>
+				  <pre class="switch switch-java prettyprint"><code class="language-xml">&lt;dependency&gt;
+				  &lt;groupId&gt;net.authorize.sdk&lt;/groupId&gt;
+				  &lt;artifactId&gt;anet-java-sdk&lt;/artifactId&gt;
+				  &lt;version&gt;1.8.0&lt;/version&gt;
+				&lt;/dependency&gt;</code></pre>
               <h3 id="java-source" class="page-header">Source</h3>
-              <p>github repo link here</p>
+              <p>https://github.com/AuthorizeNet/sdk-dotnet</p>
               <h3 id="java-zip" class="page-header">Download</h3>
-              <p>Existing zip file download link here</p>
+              <p>You can also download a zip file <a href="http://developer.authorize.net/downloads/#java_sdk"
           </div>
         </div>
 
@@ -113,11 +118,11 @@
           </div>
           <div id="collapse3" class="panel-body panel-collapse collapse">
              <h3 id="ruby-package" class="page-header">Package Reference</h3>
-              <p>show ruby gems reference</p>
+              <code>gem install authorizenet</code>
               <h3 id="ruby-source" class="page-header">Source</h3>
-              <p>github repo link here</p>
+              <p>https://github.com/AuthorizeNet/sdk-ruby</p>
               <h3 id="ruby-zip" class="page-header">Download</h3>
-              <p>Existing zip file download link here</p>
+              <p>You can also download a zip file <a href="http://developer.authorize.net/downloads/#ruby_sdk">here</a> if that's your thang!</p>
           </div>
         </div>
 
@@ -129,11 +134,18 @@
           </div>
           <div id="collapse4" class="panel-body panel-collapse collapse">
               <h3 id="php-package" class="page-header">Package Reference</h3>
-              <p>show Packagist/Composer reference</p>
+               <p>To use the SDK in your app, create a composer.json file with the following require section and run <code>composer update</code></p>
+
+      <pre class=" prettyprint"><code class="language-javascript">"require": {
+    "php": "&gt;=5.3.0",
+    "ext-curl": "*",
+    "ext-json": "*",
+    "authorizenet/sdk-php" : "0.5.*"
+}</code></pre>
               <h3 id="php-source" class="page-header">Source</h3>
-              <p>github repo link here</p>
+              <p>https://github.com/AuthorizeNet/sdk-ruby</p>
               <h3 id="php-zip" class="page-header">Download</h3>
-              <p>Existing zip file download link here</p>
+              <p>You can also download a zip file <a href="http://developer.authorize.net/downloads/#php_sdk">here</a> if that's your thang!</p>
           </div>
         </div>
       </div>
