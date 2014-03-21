@@ -10,28 +10,29 @@
     <meta name="keywords" content="AIM ARB CIM Reporting">
 
     <title>
-      Authorize.Net API Documentation
+      Authorize.Net Client Libraries
     </title>
 
+    
     <!-- Bootstrap core CSS -->
     <link href="dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Documentation extras -->
-    <link href="http://getbootstrap.com/assets/css/docs.min.css" rel="stylesheet">
+    <link href="dist/css/docs.min.css" rel="stylesheet">
     <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+  <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+  <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
 
     <link href="dist/css/anet.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.css">
-      
+    <link rel="stylesheet" href="dist/css/codemirror.min.css">
+
     <!-- Favicons -->
     <link href="http://developer.authorize.net/resources/images/favicon.ico" rel="shortcut icon" />
-
+	
   </head>
   <body>
     <a class="sr-only" href="#content">Skip to main content</a>
@@ -54,7 +55,7 @@
           <a href="../getting-started">Getting Started</a>
         </li>
         <li>
-          <a href="../index">API</a>
+          <a href="../templatetest">API</a>
         </li>
         <li class="active">
           <a href="../clientlibraries">Client Libraries</a>
@@ -80,9 +81,9 @@
           
           <div id="collapseOne" class="panel-body panel-collapse collapse in">
              <h3 id="dotnet-package" class="page-header">Package Reference</h3>
-              <code>nuget install AuthorizeNetSDK -version 1.8.0</code>
+              <pre>nuget install AuthorizeNetSDK -version 1.8.0</pre>
               <h3 id="dotnet-source" class="page-header">Source</h3>
-              <p>https://github.com/AuthorizeNet/sdk-dotnet</p>
+              <p><a href="https://github.com/AuthorizeNet/sdk-dotnet">https://github.com/AuthorizeNet/sdk-dotnet</a></p>
               <h3 id="dotnet-zip" class="page-header">Download</h3>
               <p>You can also download a zip file <a href="http://developer.authorize.net/downloads/#csharp_binary">here</a> if that's your thang!</p>
           </div>
@@ -98,15 +99,16 @@
           <div id="collapseTwo" class="panel-body panel-collapse collapse">
              <h3 id="java-package" class="page-header">Package Reference</h3>
               <p>If you are using Maven, add the following dependency to your POM:</p>
-				  <pre class="switch switch-java prettyprint"><code class="language-xml">&lt;dependency&gt;
+				  <pre class="switch switch-java prettyprint"><code class="language-xml">
+				  &lt;dependency&gt;
 				  &lt;groupId&gt;net.authorize.sdk&lt;/groupId&gt;
 				  &lt;artifactId&gt;anet-java-sdk&lt;/artifactId&gt;
 				  &lt;version&gt;1.8.0&lt;/version&gt;
-				&lt;/dependency&gt;</code></pre>
+				  &lt;/dependency&gt;</code></pre>
               <h3 id="java-source" class="page-header">Source</h3>
-              <p>https://github.com/AuthorizeNet/sdk-dotnet</p>
+              <p><a href="https://github.com/AuthorizeNet/sdk-java">https://github.com/AuthorizeNet/sdk-java</a></p>
               <h3 id="java-zip" class="page-header">Download</h3>
-              <p>You can also download a zip file <a href="http://developer.authorize.net/downloads/#java_sdk"
+              <p>You can also download a zip file <a href="http://developer.authorize.net/downloads/#java_sdk">here</a> if that's your thang!</p>
           </div>
         </div>
 
@@ -118,9 +120,9 @@
           </div>
           <div id="collapse3" class="panel-body panel-collapse collapse">
              <h3 id="ruby-package" class="page-header">Package Reference</h3>
-              <code>gem install authorizenet</code>
+              <pre>gem install authorizenet</pre>
               <h3 id="ruby-source" class="page-header">Source</h3>
-              <p>https://github.com/AuthorizeNet/sdk-ruby</p>
+              <p><a href="https://github.com/AuthorizeNet/sdk-ruby">https://github.com/AuthorizeNet/sdk-ruby</a></p>
               <h3 id="ruby-zip" class="page-header">Download</h3>
               <p>You can also download a zip file <a href="http://developer.authorize.net/downloads/#ruby_sdk">here</a> if that's your thang!</p>
           </div>
@@ -143,7 +145,7 @@
     "authorizenet/sdk-php" : "0.5.*"
 }</code></pre>
               <h3 id="php-source" class="page-header">Source</h3>
-              <p>https://github.com/AuthorizeNet/sdk-ruby</p>
+              <p><a href="https://github.com/AuthorizeNet/sdk-php">https://github.com/AuthorizeNet/sdk-php</a></p>
               <h3 id="php-zip" class="page-header">Download</h3>
               <p>You can also download a zip file <a href="http://developer.authorize.net/downloads/#php_sdk">here</a> if that's your thang!</p>
           </div>
@@ -189,11 +191,13 @@
   <!-- Bootstrap core JavaScript
   ================================================== -->
   <!-- Placed at the end of the document so the pages load faster -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="dist/js/bootstrap.min.js"></script>
-  <script src="http://getbootstrap.com/assets/js/docs.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
-  <script src="api.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/doc.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/3.21.0/mode/xml/xml.min.js"></script>
+    <script type="text/javascript" src="https://www.formstack.com/forms/js/lightbox.js"></script>
+    <script src="api.js"></script>
+    <script src="formatting.js"></script>
   </body>
 </html>
