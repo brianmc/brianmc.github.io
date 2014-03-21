@@ -15,9 +15,10 @@
     font-weight: bold !important;
     font-size: 11pt !important;
 }
-.nav > li > a:hover, .nav > li > a:focus {
+.nav > li > a:hover, .nav > li > a:focus, .panel > .panel-heading > a:hover, .panel > .panel-heading > a:focus {
     -moz-text-decoration-color: -moz-use-text-color;
     -moz-text-decoration-line: none;
+    text-decoration: none;
     -moz-text-decoration-style: solid;
     background-color: #EEEEEE;
     color: #2e5c82 !important;
@@ -64,7 +65,7 @@ table thead
 .nav-tabs {
     margin-bottom: 0 !important;
 }
-.nav-tabs > li > a
+.nav-tabs > li > a, .panel > .panel-heading > a
 {
     background-color: #ededed !important;
     color: #2e5c82 !important;

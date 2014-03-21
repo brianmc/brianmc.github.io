@@ -37,33 +37,32 @@
   <body>
     <a class="sr-only" href="#content">Skip to main content</a>
 
-    <!-- Docs master nav -->
-    <header class="navbar navbar-static-top bs-docs-nav" role="banner">
-  <div class="container">
-    <div class="navbar-header">
-      <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a href="../" class="navbar-brand">Authorize</a>
-    </div>
-    <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
-      <ul class="nav navbar-nav">
-        <li>
-          <a href="../getting-started">Getting Started</a>
-        </li>
-        <li>
-          <a href="../templatetest">API</a>
-        </li>
-        <li class="active">
-          <a href="../clientlibraries">Client Libraries</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
-</header>
+     <header class="navbar navbar-static-top bs-docs-nav" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand"><img src="dist/css/Logo-White.png"></div>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                <ul class="nav navbar-nav">
+                    <!-- <li>
+                      <a href="../getting-started">Getting Started</a>
+                    </li>-->
+                    <li >
+                      <a href="index.html" style="padding-top:20px;">API Reference Guide<span style="font-size: 0.8em;"> ( BETA )</span></a>
+                    </li>
+                    <li class="active">
+                      <a href="clientlibraries.html" style="padding-top:20px;padding-bottom: 16px;">Client Libraries</a>
+                    </li>
+                </ul>
+            </nav> 
+        </div>
+    </header>
 
 
     <div class="container bs-docs-container">
@@ -72,10 +71,10 @@
 		<div class="bs-docs-section">
     <div class="panel-group" id="accordion">
 
-	    <div id="ruby" class="panel panel-info">
+	    <div id="ruby" class="panel panel-default">
           <div class="panel-heading">
               <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
-                <h3  class=" panel-title">Ruby</h3>
+                <div class="container">Ruby</div>
               </a>  
           </div>
           <div id="collapse3" class="panel-body panel-collapse collapse in">
@@ -86,10 +85,10 @@
           </div>
         </div>
 		
-        <div id="dotnet" class="panel panel-info">
+        <div id="dotnet" class="panel panel-default">
           <div class="panel-heading">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-             <h3 class=" panel-title"> C#</h3>
+              <div class="container">C#</div>
              </a> 
           </div>
           
@@ -102,10 +101,10 @@
          
         </div>
 
-        <div id="java" class="panel panel-info">
+        <div id="java" class="panel panel-default">
           <div class="panel-heading">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-              <h3 class=" panel-title">Java</h3>
+              <div class="container">Java</div>
              </a>
           </div>
           <div id="collapseTwo" class="panel-body panel-collapse collapse">
@@ -122,10 +121,10 @@
           </div>
         </div>
 
-        <div id="php" class="panel panel-info">
+        <div id="php" class="panel panel-default">
           <div class="panel-heading">
             <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
-              <h3  class=" panel-title">PHP</h3>
+              <div class="container">PHP</div>
             </a>  
           </div>
           <div id="collapse4" class="panel-body panel-collapse collapse">
@@ -158,16 +157,16 @@
           <div class="bs-docs-sidebar hidden-print" role="complementary">
             <ul class="nav bs-docs-sidenav">
 			<li>
-            <a href="#ruby">Ruby</a>
+            <a  data-toggle="collapse" data-parent="#accordion" href="#collapse3">Ruby</a>
 			</li>
 			<li>
-            <a href="#dotnet">C#</a>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">C#</a>
 			</li>
 			<li>
-            <a href="#java">Java</a>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Java</a>
 			</li>
 		    <li>
-            <a href="#php">PHP</a>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">PHP</a>
 			</li>
 			<li>
             <a href="#community">Community Libraries</a>
