@@ -104,6 +104,8 @@
                         </li>
                         <li><a href="#authentication-keys" data-toggle="tab">Sandbox Credentials</a>
                         </li>
+						<li><a href="#authentication-endpoint" data-toggle="tab">Sandbox Endpoint</a>
+                        </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade in active" id="authentication-fields">
@@ -157,6 +159,13 @@
                                 <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
                                 <p class="bg-danger btn required" style="display:none;cursor: auto">Both are required fields</p>
                             </form>
+                        </div>
+						 <div class="tab-pane fade in" id="authentication-endpoint">
+                            <textarea id="authentication-sample-Code">
+							Request URL:    https://apitest.authorize.net/xml/v1/request.api
+                            Request Method: POST							
+							Content-Type:	text/xml
+							</textarea>
                         </div>
                     </div>
                 </div>
@@ -364,7 +373,7 @@
 
     <script type="text/javascript">
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-20120532-1']);
+    _gaq.push(['_setAccount', 'UA-20120532-2']);
     _gaq.push(['_trackPageview']);
     (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

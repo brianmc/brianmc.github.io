@@ -776,7 +776,7 @@
 						]
 					}
 				],
-				"sample": "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <refId>123456</refId>\n  <transactionRequest>\n    <transactionType>authOnlyTransaction</transactionType>\n    <amount>5</amount>\n    <payment>\n      <creditCard>\n        <cardNumber>5424000000000015</cardNumber>\n        <expirationDate>1220</expirationDate>\n        <cardCode>999</cardCode>\n      </creditCard>\n    </payment>\n    <lineItems>\n      <lineItem>\n        <itemId>1</itemId>\n        <name>vase</name>\n        <description>Cannes logo </description>\n        <quantity>18</quantity>\n        <unitPrice>45.00</unitPrice>\n      </lineItem>\n    </lineItems>\n    <tax>\n      <amount>4.26</amount>\n      <name>level2 tax name</name>\n      <description>level2 tax</description>\n    </tax>\n    <duty>\n      <amount>8.55</amount>\n      <name>duty name</name>\n      <description>duty description</description>\n    </duty>\n    <shipping>\n      <amount>4.26</amount>\n      <name>level2 tax name</name>\n      <description>level2 tax</description>\n    </shipping>\n    <poNumber>456654</poNumber>\n    <billTo>\n      <firstName>Ellen</firstName>\n      <lastName>Johnson</lastName>\n      <company>Souveniropolis</company>\n      <address>14 Main Street</address>\n      <city>Pecan Springs</city>\n      <state>TX</state>\n      <zip>44628</zip>\n      <country>USA</country>\n    </billTo>\n    <shipTo>\n      <firstName>China</firstName>\n      <lastName>Bayles</lastName>\n      <company>Thyme for Tea</company>\n      <address>12 Main Street</address>\n      <city>Pecan Springs</city>\n      <state>TX</state>\n      <zip>44628</zip>\n      <country>USA</country>\n    </shipTo>\n    <customerIP>192.168.1.1</customerIP>\n    <transactionSettings>\n      <setting>\n        <settingName>testRequest</settingName>\n        <settingValue>false</settingValue>\n      </setting>\n    </transactionSettings>\n    <userFields>\n      <userField>\n        <name>MerchantDefinedFieldName1</name>\n        <value>MerchantDefinedFieldValue1</value>\n      </userField>\n      <userField>\n        <name>favorite_color</name>\n        <value>blue</value>\n      </userField>\n    </userFields>\n  </transactionRequest>\n</createTransactionRequest>"
+				"sample": "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <refId>123456</refId>\n  <transactionRequest>\n    <transactionType>authOnlyTransaction</transactionType>\n    <amount>5</amount>\n    <payment>\n      <creditCard>\n        <cardNumber>5424000000000015</cardNumber>\n        <expirationDate>1220</expirationDate>\n        <cardCode>999</cardCode>\n      </creditCard>\n    </payment>\n    <lineItems>\n      <lineItem>\n        <itemId>1</itemId>\n        <name>vase</name>\n        <description>Cannes logo </description>\n        <quantity>18</quantity>\n        <unitPrice>45.00</unitPrice>\n      </lineItem>\n    </lineItems>\n    <tax>\n      <amount>4.26</amount>\n      <name>level2 tax name</name>\n      <description>level2 tax</description>\n    </tax>\n    <duty>\n      <amount>8.55</amount>\n      <name>duty name</name>\n      <description>duty description</description>\n    </duty>\n    <shipping>\n      <amount>4.26</amount>\n      <name>level2 tax name</name>\n      <description>level2 tax</description>\n    </shipping>\n    <poNumber>456654</poNumber>\n    <billTo>\n      <firstName>Ellen</firstName>\n      <lastName>Johnson</lastName>\n      <company>Souveniropolis</company>\n      <address>14 Main Street</address>\n      <city>Pecan Springs</city>\n      <state>TX</state>\n      <zip>44628</zip>\n      <country>USA</country>\n    </billTo>\n    <shipTo>\n      <firstName>China</firstName>\n      <lastName>Bayles</lastName>\n      <company>Thyme for Tea</company>\n      <address>12 Main Street</address>\n      <city>Pecan Springs</city>\n      <state>TX</state>\n      <zip>44628</zip>\n      <country>USA</country>\n    </shipTo>\n    <customerIP>192.168.1.1</customerIP>\n    <!-- Uncomment this section for Card Present Sandbox Accounts -->\n    <!-- <retail><marketType>2</marketType><deviceType>1</deviceType></retail> -->\n    <transactionSettings>\n      <setting>\n        <settingName>testRequest</settingName>\n        <settingValue>false</settingValue>\n      </setting>\n    </transactionSettings>\n    <userFields>\n      <userField>\n        <name>MerchantDefinedFieldName1</name>\n        <value>MerchantDefinedFieldValue1</value>\n      </userField>\n      <userField>\n        <name>favorite_color</name>\n        <value>blue</value>\n      </userField>\n    </userFields>\n  </transactionRequest>\n</createTransactionRequest>"
 			},
 			"response": {
 				"name": "createTransactionResponse",
@@ -4464,7 +4464,7 @@
 									},
 									{
 										"name": "recurringBilling",
-										"value": "The recurring billing status.",
+										"value": "This informational field informs the processor whether a transaction is a part of a recurring payment setup or not. Setting this field to true does not cause the payment to recur.",
 										"format": "true or false",
 										"required": false,
 										"notes": ""
@@ -4757,7 +4757,7 @@
 									},
 									{
 										"name": "recurringBilling",
-										"value": "The recurring billing status.",
+										"value": "This informational field informs the processor whether a transaction is a part of a recurring payment setup or not. Setting this field to true does not cause the payment to recur.",
 										"format": "TRUE or FALSE",
 										"required": false,
 										"notes": ""
@@ -4815,7 +4815,7 @@
 		},
 		{
 			"title": "Capturing a Transaction with Prior Authorization from a Customer Profile",
-			"id": "prior-auth-capturing-a-transaction-from-a-customer-profile",
+			"id": "capturing-a-transaction-with-prior-authorization-from-a-customer-profile",
 			"usage": "This function is used to capture a transaction from an existing customer profile, where a prior Authorization Only transaction was successfully authorized through the payment gateway.",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
@@ -5057,7 +5057,7 @@
 		},
 		{
 			"title": "Capture from a Customer Profile",
-			"id": "capture-a-customer-profile",
+			"id": "capture-from-a-customer-profile",
 			"usage": "Use this function to capture a transaction from an existing customer profile where the authorization was NOT originally submitted through the payment gateway or that requires voice authorization.",
 			"soap": "CreateCustomerProfileTransaction",
 			"request": {
@@ -5292,7 +5292,7 @@
 									},
 									{
 										"name": "recurringBilling",
-										"value": "The recurring billing status.",
+										"value": "This informational field informs the processor whether a transaction is a part of a recurring payment setup or not. Setting this field to true does not cause the payment to recur.",
 										"format": "TRUE or FALSE",
 										"required": false,
 										"notes": ""
