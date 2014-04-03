@@ -174,3 +174,14 @@ iframe {
     opacity: 0.65;
     font-weight: bold;
 }
+p{
+    text-align: justify;
+}
+.noRPadding{
+    
+    padding-right: 0px !important;
+}
+.noLPadding{
+    
+    padding-left: 0px !important;
+}

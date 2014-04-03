@@ -63,16 +63,17 @@
                     <span class="icon-bar"></span>
                 </button>
             </div>
-            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation" id="navigationbarID">
                 <ul class="nav navbar-nav">
-                    <!-- <li>
-                      <a href="../getting-started">Getting Started</a>
-                    </li>-->
+                    <li >
+                      <a onclick="changeTab(this)" style="padding-top:20px;padding-bottom: 16px;" id="SGuideTabID">Getting Started Guide</a>
+                    </li>
                     <li class="active">
-                      <a href="index.html" style="padding-top:20px;">API Reference Guide<span style="font-size: 0.8em;"> ( BETA )</span></a>
+                      <a onclick="changeTab(this)"  style="padding-top:20px;" id="APIRefTabID">API Reference Guide<span style="font-size: 0.8em;"> ( BETA )</span></a>
                     </li>
                     <li >
-                      <a href="clientlibraries.html" style="padding-top:20px;padding-bottom: 16px;">Client Libraries</a>
+                      <!-- <a href="clientlibraries.html" style="padding-top:20px;padding-bottom: 16px;">Client Libraries</a> -->
+                      <a onclick="changeTab(this)" style="padding-top:20px;padding-bottom: 16px;" id="clientLibTabID">Client Libraries</a>
                     </li>
                 </ul>
             </nav> 
@@ -91,7 +92,7 @@
     </div>
 
     <div class="container bs-docs-container">
-        <div class="row">
+        <div class="row" id="APIRefPageID">
             <div class="col-md-9" role="main">
                 <div class="bs-docs-section">
                     <h1 id="authentication" class="page-header">Authentication</h1>
@@ -10937,6 +10938,8 @@ eCheck
                 </div>
             </div>
         </div>
+        <div id="GettingStatedGuidePageID" class="row" ></div>
+        <div id="clientLibPageID" class="row"></div>
 
     </div>
 

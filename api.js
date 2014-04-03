@@ -7,7 +7,33 @@ $(document).ready(function() {
   
 });
 
+function changeTab(element){
+  $("#navigationbarID ul li").removeClass('active');
+  $(element).parent().addClass('active');
+  if(element.id === 'clientLibTabID')
+  {
+    $("#GettingStatedGuidePageID").hide();
+    $("#APIRefPageID").hide();
+    $("#clientLibPageID").show();
+
+  }
+  else if(element.id === 'APIRefTabID'){
+    $("#GettingStatedGuidePageID").hide();
+    $("#APIRefPageID").show();
+    $("#clientLibPageID").hide();
+  }
+  else{
+    $("#GettingStatedGuidePageID").show();
+    $("#APIRefPageID").hide();
+    $("#clientLibPageID").hide();
+  }
+}
+
 function initAPI(){
+  loadAllPages();
+  $("#GettingStatedGuidePageID").hide(); /* hiding the Getting started Guide page*/
+  $("#clientLibPageID").hide();/* Hiding the Client Lib Page*/
+  
   $(".authenticationDiv").hide();
   $("textarea.sample-request, textarea.sample-response").each(function(ind, ele){
     var id = $(ele).attr('id');
@@ -44,6 +70,12 @@ function initAPI(){
   });
 
     initializelightBox();
+}
+
+function loadAllPages(){
+  $("#clientLibPageID").load("clientlibTmp.html");
+  $("#GettingStatedGuidePageID").load("gettingStartedGuide.html");
+  
 }
 
 function initializelightBox(){
