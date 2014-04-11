@@ -1,5 +1,4 @@
 var requestEditor, responseEditor, codeEditorsID=[],transactionkey,loginid;
-//var sURL = "https://qaaqucp1d.vposdownload.qa.intra/xml/v1/request.api";
 var sURL = "https://apitest.authorize.net/xml/v1/request.api";
 
 $(document).ready(function() {

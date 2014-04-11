@@ -105,7 +105,7 @@
                         </li>
                         <li><a href="#authentication-keys" data-toggle="tab">Sandbox Credentials</a>
                         </li>
-                        <li><a href="#authentication-endpoint" data-toggle="tab">Sandbox Endpoint</a>
+						<li><a href="#authentication-endpoint" data-toggle="tab">API Endpoints</a>
                         </li>
                     </ul>
                     <div id="myTabContent" class="tab-content">
@@ -161,11 +161,12 @@
                                 <p class="bg-danger btn required" style="display:none;cursor: auto">Both are required fields</p>
                             </form>
                         </div>
-                         <div class="tab-pane fade in" id="authentication-endpoint">
+						 <div class="tab-pane fade in" id="authentication-endpoint">
 
-                            <p>Request URL:     https://apitest.authorize.net/xml/v1/request.api</p>
-                            <p>Request Method:  POST</p>                            
-                            <p>Content-Type:    text/xml</p>
+                            <p>Request Method: 	POST</p>							
+							<p>Content-Type:	text/xml</p>
+							<p>Sandbox URL:    	https://apitest.authorize.net/xml/v1/request.api</p>
+							<p>Production URL:  https://api.authorize.net/xml/v1/request.api</p>
 
                         </div>
                     </div>
@@ -1853,35 +1854,35 @@ Required when you use an EU payment processor.</td>
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-create-a-subscription" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCreateSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscription&gt;
-        &lt;name&gt;Sample subscription&lt;/name&gt;
-        &lt;paymentSchedule&gt;
-            &lt;interval&gt;
-                &lt;length&gt;1&lt;/length&gt;
-                &lt;unit&gt;months&lt;/unit&gt;
-            &lt;/interval&gt;
-            &lt;startDate&gt;2020-08-30&lt;/startDate&gt;
-            &lt;totalOccurrences&gt;12&lt;/totalOccurrences&gt;
-            &lt;trialOccurrences&gt;1&lt;/trialOccurrences&gt;
-        &lt;/paymentSchedule&gt;
-        &lt;amount&gt;10.29&lt;/amount&gt;
-        &lt;trialAmount&gt;0.00&lt;/trialAmount&gt;
-        &lt;payment&gt;
-            &lt;creditCard&gt;
-                &lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
-                &lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
-            &lt;/creditCard&gt;
-        &lt;/payment&gt;
-        &lt;billTo&gt;
-            &lt;firstName&gt;John&lt;/firstName&gt;
-            &lt;lastName&gt;Smith&lt;/lastName&gt;
-        &lt;/billTo&gt;
-    &lt;/subscription&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscription&gt;
+		&lt;name&gt;Sample subscription&lt;/name&gt;
+		&lt;paymentSchedule&gt;
+			&lt;interval&gt;
+				&lt;length&gt;1&lt;/length&gt;
+				&lt;unit&gt;months&lt;/unit&gt;
+			&lt;/interval&gt;
+			&lt;startDate&gt;2020-08-30&lt;/startDate&gt;
+			&lt;totalOccurrences&gt;12&lt;/totalOccurrences&gt;
+			&lt;trialOccurrences&gt;1&lt;/trialOccurrences&gt;
+		&lt;/paymentSchedule&gt;
+		&lt;amount&gt;10.29&lt;/amount&gt;
+		&lt;trialAmount&gt;0.00&lt;/trialAmount&gt;
+		&lt;payment&gt;
+			&lt;creditCard&gt;
+				&lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
+				&lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
+			&lt;/creditCard&gt;
+		&lt;/payment&gt;
+		&lt;billTo&gt;
+			&lt;firstName&gt;John&lt;/firstName&gt;
+			&lt;lastName&gt;Smith&lt;/lastName&gt;
+		&lt;/billTo&gt;
+	&lt;/subscription&gt;
 &lt;/ARBCreateSubscriptionRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -1911,15 +1912,15 @@ Required when you use an EU payment processor.</td>
                                 <textarea class="sample-response" id="txtRespXml-create-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCreateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful.&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBCreateSubscriptionResponse&gt;</textarea>
                                 <div id="txtRespLoader-create-a-subscription" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2030,12 +2031,12 @@ AnetApiSchema.xsd&quot;&gt;
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-get-subscription-status" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBGetSubscriptionStatusRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBGetSubscriptionStatusRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -2064,15 +2065,15 @@ AnetApiSchema.xsd&quot;&gt;
                             <div style="position:relative;">
                                 <textarea class="sample-response" id="txtRespXml-get-subscription-status" name="txtRespXml" cols="80" rows="6">&lt;ARBGetSubscriptionStatusResponse xmlns:xsi=&quot;http://www.w3.org/2001/
 XMLSchema-instance&quot; xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
-    &lt;Status&gt;active&lt;/Status&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
+	&lt;Status&gt;active&lt;/Status&gt;
 &lt;/ARBGetSubscriptionStatusResponse&gt;</textarea>
                                 <div id="txtRespLoader-get-subscription-status" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2506,20 +2507,20 @@ Required when you use an EU payment processor.</td>
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-update-a-subscription" name="txtReqXml" cols="80" rows="6" style="">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBUpdateSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
-    &lt;subscription&gt;
-        &lt;payment&gt;
-            &lt;creditCard&gt;
-                &lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
-                &lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
-            &lt;/creditCard&gt;
-        &lt;/payment&gt;
-    &lt;/subscription&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;subscription&gt;
+		&lt;payment&gt;
+			&lt;creditCard&gt;
+				&lt;cardNumber&gt;4111111111111111&lt;/cardNumber&gt;
+				&lt;expirationDate&gt;2020-12&lt;/expirationDate&gt;
+			&lt;/creditCard&gt;
+		&lt;/payment&gt;
+	&lt;/subscription&gt;
 &lt;/ARBUpdateSubscriptionRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -2549,14 +2550,14 @@ Required when you use an EU payment processor.</td>
                                 <textarea class="sample-response" id="txtRespXml-update-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBUpdateSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/
 AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful.&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
 &lt;/ARBUpdateSubscriptionResponse&gt;</textarea>
                                 <div id="txtRespLoader-update-a-subscription" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -2659,12 +2660,12 @@ AnetApiSchema.xsd&quot;&gt;
                                         </div>
                                         <p>
                                             <textarea class="sample-request" id="txtReqXml-cancel-a-subscription" name="txtReqXml" cols="80" rows="6" style="">&lt;ARBCancelSubscriptionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;merchantAuthentication&gt;
-        &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
-        &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
-    &lt;/merchantAuthentication&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
+	&lt;merchantAuthentication&gt;
+		&lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+		&lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+	&lt;/merchantAuthentication&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;subscriptionId&gt;100748&lt;/subscriptionId&gt;
 &lt;/ARBCancelSubscriptionRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -2693,14 +2694,14 @@ AnetApiSchema.xsd&quot;&gt;
                             <div style="position:relative;">
                                 <textarea class="sample-response" id="txtRespXml-cancel-a-subscription" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;ARBCancelSubscriptionResponse xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
-    &lt;refId&gt;Sample&lt;/refId&gt;
-    &lt;messages&gt;
-        &lt;resultCode&gt;Ok&lt;/resultCode&gt;
-        &lt;message&gt;
-            &lt;code&gt;I00001&lt;/code&gt;
-            &lt;text&gt;Successful.&lt;/text&gt;
-        &lt;/message&gt;
-    &lt;/messages&gt;
+	&lt;refId&gt;Sample&lt;/refId&gt;
+	&lt;messages&gt;
+		&lt;resultCode&gt;Ok&lt;/resultCode&gt;
+		&lt;message&gt;
+			&lt;code&gt;I00001&lt;/code&gt;
+			&lt;text&gt;Successful.&lt;/text&gt;
+		&lt;/message&gt;
+	&lt;/messages&gt;
 &lt;/ARBCancelSubscriptionResponse&gt;</textarea>
                                 <div id="txtRespLoader-cancel-a-subscription" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
@@ -3137,7 +3138,7 @@ The list is returned in the same order as the payment profiles were submitted in
            &lt;/payment&gt;
       &lt;/paymentProfiles&gt;
     &lt;/profile&gt;
-    &lt;validationMode&gt;testMode&lt;/validationMode&gt;
+	&lt;validationMode&gt;testMode&lt;/validationMode&gt;
   &lt;/createCustomerProfileRequest&gt;</textarea>
                                         </p>
                                         <p>
@@ -9370,7 +9371,7 @@ eCheck</td>
       &lt;transId&gt;12345&lt;/transId&gt;
       &lt;submitTimeUTC&gt;2009-05-30T09:00:00&lt;/submitTimeUTC&gt;
       &lt;submitTimeLocal&gt;2009-05-30T04:00:00&lt;/submitTimeLocal&gt;
-      &lt;transactionStatus&gt;settledSuccessfully/transactionStatus&gt; 
+      &lt;transactionStatus&gt;settledSuccessfully&lt;/transactionStatus&gt; 
       &lt;invoice&gt;INV00001&lt;/invoice&gt;
       &lt;firstName&gt;John&lt;/firstName&gt;
       &lt;lastName&gt;Doe&lt;/lastName&gt;
@@ -10390,7 +10391,7 @@ No input parameters are required other than the authentication information. </p>
                     </ul>
                     <div id="myTabContent" class="tab-content">
                         <div class="tab-pane fade in active" id="homereq-get-unsettled-transaction-list">
-                            <p><em>getTransactionDetailsRequest</em>
+                            <p><em>getUnsettledTransactionListRequest</em>
                             </p>
                             <table class="table table-condensed">
                                 <thead>

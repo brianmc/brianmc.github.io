@@ -6189,7 +6189,7 @@
 						]
 					}
 				],
-				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getTransactionListResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n<messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <transactions>\n    <transaction>\n      <transId>12345</transId>\n      <submitTimeUTC>2009-05-30T09:00:00</submitTimeUTC>\n      <submitTimeLocal>2009-05-30T04:00:00</submitTimeLocal>\n      <transactionStatus>settledSuccessfully/transactionStatus> \n      <invoice>INV00001</invoice>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <amount>2.00</amount> \n      <accountType>Visa</accountType>\n      <accountNumber>XXXX1111</accountNumber> \n    </transaction>\n    <transaction>\n      <transId>12345</transId>\n      <submitTimeUTC>2009-05-30T09:00:00</submitTimeUTC>\n      <submitTimeLocal>2009-05-30T04:00:00</submitTimeLocal>\n      <transactionStatus>settledSuccessfully</transactionStatus>\n      <invoice>INV00001</invoice>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <amount>2.00</amount>\n      <accountType>Visa</accountType>\n      <accountNumber>XXXX1111</accountNumber>\n    </transaction>\n  </transactions>\n</getTransactionListResponse>"
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getTransactionListResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n<messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <transactions>\n    <transaction>\n      <transId>12345</transId>\n      <submitTimeUTC>2009-05-30T09:00:00</submitTimeUTC>\n      <submitTimeLocal>2009-05-30T04:00:00</submitTimeLocal>\n      <transactionStatus>settledSuccessfully</transactionStatus> \n      <invoice>INV00001</invoice>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <amount>2.00</amount> \n      <accountType>Visa</accountType>\n      <accountNumber>XXXX1111</accountNumber> \n    </transaction>\n    <transaction>\n      <transId>12345</transId>\n      <submitTimeUTC>2009-05-30T09:00:00</submitTimeUTC>\n      <submitTimeLocal>2009-05-30T04:00:00</submitTimeLocal>\n      <transactionStatus>settledSuccessfully</transactionStatus>\n      <invoice>INV00001</invoice>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <amount>2.00</amount>\n      <accountType>Visa</accountType>\n      <accountNumber>XXXX1111</accountNumber>\n    </transaction>\n  </transactions>\n</getTransactionListResponse>"
 			}
 		},
 		{
@@ -6926,7 +6926,7 @@
 			"usage": "Use this function to get data for unsettled transactions. The function will return data for up to 1000 of the most recent transactions. \n\nNo input parameters are required other than the authentication information. ",
 			"soap": "GetUnsettledTransactionList",
 			"request": {
-				"name": "getTransactionDetailsRequest",
+				"name": "getUnsettledTransactionListRequest",
 				"children": [
 					{
 						"name": "",
