@@ -4,15 +4,13 @@
     </div>
     <h2>Credit Card Process</h2>
 
-    <p style="margin-bottom:0px;">Connecting a Web site to the payment processing networks is exceptionally difficult and typically beyond the expertise and technical resources of most online merchants. Instead, merchants can connect to the Authorize.Net Payment Gateway, which provides
-        the
+    <p style="margin-bottom:0px;">Connecting a web site or software application to the payment processing networks is exceptionally difficult and typically beyond the
     </p>
     <div class="row">
         <div class="col-sm-4 noRPadding">
-            <p style="text-align:left;">complex infrastructure and security necessary to ensure fast, reliable and secure transmission of transaction data. Authorize.Net manages the routing of transactions just like a traditional credit card swipe machine you find in the physical
-                retail world; however, Authorize.Net uses the Internet instead of a phone line. See our <a href="http://www.authorize.net/resources/howitworksdiagram/">credit card processing diagram</a>.</p>
+            <p style="text-align:left;">expertise and technical resources of most online merchants. Instead, merchants can connect to the Authorize.Net Payment Gateway, which provides the complex infrastructure and security necessary to ensure fast, reliable, and secure transmission of transaction data. Authorize.Net manages the routing of transactions just like a traditional credit card machine you find in the physical retail world; however, Authorize.Net uses the Internet instead of a phone line.</p>
 
-            
+
         </div>
         <div class="col-sm-8 noLPadding">
             <div style="float: right; padding-top:6px; width: 97%; ">
@@ -26,39 +24,178 @@
         </div>
 
     </div>
+    <p>Typically, the actors in an online credit card transaction are:</p>
+    <ul>
+        <li>Consumer—buys the product from the merchant’s web site using a credit card from an issuing bank.</li>
+
+        <li>Issuing bank—provides a credit card to the consumer. Represents the consumer in the event of a dispute.</li>
+
+        <li>Acquirer—usually a bank, underwrites the merchant’s ability to accept credit cards. Represents the merchant in the event of a dispute.</li>
+
+        <li>Merchant—sells a product or service to the consumer from their website, using an Authorize.Net payment API.</li>
+    </ul>
+
+
+
+
+    <p>For more information on how Authorize.Net fits into the payment network, See our <a href="http://www.authorize.net/resources/howitworksdiagram/">credit card processing diagram</a>. For API field descriptions and sample code, see the <a href="http://developer.authorize.net/api/reference/">API Reference Guide</a>. For helpful video training modules, see <a href="http://developer.authorize.net/training/">Authorize.Net Developer Training</a>.</p>
+
     <h2>Life of a transaction</h2>
 
-        <p>An online payment transaction goes through various phases, shown below.</p>
-        <ul>
-            <li>
-                <h3>Authorize</h3>
-            </li>
-            
-            <p>An authorization places a hold on the transaction amount in the consumer’s issuing bank. No money actually changes hands yet. Let’s say the merchant is going to ship a physical product from their website. First they authorize the amount of the
-                transaction. Then they ship the product. Only after the product is shipped does the merchant capture the transaction.</p>
+    <p>An online payment transaction goes through various phases, shown below.</p>
+    <ul>
+        <h3><li>
+            Authorize
+        </li></h3>
 
-            <li>
-                <h3>Capture</h3>
-            </li>
-            <p>Once the product is shipped, the merchant can capture an amount up to the amount of the authorization. Usually the full amount is captured.</p>
-            <li>
-                <h3>Settle</h3>
-            </li>
+        <p>An authorization places a hold on the transaction amount in the customer’s issuing bank. No money actually changes hands yet. For example, let’s say that the merchant is going to ship a physical product from their website. First they authorize the amount of the transaction. Then they ship the product. Only after the product is shipped does the merchant capture the transaction.</p>
+
+        <h3><li>
+            Capture
+        </li></h3>
+        <p>A capture essentially marks a transaction for settlement. As soon as the product is shipped, the merchant can capture an amount up to the amount of the authorization. Usually the full amount is captured. An example of a situation in which the whole amount is not captured might be if the customer ordered multiple items and one of them is unavailable. It’s important to note that a single authorization can be captured only once. If you capture only part of an authorization amount, a new authorization will be required in order to capture more.</p>
+        <h3><li>
+            Settle
+        </li></h3>
 
 
-            <p>After two to four business days, the transaction that was captured has worked its way through the payment network and the merchant receives payment.</p>
-        </ul>
+        <p>Within 24 hours, Authorize.Net settles the transaction. The merchant’s acquirer then deposits the funds into the merchant’s bank account.</p>
+    </ul>
     <h2>Voids and Credit</h2>
 
-    <p>A <b>void</b> occurs after authorization, but before settlement. No money is exchanged, the authorization is simply cancelled. For example, let’s say the customer clicks Buy on the merchant’s website to purchase a product. The merchant then order the
-        item to be shipped from the warehouse. However in the event that product is not in the warehouse, the merchant may choose to <b>void</b> the transaction.</p>
+    <p>
+        <p>A <b>void</b> occurs after authorization, but before settlement. No money is exchanged; the authorization is simply cancelled.</p>
 
-    <p>A <b>credit</b> occurs after settlement. Let’s say that the merchant ships the item, and the transaction is settled, but for some reason the customer becomes unsatisfied with the product. In this case, the merchant may decide to refund, or credit, the
-        money. In this case a new transaction is created called a credit transaction. This transaction can reference the previous authorization, called a follow-on credit, or credit without the original authorization, called a stand-alone credit.</p>
+        <p>A <b>credit</b> occurs after settlement. For example, the merchant ships the item, and the transaction is settled, but for some reason the customer becomes unsatisfied with the product. In such a case, the merchant may decide to refund (credit) the money. A credit is a new and distinct transaction from the original charge with its own unique transaction ID.</p>
+    </p>
 
     <h2>Create Transaction Request</h2>
+    <p>The <b>createTransactionRequest</b> function is used to submit any type of one-time payment transaction. Transaction types are described below.</p>
 
-    <h2>Partial Authorizations</h2>
+
+    <ul>
+        <h3>
+        	<li> Authorization and Capture </li>
+        </h3>
+
+        <p>This transaction is the most common type of credit card transaction and is the default payment gateway transaction type. The amount is sent for authorization and if it is approved, it is automatically submitted for settlement. The unique value for an Authorization and Capture transaction is:
+            <transactionType>authCaptureTransaction</transactionType>.</p>
+
+        <h3><li>
+            Authorization Only
+        </li></h3>
+        <p>This transaction type is sent for authorization only. The transaction will not be sent for settlement until the credit card transaction type Prior Authorization and Capture (see definition below) is submitted, or the transaction is submitted for capture manually in the Merchant Interface.</p>
+
+        <p>If no action is taken within 30 days, the authorization expires and is no longer available for capture. A new Authorization Only transaction has to be submitted to obtain a new authorization code.</p>
+
+        <p>The unique value for an Authorization Only transaction is:</p>
+
+        <p>&lt;transactionType&gt;authOnlyTransaction&lt;/transactionType&gt;</p>
+        <h3><li>
+            Prior Authorization and Capture
+        </li></h3>
+        <p>This transaction type is used to complete an Authorization Only transaction that was successfully authorized through the payment gateway. Together, an Authorization Only transaction and a Prior Authorization and Capture transaction are considered one complete transaction. When the Prior Authorization and Capture is submitted, the transaction is sent for settlement.</p>
+
+        <p>The payment gateway accepts this transaction type and initiates settlement when the following conditions are met:</p>
+        <ul>
+            <li>The original Authorization Only transaction was submitted within the previous 30 days (Authorization Only transactions expire on the payment gateway after 30 days).</li>
+
+            <li>The transaction is submitted with the valid transaction ID (<b>refTransId</b>) of an original, successfully authorized Authorization Only transaction.</li>
+
+            <li>The original transaction was successful and is not yet captured.</li>
+
+            <li>The amount being requested for capture is less than or equal to the original authorized amount. Only a single Prior Authorization and Capture transaction can be submitted against an Authorization Only.</li>
+        </ul>
+
+        <p>The unique element values for a Prior Authorization and Capture transaction are:</p>
+
+        <p>&lt;transactionType&gt;priorAuthCaptureTransaction&lt;/transactionType&gt;</p>
+
+        <p>In addition, the transaction ID of the original transaction needs to be specified in the &lt;refTransId&gt; element:</p>
+
+        <p>&lt;refTransId&gt;123456&lt;/refTransId&gt;</p>
+
+        <p>For this transaction type, the &lt;amount&gt; field is required only if a Prior Authorization and Capture is submitted for an amount that is less than the amount of the original Authorization Only transaction. If no amount is submitted, the payment gateway will initiate settlement for the amount of the original authorized transaction.</p>
+
+        <h3><li>
+            Capture Only 
+        </li></h3>
+        <p>This transaction type is used to complete a previously authorized transaction that was not originally submitted through the payment gateway or that required voice authorization.</p>
+
+        <p>The payment gateway accepts this transaction type and initiates settlement if the transaction is submitted with the valid authorization code issued to the merchant.</p>
+
+        <p>The unique element values for a Capture Only transaction are:</p>
+
+        <p>&lt;transactionType&gt;captureOnlyTransaction&lt;/transactionType&gt;</p>
+
+        <p>&lt;authCode&gt;authorization code here &lt;/authCode&gt;</p>
+
+
+    </ul>
+    <h2>Partial Authorizations</h2> 
+    <p>A partial authorization, also known as a <i>split-tender order</i>, is an order in which two or more transactions comprise the total amount of the order. This type of transaction allows a customer to pay for one transaction with multiple payment types.</p>
+
+    <p>Setting &lt;allowPartialAuth&gt;true&lt;/allowPartialAuth&gt; in the request indicates that the merchant’s system can accommodate partial authorizations. Without this flag, the transaction would be processed as any other and would be either fully authorized or declined due to lack of funds on the card.</p>
+
+    <p>If the first transaction is successfully approved for a partial amount of the total order, a split-tender ID is generated and returned to the merchant in the response. This ID must be passed back with each of the remaining transactions of the group, using &lt;splitTenderId&gt;value&lt;/splitTenderId&gt;. If you include both a split-tender ID and a transaction ID on the same request, an error results.</p>
+
+    <p>All transactions in the group are held until the final transaction of the group is successfully authorized.</p>
+
+    <p>If the merchant needs to release the group of transactions before the final transaction is approved (if the balance is paid by cash, for example), send a priorAuthCaptureTransaction request and include the split-tender ID instead of a transaction ID.</p>
+
+    <p>If the merchant needs to void the group before completion, send a void request, using the split-tender ID instead of a transaction ID. This action will void all the transactions in the group.</p>
+
+    <p>The transaction is not submitted for settlement until either the merchant submits payments adding up to the full requested amount or until the merchant indicates that the transaction is complete (when all or part of the remaining balance is paid in cash).</p>
+
+    <p>Unique elements that apply to Partial Authorization transactions are:</p>
+    <ul>
+        <li>&lt;allowPartialAuth&gt;true&lt;/allowPartialAuth&gt; (input, optional) —The default value is set in the Merchant Interface; you can use this parameter to authorize individual transactions if the option is set to False in the Merchant Interface. Including this field in the transaction request overrides the merchant’s account configuration.</li>
+
+        <li>&lt;balanceOnCard&gt; (output)—this is the authorized amount remaining on the card.</li>
+
+        <li>&lt;requestedAmount&gt; (output)—this is the amount requested.</li>
+
+        <li>&lt;splitTenderId&gt; (output)—this is the split-tender ID provided when the first partial authorization transaction was issued. Use this ID when submitting subsequent transactions related to the same group order.</li>
+
+        <li>&lt;splitTenderStatus&gt; (output)—indicates whether or not the transaction is complete.</li>
+
+        <li>&lt;accountType&gt; (output)—the card type.</li>
+    </ul>
+
+    <h2>Basic Fraud Settings</h2> 
+    <ul>
+        <h3><li>
+            AVS 
+        </li></h3>
+        <p>The Address Verification Service (AVS) is a system designed by bankcard processors to help detect suspicious credit card transaction activity. AVS matches billing address information provided by the cardholder with the cardholder’s billing address on file at the credit card issuing bank. The processing network then sends an AVS response code indicating the results of the match to the payment gateway. The AVS response code can be found in the payment gateway transaction response as well as on the Transaction Detail page in the Merchant Interface. Based on the merchant’s AVS rejection settings, the transaction is accepted or rejected. Rejected transactions display a transaction status of Declined (AVS Mismatch) on the Transaction Detail page. It is important to note that the merchant cannot retrieve address information from the issuing bank; the bank provides only match or no-match information.</p>
+        <p>To implement AVS, the merchant must require the <b>Address</b> and <b>ZIP Code</b> fields on their payment form. To manage AVS rejection settings, log in to the Merchant Interface and choose<b> Account > Settings > Security Settings > Basic Fraud Settings > AVS.</b>
+        </p>
+        <h3><li>
+            Card Code Verification (CCV)
+        </li></h3>
+        <p>This feature enables merchants to compare the card code submitted by the customer for the transaction with the card code on file at the card issuing bank. Filter settings in the Merchant Interface allow the merchant to reject transactions based on the CCV response received. To implement CCV, the merchant must require the Card Code field on their payment form.</p>
+
+        <p>To manage rejection settings, log in to the Merchant Interface and choose <b>Account &gt; Settings &gt; Security Settings &gt; Basic Fraud Settings &gt; CCV</b>.</p>
+
+        <p>Different card companies use different terminologies to refer to card codes:</p>
+
+        <p>CVV2 = Visa</p>
+
+        <p>CVC2 = MasterCard</p>
+
+        <p>CID = American Express and Discover</p>
+        <h3><li>
+            Daily Velocity Filter</li>
+        </h3>
+        <p>The Daily Velocity Filter enables merchants to specify a threshold for the number of transactions allowed per day. All transactions exceeding the threshold for that day are flagged and processed according to the selected filter action. This filter is helpful in preventing certain types of fraudulent activity on the merchant’s account.</p>
+
+        <p>To implement and configure the Daily Velocity Filter, log in to the Merchant Interface and choose <b>Account &gt; Settings &gt; Security Settings &gt; Basic Fraud Settings &gt; Daily Velocity</b>.</p>
+
+    </ul>
+
+
+
+
 
 </div>
 <div class="col-md-3">
