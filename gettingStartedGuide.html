@@ -1,8 +1,8 @@
 <div class="col-md-9" role="main">
     <div>
-        <h1 class="page-header">One Time Transactions</h1>
+        <h1 class="page-header" id="one-time-transaction">One Time Transactions</h1>
     </div>
-    <h2>Credit Card Process</h2>
+    <h2 id="one-time-transaction-credit-card-process">Credit Card Process</h2>
 
     <p style="margin-bottom:0px;">Connecting a web site or software application to the payment processing networks is exceptionally difficult and typically beyond the
     </p>
@@ -40,7 +40,7 @@
 
     <p>For more information on how Authorize.Net fits into the payment network, See our <a href="http://www.authorize.net/resources/howitworksdiagram/">credit card processing diagram</a>. For API field descriptions and sample code, see the <a href="http://developer.authorize.net/api/reference/">API Reference Guide</a>. For helpful video training modules, see <a href="http://developer.authorize.net/training/">Authorize.Net Developer Training</a>.</p>
 
-    <h2>Life of a transaction</h2>
+    <h2 id="life-of-a-transaction">Life of a Transaction</h2>
 
     <p>An online payment transaction goes through various phases, shown below.</p>
     <ul>
@@ -61,7 +61,7 @@
 
         <p>Within 24 hours, Authorize.Net settles the transaction. The merchant’s acquirer then deposits the funds into the merchant’s bank account.</p>
     </ul>
-    <h2>Voids and Credit</h2>
+    <h2 id="voids-and-credit">Voids and Credit</h2>
 
     <p>
         <p>A <b>void</b> occurs after authorization, but before settlement. No money is exchanged; the authorization is simply cancelled.</p>
@@ -69,7 +69,7 @@
         <p>A <b>credit</b> occurs after settlement. For example, the merchant ships the item, and the transaction is settled, but for some reason the customer becomes unsatisfied with the product. In such a case, the merchant may decide to refund (credit) the money. A credit is a new and distinct transaction from the original charge with its own unique transaction ID.</p>
     </p>
 
-    <h2>Create Transaction Request</h2>
+    <h2 id="create-transaction-request">Create Transaction Request</h2>
     <p>The <b>createTransactionRequest</b> function is used to submit any type of one-time payment transaction. Transaction types are described below.</p>
 
 
@@ -132,7 +132,7 @@
 
 
     </ul>
-    <h2>Partial Authorizations</h2> 
+    <h2 id="partial-authorizations">Partial Authorizations</h2> 
     <p>A partial authorization, also known as a <i>split-tender order</i>, is an order in which two or more transactions comprise the total amount of the order. This type of transaction allows a customer to pay for one transaction with multiple payment types.</p>
 
     <p>Setting &lt;allowPartialAuth&gt;true&lt;/allowPartialAuth&gt; in the request indicates that the merchant’s system can accommodate partial authorizations. Without this flag, the transaction would be processed as any other and would be either fully authorized or declined due to lack of funds on the card.</p>
@@ -202,18 +202,20 @@
     <div class="bs-docs-sidebar hidden-print" role="complementary">
         <ul class="nav bs-docs-sidenav">
 
-            <li>
-                <a href="#payment-transactions-create-a-transaction">Create a Transaction</a>
+            <li class="active">
+                <a href="#one-time-transaction">One Time Transaction</a>
+                <ul class="nav">
+                    <li class="active"><a href="#one-time-transaction-credit-card-process">Credit Card Process</a></li>
+                    <li class=""><a href="#life-of-a-transaction">Life of a Transaction</a></li>
+                    <li class=""><a href="#voids-and-credit">Voids and Credit</a></li>
+                    <li class=""><a href="#create-transaction-request">Create Transaction Request</a></li>
+                    <li class=""><a href="#partial-authorizations">Partial Authorizations</a></li> 
+                </ul>
             </li>
             <li>
-                <a href="#recurring-billing">Recurring Billing</a>
+                <a href="#recurring-billing">Error Response Codes</a>
             </li>
-            <li>
-                <a href="#customer-profile">Customer Profile</a>
-            </li>
-            <li>
-                <a href="#reporting">Reporting</a>
-            </li>
+           
         </ul>
     </div>
 </div>
