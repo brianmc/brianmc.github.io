@@ -1,10 +1,11 @@
 <div class="col-md-9" role="main">
-  <div>
-    <h1 class="page-header" id="one-time-transaction">
+  <div id="one-time-transaction">
+    <h1 class="page-header">
       One Time Transactions
     </h1>
-  </div>
-  <h2 id="one-time-transaction-credit-card-process">
+  
+  <div id="one-time-transaction-credit-card-process">
+  <h2 >
     Credit Card Process
   </h2>
   
@@ -32,11 +33,11 @@
           <iframe width="100%" height="213" src="http://www.youtube.com/embed/5-mI9XZ7X0s?rel=0" frameborder="0" allowfullscreen="">
           </iframe>
         </div>
-        <div class="videoDescription" style="display:none;">
+        <!-- <div class="videoDescription" style="display:none;">
           <p style="font-style:italic;">
             Learning the fundamentals of how the payment process works will better prepare you to engage with your clients.
           </p>
-        </div>
+        </div> -->
       </div>
     </div>
     
@@ -74,8 +75,9 @@
     </a>
     .
   </p>
-  
-  <h2 id="life-of-a-transaction">
+  </div>
+  <div id="life-of-a-transaction">
+  <h2 >
     Life of a Transaction
   </h2>
   
@@ -112,7 +114,9 @@
       Within 24 hours, Authorize.Net settles the transaction. The merchant’s acquirer then deposits the funds into the merchant’s bank account.
     </p>
   </ul>
-  <h2 id="voids-and-credit">
+  </div>
+  <div id="voids-and-credit">
+  <h2 >
     Voids and Credit
   </h2>
   
@@ -133,8 +137,9 @@
     occurs after settlement. For example, the merchant ships the item, and the transaction is settled, but for some reason the customer becomes unsatisfied with the product. In such a case, the merchant may decide to refund (credit) the money. A credit is a new and distinct transaction from the original charge with its own unique transaction ID.
   </p>
 </p>
-
-<h2 id="create-transaction-request">
+</div>
+<div id="create-transaction-request">
+<h2 >
   Create Transaction Request
 </h2>
 <p>
@@ -262,7 +267,9 @@
   
   
 </ul>
-<h2 id="partial-authorizations">
+</div>
+<div id="partial-authorizations">
+<h2 >
   Partial Authorizations
 </h2>
 
@@ -326,20 +333,41 @@
     &lt;accountType&gt; (output)—the card type.
   </li>
 </ul>
-
+</div>
+<div id="basic-fraud-detection">
 <h2>
   Basic Fraud Settings
 </h2>
 
 <ul>
-  <h3>
-    <li>
-      AVS 
-    </li>
-  </h3>
+<h3>
+        <li>
+          AVS 
+        </li>
+      </h3>
+ <div class="row">
+    <div class="col-sm-6 noRPadding">
+      
+      <p style="text-align:left">
+        The Address Verification Service (AVS) is a system designed by bankcard processors to help detect suspicious credit card transaction activity. AVS matches billing address information provided by the cardholder with the cardholder’s billing address on file at the credit card issuing bank. The processing network then sends an AVS response code indicating the results of the match to the payment gateway. The AVS response code can be found in the payment gateway transaction response as well as on the Transaction Detail page in the Merchant Interface. Based on the merchant’s AVS rejection settings, the transaction is accepted or rejected. Rejected transactions display a transaction 
+      </p>
+    </div>
+    <div class="col-sm-6 noLPadding">
+      <div style="float: right; padding-top:6px; width: 97%; ">
+        <div class="video">
+        <iframe width="100%" height="213" src="http://www.youtube.com/embed/H3FoMLqYESE" frameborder="0" allowfullscreen>
+         
+          </iframe>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
   <p>
-    The Address Verification Service (AVS) is a system designed by bankcard processors to help detect suspicious credit card transaction activity. AVS matches billing address information provided by the cardholder with the cardholder’s billing address on file at the credit card issuing bank. The processing network then sends an AVS response code indicating the results of the match to the payment gateway. The AVS response code can be found in the payment gateway transaction response as well as on the Transaction Detail page in the Merchant Interface. Based on the merchant’s AVS rejection settings, the transaction is accepted or rejected. Rejected transactions display a transaction status of Declined (AVS Mismatch) on the Transaction Detail page. It is important to note that the merchant cannot retrieve address information from the issuing bank; the bank provides only match or no-match information.
+   status of Declined (AVS Mismatch) on the Transaction Detail page. It is important to note that the merchant cannot retrieve address information from the issuing bank; the bank provides only match or no-match information.
   </p>
+  
   <p>
     To implement AVS, the merchant must require the 
     <b>
@@ -408,623 +436,628 @@
   </p>
   
 </ul>
-<div>
-  <h1 class="page-header" id="information-and-error-messages">
-    Information and Error Messages
-  </h1>
 </div>
-<p>
-  The following table lists common information and error message codes and text. 
-</p>
+</div>
+<br>
+<br>
+<div style="display:none;">
+  <div>
+    <h1 class="page-header" id="information-and-error-messages">
+      Information and Error Messages
+    </h1>
+  </div>
+  <p>
+    The following table lists common information and error message codes and text. 
+  </p>
 
-<table class="table table-condensed">
+  <table class="table table-condensed">
 
-  <thead>
-      <tr>
-          <th>CODE</th>
-          <th>TEXT</th>
-          <th>DESCRIPTION</th>
-      </tr>
-  </thead>
-  <tbody>
-   
-      <tr>
-        <td>
-          I00001
-      </td>
-      <td>
-        Successful
-      </td>
-      <td>
-        The record was processed successfully
-      </td>
-      </tr>
-      <tr>
-        <td>
-          I00003
-      </td>
-      <td>
-        The record has already been deleted
-      </td>
-      <td>
-        The record has already been deleted
-      </td>
-      </tr>
-      <tr>
-        <td>
-          I00005
-      </td>
-      <td>
-        The mobile device has been submitted for approval 
-      </td>
-      <td>
-      </td>
-      </tr>
-      
-      
-      <!-- THIS IS THE TEXT COPIED AND PASTED STRIGHT FROM THE PDF 
-IT IS EASY TO COPY AND PASTE THE TABLE ELEMENTS INTO IT, LIKE ABOVE -->
-      
-      
-      <tr>
-        <td>
-          I00006
-      </td>
-      <td>
-        The mobile device is approved and ready for use
-      </td>
-      <td>
-      </td>
-      </tr>
-      <tr>
-        <td>
-          E00001
-      </td>
-      <td>
-        An error occurred during processing. Try again.
-      </td>
-      <td>
-        An unexpected system error occurred while 
-        processing this request.
-      </td>
-      </tr>
-      <tr>
-        <td>
-          E00002
-      </td>
-      <td>
-        The content-type specified is not supported.
-      </td>
-      <td>
-        The only supported content-types are text/xml 
-        and application/xml.
-      </td>
-      </tr>
-      <tr>
-        <td>
-          E00003
-        </td>
-        <td>
-          An error occurred while parsing the XML request.
-        </td>
-        <td>
-          This is the result of an XML parser error.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00004
-        </td>
-        <td>
-          The name of the requested API method is invalid.
-        </td>
-        <td>
-          The name of the root node of the XML request 
-          is the API method being called. It is not valid.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00005
-        </td>
-        <td>
-          The merchantAuthentication.transactionKey is 
-          invalid or not present.
-        </td>
-        <td>
-          Merchant authentication requires a valid value 
-          for transaction key.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00006
-        </td>
-        <td>
-          The merchantAuthentication.name is invalid or not 
-          present.
-        </td>
-        <td>
-          Merchant authentication requires a valid value 
-          for name.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00007
-        </td>
-        <td>
-          User authentication failed due to invalid 
-          authentication values.
-        </td>
-        <td>
-          The name/and or transaction key is invalid.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00008
-        </td>
-        <td>
-          User authentication failed. The payment gateway 
-          account or user is inactive.
-        </td>
-        <td>
-          The payment gateway or user account is not 
-          currently active.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00009
-        </td>
-        <td>
-          The payment gateway account is in Test Mode. The 
-          request cannot be processed.
-        </td>
-        <td>
-          The requested API method cannot be 
-          executed while the payment gateway account 
-          is in Test Mode.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00010
-        </td>
-        <td>
-          User authentication failed. You do not have the 
-          appropriate permissions.
-        </td>
-        <td>
-          The user does not have permission to call the 
-          API.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00011
-        </td>
-        <td>
-          Access denied. You do not have the appropriate 
-          permissions.
-        </td>
-        <td>
-          The user does not have permission to call the 
-          API method.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00012
-        </td>
-        <td>
-          A duplicate subscription already exists.
-        </td>
-        <td>
-          A duplicate of the subscription was already 
-          submitted. The duplicate check looks 
-          at several fields including payment 
-          information, billing information and, specifically 
-          for subscriptions, Start Date, Interval and Unit.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00013
-        </td>
-        <td>
-          The field is invalid.
-        </td>
-        <td>
-          One of the field values is not valid.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00014
-        </td>
-        <td>
-          A required field is not present.
-        </td>
-        <td>
-          One of the required fields was not present.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00015
-        </td>
-        <td>
-          The field length is invalid.
-        </td>
-        <td>
-          One of the fields has an invalid length.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00016
-        </td>
-        <td>
-          The field type is invalid.
-        </td>
-        <td>
-          The field type is not valid.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00017
-        </td>
-        <td>
-          The startDate cannot occur in the past.
-        </td>
-        <td>
-          The subscription start date cannot occur 
-          before the subscription submission date.
-          <span style="color:blue; font-weight:bold;">
-            Note : 
-          </span>
-          Validation is performed against local 
-          server time, which is Mountain Time.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          
-          E00018
-        </td>
-        <td>
-          The credit card expires before the subscription 
-          startDate.
-        </td>
-        <td>
-          The credit card is not valid as of the start date 
-          of the subscription.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00019
-        </td>
-        <td>
-          The customer taxId or driversLicense information is 
-          required.
-        </td>
-        <td>
-          The customer tax ID or driver’s license information (driver’s license number, driver’s license state, driver’s license DOB) is required for the subscription.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00020
-        </td>
-        <td>
-          The payment gateway account is not enabled for 
-          eCheck.Net subscriptions.
-        </td>
-        <td>
-          This payment gateway account is not set up to 
-          process eCheck.Net subscriptions.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00021
-        </td>
-        <td>
-          The payment gateway account is not enabled for 
-          credit card subscriptions.
-        </td>
-        <td>
-          This payment gateway account is not set up to 
-          process credit card subscriptions.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00022
-        </td>
-        <td>
-          The interval length cannot exceed 365 days or 12 
-          months.
-        </td>
-        <td>
-          The interval length must be 7 to 365 days or 1 
-          to 12 months.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00024
-        </td>
-        <td>
-          The trialOccurrences is required when trialAmount is 
-          specified.
-        </td>
-        <td>
-          The number of trial occurrences cannot be 
-          zero if a valid trial amount is submitted.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00025
-        </td>
-        <td>
-          Automated Recurring Billing is not enabled.
-        </td>
-        <td>
-          The payment gateway account is not enabled 
-          for Automated Recurring Billing.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00026
-        </td>
-        <td>
-          Both trialAmount and trialOccurrences are required.
-        </td>
-        <td>
-          If either a trial amount or number of trial 
-          occurrences is specified then values for both 
-          must be submitted.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00027
-        </td>
-        <td>
-          The test transaction was unsuccessful.
-        </td>
-        <td>
-          An approval was not returned for the test 
-          transaction.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00028
-        </td>
-        <td>
-          The trialOccurrences must be less than 
-          totalOccurrences.
-        </td>
-        <td>
-          The number of trial occurrences specified 
-          must be less than the number of total 
-          occurrences specified.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00029
-        </td>
-        <td>
-          Payment information is required.
-        </td>
-        <td>
-          Payment information is required when creating 
-          a subscription.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00030
-        </td>
-        <td>
-          A paymentSchedule is required.
-        </td>
-        <td>
-          A payment schedule is required when creating 
-          a subscription.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00031
-        </td>
-        <td>
-          The amount is required.
-        </td>
-        <td>
-          The subscription amount is required when 
-          creating a subscription.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00032
-        </td>
-        <td>
-          The startDate is required.
-        </td>
-        <td>
-          The subscription start date is required to 
-          create a subscription.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00033
-        </td>
-        <td>
-          The subscription Start Date cannot be changed.
-        </td>
-        <td>
-          Once a subscription is created the Start Date 
-          cannot be changed.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00034
-        </td>
-        <td>
-          The interval information cannot be changed.
-        </td>
-        <td>
-          Once a subscription is created the 
-          subscription interval cannot be changed.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00035
-        </td>
-        <td>
-          The subscription cannot be found.
-        </td>
-        <td>
-          The subscription ID for this request is not valid 
-          for this merchant.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00036
-        </td>
-        <td>
-          The payment type cannot be changed.
-        </td>
-        <td>
-          Changing the subscription payment type 
-          between credit card and eCheck.Net is not 
-          currently supported.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00037
-        </td>
-        <td>
-          The subscription cannot be updated.
-        </td>
-        <td>
-          Subscriptions that are expired, canceled or 
-          terminated cannot be updated.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00038
-        </td>
-        <td>
-          The subscription cannot be canceled.
-        </td>
-        <td>
-          Subscriptions that are expired or terminated 
-          cannot be canceled.
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00045
-        </td>
-        <td>
-          The root node does not reference a valid XML 
-          namespace. 
-        </td>
-        <td>
-          An error exists in the XML namespace. This 
-          error is similar to E00003. 
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00054
-        </td>
-        <td>
-          The mobile device is not registered with this 
-          merchant account.
-        </td>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00055
-        </td>
-        <td>
-          The mobile device is pending approval by the 
-          account administrator.
-        </td>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00056
-        </td>
-        <td>
-          The mobile device has been disabled for use with 
-          this account.
-        </td>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00057
-        </td>
-        <td>
-          The user does not have permissions to submit 
-          requests from a mobile device.
-        </td>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00058
-        </td>
-        <td>
-          The merchant has met or exceeded the number of 
-          pending mobile devices permitted for this account.
-        </td>
-        <td>
-          An account is limited to 100 pending mobile 
-          devices. You need to enable, disable, or delete 
-          some devices. 
-        </td>
-      </tr>
-      <tr>
-        <td>
-          E00059
+    <thead>
+        <tr>
+            <th>CODE</th>
+            <th>TEXT</th>
+            <th>DESCRIPTION</th>
+        </tr>
+    </thead>
+    <tbody>
+     
+        <tr>
+          <td>
+            I00001
         </td>
         <td>
-          The authentication type is not allowed for this 
-          method call.
+          Successful
         </td>
         <td>
+          The record was processed successfully
         </td>
-      </tr>
-      </tbody>
-</table>
-
+        </tr>
+        <tr>
+          <td>
+            I00003
+        </td>
+        <td>
+          The record has already been deleted
+        </td>
+        <td>
+          The record has already been deleted
+        </td>
+        </tr>
+        <tr>
+          <td>
+            I00005
+        </td>
+        <td>
+          The mobile device has been submitted for approval 
+        </td>
+        <td>
+        </td>
+        </tr>
+        
+        
+        <!-- THIS IS THE TEXT COPIED AND PASTED STRIGHT FROM THE PDF 
+  IT IS EASY TO COPY AND PASTE THE TABLE ELEMENTS INTO IT, LIKE ABOVE -->
+        
+        
+        <tr>
+          <td>
+            I00006
+        </td>
+        <td>
+          The mobile device is approved and ready for use
+        </td>
+        <td>
+        </td>
+        </tr>
+        <tr>
+          <td>
+            E00001
+        </td>
+        <td>
+          An error occurred during processing. Try again.
+        </td>
+        <td>
+          An unexpected system error occurred while 
+          processing this request.
+        </td>
+        </tr>
+        <tr>
+          <td>
+            E00002
+        </td>
+        <td>
+          The content-type specified is not supported.
+        </td>
+        <td>
+          The only supported content-types are text/xml 
+          and application/xml.
+        </td>
+        </tr>
+        <tr>
+          <td>
+            E00003
+          </td>
+          <td>
+            An error occurred while parsing the XML request.
+          </td>
+          <td>
+            This is the result of an XML parser error.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00004
+          </td>
+          <td>
+            The name of the requested API method is invalid.
+          </td>
+          <td>
+            The name of the root node of the XML request 
+            is the API method being called. It is not valid.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00005
+          </td>
+          <td>
+            The merchantAuthentication.transactionKey is 
+            invalid or not present.
+          </td>
+          <td>
+            Merchant authentication requires a valid value 
+            for transaction key.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00006
+          </td>
+          <td>
+            The merchantAuthentication.name is invalid or not 
+            present.
+          </td>
+          <td>
+            Merchant authentication requires a valid value 
+            for name.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00007
+          </td>
+          <td>
+            User authentication failed due to invalid 
+            authentication values.
+          </td>
+          <td>
+            The name/and or transaction key is invalid.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00008
+          </td>
+          <td>
+            User authentication failed. The payment gateway 
+            account or user is inactive.
+          </td>
+          <td>
+            The payment gateway or user account is not 
+            currently active.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00009
+          </td>
+          <td>
+            The payment gateway account is in Test Mode. The 
+            request cannot be processed.
+          </td>
+          <td>
+            The requested API method cannot be 
+            executed while the payment gateway account 
+            is in Test Mode.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00010
+          </td>
+          <td>
+            User authentication failed. You do not have the 
+            appropriate permissions.
+          </td>
+          <td>
+            The user does not have permission to call the 
+            API.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00011
+          </td>
+          <td>
+            Access denied. You do not have the appropriate 
+            permissions.
+          </td>
+          <td>
+            The user does not have permission to call the 
+            API method.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00012
+          </td>
+          <td>
+            A duplicate subscription already exists.
+          </td>
+          <td>
+            A duplicate of the subscription was already 
+            submitted. The duplicate check looks 
+            at several fields including payment 
+            information, billing information and, specifically 
+            for subscriptions, Start Date, Interval and Unit.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00013
+          </td>
+          <td>
+            The field is invalid.
+          </td>
+          <td>
+            One of the field values is not valid.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00014
+          </td>
+          <td>
+            A required field is not present.
+          </td>
+          <td>
+            One of the required fields was not present.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00015
+          </td>
+          <td>
+            The field length is invalid.
+          </td>
+          <td>
+            One of the fields has an invalid length.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00016
+          </td>
+          <td>
+            The field type is invalid.
+          </td>
+          <td>
+            The field type is not valid.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00017
+          </td>
+          <td>
+            The startDate cannot occur in the past.
+          </td>
+          <td>
+            The subscription start date cannot occur 
+            before the subscription submission date.
+            <span style="color:blue; font-weight:bold;">
+              Note : 
+            </span>
+            Validation is performed against local 
+            server time, which is Mountain Time.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            
+            E00018
+          </td>
+          <td>
+            The credit card expires before the subscription 
+            startDate.
+          </td>
+          <td>
+            The credit card is not valid as of the start date 
+            of the subscription.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00019
+          </td>
+          <td>
+            The customer taxId or driversLicense information is 
+            required.
+          </td>
+          <td>
+            The customer tax ID or driver’s license information (driver’s license number, driver’s license state, driver’s license DOB) is required for the subscription.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00020
+          </td>
+          <td>
+            The payment gateway account is not enabled for 
+            eCheck.Net subscriptions.
+          </td>
+          <td>
+            This payment gateway account is not set up to 
+            process eCheck.Net subscriptions.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00021
+          </td>
+          <td>
+            The payment gateway account is not enabled for 
+            credit card subscriptions.
+          </td>
+          <td>
+            This payment gateway account is not set up to 
+            process credit card subscriptions.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00022
+          </td>
+          <td>
+            The interval length cannot exceed 365 days or 12 
+            months.
+          </td>
+          <td>
+            The interval length must be 7 to 365 days or 1 
+            to 12 months.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00024
+          </td>
+          <td>
+            The trialOccurrences is required when trialAmount is 
+            specified.
+          </td>
+          <td>
+            The number of trial occurrences cannot be 
+            zero if a valid trial amount is submitted.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00025
+          </td>
+          <td>
+            Automated Recurring Billing is not enabled.
+          </td>
+          <td>
+            The payment gateway account is not enabled 
+            for Automated Recurring Billing.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00026
+          </td>
+          <td>
+            Both trialAmount and trialOccurrences are required.
+          </td>
+          <td>
+            If either a trial amount or number of trial 
+            occurrences is specified then values for both 
+            must be submitted.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00027
+          </td>
+          <td>
+            The test transaction was unsuccessful.
+          </td>
+          <td>
+            An approval was not returned for the test 
+            transaction.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00028
+          </td>
+          <td>
+            The trialOccurrences must be less than 
+            totalOccurrences.
+          </td>
+          <td>
+            The number of trial occurrences specified 
+            must be less than the number of total 
+            occurrences specified.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00029
+          </td>
+          <td>
+            Payment information is required.
+          </td>
+          <td>
+            Payment information is required when creating 
+            a subscription.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00030
+          </td>
+          <td>
+            A paymentSchedule is required.
+          </td>
+          <td>
+            A payment schedule is required when creating 
+            a subscription.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00031
+          </td>
+          <td>
+            The amount is required.
+          </td>
+          <td>
+            The subscription amount is required when 
+            creating a subscription.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00032
+          </td>
+          <td>
+            The startDate is required.
+          </td>
+          <td>
+            The subscription start date is required to 
+            create a subscription.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00033
+          </td>
+          <td>
+            The subscription Start Date cannot be changed.
+          </td>
+          <td>
+            Once a subscription is created the Start Date 
+            cannot be changed.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00034
+          </td>
+          <td>
+            The interval information cannot be changed.
+          </td>
+          <td>
+            Once a subscription is created the 
+            subscription interval cannot be changed.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00035
+          </td>
+          <td>
+            The subscription cannot be found.
+          </td>
+          <td>
+            The subscription ID for this request is not valid 
+            for this merchant.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00036
+          </td>
+          <td>
+            The payment type cannot be changed.
+          </td>
+          <td>
+            Changing the subscription payment type 
+            between credit card and eCheck.Net is not 
+            currently supported.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00037
+          </td>
+          <td>
+            The subscription cannot be updated.
+          </td>
+          <td>
+            Subscriptions that are expired, canceled or 
+            terminated cannot be updated.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00038
+          </td>
+          <td>
+            The subscription cannot be canceled.
+          </td>
+          <td>
+            Subscriptions that are expired or terminated 
+            cannot be canceled.
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00045
+          </td>
+          <td>
+            The root node does not reference a valid XML 
+            namespace. 
+          </td>
+          <td>
+            An error exists in the XML namespace. This 
+            error is similar to E00003. 
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00054
+          </td>
+          <td>
+            The mobile device is not registered with this 
+            merchant account.
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00055
+          </td>
+          <td>
+            The mobile device is pending approval by the 
+            account administrator.
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00056
+          </td>
+          <td>
+            The mobile device has been disabled for use with 
+            this account.
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00057
+          </td>
+          <td>
+            The user does not have permissions to submit 
+            requests from a mobile device.
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00058
+          </td>
+          <td>
+            The merchant has met or exceeded the number of 
+            pending mobile devices permitted for this account.
+          </td>
+          <td>
+            An account is limited to 100 pending mobile 
+            devices. You need to enable, disable, or delete 
+            some devices. 
+          </td>
+        </tr>
+        <tr>
+          <td>
+            E00059
+          </td>
+          <td>
+            The authentication type is not allowed for this 
+            method call.
+          </td>
+          <td>
+          </td>
+        </tr>
+        </tbody>
+  </table>
+</div>
 
 </div>
 <div class="col-md-3">
@@ -1061,14 +1094,18 @@ IT IS EASY TO COPY AND PASTE THE TABLE ELEMENTS INTO IT, LIKE ABOVE -->
               Partial Authorizations
             </a>
           </li>
-          
+           <li class="">
+            <a href="#basic-fraud-detection">
+              Basic Fraud Settings
+            </a>
+          </li>
         </ul>
       </li>
-      <li>
+      <!-- <li>
         <a href="#information-and-error-messages">
           Error Response Codes
         </a>
-      </li>
+      </li> -->
       
     </ul>
   </div>
