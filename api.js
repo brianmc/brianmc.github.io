@@ -6,27 +6,57 @@ $(document).ready(function() {
   
 });
 
+var tabWasxClicked = "false";
+$(window).bind('hashchange', function(e) {
+  if(tabWasxClicked == "true"){
+      tabWasxClicked = "false";  // dont call the tab click function twice when 
+  }else{
+    tabWasxClicked = "fakeclick";
+    changeTab($(window.location.hash)); // the hash changed without a tab click
+    currTab.addClass('active'); // re-highlight the current tab
+  }
+});
+
+var currTab = "";
 function changeTab(element){
+  if(tabWasxClicked == "fakeclick"){
+   tabWasxClicked = "false";
+  }else{
+    tabWasxClicked = "true";
+  }
   $("#navigationbarID ul li").removeClass('active');
   $(element).parent().addClass('active');
-  if(element.id === 'clientLibTabID')
+
+  var myElID = element.id;
+  if(myElID == undefined){
+    myElID = element.attr('id');
+  }
+
+  if(myElID === 'clientLibTabID')
   {
     $("#GettingStatedGuidePageID").hide();
     $("#APIRefPageID").hide();
     $("#clientLibPageID").show();
+    currTab = $(element).parent();
 
   }
-  else if(element.id === 'APIRefTabID'){
+  else if(myElID === 'APIRefTabID'){
     $("#GettingStatedGuidePageID").hide();
     $("#APIRefPageID").show();
     $("#clientLibPageID").hide();
+    currTab = $(element).parent();
   }
-  else{
+  else if(myElID === 'SGuideTabID'){
     $("#GettingStatedGuidePageID").show();
     $("#APIRefPageID").hide();
     $("#clientLibPageID").hide();
+    currTab = $(element).parent();
   }
+  $('[data-spy="scroll"]').each(function () {
+    var $spy = $(this).scrollspy('refresh')
+  })
 }
+
 
 function initAPI(){
   loadAllPages();
