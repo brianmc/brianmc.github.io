@@ -3,21 +3,25 @@ var sURL = "https://apitest.authorize.net/xml/v1/request.api";
 
 $(document).ready(function() {
   initAPI();
-  
 });
 
 var tabWasxClicked = "false";
-$(window).bind('hashchange', function(e) {
-  if(tabWasxClicked == "true"){
+$(window).bind('hashchange', function() {
+  changeHash();
+});
+
+function changeHash(){ 
+    if(tabWasxClicked == "true"){
       tabWasxClicked = "false";  // dont call the tab click function twice when 
   }else{
     tabWasxClicked = "fakeclick";
-    changeTab($(window.location.hash)); // the hash changed without a tab click
+    var tab = window.location.hash!=="" ? window.location.hash : "#APIRefTabID";// if index.html is the page send that.
+    changeTab($(tab)); // the hash changed without a tab click
     currTab.addClass('active'); // re-highlight the current tab
   }
-});
+}
 
-var currTab = "";
+var currTab = $("#APIRefPageID").parent();;
 function changeTab(element){
   if(tabWasxClicked == "fakeclick"){
    tabWasxClicked = "false";
@@ -60,9 +64,11 @@ function changeTab(element){
 
 function initAPI(){
   loadAllPages();
+
   $("#GettingStatedGuidePageID").hide(); /* hiding the Getting started Guide page*/
   $("#clientLibPageID").hide();/* Hiding the Client Lib Page*/
-  
+  //$("#APIRefPageID").hide();
+
   $(".authenticationDiv").hide();
   $("textarea.sample-request, textarea.sample-response").each(function(ind, ele){
     var id = $(ele).attr('id');
@@ -99,6 +105,7 @@ function initAPI(){
   });
 
     initializelightBox();
+      changeHash();
 }
 
 function loadAllPages(){
