@@ -3,6 +3,7 @@ var sURL = "https://apitest.authorize.net/xml/v1/request.api";
 
 $(document).ready(function() {
   initAPI();
+   
 });
 
 var tabWasxClicked = "false";
@@ -21,13 +22,14 @@ function changeHash(){
   }
 }
 
-var currTab = $("#APIRefPageID").parent();;
+var currTab = "";
 function changeTab(element){
   if(tabWasxClicked == "fakeclick"){
    tabWasxClicked = "false";
   }else{
     tabWasxClicked = "true";
   }
+ 
   $("#navigationbarID ul li").removeClass('active');
   $(element).parent().addClass('active');
 
@@ -35,39 +37,41 @@ function changeTab(element){
   if(myElID == undefined){
     myElID = element.attr('id');
   }
-
-  if(myElID === 'clientLibTabID')
+   if(myElID === 'clientLibTabID')
   {
+    $("#clientLibPageID").show();
     $("#GettingStatedGuidePageID").hide();
     $("#APIRefPageID").hide();
-    $("#clientLibPageID").show();
+    
     currTab = $(element).parent();
 
-  }
-  else if(myElID === 'APIRefTabID'){
-    $("#GettingStatedGuidePageID").hide();
-    $("#APIRefPageID").show();
-    $("#clientLibPageID").hide();
-    currTab = $(element).parent();
   }
   else if(myElID === 'SGuideTabID'){
     $("#GettingStatedGuidePageID").show();
     $("#APIRefPageID").hide();
     $("#clientLibPageID").hide();
+    $('body').scrollspy({ target: '#gettingStartedGuideNav' })
+
     currTab = $(element).parent();
   }
+  else {
+    $("#APIRefPageID").show();
+    $("#GettingStatedGuidePageID").hide();
+    $("#clientLibPageID").hide();
+    currTab = $(element).parent();
+  }
+
+
   $('[data-spy="scroll"]').each(function () {
     var $spy = $(this).scrollspy('refresh')
   })
 }
 
 
+
 function initAPI(){
   loadAllPages();
 
-  $("#GettingStatedGuidePageID").hide(); /* hiding the Getting started Guide page*/
-  $("#clientLibPageID").hide();/* Hiding the Client Lib Page*/
-  //$("#APIRefPageID").hide();
 
   $(".authenticationDiv").hide();
   $("textarea.sample-request, textarea.sample-response").each(function(ind, ele){
@@ -105,7 +109,8 @@ function initAPI(){
   });
 
     initializelightBox();
-      changeHash();
+     var tab = window.location.hash!=="" ? window.location.hash : "#APIRefTabID";
+      changeTab($(tab));
 }
 
 function loadAllPages(){
