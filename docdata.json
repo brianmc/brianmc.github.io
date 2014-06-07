@@ -5,9 +5,9 @@
 	"API_ID": "payment-transactions",
 	"methods": [
 		{
-			"title": "Create a Transaction",
-			"id": "create-a-transaction",
-			"usage": "Use this function to create a transaction request.",
+			"title": "Charge a Credit Card",
+			"id": "charge-a-credit-card",
+			"usage": "Use this method to authorize and capture a credit card payment.",
 			"soap": "",
 			"request": {
 				"name": "createTransactionRequest",
@@ -59,7 +59,1095 @@
 							{
 								"name": "transactionType",
 								"value": "Type of credit card transaction.",
-								"format": "One of the following:\n\n* authOnlyTransaction\n* authCaptureTransaction\n* captureOnlyTransaction\n* refundTransaction\n* priorAuthCapture\n* Transaction\n* voidTransaction",
+								"format": "authCaptureTransaction",
+								"required": false,
+								"notes": "If the value submitted does not match a supported value, the transaction is rejected. If this field is not submitted or the value is blank, the payment gateway will process the transaction as an authCaptureTransaction. "
+							},
+							{
+								"name": "amount",
+								"value": "Amount of the transaction.",
+								"format": "Up to 15 digits with a decimal point (no dollar symbol. For example, 8.95",
+								"required": true,
+								"notes": "This is the total amount and must include tax, shipping, and any other charges. The amount can either be hard coded or posted to a script."
+							},
+							{
+								"name": "paymentType",
+								"value": "This section includes payment information. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "trackData",
+										"value": "trackData can contain track1 and track2.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "track1",
+												"value": "(Applies to Card Present only.)\n\nConditional \n\nRequired only if track2, cardNumber, and expirationDate are absent.",
+												"format": "Valid Track 1 data.\n\nNote: Starting and ending sentinel characters must be discarded before submitting transactions.",
+												"required": false,
+												"notes": "Track 1 data read from credit card. It is not necessary to submit Track 1 and Track 2 data, and cardNumber and expirationDate. If both tracks are sent by the POS application, the gateway will use the Track 1 information. \n\nIf neither Track 1 nor Track 2 data is submitted, but cardNumber and expirationDate are submitted, the Card Present transaction rate may be downgraded."
+											},
+											{
+												"name": "track2",
+												"value": "(Applies to Card Present only.)\n\nConditional \n\nRequired only if track1 and cardNumber, and expirationDate are absent.",
+												"format": "Valid Track 2 data.\n\nNote: Starting and ending sentinel characters must be discarded before submitting transactions.",
+												"required": false,
+												"notes": "Track 2 data read from credit card. This information is required only if Track 1 and cardNumber and expirationDate are absent. It is not necessary to submit Track 1 and Track 2 data, and cardNumber and expirationDate. If both tracks are sent by the POS application, the gateway will use the Track 1 information. \n\nIf neither Track 1 nor Track 2 data is submitted, but cardNumber and expirationDate are submitted, the Card Present transaction rate may be downgraded."
+											}
+										]
+									},
+									{
+										"name": "encryptedTrackData",
+										"value": "The following elements are required only when using an encrypted card reader.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "FormOfPayment",
+												"value": "Contains the value element.",
+												"format": "",
+												"required": false,
+												"notes": "",
+												"children": [
+													{
+														"name": "Value",
+														"value": "Contains the encoding element.",
+														"format": "",
+														"required": false,
+														"notes": "",
+														"children": [
+															{
+																"name": "Encoding",
+																"value": "Used to specify the encoding for data in the request.\n \nIf the response contains decrypted data, then it will be encoded using this setting.",
+																"format": "String, Hex or Base64",
+																"required": false,
+																"notes": ""
+															},
+															{
+																"name": "EncryptionAlgorithm",
+																"value": "TDES",
+																"format": "String",
+																"required": false,
+																"notes": "Specifies the algorithm used to encrypt the payment data. Currently, only TDES is supported."
+															},
+															{
+																"name": "Scheme",
+																"value": "Contains the DUKPT element.",
+																"format": "",
+																"required": false,
+																"notes": "",
+																"children": [
+																	{
+																		"name": "DUKPT",
+																		"value": "Contains the Operation element.",
+																		"format": "",
+																		"required": false,
+																		"notes": "",
+																		"children": [
+																			{
+																				"name": "Operation",
+																				"value": "DECRYPT",
+																				"format": "String",
+																				"required": false,
+																				"notes": "Used to specify the cryptographic operation to perform on the request data.\n\nCurrently, only Decrypt is supported and must be specified."
+																			},
+																			{
+																				"name": "Mode",
+																				"value": "Contains the Data element.",
+																				"format": "",
+																				"required": false,
+																				"notes": "",
+																				"children": [
+																					{
+																						"name": "Data",
+																						"value": "1",
+																						"format": "Boolean.\n \n1 means true and is currently the only value supported.",
+																						"required": false,
+																						"notes": "Used to specify that DUKPT decrypt."
+																					}
+																				]
+																			},
+																			{
+																				"name": "DeviceInfo",
+																				"value": "Contains the Description element.",
+																				"format": "",
+																				"required": false,
+																				"notes": "",
+																				"children": [
+																					{
+																						"name": "Description",
+																						"value": "Metadata string used to control how the request is ultimately processed.",
+																						"format": "String, 512 encoded characters",
+																						"required": false,
+																						"notes": "Contains key value pairs with the following format:\n\n* KEY_NAME=KEY_VALUE^KEYn_NAME=KEYn_VALUE\nWhere \nKEY_NAME is an alphanumeric identifier and may \ncontain a period (.), hyphen (-), and underscore (_).\n\n* = separates a key name and its value.\n\n* KEY_VALUE is the value of the preceding key. It \ncannot contain the following special characters: \n\\ , ; = < > % ^ \nThe \\ character can be used to escape special \ncharacters.\n\n* The ^ separator can be used between additional key value pairs.\n\nThe ENCODING that is used is based on the Encoding set in the request.\n\nMetadata is used to specify how the request should be processed. Currently, the required value in plain ASCII is: FID=IDTECH.UniMag.Android.Sdkv1\n\nNote that this string can be used with any supported platform, despite the term “android.�?\n\nHex Encoded:\n4649443D4944544543482E556E694D61672E416E64726F69642E53646B7631\n\nBase64 Encoded:\nRklEPUlEVEVDSC5VbmlNYWcuQW5kcm9pZC5TZGt2MQ=="
+																					}
+																				]
+																			},
+																			{
+																				"name": "EncryptedData",
+																				"value": "Contains Value element.",
+																				"format": "",
+																				"required": false,
+																				"notes": "",
+																				"children": [
+																					{
+																						"name": "Value",
+																						"value": "Encrypted card data.",
+																						"format": "String.",
+																						"required": false,
+																						"notes": "Encoded card reader data that contains encrypted tracks and KSN."
+																					}
+																				]
+																			}
+																		]
+																	}
+																]
+															}
+														]
+													}
+												]
+											}
+										]
+									},
+									{
+										"name": "creditCard",
+										"value": "The following elements belong to the <creditCard> element; include them only for credit card transactions.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "cardNumber",
+												"value": "The customer’s credit card number.",
+												"format": "Between 13 and 16 digits without spaces\n\nOnly the last four digits are required for credit card transactions.",
+												"required": true,
+												"notes": "Optional for Card Present.\n\nThis is sensitive cardholder information and must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. \n\nFor more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training."
+											},
+											{
+												"name": "expirationDate",
+												"value": "The customer’s credit card expiration date.",
+												"format": "One of the following:\n\nMMYY, \nMM/YY, \nMM-YY, MMYYYY, \nMM/YYYY, \nMM-YYYY",
+												"required": true,
+												"notes": "Optional for Card Present.\n\nThis is sensitive cardholder information and must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. \n\nFor more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training."
+											},
+											{
+												"name": "cardCode",
+												"value": "The customer’s card code.",
+												"format": "Numeric",
+												"required": false,
+												"notes": "The three- or four-digit number on the back of a credit card (on the front for American Express). \n\nThis field is required if the merchant would like to use the Card Code Verification (CCV) security feature. \n\nCardholder information must be stored securely and in accordance with the Payment Card Industry (PCI) Data Security Standard. \n\nFor more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training."
+											}
+										]
+									},
+									{
+										"name": "bankAccount",
+										"value": "The following elements belong to the <bankAccount> element; include them only for bank account transactions.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "accountNumber",
+												"value": "Account number, masked.",
+												"format": "XXXX1111",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "routingNumber",
+												"value": "Bank's routing number.",
+												"format": "XXXX0000",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "nameOnAccount",
+												"value": "Name of the person who holds the bank account.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "bankName",
+												"value": "The name of the bank.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "echeckType",
+												"value": "The type of eCheck transaction.",
+												"format": "PPD, WEB, CCD, TEL",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "authCode",
+												"value": "Authorization code.",
+												"format": "String.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "refTransId",
+												"value": "Transaction ID of the original partial authorization transaction.",
+												"format": "String.",
+												"required": false,
+												"notes": "Required only for refundTransaction, priorAuthCaptureTransaction, and \nvoidTransaction. \n\nDo not include this field if you are \nproviding splitTenderId"
+											},
+											{
+												"name": "splitTenderId",
+												"value": "The payment gateway-assigned ID \nthat links the current authorization request to the original authorization request. \n",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "This value applies to partial authorization transactions only, and is returned in the reply \nmessage from the original authorization request."
+											},
+											{
+												"name": "order",
+												"value": "Contains information about the order.",
+												"format": "",
+												"required": false,
+												"notes": "",
+												"children": [
+													{
+														"name": "invoiceNumber",
+														"value": "Merchant-defined invoice number associated with the order. ",
+														"format": "",
+														"required": false,
+														"notes": ""
+													},
+													{
+														"name": "Description",
+														"value": "Description of the item purchased. ",
+														"format": "",
+														"required": false,
+														"notes": ""
+													}
+												]
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "lineItems",
+								"value": "Contains one or more <lineItem> elements (the maximum is 30 line items.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "lineItem",
+										"value": "Describes one line item of the order.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "itemId",
+												"value": "Item identification.",
+												"format": "Up to 31 characters.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "name",
+												"value": "Name of the item.",
+												"format": "Up to 31 characters",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "Description of the item.",
+												"format": "Up to 255 characters.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "quantity",
+												"value": "Quantity purchased.",
+												"format": "Up to two decimal places. Must be a positive number",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "unitPrice",
+												"value": "Price of one item.",
+												"format": "",
+												"required": false,
+												"notes": "Cost of an item per unit, excluding tax, freight, and duty."
+											}
+										]
+									},
+									{
+										"name": "tax",
+										"value": "Contains information about any taxes applied.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "amount",
+												"value": "Amount of tax.",
+												"format": "Format can include up to two decimal points. For example, 1.27. ",
+												"required": false,
+												"notes": "Total amount of the transaction must include this amount."
+											},
+											{
+												"name": "name",
+												"value": "Name of tax.",
+												"format": "",
+												"required": true,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "Description of tax.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									},
+									{
+										"name": "duty",
+										"value": "Contains information about any duty applied.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "amount",
+												"value": "Amount of duty.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "name",
+												"value": "Name of duty.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "Description of duty.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									},
+									{
+										"name": "shipping",
+										"value": "Items in this section describe shipping charges applied.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "amount",
+												"value": "Amount of shipping charges.",
+												"format": "",
+												"required": false,
+												"notes": "Description of shipping charges."
+											},
+											{
+												"name": "name",
+												"value": "Name of shipping charges.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "Description of shipping charges.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "taxExempt",
+												"value": "Indicates whether or not order is exempt from tax.",
+												"format": "true, false",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "poNumber",
+												"value": "The merchant-assigned purchase order number.",
+												"format": "Up to 25 characters (no symbols).",
+												"required": false,
+												"notes": "Purchase order number must be created dynamically on the merchant's server or provided on a per-transaction basis. The payment gateway does not perform this function."
+											}
+										]
+									},
+									{
+										"name": "customer",
+										"value": "The following fields contain customer information.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "type",
+												"value": "",
+												"format": "individual, business",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "id",
+												"value": "Merchant assigned customer ID.",
+												"format": "Up to 20 characters (no symbols).",
+												"required": false,
+												"notes": "Unique identifier to represent the customer associated with the transaction.\n\nCustomer ID must be created dynamically on the merchant's server or provided for each transaction. The payment gateway does not perform this function."
+											},
+											{
+												"name": "email",
+												"value": "The customer’s valid email address.",
+												"format": "Up to 255 characters.\n\nFor example, janedoe@customer.com",
+												"required": false,
+												"notes": "Required only when using a European Payment Processor. Processing Platform.\n\nEmail address to which the customer’s copy of the email receipt is sent when Email Receipts is configured in the Merchant Interface. The email is sent to the customer only if the email address format is valid. "
+											}
+										]
+									},
+									{
+										"name": "billTo",
+										"value": "This section contains billing address information.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "firstName",
+												"value": "First name associated with customer’s billing address.",
+												"format": "Up to 50 characters (no symbols).",
+												"required": false,
+												"notes": "Required only when using a European Payment Processor."
+											},
+											{
+												"name": "lastName",
+												"value": "Last name associated with customer’s billing address.",
+												"format": "Up to 50 characters (no symbols).",
+												"required": false,
+												"notes": "Required only when using a European Payment Processor."
+											},
+											{
+												"name": "company",
+												"value": "Company associated with customer’s billing address.",
+												"format": "Up to 50 characters (no symbols).",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "address",
+												"value": "Customer’s billing address.",
+												"format": "Up to 60 characters (no symbols).",
+												"required": false,
+												"notes": "Required if merchant would like to use the Address Verification Service security feature.\n \nRequired when using GPN Canada or WorldPay Streamline Processing Platform."
+											},
+											{
+												"name": "city",
+												"value": "City of customer’s billing address.",
+												"format": "Up to 40 characters (no symbols).",
+												"required": false,
+												"notes": "Required only when using a European Payment Processor."
+											},
+											{
+												"name": "state",
+												"value": "State of customer’s billing address.",
+												"format": "Up to 40 characters (no symbols) or a valid two-character state code.",
+												"required": false,
+												"notes": "Required only when using a European Payment Processor."
+											},
+											{
+												"name": "zip",
+												"value": "ZIP code of customer’s billing address.",
+												"format": "Up to 20 characters (no symbols).",
+												"required": false,
+												"notes": "Required if merchant would like to use the Address Verification Service security feature.\n \nRequired when using GPN Canada or WorldPay Streamline Processing Platform."
+											},
+											{
+												"name": "country",
+												"value": "Country of customer’s billing address.",
+												"format": "Up to 60 characters (no symbols).",
+												"required": false,
+												"notes": "Required only when using a European Payment Processor."
+											},
+											{
+												"name": "phoneNumber",
+												"value": "Phone number associated with customer’s billing address.",
+												"format": "Up to 25 digits (no letters).\n\nFor example, \n(123)123-1234",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "faxNumber",
+												"value": "Fax number associated with customer’s billing address.",
+												"format": "",
+												"required": false,
+												"notes": "Up to 25 digits (no letters).\n\nFor example, \n(123)123-1234"
+											}
+										]
+									},
+									{
+										"name": "shipTo",
+										"value": "This section contains shipping information.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "firstName",
+												"value": "First name associated with customer’s shipping address.",
+												"format": "Up to 50 characters (no symbols).",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "lastName",
+												"value": "Last name associated with customer’s shipping address.",
+												"format": "Up to 50 characters (no symbols).",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "company",
+												"value": "Company associated with customer’s shipping address.",
+												"format": "Up to 50 characters (no symbols).",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "address",
+												"value": "Customer’s shipping address.",
+												"format": "Up to 60 characters (no symbols).",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "city",
+												"value": "City of customer’s shipping address.",
+												"format": "Up to 40 characters (no symbols).",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "state",
+												"value": "State of customer’s shipping address.",
+												"format": "Up to 40 characters (no symbols) or a valid two-character state code.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "zip",
+												"value": "ZIP code of customer’s shipping address.",
+												"format": "Up to 20 characters (no symbols).",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "country",
+												"value": "Country of customer’s shipping address.",
+												"format": "Up to 60 characters (no symbols).",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "customerIP",
+												"value": "IP address of customer initiating the transaction. If this value is not passed, it will default to 255.255.255.255.",
+												"format": "Up to 15 characters (no letters).\n\nFor example, 255.255.255.255",
+												"required": false,
+												"notes": "Required only when the merchant is using customer IP based AFDS filters."
+											}
+										]
+									},
+									{
+										"name": "cardholderAuthentication",
+										"value": "Merchants using a third party cardholder authentication solution can submit the following authentication values with Visa and/or MasterCard transactions.\n\nNote: invalid combinations of the following two fields will generate an error.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "Authentication Indicator",
+												"value": "The electronic commerce indicator (ECI) value for a Visa transaction; or the universal cardholder authentication field indicator (UCAF) for a MasterCard transaction obtained by the merchant after the authentication process.",
+												"format": "Special characters included in this value must be URL encoded.",
+												"required": false,
+												"notes": "Required only for transactions processed through cardholder authentication programs. When submitted with other transaction types, this value is ignored.\n\nThis field is currently supported through Chase Paymentech, FDMS Nashville, Global Payments and TSYS. "
+											},
+											{
+												"name": "Cardholder Authentication Value",
+												"value": "The cardholder authentication verification value (CAVV) for a Visa transaction; or accountholder authentication value (AVV)/ universal cardholder authentication field (UCAF) for a MasterCard transaction obtained by the merchant after the authentication process.",
+												"format": "Special characters included in this value must be URL encoded.",
+												"required": false,
+												"notes": "Required only for authOnly and authCapture transactions processed through cardholder authentication programs. When submitted with other transaction types, this value is ignored.\n\nThis field is currently supported through Chase Paymentech, FDMS Nashville, Global Payments and TSYS."
+											}
+										]
+									},
+									{
+										"name": "retail",
+										"value": "The retail element contains two elements: marketType and deviceType.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "marketType",
+												"value": "0 for ecommerce\n1 for moto\n2 for retail",
+												"format": "Default value is 2.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "deviceType",
+												"value": "7 for mobile POS",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									},
+									{
+										"name": "TransactionSettings",
+										"value": "This section contains one or more <setting> elements.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "setting",
+												"value": "allowPartialAuth, duplicatWindow, emailCustomer, recurringBilling, or testRequest",
+												"format": "",
+												"required": false,
+												"notes": "",
+												"children": [
+													{
+														"name": "settingName",
+														"value": "",
+														"format": "",
+														"required": false,
+														"notes": ""
+													},
+													{
+														"name": "settingValue",
+														"value": "true or false",
+														"format": "",
+														"required": false,
+														"notes": ""
+													}
+												]
+											}
+										]
+									},
+									{
+										"name": "userFields",
+										"value": "User-defined fields are allowed.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "name",
+												"value": "Name of the user-defined field.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "value",
+												"value": "Value of the user-defined field.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				],
+				"sample": "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <refId>123456</refId>\n  <transactionRequest>\n    <transactionType>authCaptureTransaction</transactionType>\n    <amount>5</amount>\n    <payment>\n      <creditCard>\n        <cardNumber>5424000000000015</cardNumber>\n        <expirationDate>1220</expirationDate>\n        <cardCode>999</cardCode>\n      </creditCard>\n    </payment>\n    <lineItems>\n      <lineItem>\n        <itemId>1</itemId>\n        <name>vase</name>\n        <description>Cannes logo </description>\n        <quantity>18</quantity>\n        <unitPrice>45.00</unitPrice>\n      </lineItem>\n    </lineItems>\n    <tax>\n      <amount>4.26</amount>\n      <name>level2 tax name</name>\n      <description>level2 tax</description>\n    </tax>\n    <duty>\n      <amount>8.55</amount>\n      <name>duty name</name>\n      <description>duty description</description>\n    </duty>\n    <shipping>\n      <amount>4.26</amount>\n      <name>level2 tax name</name>\n      <description>level2 tax</description>\n    </shipping>\n    <poNumber>456654</poNumber>\n    <billTo>\n      <firstName>Ellen</firstName>\n      <lastName>Johnson</lastName>\n      <company>Souveniropolis</company>\n      <address>14 Main Street</address>\n      <city>Pecan Springs</city>\n      <state>TX</state>\n      <zip>44628</zip>\n      <country>USA</country>\n    </billTo>\n    <shipTo>\n      <firstName>China</firstName>\n      <lastName>Bayles</lastName>\n      <company>Thyme for Tea</company>\n      <address>12 Main Street</address>\n      <city>Pecan Springs</city>\n      <state>TX</state>\n      <zip>44628</zip>\n      <country>USA</country>\n    </shipTo>\n    <customerIP>192.168.1.1</customerIP>\n    <!-- Uncomment this section for Card Present Sandbox Accounts -->\n    <!-- <retail><marketType>2</marketType><deviceType>1</deviceType></retail> -->\n    <transactionSettings>\n      <setting>\n        <settingName>testRequest</settingName>\n        <settingValue>false</settingValue>\n      </setting>\n    </transactionSettings>\n    <userFields>\n      <userField>\n        <name>MerchantDefinedFieldName1</name>\n        <value>MerchantDefinedFieldValue1</value>\n      </userField>\n      <userField>\n        <name>favorite_color</name>\n        <value>blue</value>\n      </userField>\n    </userFields>\n  </transactionRequest>\n</createTransactionRequest>"
+			},
+			"response": {
+				"name": "createTransactionResponse",
+				"children": [
+					{
+						"name": "refId",
+						"value": "Merchant-assigned reference ID for the request.",
+						"format": "Up to 20 characters.",
+						"required": false,
+						"notes": "If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications."
+					},
+					{
+						"name": "messages",
+						"value": "This section contains information about the results of the request. ",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "resultCode",
+								"value": "Ok or Error.",
+								"format": "",
+								"required": false,
+								"notes": "Contains additional information about the status of the request. "
+							},
+							{
+								"name": "message",
+								"value": "Contains specific message information.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "code",
+										"value": "Code number for message.",
+										"format": "I00001\nE000001",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "text",
+										"value": "Text for the error message.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "sessionToken",
+										"value": "Returned for mobile device transactions, instead of a transactionKey.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									}
+								]
+							}
+						]
+					},
+					{
+						"name": "transactionResponse",
+						"value": "",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "responseCode",
+								"value": "Overall status of the transaction.",
+								"format": "1 = Approved \n2 = Declined \n3 = Error \n4 = Held for Review",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "authCode",
+								"value": "Authorization or approval code.",
+								"format": "6 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "avsResultCode",
+								"value": "Address Verification Service (AVS) response code.",
+								"format": "A = Address (Street) matches, ZIP does not.\nB = Address information not provided for AVS check.\nE = AVS error.\nG = Non-U.S. Card Issuing Bank.\nN = No Match on Address (Street) or ZIP.\nP = AVS not applicable for this transaction.\nR = Retry—System unavailable or timed out.\nS = Service not supported by issuer.\nU = Address information is unavailable.\nW = Nine digit ZIP matches, Address (Street) does not.\nX = Address (Street) and nine digit ZIP match.\nY = Address (Street) and five digit ZIP match.\nZ = Five digit ZIP matches, Address (Street) does not.",
+								"required": false,
+								"notes": "Indicates the result of the AVS filter."
+							},
+							{
+								"name": "cvvResultCode",
+								"value": "Card code verification (CCV) response code.",
+								"format": "M = Match.\nN = No Match.\nP = Not Processed.\nS = Should have been present.\nU = Issuer unable to process request.",
+								"required": false,
+								"notes": "Indicates result of the CCV filter."
+							},
+							{
+								"name": "cavvResultCode",
+								"value": "Cardholder authentication verification response code.",
+								"format": "Blank or not present  =  CAVV not validated.\n0 = CAVV not validated because erroneous data was submitted.\n1 = CAVV failed validation.\n2 = CAVV passed validation.\n3 = CAVV validation could not be performed; issuer attempt incomplete.\n4 = CAVV validation could not be performed; issuer system error.\n5 = Reserved for future use.\n6 = Reserved for future use.\n7 = CAVV attempt—failed validation—issuer available (U.S.-issued card/non-U.S acquirer).\n8 = CAVV attempt—passed validation—issuer available (U.S.-issued card/non-U.S. acquirer).\n9 = CAVV attempt—failed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nA = CAVV attempt—passed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nB = CAVV passed validation, information only, no liability shift.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transId",
+								"value": "The payment gateway assigned identification number for transaction.",
+								"format": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.",
+								"required": false,
+								"notes": "The transId value must be used for any follow-on transactions such as a credit, prior authorization and capture, or void."
+							},
+							{
+								"name": "reftransId",
+								"value": "The transaction ID of a related, previously settled transaction. ",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transHash",
+								"value": "Payment gateway-generated MD5 hash value that can be used to authenticate the transaction response.",
+								"format": "Alphanumeric.",
+								"required": false,
+								"notes": "Because transaction responses are returned using an SSL connection, this feature is not necessary for AIM. "
+							},
+							{
+								"name": "testRequest",
+								"value": "",
+								"format": "true, false,1,0.",
+								"required": false,
+								"notes": "Indicates whether or not to treat this request as a test transaction. "
+							},
+							{
+								"name": "accountNumber",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "accountType",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "messages",
+								"value": "This element contains one or more <message> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "message",
+										"value": "These messages contain detailed information about the status of a particular transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "code",
+												"value": "Response code that represents the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "Text description of the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "errors",
+								"value": "This element contains one or more <error> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "error",
+										"value": "This element contains detailed information about any errors returned.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "errorCode",
+												"value": "Error code returned.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "errorText",
+												"value": "Text description of error.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "splitTenderPayments",
+								"value": "If the transaction was a partial authorization transaction, then the split tender payment detail information is listed in this section. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "splitTenderPayment",
+										"value": "Contains information about one split tender transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "transId",
+												"value": "The payment gateway assigned identification number for the transaction.",
+												"format": "",
+												"required": false,
+												"notes": "When the testRequest field is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0."
+											},
+											{
+												"name": "responseCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "responseToCustomer",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "authCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "accountNumber",
+												"value": "Last 4 digits of the card provided.",
+												"format": "Alphanumeric (XXXX6835)",
+												"required": false,
+												"notes": "This field is returned with all transactions."
+											},
+											{
+												"name": "accountType",
+												"value": "Visa, MasterCard, American Express, Discover, Diners Club, or JCB.",
+												"format": "Text.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "requestedAmount",
+												"value": "Amount requested in original authorization.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "approvedAmount",
+												"value": "Amount approved.",
+												"format": "",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "balanceOnCard",
+												"value": "Balance on the debit card or prepaid card.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Can be a positive or negative number. Has a value only if the current transaction is for a prepaid card."
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "userFields",
+								"value": "This element contains user fields, if any are defined. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "Name",
+										"value": "Name of user-defined field.",
+										"format": "",
+										"required": false,
+										"notes": "These values are only echoed back in the response, and are also added to the merchant receipts. No other action is taken with user-defined fields. "
+									},
+									{
+										"name": "value",
+										"value": "Value of user-defined field.",
+										"format": "",
+										"required": false,
+										"notes": "These values are only echoed back in the response, and are also added to the merchant  receipts. No other action is taken with user-defined fields. "
+									}
+								]
+							}
+						]
+					}
+				],
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createTransactionResponse \nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" \nxmlns=\"AnetApi/xml/v1/schema/AnetA\npiSchema.xsd\">\n  <refId>123456</refId>\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <transactionResponse>\n    <responseCode>1</responseCode>\n    <authCode>UGELQC</authCode>\n    <avsResultCode>E</avsResultCode>\n    <cavvResultCode />\n    <transId>2148061808</transId>\n    <refTransID />\n    <transHash>0B428D8A928AAC61121AF2F6EAC5FF3F</transHash>\n    <testRequest>0</testRequest>\n    <accountNumber>XXXX0015</accountNumber>\n    <accountType>MasterCard</accountType>\n    <message>\n      <code>1</code>\n      <description>This transaction has been approved.</description>\n    </message>\n    <userFields>\n      <userField>\n        <name>MerchantDefinedFieldName1</name>\n        <value>MerchantDefinedFieldValue1</value>\n      </userField>\n      <userField>\n        <name>favorite_color</name>\n        <value>lavender</value>\n      </userField>\n    </userFields>\n  </transactionResponse>\n</createTransactionResponse>"
+			}
+		},
+		{
+			"title": "Authorize a Credit Card",
+			"id": "authorize-a-credit-card",
+			"usage": "Use this method to authorize a credit card payment. To actually charge the funds you will need to follow up with a capture transaction.",
+			"soap": "",
+			"request": {
+				"name": "createTransactionRequest",
+				"children": [
+					{
+						"name": "merchantAuthentication",
+						"value": "Contains merchant authentication information. ",
+						"format": "",
+						"required": true,
+						"notes": "",
+						"children": [
+							{
+								"name": "name",
+								"value": "Merchant’s unique API Login ID.",
+								"format": "Up to 20 characters",
+								"required": true,
+								"notes": "The merchant API Login ID is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "transactionKey",
+								"value": "Merchant’s unique Transaction Key.",
+								"format": "16 characters.",
+								"required": true,
+								"notes": "The merchant Transaction Key is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "mobileDeviceId",
+								"value": "Unique identifier for a mobile device.",
+								"format": "60 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "refId",
+								"value": "Merchant-assigned reference ID for the request.",
+								"format": "Up to 20 characters.",
+								"required": false,
+								"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.\n\nThis element is not used for mobile device requests. Use mobileDeviceId instead. "
+							}
+						]
+					},
+					{
+						"name": "transactionRequest",
+						"value": "Transaction information. This element includes all of the fields that follow.",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "transactionType",
+								"value": "Type of credit card transaction.",
+								"format": "authOnlyTransaction",
 								"required": false,
 								"notes": "If the value submitted does not match a supported value, the transaction is rejected. If this field is not submitted or the value is blank, the payment gateway will process the transaction as an authCaptureTransaction. "
 							},
@@ -1090,6 +2178,1562 @@
 					}
 				],
 				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createTransactionResponse \nxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\n xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" \nxmlns=\"AnetApi/xml/v1/schema/AnetA\npiSchema.xsd\">\n  <refId>123456</refId>\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <transactionResponse>\n    <responseCode>1</responseCode>\n    <authCode>UGELQC</authCode>\n    <avsResultCode>E</avsResultCode>\n    <cavvResultCode />\n    <transId>2148061808</transId>\n    <refTransID />\n    <transHash>0B428D8A928AAC61121AF2F6EAC5FF3F</transHash>\n    <testRequest>0</testRequest>\n    <accountNumber>XXXX0015</accountNumber>\n    <accountType>MasterCard</accountType>\n    <message>\n      <code>1</code>\n      <description>This transaction has been approved.</description>\n    </message>\n    <userFields>\n      <userField>\n        <name>MerchantDefinedFieldName1</name>\n        <value>MerchantDefinedFieldValue1</value>\n      </userField>\n      <userField>\n        <name>favorite_color</name>\n        <value>lavender</value>\n      </userField>\n    </userFields>\n  </transactionResponse>\n</createTransactionResponse>"
+			}
+		},
+		{
+			"title": "Capture a previously authorized amount",
+			"id": "capture-a-previously-authorized-amount",
+			"usage": "Use this method to capture funds for a transaction that was previously authorized using authOnlyTransaction.",
+			"soap": "",
+			"request": {
+				"name": "createTransactionRequest",
+				"children": [
+					{
+						"name": "merchantAuthentication",
+						"value": "Contains merchant authentication information. ",
+						"format": "",
+						"required": true,
+						"notes": "",
+						"children": [
+							{
+								"name": "name",
+								"value": "Merchant’s unique API Login ID.",
+								"format": "Up to 20 characters",
+								"required": true,
+								"notes": "The merchant API Login ID is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "transactionKey",
+								"value": "Merchant’s unique Transaction Key.",
+								"format": "16 characters.",
+								"required": true,
+								"notes": "The merchant Transaction Key is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "mobileDeviceId",
+								"value": "Unique identifier for a mobile device.",
+								"format": "60 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "refId",
+								"value": "Merchant-assigned reference ID for the request.",
+								"format": "Up to 20 characters.",
+								"required": false,
+								"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.\n\nThis element is not used for mobile device requests. Use mobileDeviceId instead. "
+							}
+						]
+					},
+					{
+						"name": "transactionRequest",
+						"value": "Transaction information. This element includes all of the fields that follow.",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "transactionType",
+								"value": "Type of credit card transaction.",
+								"format": "priorAuthCaptureTransaction",
+								"required": false,
+								"notes": "If the value submitted does not match a supported value, the transaction is rejected. If this field is not submitted or the value is blank, the payment gateway will process the transaction as an authCaptureTransaction. "
+							},
+							{
+								"name": "amount",
+								"value": "Amount of the transaction.",
+								"format": "Up to 15 digits with a decimal point (no dollar symbol. For example, 8.95",
+								"required": true,
+								"notes": "This is the total amount and must include tax, shipping, and any other charges. The amount can either be hard coded or posted to a script."
+							},
+							{
+								"name": "refTransId",
+								"value": "string",
+								"format": "",
+								"required": true,
+								"notes": "Transaction ID of the original partial authorization transaction. \nRequired only for refundTransaction, priorAuthCaptureTransaction, and voidTransaction. Do not include this field if you are providing splitTenderId"
+							}
+						]
+					}
+				],
+				"sample": "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <refId>123456</refId>\n  <transactionRequest>\n    <transactionType>priorAuthCaptureTransaction</transactionType>\n    <amount>5</amount>\n    <refTransId>2214480791</refTransId>\n  </transactionRequest>\n</createTransactionRequest>"
+			},
+			"response": {
+				"name": "createTransactionResponse",
+				"children": [
+					{
+						"name": "refId",
+						"value": "Merchant-assigned reference ID for the request.",
+						"format": "Up to 20 characters.",
+						"required": false,
+						"notes": "If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications."
+					},
+					{
+						"name": "messages",
+						"value": "This section contains information about the results of the request. ",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "resultCode",
+								"value": "Ok or Error.",
+								"format": "",
+								"required": false,
+								"notes": "Contains additional information about the status of the request. "
+							},
+							{
+								"name": "message",
+								"value": "Contains specific message information.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "code",
+										"value": "Code number for message.",
+										"format": "I00001\nE000001",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "text",
+										"value": "Text for the error message.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "sessionToken",
+										"value": "Returned for mobile device transactions, instead of a transactionKey.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									}
+								]
+							}
+						]
+					},
+					{
+						"name": "transactionResponse",
+						"value": "",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "responseCode",
+								"value": "Overall status of the transaction.",
+								"format": "1 = Approved \n2 = Declined \n3 = Error \n4 = Held for Review",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "authCode",
+								"value": "Authorization or approval code.",
+								"format": "6 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "avsResultCode",
+								"value": "Address Verification Service (AVS) response code.",
+								"format": "A = Address (Street) matches, ZIP does not.\nB = Address information not provided for AVS check.\nE = AVS error.\nG = Non-U.S. Card Issuing Bank.\nN = No Match on Address (Street) or ZIP.\nP = AVS not applicable for this transaction.\nR = Retry—System unavailable or timed out.\nS = Service not supported by issuer.\nU = Address information is unavailable.\nW = Nine digit ZIP matches, Address (Street) does not.\nX = Address (Street) and nine digit ZIP match.\nY = Address (Street) and five digit ZIP match.\nZ = Five digit ZIP matches, Address (Street) does not.",
+								"required": false,
+								"notes": "Indicates the result of the AVS filter."
+							},
+							{
+								"name": "cvvResultCode",
+								"value": "Card code verification (CCV) response code.",
+								"format": "M = Match.\nN = No Match.\nP = Not Processed.\nS = Should have been present.\nU = Issuer unable to process request.",
+								"required": false,
+								"notes": "Indicates result of the CCV filter."
+							},
+							{
+								"name": "cavvResultCode",
+								"value": "Cardholder authentication verification response code.",
+								"format": "Blank or not present  =  CAVV not validated.\n0 = CAVV not validated because erroneous data was submitted.\n1 = CAVV failed validation.\n2 = CAVV passed validation.\n3 = CAVV validation could not be performed; issuer attempt incomplete.\n4 = CAVV validation could not be performed; issuer system error.\n5 = Reserved for future use.\n6 = Reserved for future use.\n7 = CAVV attempt—failed validation—issuer available (U.S.-issued card/non-U.S acquirer).\n8 = CAVV attempt—passed validation—issuer available (U.S.-issued card/non-U.S. acquirer).\n9 = CAVV attempt—failed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nA = CAVV attempt—passed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nB = CAVV passed validation, information only, no liability shift.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transId",
+								"value": "The payment gateway assigned identification number for transaction.",
+								"format": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.",
+								"required": false,
+								"notes": "The transId value must be used for any follow-on transactions such as a credit, prior authorization and capture, or void."
+							},
+							{
+								"name": "reftransId",
+								"value": "The transaction ID of a related, previously settled transaction. ",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transHash",
+								"value": "Payment gateway-generated MD5 hash value that can be used to authenticate the transaction response.",
+								"format": "Alphanumeric.",
+								"required": false,
+								"notes": "Because transaction responses are returned using an SSL connection, this feature is not necessary for AIM. "
+							},
+							{
+								"name": "testRequest",
+								"value": "",
+								"format": "true, false,1,0.",
+								"required": false,
+								"notes": "Indicates whether or not to treat this request as a test transaction. "
+							},
+							{
+								"name": "accountNumber",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "accountType",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "messages",
+								"value": "This element contains one or more <message> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "message",
+										"value": "These messages contain detailed information about the status of a particular transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "code",
+												"value": "Response code that represents the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "Text description of the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "errors",
+								"value": "This element contains one or more <error> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "error",
+										"value": "This element contains detailed information about any errors returned.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "errorCode",
+												"value": "Error code returned.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "errorText",
+												"value": "Text description of error.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "splitTenderPayments",
+								"value": "If the transaction was a partial authorization transaction, then the split tender payment detail information is listed in this section. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "splitTenderPayment",
+										"value": "Contains information about one split tender transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "transId",
+												"value": "The payment gateway assigned identification number for the transaction.",
+												"format": "",
+												"required": false,
+												"notes": "When the testRequest field is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0."
+											},
+											{
+												"name": "responseCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "responseToCustomer",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "authCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "accountNumber",
+												"value": "Last 4 digits of the card provided.",
+												"format": "Alphanumeric (XXXX6835)",
+												"required": false,
+												"notes": "This field is returned with all transactions."
+											},
+											{
+												"name": "accountType",
+												"value": "Visa, MasterCard, American Express, Discover, Diners Club, or JCB.",
+												"format": "Text.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "requestedAmount",
+												"value": "Amount requested in original authorization.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "approvedAmount",
+												"value": "Amount approved.",
+												"format": "",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "balanceOnCard",
+												"value": "Balance on the debit card or prepaid card.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Can be a positive or negative number. Has a value only if the current transaction is for a prepaid card."
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "userFields",
+								"value": "This element contains user fields, if any are defined. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "Name",
+										"value": "Name of user-defined field.",
+										"format": "",
+										"required": false,
+										"notes": "These values are only echoed back in the response, and are also added to the merchant receipts. No other action is taken with user-defined fields. "
+									},
+									{
+										"name": "value",
+										"value": "Value of user-defined field.",
+										"format": "",
+										"required": false,
+										"notes": "These values are only echoed back in the response, and are also added to the merchant  receipts. No other action is taken with user-defined fields. "
+									}
+								]
+							}
+						]
+					}
+				],
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?> \n<createTransactionResponse xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <refId>\n    123456\n  </refId>\n  <messages>\n    <resultCode>\n      Ok\n    </resultCode>\n    <message>\n      <code>\n        I00001\n      </code>\n      <text>\n        Successful.\n      </text>\n    </message>\n  </messages>\n  <transactionResponse>\n    <responseCode>\n      1\n    </responseCode>\n    <authCode>\n      ROHNFQ\n    </authCode>\n    <avsResultCode>\n      P\n    </avsResultCode>\n    <cvvResultCode />\n    <cavvResultCode />\n    <transId>\n      2214480791\n    </transId>\n    <refTransID>\n      2214480791\n    </refTransID>\n    <transHash>\n      492E8E689EBD28D07749848B7C1E49D3\n    </transHash>\n    <testRequest>\n      0\n    </testRequest>\n    <accountNumber>\n      XXXX0015\n    </accountNumber>\n    <accountType>\n      MasterCard\n    </accountType>\n    <messages>\n      <message>\n        <code>\n          1\n        </code>\n        <description>\n          This transaction has been approved.\n        </description>\n      </message>\n    </messages>\n  </transactionResponse>\n</createTransactionResponse>"
+			}
+		},
+		{
+			"title": "Capture funds authorized through another channel.",
+			"id": "capture-funds-authorized-through-another-channel.",
+			"usage": "Use this method to capture funds which have been authorized through another channel, e.g. phone authorization.",
+			"soap": "",
+			"request": {
+				"name": "createTransactionRequest",
+				"children": [
+					{
+						"name": "merchantAuthentication",
+						"value": "Contains merchant authentication information. ",
+						"format": "",
+						"required": true,
+						"notes": "",
+						"children": [
+							{
+								"name": "name",
+								"value": "Merchant’s unique API Login ID.",
+								"format": "Up to 20 characters",
+								"required": true,
+								"notes": "The merchant API Login ID is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "transactionKey",
+								"value": "Merchant’s unique Transaction Key.",
+								"format": "16 characters.",
+								"required": true,
+								"notes": "The merchant Transaction Key is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "mobileDeviceId",
+								"value": "Unique identifier for a mobile device.",
+								"format": "60 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "refId",
+								"value": "Merchant-assigned reference ID for the request.",
+								"format": "Up to 20 characters.",
+								"required": false,
+								"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.\n\nThis element is not used for mobile device requests. Use mobileDeviceId instead. "
+							}
+						]
+					},
+					{
+						"name": "transactionRequest",
+						"value": "Transaction information. This element includes all of the fields that follow.",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "transactionType",
+								"value": "Type of credit card transaction.",
+								"format": "captureOnlyTransaction",
+								"required": false,
+								"notes": "If the value submitted does not match a supported value, the transaction is rejected. If this field is not submitted or the value is blank, the payment gateway will process the transaction as an authCaptureTransaction. "
+							},
+							{
+								"name": "amount",
+								"value": "Amount of the transaction.",
+								"format": "Up to 15 digits with a decimal point (no dollar symbol. For example, 8.95",
+								"required": true,
+								"notes": "This is the total amount and must include tax, shipping, and any other charges. The amount can either be hard coded or posted to a script."
+							},
+							{
+								"name": "authCode",
+								"value": "string",
+								"format": "",
+								"required": true,
+								"notes": "Authorization code.  This may have been obtained from a verbal authorization or through another channel."
+							}
+						]
+					}
+				],
+				"sample": "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <refId>123456</refId>\n  <transactionRequest>\n    <transactionType>captureOnlyTransaction</transactionType>\n    <amount>5</amount>\n    <authCode>ROHNFQ</authCode>\n  </transactionRequest>\n</createTransactionRequest>"
+			},
+			"response": {
+				"name": "createTransactionResponse",
+				"children": [
+					{
+						"name": "refId",
+						"value": "Merchant-assigned reference ID for the request.",
+						"format": "Up to 20 characters.",
+						"required": false,
+						"notes": "If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications."
+					},
+					{
+						"name": "messages",
+						"value": "This section contains information about the results of the request. ",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "resultCode",
+								"value": "Ok or Error.",
+								"format": "",
+								"required": false,
+								"notes": "Contains additional information about the status of the request. "
+							},
+							{
+								"name": "message",
+								"value": "Contains specific message information.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "code",
+										"value": "Code number for message.",
+										"format": "I00001\nE000001",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "text",
+										"value": "Text for the error message.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "sessionToken",
+										"value": "Returned for mobile device transactions, instead of a transactionKey.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									}
+								]
+							}
+						]
+					},
+					{
+						"name": "transactionResponse",
+						"value": "",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "responseCode",
+								"value": "Overall status of the transaction.",
+								"format": "1 = Approved \n2 = Declined \n3 = Error \n4 = Held for Review",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "authCode",
+								"value": "Authorization or approval code.",
+								"format": "6 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "avsResultCode",
+								"value": "Address Verification Service (AVS) response code.",
+								"format": "A = Address (Street) matches, ZIP does not.\nB = Address information not provided for AVS check.\nE = AVS error.\nG = Non-U.S. Card Issuing Bank.\nN = No Match on Address (Street) or ZIP.\nP = AVS not applicable for this transaction.\nR = Retry—System unavailable or timed out.\nS = Service not supported by issuer.\nU = Address information is unavailable.\nW = Nine digit ZIP matches, Address (Street) does not.\nX = Address (Street) and nine digit ZIP match.\nY = Address (Street) and five digit ZIP match.\nZ = Five digit ZIP matches, Address (Street) does not.",
+								"required": false,
+								"notes": "Indicates the result of the AVS filter."
+							},
+							{
+								"name": "cvvResultCode",
+								"value": "Card code verification (CCV) response code.",
+								"format": "M = Match.\nN = No Match.\nP = Not Processed.\nS = Should have been present.\nU = Issuer unable to process request.",
+								"required": false,
+								"notes": "Indicates result of the CCV filter."
+							},
+							{
+								"name": "cavvResultCode",
+								"value": "Cardholder authentication verification response code.",
+								"format": "Blank or not present  =  CAVV not validated.\n0 = CAVV not validated because erroneous data was submitted.\n1 = CAVV failed validation.\n2 = CAVV passed validation.\n3 = CAVV validation could not be performed; issuer attempt incomplete.\n4 = CAVV validation could not be performed; issuer system error.\n5 = Reserved for future use.\n6 = Reserved for future use.\n7 = CAVV attempt—failed validation—issuer available (U.S.-issued card/non-U.S acquirer).\n8 = CAVV attempt—passed validation—issuer available (U.S.-issued card/non-U.S. acquirer).\n9 = CAVV attempt—failed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nA = CAVV attempt—passed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nB = CAVV passed validation, information only, no liability shift.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transId",
+								"value": "The payment gateway assigned identification number for transaction.",
+								"format": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.",
+								"required": false,
+								"notes": "The transId value must be used for any follow-on transactions such as a credit, prior authorization and capture, or void."
+							},
+							{
+								"name": "reftransId",
+								"value": "The transaction ID of a related, previously settled transaction. ",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transHash",
+								"value": "Payment gateway-generated MD5 hash value that can be used to authenticate the transaction response.",
+								"format": "Alphanumeric.",
+								"required": false,
+								"notes": "Because transaction responses are returned using an SSL connection, this feature is not necessary for AIM. "
+							},
+							{
+								"name": "testRequest",
+								"value": "",
+								"format": "true, false,1,0.",
+								"required": false,
+								"notes": "Indicates whether or not to treat this request as a test transaction. "
+							},
+							{
+								"name": "accountNumber",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "accountType",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "messages",
+								"value": "This element contains one or more <message> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "message",
+										"value": "These messages contain detailed information about the status of a particular transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "code",
+												"value": "Response code that represents the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "Text description of the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "errors",
+								"value": "This element contains one or more <error> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "error",
+										"value": "This element contains detailed information about any errors returned.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "errorCode",
+												"value": "Error code returned.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "errorText",
+												"value": "Text description of error.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "splitTenderPayments",
+								"value": "If the transaction was a partial authorization transaction, then the split tender payment detail information is listed in this section. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "splitTenderPayment",
+										"value": "Contains information about one split tender transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "transId",
+												"value": "The payment gateway assigned identification number for the transaction.",
+												"format": "",
+												"required": false,
+												"notes": "When the testRequest field is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0."
+											},
+											{
+												"name": "responseCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "responseToCustomer",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "authCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "accountNumber",
+												"value": "Last 4 digits of the card provided.",
+												"format": "Alphanumeric (XXXX6835)",
+												"required": false,
+												"notes": "This field is returned with all transactions."
+											},
+											{
+												"name": "accountType",
+												"value": "Visa, MasterCard, American Express, Discover, Diners Club, or JCB.",
+												"format": "Text.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "requestedAmount",
+												"value": "Amount requested in original authorization.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "approvedAmount",
+												"value": "Amount approved.",
+												"format": "",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "balanceOnCard",
+												"value": "Balance on the debit card or prepaid card.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Can be a positive or negative number. Has a value only if the current transaction is for a prepaid card."
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "userFields",
+								"value": "This element contains user fields, if any are defined. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "Name",
+										"value": "Name of user-defined field.",
+										"format": "",
+										"required": false,
+										"notes": "These values are only echoed back in the response, and are also added to the merchant receipts. No other action is taken with user-defined fields. "
+									},
+									{
+										"name": "value",
+										"value": "Value of user-defined field.",
+										"format": "",
+										"required": false,
+										"notes": "These values are only echoed back in the response, and are also added to the merchant  receipts. No other action is taken with user-defined fields. "
+									}
+								]
+							}
+						]
+					}
+				],
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?> \n<createTransactionResponse xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <refId>\n    123456\n  </refId>\n  <messages>\n    <resultCode>\n      Ok\n    </resultCode>\n    <message>\n      <code>\n        I00001\n      </code>\n      <text>\n        Successful.\n      </text>\n    </message>\n  </messages>\n  <transactionResponse>\n    <responseCode>\n      1\n    </responseCode>\n    <authCode>\n      ROHNFQ\n    </authCode>\n    <avsResultCode>\n      P\n    </avsResultCode>\n    <cvvResultCode />\n    <cavvResultCode />\n    <transId>\n      2214480791\n    </transId>\n    <refTransID>\n      2214480791\n    </refTransID>\n    <transHash>\n      492E8E689EBD28D07749848B7C1E49D3\n    </transHash>\n    <testRequest>\n      0\n    </testRequest>\n    <accountNumber>\n      XXXX0015\n    </accountNumber>\n    <accountType>\n      MasterCard\n    </accountType>\n    <messages>\n      <message>\n        <code>\n          1\n        </code>\n        <description>\n          This transaction has been approved.\n        </description>\n      </message>\n    </messages>\n  </transactionResponse>\n</createTransactionResponse>"
+			}
+		},
+		{
+			"title": "Refund a transaction",
+			"id": "refund-a-transaction",
+			"usage": "This transaction type is used to refund a customer for a transaction that was originally processed and successfully settled through the payment gateway.",
+			"soap": "",
+			"request": {
+				"name": "createTransactionRequest",
+				"children": [
+					{
+						"name": "merchantAuthentication",
+						"value": "Contains merchant authentication information. ",
+						"format": "",
+						"required": true,
+						"notes": "",
+						"children": [
+							{
+								"name": "name",
+								"value": "Merchant’s unique API Login ID.",
+								"format": "Up to 20 characters",
+								"required": true,
+								"notes": "The merchant API Login ID is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "transactionKey",
+								"value": "Merchant’s unique Transaction Key.",
+								"format": "16 characters.",
+								"required": true,
+								"notes": "The merchant Transaction Key is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "mobileDeviceId",
+								"value": "Unique identifier for a mobile device.",
+								"format": "60 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "refId",
+								"value": "Merchant-assigned reference ID for the request.",
+								"format": "Up to 20 characters.",
+								"required": false,
+								"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.\n\nThis element is not used for mobile device requests. Use mobileDeviceId instead. "
+							}
+						]
+					},
+					{
+						"name": "transactionRequest",
+						"value": "Transaction information. This element includes all of the fields that follow.",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "transactionType",
+								"value": "Type of credit card transaction.",
+								"format": "refundTransaction",
+								"required": false,
+								"notes": "If the value submitted does not match a supported value, the transaction is rejected. If this field is not submitted or the value is blank, the payment gateway will process the transaction as an authCaptureTransaction. "
+							},
+							{
+								"name": "amount",
+								"value": "Amount of the transaction.",
+								"format": "Up to 15 digits with a decimal point (no dollar symbol. For example, 8.95",
+								"required": true,
+								"notes": "This is the total amount and must include tax, shipping, and any other charges. The amount can either be hard coded or posted to a script."
+							},
+							{
+								"name": "refTransId",
+								"value": "Transaction ID of the original settled transaction.",
+								"format": "String.",
+								"required": true,
+								"notes": ""
+							},
+							{
+								"name": "payment",
+								"value": "This section includes payment information. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "creditCard",
+										"value": "The following elements belong to the <creditCard> element; include them only for credit card transactions.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "cardNumber",
+												"value": "The customer’s credit card number.",
+												"format": "4 digits without spaces\n\nOnly the last four digits are required for credit card transactions.",
+												"required": true,
+												"notes": ""
+											}
+										]
+									},
+									{
+										"name": "bankAccount",
+										"value": "The following elements belong to the <bankAccount> element; include them only for bank account transactions.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "accountNumber",
+												"value": "Account number, masked.",
+												"format": "XXXX1111",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				],
+				"sample": "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <refId>123456</refId>\n  <transactionRequest>\n    <transactionType>refundTransaction</transactionType>\n    <refTransId></refTransId>\n    <payment>\n      <creditCard>\n        <cardNumber>8888</cardNumber>\n      </creditCard>\n    </payment>\n  </transactionRequest>\n</createTransactionRequest>"
+			},
+			"response": {
+				"name": "createTransactionResponse",
+				"children": [
+					{
+						"name": "refId",
+						"value": "Merchant-assigned reference ID for the request.",
+						"format": "Up to 20 characters.",
+						"required": false,
+						"notes": "If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications."
+					},
+					{
+						"name": "messages",
+						"value": "This section contains information about the results of the request. ",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "resultCode",
+								"value": "Ok or Error.",
+								"format": "",
+								"required": false,
+								"notes": "Contains additional information about the status of the request. "
+							},
+							{
+								"name": "message",
+								"value": "Contains specific message information.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "code",
+										"value": "Code number for message.",
+										"format": "I00001\nE000001",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "text",
+										"value": "Text for the error message.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "sessionToken",
+										"value": "Returned for mobile device transactions, instead of a transactionKey.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									}
+								]
+							}
+						]
+					},
+					{
+						"name": "transactionResponse",
+						"value": "",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "responseCode",
+								"value": "Overall status of the transaction.",
+								"format": "1 = Approved \n2 = Declined \n3 = Error \n4 = Held for Review",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "authCode",
+								"value": "Authorization or approval code.",
+								"format": "6 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "avsResultCode",
+								"value": "Address Verification Service (AVS) response code.",
+								"format": "A = Address (Street) matches, ZIP does not.\nB = Address information not provided for AVS check.\nE = AVS error.\nG = Non-U.S. Card Issuing Bank.\nN = No Match on Address (Street) or ZIP.\nP = AVS not applicable for this transaction.\nR = Retry—System unavailable or timed out.\nS = Service not supported by issuer.\nU = Address information is unavailable.\nW = Nine digit ZIP matches, Address (Street) does not.\nX = Address (Street) and nine digit ZIP match.\nY = Address (Street) and five digit ZIP match.\nZ = Five digit ZIP matches, Address (Street) does not.",
+								"required": false,
+								"notes": "Indicates the result of the AVS filter."
+							},
+							{
+								"name": "cvvResultCode",
+								"value": "Card code verification (CCV) response code.",
+								"format": "M = Match.\nN = No Match.\nP = Not Processed.\nS = Should have been present.\nU = Issuer unable to process request.",
+								"required": false,
+								"notes": "Indicates result of the CCV filter."
+							},
+							{
+								"name": "cavvResultCode",
+								"value": "Cardholder authentication verification response code.",
+								"format": "Blank or not present  =  CAVV not validated.\n0 = CAVV not validated because erroneous data was submitted.\n1 = CAVV failed validation.\n2 = CAVV passed validation.\n3 = CAVV validation could not be performed; issuer attempt incomplete.\n4 = CAVV validation could not be performed; issuer system error.\n5 = Reserved for future use.\n6 = Reserved for future use.\n7 = CAVV attempt—failed validation—issuer available (U.S.-issued card/non-U.S acquirer).\n8 = CAVV attempt—passed validation—issuer available (U.S.-issued card/non-U.S. acquirer).\n9 = CAVV attempt—failed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nA = CAVV attempt—passed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nB = CAVV passed validation, information only, no liability shift.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transId",
+								"value": "The payment gateway assigned identification number for transaction.",
+								"format": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.",
+								"required": false,
+								"notes": "The transId value must be used for any follow-on transactions such as a credit, prior authorization and capture, or void."
+							},
+							{
+								"name": "reftransId",
+								"value": "The transaction ID of a related, previously settled transaction. ",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transHash",
+								"value": "Payment gateway-generated MD5 hash value that can be used to authenticate the transaction response.",
+								"format": "Alphanumeric.",
+								"required": false,
+								"notes": "Because transaction responses are returned using an SSL connection, this feature is not necessary for AIM. "
+							},
+							{
+								"name": "testRequest",
+								"value": "",
+								"format": "true, false,1,0.",
+								"required": false,
+								"notes": "Indicates whether or not to treat this request as a test transaction. "
+							},
+							{
+								"name": "accountNumber",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "accountType",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "messages",
+								"value": "This element contains one or more <message> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "message",
+										"value": "These messages contain detailed information about the status of a particular transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "code",
+												"value": "Response code that represents the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "Text description of the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "errors",
+								"value": "This element contains one or more <error> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "error",
+										"value": "This element contains detailed information about any errors returned.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "errorCode",
+												"value": "Error code returned.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "errorText",
+												"value": "Text description of error.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "splitTenderPayments",
+								"value": "If the transaction was a partial authorization transaction, then the split tender payment detail information is listed in this section. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "splitTenderPayment",
+										"value": "Contains information about one split tender transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "transId",
+												"value": "The payment gateway assigned identification number for the transaction.",
+												"format": "",
+												"required": false,
+												"notes": "When the testRequest field is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0."
+											},
+											{
+												"name": "responseCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "responseToCustomer",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "authCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "accountNumber",
+												"value": "Last 4 digits of the card provided.",
+												"format": "Alphanumeric (XXXX6835)",
+												"required": false,
+												"notes": "This field is returned with all transactions."
+											},
+											{
+												"name": "accountType",
+												"value": "Visa, MasterCard, American Express, Discover, Diners Club, or JCB.",
+												"format": "Text.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "requestedAmount",
+												"value": "Amount requested in original authorization.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "approvedAmount",
+												"value": "Amount approved.",
+												"format": "",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "balanceOnCard",
+												"value": "Balance on the debit card or prepaid card.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Can be a positive or negative number. Has a value only if the current transaction is for a prepaid card."
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				],
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createTransactionResponse>\n  <refId>123456</refId>\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <transactionResponse>\n    <responseCode>1</responseCode>\n    <authCode>UGELQC</authCode>\n    <avsResultCode>E</avsResultCode>\n    <cavvResultCode />\n    <transId>2148061808</transId>\n    <refTransID />\n    <transHash>0B428D8A928AAC61121AF2F6EAC5FF3F</transHash>\n    <testRequest>0</testRequest>\n    <accountNumber>XXXX0015</accountNumber>\n    <accountType>MasterCard</accountType>\n    <message>\n      <code>1</code>\n      <description>This transaction has been approved.</description>\n    </message>\n    <userFields>\n      <userField>\n        <name>MerchantDefinedFieldName1</name>\n        <value>MerchantDefinedFieldValue1</value>\n      </userField>\n      <userField>\n        <name>favorite_color</name>\n        <value>lavender</value>\n      </userField>\n    </userFields>\n  </transactionResponse>\n</createTransactionResponse>"
+			}
+		},
+		{
+			"title": "Void a transaction",
+			"id": "void-a-transaction",
+			"usage": "This transaction type can be used to cancel either an original transaction that is not yet settled or an entire order composed of more than one transaction. A Void prevents the transaction or the order from being sent for settlement. A Void can be submitted against any other transaction type",
+			"soap": "",
+			"request": {
+				"name": "createTransactionRequest",
+				"children": [
+					{
+						"name": "merchantAuthentication",
+						"value": "Contains merchant authentication information. ",
+						"format": "",
+						"required": true,
+						"notes": "",
+						"children": [
+							{
+								"name": "name",
+								"value": "Merchant’s unique API Login ID.",
+								"format": "Up to 20 characters",
+								"required": true,
+								"notes": "The merchant API Login ID is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "transactionKey",
+								"value": "Merchant’s unique Transaction Key.",
+								"format": "16 characters.",
+								"required": true,
+								"notes": "The merchant Transaction Key is provided in the Merchant Interface and must be stored securely. \n\nThe API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway."
+							},
+							{
+								"name": "mobileDeviceId",
+								"value": "Unique identifier for a mobile device.",
+								"format": "60 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "refId",
+								"value": "Merchant-assigned reference ID for the request.",
+								"format": "Up to 20 characters.",
+								"required": false,
+								"notes": "If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.\n\nThis element is not used for mobile device requests. Use mobileDeviceId instead. "
+							}
+						]
+					},
+					{
+						"name": "transactionRequest",
+						"value": "Transaction information. This element includes all of the fields that follow.",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "transactionType",
+								"value": "Type of credit card transaction.",
+								"format": "voidTransaction",
+								"required": false,
+								"notes": "If the value submitted does not match a supported value, the transaction is rejected. If this field is not submitted or the value is blank, the payment gateway will process the transaction as an authCaptureTransaction. "
+							},
+							{
+								"name": "refTransId",
+								"value": "Transaction ID of an unsettled transaction.",
+								"format": "String.",
+								"required": true,
+								"notes": ""
+							}
+								]
+							}
+						],
+				"sample": "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <refId>123456</refId>\n  <transactionRequest>\n    <transactionType>voidTransaction</transactionType>\n    <refTransId>22434566</refTransId>\n   </transactionRequest>\n</createTransactionRequest>"
+			},
+			"response": {
+				"name": "createTransactionResponse",
+				"children": [
+					{
+						"name": "refId",
+						"value": "Merchant-assigned reference ID for the request.",
+						"format": "Up to 20 characters.",
+						"required": false,
+						"notes": "If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications."
+					},
+					{
+						"name": "messages",
+						"value": "This section contains information about the results of the request. ",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "resultCode",
+								"value": "Ok or Error.",
+								"format": "",
+								"required": false,
+								"notes": "Contains additional information about the status of the request. "
+							},
+							{
+								"name": "message",
+								"value": "Contains specific message information.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "code",
+										"value": "Code number for message.",
+										"format": "I00001\nE000001",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "text",
+										"value": "Text for the error message.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "sessionToken",
+										"value": "Returned for mobile device transactions, instead of a transactionKey.",
+										"format": "",
+										"required": false,
+										"notes": ""
+									}
+								]
+							}
+						]
+					},
+					{
+						"name": "transactionResponse",
+						"value": "",
+						"format": "",
+						"required": false,
+						"notes": "",
+						"children": [
+							{
+								"name": "responseCode",
+								"value": "Overall status of the transaction.",
+								"format": "1 = Approved \n2 = Declined \n3 = Error \n4 = Held for Review",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "authCode",
+								"value": "Authorization or approval code.",
+								"format": "6 characters.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "avsResultCode",
+								"value": "Address Verification Service (AVS) response code.",
+								"format": "A = Address (Street) matches, ZIP does not.\nB = Address information not provided for AVS check.\nE = AVS error.\nG = Non-U.S. Card Issuing Bank.\nN = No Match on Address (Street) or ZIP.\nP = AVS not applicable for this transaction.\nR = Retry—System unavailable or timed out.\nS = Service not supported by issuer.\nU = Address information is unavailable.\nW = Nine digit ZIP matches, Address (Street) does not.\nX = Address (Street) and nine digit ZIP match.\nY = Address (Street) and five digit ZIP match.\nZ = Five digit ZIP matches, Address (Street) does not.",
+								"required": false,
+								"notes": "Indicates the result of the AVS filter."
+							},
+							{
+								"name": "cvvResultCode",
+								"value": "Card code verification (CCV) response code.",
+								"format": "M = Match.\nN = No Match.\nP = Not Processed.\nS = Should have been present.\nU = Issuer unable to process request.",
+								"required": false,
+								"notes": "Indicates result of the CCV filter."
+							},
+							{
+								"name": "cavvResultCode",
+								"value": "Cardholder authentication verification response code.",
+								"format": "Blank or not present  =  CAVV not validated.\n0 = CAVV not validated because erroneous data was submitted.\n1 = CAVV failed validation.\n2 = CAVV passed validation.\n3 = CAVV validation could not be performed; issuer attempt incomplete.\n4 = CAVV validation could not be performed; issuer system error.\n5 = Reserved for future use.\n6 = Reserved for future use.\n7 = CAVV attempt—failed validation—issuer available (U.S.-issued card/non-U.S acquirer).\n8 = CAVV attempt—passed validation—issuer available (U.S.-issued card/non-U.S. acquirer).\n9 = CAVV attempt—failed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nA = CAVV attempt—passed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).\nB = CAVV passed validation, information only, no liability shift.",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transId",
+								"value": "The payment gateway assigned identification number for transaction.",
+								"format": "When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.",
+								"required": false,
+								"notes": "The transId value must be used for any follow-on transactions such as a credit, prior authorization and capture, or void."
+							},
+							{
+								"name": "reftransId",
+								"value": "The transaction ID of a related, previously settled transaction. ",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "transHash",
+								"value": "Payment gateway-generated MD5 hash value that can be used to authenticate the transaction response.",
+								"format": "Alphanumeric.",
+								"required": false,
+								"notes": "Because transaction responses are returned using an SSL connection, this feature is not necessary for AIM. "
+							},
+							{
+								"name": "testRequest",
+								"value": "",
+								"format": "true, false,1,0.",
+								"required": false,
+								"notes": "Indicates whether or not to treat this request as a test transaction. "
+							},
+							{
+								"name": "accountNumber",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "accountType",
+								"value": "",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "messages",
+								"value": "This element contains one or more <message> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "message",
+										"value": "These messages contain detailed information about the status of a particular transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "code",
+												"value": "Response code that represents the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "Text description of the status.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "errors",
+								"value": "This element contains one or more <error> elements.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "error",
+										"value": "This element contains detailed information about any errors returned.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "errorCode",
+												"value": "Error code returned.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "errorText",
+												"value": "Text description of error.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "splitTenderPayments",
+								"value": "If the transaction was a partial authorization transaction, then the split tender payment detail information is listed in this section. ",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "splitTenderPayment",
+										"value": "Contains information about one split tender transaction.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "transId",
+												"value": "The payment gateway assigned identification number for the transaction.",
+												"format": "",
+												"required": false,
+												"notes": "When the testRequest field is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0."
+											},
+											{
+												"name": "responseCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "responseToCustomer",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "authCode",
+												"value": "",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "accountNumber",
+												"value": "Last 4 digits of the card provided.",
+												"format": "Alphanumeric (XXXX6835)",
+												"required": false,
+												"notes": "This field is returned with all transactions."
+											},
+											{
+												"name": "accountType",
+												"value": "Visa, MasterCard, American Express, Discover, Diners Club, or JCB.",
+												"format": "Text.",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "requestedAmount",
+												"value": "Amount requested in original authorization.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "approvedAmount",
+												"value": "Amount approved.",
+												"format": "",
+												"required": false,
+												"notes": "Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in."
+											},
+											{
+												"name": "balanceOnCard",
+												"value": "Balance on the debit card or prepaid card.",
+												"format": "Numeric.",
+												"required": false,
+												"notes": "Can be a positive or negative number. Has a value only if the current transaction is for a prepaid card."
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				],
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<createTransactionResponse>\n  <refId>123456</refId>\n  <messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <transactionResponse>\n    <responseCode>1</responseCode>\n    <authCode>UGELQC</authCode>\n    <avsResultCode>E</avsResultCode>\n    <cavvResultCode />\n    <transId>2148061808</transId>\n    <refTransID />\n    <transHash>0B428D8A928AAC61121AF2F6EAC5FF3F</transHash>\n    <testRequest>0</testRequest>\n    <accountNumber>XXXX0015</accountNumber>\n    <accountType>MasterCard</accountType>\n    <message>\n      <code>1</code>\n      <description>This transaction has been approved.</description>\n    </message>\n    <userFields>\n      <userField>\n        <name>MerchantDefinedFieldName1</name>\n        <value>MerchantDefinedFieldValue1</value>\n      </userField>\n      <userField>\n        <name>favorite_color</name>\n        <value>lavender</value>\n      </userField>\n    </userFields>\n  </transactionResponse>\n</createTransactionResponse>"
 			}
 		}
 	]
@@ -5810,7 +8454,7 @@
 										"value": "A text description of the status.",
 										"format": "",
 										"required": false,
-										"notes": "Possible errors returned are:\n\n* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: &quot;firstSettlementDate is greater than the lastSettelementDate&quot;\n\n* If the difference between the firstSettlementDate and lastSettelementDate is more than 31 days, then the error message is Err_Invalid_field: “The date range cannot exceed 31 days.” \n\n* If the firstSettlementDate is older than the allowed firstSettlementDate, then the error is Err_Invalid_field: “firstSettlementDate cannot be older than the year of {nn}”, where nn is 2 years prior to the current year. \n\n* If only one of firstSettlementDate or lastSettlementDate is specified, the message returned is Err_Required_Field: &quot;firstSettlementDate is required when lastSettlementDate is present.&quot;; &quot;lastSettlementDate is required when firstSettlementDate is present.&quot;\n\n* If the lastSettlementDate is in the future, the message returned is Err_Invalid_field: “lastSettlementDate cannot be in the future.” \n\n* If no rows are found, the message returned is “No records found”\n"
+										"notes": "Possible errors returned are:\n\n* If the firstSettlementDate is greater than the lastSettlementDate, then the error message is Err_Invalid_field: \"firstSettlementDate is greater than the lastSettelementDate\"\n\n* If the difference between the firstSettlementDate and lastSettelementDate is more than 31 days, then the error message is Err_Invalid_field: “The date range cannot exceed 31 days.‿ \n\n* If the firstSettlementDate is older than the allowed firstSettlementDate, then the error is Err_Invalid_field: “firstSettlementDate cannot be older than the year of {nn}‿, where nn is 2 years prior to the current year. \n\n* If only one of firstSettlementDate or lastSettlementDate is specified, the message returned is Err_Required_Field: \"firstSettlementDate is required when lastSettlementDate is present.\"; \"lastSettlementDate is required when firstSettlementDate is present.\"\n\n* If the lastSettlementDate is in the future, the message returned is Err_Invalid_field: “lastSettlementDate cannot be in the future.‿ \n\n* If no rows are found, the message returned is “No records found‿\n"
 									}
 								]
 							}
@@ -5842,14 +8486,14 @@
 										"value": "Date and time when the batch was settled, expressed in UTC.",
 										"format": "YYYY-MM-DDT\nHH:MM:SS",
 										"required": false,
-										"notes": "The “T” character separates the date from the time. "
+										"notes": "The “T‿ character separates the date from the time. "
 									},
 									{
 										"name": "settlementTimeLocal",
 										"value": "Date and time when the batch was settled, expressed in merchant’s local time zone.",
 										"format": "YYYY-MM-DDTHH:MM:SS",
 										"required": false,
-										"notes": "The “T” character separates the date from the time. This field returns the time in the merchant’s local time zone as set in the Merchant Interface."
+										"notes": "The “T‿ character separates the date from the time. This field returns the time in the merchant’s local time zone as set in the Merchant Interface."
 									},
 									{
 										"name": "settlementState",
@@ -5860,12 +8504,26 @@
 									},
 									{
 										"name": "paymentMethod",
-										"value": "",
+										"value": "creditCard or eCheck. ",
 										"format": "",
 										"required": false,
 										"notes": ""
 									}
 								]
+							},
+							{
+								"name": "marketType",
+								"value": "0 for eCommerce\n1 for MOTO\n2 for retail",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "product",
+								"value": "Card Not Present or Card Present",
+								"format": "",
+								"required": false,
+								"notes": ""
 							},
 							{
 								"name": "",
@@ -6037,7 +8695,7 @@
 						]
 					}
 				],
-				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getSettledBatchListResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n<GetSettledBatchListResponse xmlns=\"https://api.authorize.net/soap/v1/\">\n<messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <batchList>\n    <batch>\n      <batchId>12345678</batchId>\n      <settlementTimeUTC>2010-05-30T09:00:00</settlementTimeUTC>\n      <settlementTimeLocal>2010-05-30T03:00:00</settlementTimeLocal>\n      <settlementState>settledSuccessfully</settlementState>\n      <statistics> \n        <statistic>\n          <accountType>Visa</accountType> <!-- accountTypeEnum -->\n          <chargeAmount>200.00</chargeAmount> \n          <chargeCount>13</chargeCount> \n          <refundAmount>10.00</refundAmount>\n          <refundCount>1</refundCount>\n          <voidCount>2</voidCount> \n          <declineCount>4</declineCount>\n          <errorCount>6</errorCount> \n          <returnedItemAmount>0.00</returnedItemAmount> \n          <returnedItemCount>0</returnedItemCount>\n          <chargebackAmount>0.00</chargebackAmount> \n          <chargebackCount>0</chargebackCount>\n          <correctionNoticeCount>0</correctionNoticeCount> \n          <chargeChargeBackAmount>0.00</chargeChargeBackAmount>\n          <chargeChargeBackCount>0</chargeChargeBackCount>\n          <getBatchStatisticsResponseAmount>0.00</getBatchStatisticsResponseAmount>\n          <getBatchStatisticsResponseCount>0</getBatchStatisticsResponseCount>\n          <chargeReturnedItemsAmount>0.00</chargeReturnedItemsAmount>\n          <chargeReturnedItemsCount>0</chargeReturnedItemsCount>\n          <refundReturnedItemsAmount>0.00</refundReturnedItemsAmount>\n          <refundReturnedItemsCount>0</refundReturnedItemsCount>\n        </statistic>\n     <statistic>\n          <accountType>MasterCard</accountType>\n          <chargeAmount>200.00</chargeAmount>\n          <chargeCount>13</chargeCount>\n          <refundAmount>10.00</refundAmount>\n          <refundCount>1</refundCount>\n          <voidCount>2</voidCount>\n          <declineCount>4</declineCount>\n          <errorCount>6</errorCount>\n          <chargebackAmount>0.00</chargebackAmount>\n          <chargebackCount>0</chargebackCount>\n          <correctionNoticeCount>0</correctionNoticeCount>\n          <chargeChargeBackAmount>0.00</chargeChargeBackAmount>\n          <chargeChargeBackCount>0</chargeChargeBackCount>\n         <getBatchStatisticsResponseAmount>0.00</getBatchStatisticsResponseAmount>\n          <getBatchStatisticsResponseCount>0</getBatchStatisticsResponseCount>\n        </statistic>\n      </statistics>\n    </batch>\n    <batch>\n      <batchId>23456789</batchId>\n      <settlementTimeUTC>2010-05-30T09:00:00</settlementTimeUTC>\n      <settlementTimeLocal>2010-05-30T03:00:00</settlementTimeLocal>\n      <settlementState>settledSuccessfully</settlementState>\n      <statistics>\n        <statistic>\n          <accountType>eCheck</accountType>\n          <chargeAmount>200.00</chargeAmount>\n          <chargeCount>13</chargeCount>\n          <refundAmount>10.00</refundAmount>\n          <refundCount>1</refundCount>\n          <voidCount>2</voidCount>\n          <declineCount>4</declineCount>\n          <errorCount>6</errorCount>\n          <returnedItemAmount>0.00</returnedItemAmount>\n          <returnedItemCount>0</returnedItemCount>\n          <correctionNoticeCount>0</correctionNoticeCount>\n          <chargeReturnedItemsAmount>0.00</chargeReturnedItemsAmount>\n          <chargeReturnedItemsCount>0</chargeReturnedItemsCount>\n          <refundReturnedItemsAmount>0.00</refundReturnedItemsAmount>\n          <refundReturnedItemsCount>0</refundReturnedItemsCount>\n        </statistic>\n      </statistics>\n    </batch>\n  </batchList>\n</getSettledBatchListResponse>"
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getSettledBatchListResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n<GetSettledBatchListResponse xmlns=\"https://api.authorize.net/soap/v1/\">\n<messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <batchList>\n    <batch>\n      <batchId>12345678</batchId>\n      <settlementTimeUTC>2010-05-30T09:00:00</settlementTimeUTC>\n      <settlementTimeLocal>2010-05-30T03:00:00</settlementTimeLocal>\n      <settlementState>settledSuccessfully</settlementState>\n      <marketType>eCommerce</marketType>\n      <product>Card Not Present</product>\n      <statistics> \n        <statistic>\n          <accountType>Visa</accountType> <!-- accountTypeEnum -->\n          <chargeAmount>200.00</chargeAmount> \n          <chargeCount>13</chargeCount> \n          <refundAmount>10.00</refundAmount>\n          <refundCount>1</refundCount>\n          <voidCount>2</voidCount> \n          <declineCount>4</declineCount>\n          <errorCount>6</errorCount> \n          <returnedItemAmount>0.00</returnedItemAmount> \n          <returnedItemCount>0</returnedItemCount>\n          <chargebackAmount>0.00</chargebackAmount> \n          <chargebackCount>0</chargebackCount>\n          <correctionNoticeCount>0</correctionNoticeCount> \n          <chargeChargeBackAmount>0.00</chargeChargeBackAmount>\n          <chargeChargeBackCount>0</chargeChargeBackCount>\n          <getBatchStatisticsResponseAmount>0.00</getBatchStatisticsResponseAmount>\n          <getBatchStatisticsResponseCount>0</getBatchStatisticsResponseCount>\n          <chargeReturnedItemsAmount>0.00</chargeReturnedItemsAmount>\n          <chargeReturnedItemsCount>0</chargeReturnedItemsCount>\n          <refundReturnedItemsAmount>0.00</refundReturnedItemsAmount>\n          <refundReturnedItemsCount>0</refundReturnedItemsCount>\n        </statistic>\n     <statistic>\n          <accountType>MasterCard</accountType>\n          <chargeAmount>200.00</chargeAmount>\n          <chargeCount>13</chargeCount>\n          <refundAmount>10.00</refundAmount>\n          <refundCount>1</refundCount>\n          <voidCount>2</voidCount>\n          <declineCount>4</declineCount>\n          <errorCount>6</errorCount>\n          <chargebackAmount>0.00</chargebackAmount>\n          <chargebackCount>0</chargebackCount>\n          <correctionNoticeCount>0</correctionNoticeCount>\n          <chargeChargeBackAmount>0.00</chargeChargeBackAmount>\n          <chargeChargeBackCount>0</chargeChargeBackCount>\n         <getBatchStatisticsResponseAmount>0.00</getBatchStatisticsResponseAmount>\n          <getBatchStatisticsResponseCount>0</getBatchStatisticsResponseCount>\n        </statistic>\n      </statistics>\n    </batch>\n    <batch>\n      <batchId>23456789</batchId>\n      <settlementTimeUTC>2010-05-30T09:00:00</settlementTimeUTC>\n      <settlementTimeLocal>2010-05-30T03:00:00</settlementTimeLocal>\n      <settlementState>settledSuccessfully</settlementState>\n      <statistics>\n        <statistic>\n          <accountType>eCheck</accountType>\n          <chargeAmount>200.00</chargeAmount>\n          <chargeCount>13</chargeCount>\n          <refundAmount>10.00</refundAmount>\n          <refundCount>1</refundCount>\n          <voidCount>2</voidCount>\n          <declineCount>4</declineCount>\n          <errorCount>6</errorCount>\n          <returnedItemAmount>0.00</returnedItemAmount>\n          <returnedItemCount>0</returnedItemCount>\n          <correctionNoticeCount>0</correctionNoticeCount>\n          <chargeReturnedItemsAmount>0.00</chargeReturnedItemsAmount>\n          <chargeReturnedItemsCount>0</chargeReturnedItemsCount>\n          <refundReturnedItemsAmount>0.00</refundReturnedItemsAmount>\n          <refundReturnedItemsCount>0</refundReturnedItemsCount>\n        </statistic>\n      </statistics>\n    </batch>\n  </batchList>\n</getSettledBatchListResponse>"
 			}
 		},
 		{
@@ -6126,14 +8784,14 @@
 										"value": "Date and time the transaction was submitted.",
 										"format": "YYYY-MM-DDT\nHH:MM:SS.mmmZ\n\nExample:\n2010-08-30T\n17:49:20.757Z",
 										"required": false,
-										"notes": "The “T” character separates the date from the time. This field returns the time as Universal Time (UTC)."
+										"notes": "The “T‿ character separates the date from the time. This field returns the time as Universal Time (UTC)."
 									},
 									{
 										"name": "submitTimeLocal",
 										"value": "Date and time the transaction was submitted.",
 										"format": "YYYY-MM-DDT\nHH:MM:SS.mmm\n\nExample:\n2010-08-30T\n10:49:20.757",
 										"required": false,
-										"notes": "The “T” character separates the date from the time. This field returns the time in the merchant’s local time zone as set in the Merchant Interface. "
+										"notes": "The “T‿ character separates the date from the time. This field returns the time in the merchant’s local time zone as set in the Merchant Interface. "
 									},
 									{
 										"name": "transactionStatus",
@@ -6183,13 +8841,64 @@
 										"format": "",
 										"required": false,
 										"notes": ""
+									},
+									{
+										"name": "hasReturnedItems",
+										"value": "true or false",
+										"format": "",
+										"required": false,
+										"notes": "Indicates that this transaction contains returned items. More detailed information can be seen by calling getTransactionDetailsResponse for the transaction. This field is used only for eCheck.Net transactions."
+									},
+									{
+										"name": "subscription",
+										"value": "Contains subscription information.",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "id",
+												"value": "The subscription ID.",
+												"format": "Numeric",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "payNum",
+												"value": "Identifies the number of this transaction, in terms of how many transactions have been submitted for this subscription.\n\nFor example, if this is the third transaction processed for this subscription, the value of the payNum field will be 3.",
+												"format": "Numeric up to 999.",
+												"required": false,
+												"notes": ""
+											}
+										]
+									},
+									{
+										"name": "marketType",
+										"value": "0 for eCommerce\n1 for MOTO\n2 for retail",
+										"format": "",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "product",
+										"value": "Card Not Present or Card Present",
+										"format": "",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "mobileDeviceId",
+										"value": "The unique identifier of the mobile device.",
+										"format": "Up to 60 characters.",
+										"required": false,
+										"notes": ""
 									}
 								]
 							}
 						]
 					}
 				],
-				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getTransactionListResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n<messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <transactions>\n    <transaction>\n      <transId>12345</transId>\n      <submitTimeUTC>2009-05-30T09:00:00</submitTimeUTC>\n      <submitTimeLocal>2009-05-30T04:00:00</submitTimeLocal>\n      <transactionStatus>settledSuccessfully</transactionStatus> \n      <invoice>INV00001</invoice>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <amount>2.00</amount> \n      <accountType>Visa</accountType>\n      <accountNumber>XXXX1111</accountNumber> \n    </transaction>\n    <transaction>\n      <transId>12345</transId>\n      <submitTimeUTC>2009-05-30T09:00:00</submitTimeUTC>\n      <submitTimeLocal>2009-05-30T04:00:00</submitTimeLocal>\n      <transactionStatus>settledSuccessfully</transactionStatus>\n      <invoice>INV00001</invoice>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <amount>2.00</amount>\n      <accountType>Visa</accountType>\n      <accountNumber>XXXX1111</accountNumber>\n    </transaction>\n  </transactions>\n</getTransactionListResponse>"
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getTransactionListResponse xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n<messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n  <transactions>\n    <transaction>\n      <transId>12345</transId>\n      <submitTimeUTC>2009-05-30T09:00:00</submitTimeUTC>\n      <submitTimeLocal>2009-05-30T04:00:00</submitTimeLocal>\n      <transactionStatus>settledSuccessfully</transactionStatus> \n      <invoice>INV00001</invoice>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <amount>2.00</amount> \n      <accountType>Visa</accountType>\n      <accountNumber>XXXX1111</accountNumber> \n      <settleAmount>2.00</settleAmount>\n      <subscription>\n        <id>145521</id>\n        <payNum>1</paynum>\n    </transaction>\n    <transaction>\n      <transId>12345</transId>\n      <submitTimeUTC>2009-05-30T09:00:00</submitTimeUTC>\n      <submitTimeLocal>2009-05-30T04:00:00</submitTimeLocal>\n      <transactionStatus>settledSuccessfully</transactionStatus>\n      <invoice>INV00001</invoice>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <amount>2.00</amount>\n      <accountType>Visa</accountType>\n      <accountNumber>XXXX1111</accountNumber>\n      <marketType>eCommerce</marketType>\n      <product>Card Not Present</product>\n      <mobileDeviceiD>2354578983274523978</mobileDeviceId>\n    </transaction>\n  </transactions>\n</getTransactionListResponse>"
 			}
 		},
 		{
@@ -6285,14 +8994,14 @@
 								"value": "Date and time the transaction was submitted.",
 								"format": "",
 								"required": false,
-								"notes": "The “T” character separates the date from the time. This field returns the time as Universal Time (UTC)."
+								"notes": "The “T‿ character separates the date from the time. This field returns the time as Universal Time (UTC)."
 							},
 							{
 								"name": "submitTimeLocal",
 								"value": "Date and time the transaction was submitted.",
 								"format": "YYYY-MM-DDT\nHH:MM:SS.mmmZ\n\nExample:\n2010-08-30T\n17:49:20.757Z",
 								"required": false,
-								"notes": "The “T” character separates the date from the time. This field returns the time in the merchant’s local time zone as set in the Merchant Interface. "
+								"notes": "The “T‿ character separates the date from the time. This field returns the time in the merchant’s local time zone as set in the Merchant Interface. "
 							},
 							{
 								"name": "transactionType",
@@ -6644,13 +9353,6 @@
 								"notes": ""
 							},
 							{
-								"name": "",
-								"value": "",
-								"format": "",
-								"required": false,
-								"notes": ""
-							},
-							{
 								"name": "payment",
 								"value": "Contains payment information.",
 								"format": "",
@@ -6908,16 +9610,136 @@
 								"notes": ""
 							},
 							{
+								"name": "returnedItems",
+								"value": "This field is a container for one or more returnedItem fields. Applies only to eCheck.Net transactions.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "returnedItem",
+										"value": "Contains fields that contain returned item information. ",
+										"format": "",
+										"required": false,
+										"notes": "",
+										"children": [
+											{
+												"name": "id",
+												"value": "Transaction ID.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "dateUTC",
+												"value": "Date the item was returned.",
+												"format": "YYYY-MM-DDT\nHH:MM:SS.mmm\nExample:\n2010-08-30T\n10:49:20.757",
+												"required": false,
+												"notes": "The “T” character separates the date from the time. This field returns the time as Coordinated Universal Time (UTC)"
+											},
+											{
+												"name": "dateLocal",
+												"value": "Date the item was returned.",
+												"format": "YYYY-MM-DDT\nHH:MM:SS.mmm\nExample:\n2010-08-30T\n10:49:20.757",
+												"required": false,
+												"notes": "The “T” character separates the date from the time. This field returns the time in the merchant’s local time zone as set in the Merchant Interface. "
+											},
+											{
+												"name": "code",
+												"value": "The ACH return code.",
+												"format": "",
+												"required": false,
+												"notes": ""
+											},
+											{
+												"name": "description",
+												"value": "A text description of the reason for the return. ",
+												"format": "",
+												"required": false,
+												"notes": ""
+											}
+										]
+									}
+								]
+							},
+							{
+								"name": "solution",
+								"value": "Contains information about the software that generated the transaction.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "id",
+										"value": "The solution ID is generated by Authorize.Net and provided to the solution provider.",
+										"format": "Alphanumeric. Up to 50 characters.",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "name",
+										"value": "The name is generated by the solution provider and provided to Authorize.Net.",
+										"format": "Alphanumeric. Up to 255 characters.",
+										"required": false,
+										"notes": ""
+									}
+								]
+							},
+							{
 								"name": "customerIP",
 								"value": "IP address for the customer.",
 								"format": "",
 								"required": false,
 								"notes": "This is primarily used in fraud filters. "
+							},
+							{
+								"name": "subscription",
+								"value": "Contains subscription information.",
+								"format": "",
+								"required": false,
+								"notes": "",
+								"children": [
+									{
+										"name": "id",
+										"value": "The subscription ID.",
+										"format": "Numeric",
+										"required": false,
+										"notes": ""
+									},
+									{
+										"name": "payNum",
+										"value": "Identifies the number of this transaction, in terms of how many transactions have been submitted for this subscription.\n\nFor example, if this is the third transaction processed for this subscription, the value of the payNum field will be 3.",
+										"format": "Numeric",
+										"required": false,
+										"notes": ""
+									}
+								]
+							},
+							{
+								"name": "marketType",
+								"value": "0 for eCommerce\n1 for MOTO\n2 for retail",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "product",
+								"value": "Card Not Present or Card Present",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "mobileDeviceId",
+								"value": "The unique identifier of the mobile device.",
+								"format": "Up to 60 characters.",
+								"required": false,
+								"notes": ""
 							}
 						]
 					}
 				],
-				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getTransactionDetailsResponse xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n<messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n<transaction>\n    <transId>12345</transId>\n    <refTransId>12345</refTransId> \n    <splitTenderId>12345</splitTenderId>\n    <submitTimeUTC>2010-08-30T17:49:20.757Z</submitTimeUTC>\n    <submitTimeLocal>2010-08-30T13:49:20.757</submitTimeLocal>\n    <transactionType>authOnlyTransaction</transactionType> \n    <transactionStatus>settledSuccessfully</transactionStatus> \n    <responseCode>1</responseCode>\n    <responseReasonCode>1</responseReasonCode>\n    <responseReasonDescription> Approval</responseReasonDescription>\n    <authCode>000000</authCode> \n    <AVSResponse>X</AVSResponse>\n    <cardCodeResponse>M</cardCodeResponse>\n    <CAVVResponse>2</CAVVResponse> \n<FDSFilterAction>authAndHold</FDSFilterAction> \n    <FDSFilters>\n      <FDSFilter>\n        <name>Hourly Velocity Filter</name>\n        <action>authAndHold</action>\n      </FDSFilter>\n      <FDSFilter>\n        <name>Amount Filter</name>\n        <action>report</action>\n      </FDSFilter>\n    </FDSFilters>\n    <batch> \n      <batchId>12345</batchId>\n      <settlementTimeUTC>2010-08-30T17:49:20.757Z</settlementTimeUTC>\n      <settlementTimeLocal>2010-08-30T13:49:20.757</settlementTimeLocal>\n      <settlementState>settledSuccessfully</settlementState>\n    </batch>\n    <order>\n      <invoiceNumber>INV00001</invoiceNumber>\n      <description>some description</description>\n      <purchaseOrderNumber>PO000001</purchaseOrderNumber>\n    </order>\n    <requestedAmount>5.00</requestedAmount> \n    <authAmount>2.00</authAmount>\n    <settleAmount>2.00</settleAmount>\n    <tax>\n      <amount>1.00</amount>\n      <name>WA state sales tax</name>\n      <description>Washington state sales tax</description>\n    </tax>\n    <shipping>\n      <amount>2.00</amount>\n      <name>ground based shipping</name>\n      <description>Ground based 5 to 10 day shipping</description>\n    </shipping>\n    <duty>\n      <amount>1.00</amount>\n    </duty>\n<lineItems>\n      <lineItem>\n        <itemId>ITEM00001</itemId>\n       <name>name of item sold</name>\n        <description>Description of item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>6.95</unitPrice>\n        <taxable>true</taxable>\n      </lineItem>\n      <lineItem>\n        <itemId>ITEM00001</itemId>\n        <name>name of item sold</name>\n        <description>Description of item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>6.95</unitPrice>\n        <taxable>true</taxable>\n      </lineItem>\n    </lineItems>\n    <prepaidBalanceRemaining>30.00</prepaidBalanceRemaining>\n    <taxExempt>false</taxExempt>\n    <payment>\n      <!-- either creditCard or bankAccount will be here -->\n      <creditCard>\n        <cardNumber>XXXX1111</cardNumber>\n        <expirationDate>XXXX</expirationDate>\n        <accountType>Visa</accountType>\n      </creditCard>\n      <!--<bankAccount>\n        <routingNumber>XXXX0000</routingNumber>\n        <accountNumber>XXXX0000</accountNumber>\n        <nameOnAccount>John Doe</nameOnAccount>\n        <echeckType>WEB</echeckType>\n      </bankAccount>-->\n    </payment>\n    <customer>\n      <type>individual</type> \n      <id>ABC00001</id>\n      <email>mark@example.com</email>\n    </customer>\n    <billTo>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <company></company>\n      <address>123 Main St.</address>\n      <city>Bellevue</city>\n      <state>WA</state>\n      <zip>98004</zip>\n      <country>USA</country>\n      <phoneNumber>000-000-0000</phoneNumber>\n      <faxNumber></faxNumber>\n    </billTo>\n    <shipTo>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <company></company>\n      <address>123 Main St.</address>\n      <city>Bellevue</city>\n      <state>WA</state>\n      <zip>98004</zip>\n      <country>USA</country>\n    </shipTo>\n<recurringBilling>false</recurringBilling>\n    <customerIP>0.0.0.0</customerIP>\n    </transaction>\n</getTransactionDetailsResponse>"
+				"sample": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<getTransactionDetailsResponse xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n<messages>\n    <resultCode>Ok</resultCode>\n    <message>\n      <code>I00001</code>\n      <text>Successful.</text>\n    </message>\n  </messages>\n<transaction>\n    <transId>12345</transId>\n    <refTransId>12345</refTransId> \n    <splitTenderId>12345</splitTenderId>\n    <submitTimeUTC>2010-08-30T17:49:20.757Z</submitTimeUTC>\n    <submitTimeLocal>2010-08-30T13:49:20.757</submitTimeLocal>\n    <transactionType>authOnlyTransaction</transactionType> \n    <transactionStatus>settledSuccessfully</transactionStatus> \n    <responseCode>1</responseCode>\n    <responseReasonCode>1</responseReasonCode>\n    <responseReasonDescription> Approval</responseReasonDescription>\n    <authCode>000000</authCode> \n    <AVSResponse>X</AVSResponse>\n    <cardCodeResponse>M</cardCodeResponse>\n    <CAVVResponse>2</CAVVResponse> \n  <FDSFilterAction>authAndHold</FDSFilterAction> \n    <FDSFilters>\n      <FDSFilter>\n        <name>Hourly Velocity Filter</name>\n        <action>authAndHold</action>\n      </FDSFilter>\n      <FDSFilter>\n        <name>Amount Filter</name>\n        <action>report</action>\n      </FDSFilter>\n    </FDSFilters>\n    <batch> \n      <batchId>12345</batchId>\n      <settlementTimeUTC>2010-08-30T17:49:20.757Z</settlementTimeUTC>\n      <settlementTimeLocal>2010-08-30T13:49:20.757</settlementTimeLocal>\n      <settlementState>settledSuccessfully</settlementState>\n    </batch>\n    <order>\n      <invoiceNumber>INV00001</invoiceNumber>\n      <description>some description</description>\n      <purchaseOrderNumber>PO000001</purchaseOrderNumber>\n    </order>\n    <requestedAmount>5.00</requestedAmount> \n    <authAmount>2.00</authAmount>\n    <settleAmount>2.00</settleAmount>\n    <tax>\n      <amount>1.00</amount>\n      <name>WA state sales tax</name>\n      <description>Washington state sales tax</description>\n    </tax>\n    <shipping>\n      <amount>2.00</amount>\n      <name>ground based shipping</name>\n      <description>Ground based 5 to 10 day shipping</description>\n    </shipping>\n    <duty>\n      <amount>1.00</amount>\n    </duty>\n  <lineItems>\n      <lineItem>\n        <itemId>ITEM00001</itemId>\n       <name>name of item sold</name>\n        <description>Description of item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>6.95</unitPrice>\n        <taxable>true</taxable>\n      </lineItem>\n      <lineItem>\n        <itemId>ITEM00001</itemId>\n        <name>name of item sold</name>\n        <description>Description of item sold</description>\n        <quantity>1</quantity>\n        <unitPrice>6.95</unitPrice>\n        <taxable>true</taxable>\n      </lineItem>\n    </lineItems>\n    <prepaidBalanceRemaining>30.00</prepaidBalanceRemaining>\n    <taxExempt>false</taxExempt>\n    <payment>\n      <!-- either creditCard or bankAccount will be here -->\n      <creditCard>\n        <cardNumber>XXXX1111</cardNumber>\n        <expirationDate>XXXX</expirationDate>\n        <accountType>Visa</accountType>\n      </creditCard>\n      <!--<bankAccount>\n        <routingNumber>XXXX0000</routingNumber>\n        <accountNumber>XXXX0000</accountNumber>\n        <nameOnAccount>John Doe</nameOnAccount>\n        <echeckType>WEB</echeckType>\n      </bankAccount>-->\n    </payment>\n    <customer>\n      <type>individual</type> \n      <id>ABC00001</id>\n      <email>mark@example.com</email>\n    </customer>\n    <billTo>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <company></company>\n      <address>123 Main St.</address>\n      <city>Bellevue</city>\n      <state>WA</state>\n      <zip>98004</zip>\n      <country>USA</country>\n      <phoneNumber>000-000-0000</phoneNumber>\n      <faxNumber></faxNumber>\n    </billTo>\n    <shipTo>\n      <firstName>John</firstName>\n      <lastName>Doe</lastName>\n      <company></company>\n      <address>123 Main St.</address>\n      <city>Bellevue</city>\n      <state>WA</state>\n      <zip>98004</zip>\n      <country>USA</country>\n    </shipTo>\n    <recurringBilling>false</recurringBilling>\n    <customerIP>0.0.0.0</customerIP>\n    <subscription>\n      <id>145521</id>\n      <payNum>1</paynum>\n  <marketType>eCommerce</marketType>\n  <product>Card Not Present</product>\n  <returnedItems>\n    <returnedItem>\n      <id>2148878904</id>\n      <dateUTC>2014-05-12T21:22:44Z</dateUTC>\n      <dateLocal>2014-05-12T14:22:44</dateLocal>\n      <code>R02</code>\n      <description>Account Closed</description>\n    </returnedItem>\n  </returnedItems>\n  <solution>\n    <id>A1000004</id>\n    <name>Shopping Cart</name>\n  </solution>\n  <mobileDeviceiD>2354578983274523978</mobileDeviceId>\n    </subscription>\n   </transaction>\n</getTransactionDetailsResponse>"
 			}
 		},
 		{
@@ -7043,6 +9865,20 @@
 							{
 								"name": "paymentMethod",
 								"value": "creditCard or eCheck.",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "marketType",
+								"value": "0 for eCommerce\n1 for MOTO\n2 for retail",
+								"format": "",
+								"required": false,
+								"notes": ""
+							},
+							{
+								"name": "product",
+								"value": "Card Not Present or Card Present",
 								"format": "",
 								"required": false,
 								"notes": ""
