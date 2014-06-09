@@ -1,4 +1,4 @@
-[
+﻿[
 {
 	"APIName": "Payment Transactions",
 	"APIUsage": "This API enables you to submit transaction requests to the payment gateway.",
@@ -2573,7 +2573,7 @@
 			}
 		},
 		{
-			"title": "Capture funds authorized through another channel.",
+			"title": "Capture funds authorized through another channel",
 			"id": "capture-funds-authorized-through-another-channel.",
 			"usage": "Use this method to capture funds which have been authorized through another channel, e.g. phone authorization.",
 			"soap": "",
