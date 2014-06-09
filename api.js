@@ -1,8 +1,10 @@
 var requestEditor, responseEditor, codeEditorsID=[],transactionkey,loginid;
 var sURL = "https://apitest.authorize.net/xml/v1/request.api";
-
+var timer
 $(document).ready(function() {
-  initAPI();
+   loadAllPages();
+    timer = setInterval(function(){initAPI()}, 100);
+  
    
 });
 
@@ -39,6 +41,13 @@ function changeTab(element){
   }
    if(myElID === 'clientLibTabID')
   {
+     $("#APIRefPageID").show();
+    $("#GettingStatedGuidePageID").hide();
+    $("#clientLibPageID").hide();
+    currTab = $(element).parent();
+
+
+    $("#clientLibPageID").show();
     $("#clientLibPageID").show();
     $("#GettingStatedGuidePageID").hide();
     $("#APIRefPageID").hide();
@@ -47,14 +56,19 @@ function changeTab(element){
 
   }
   else if(myElID === 'SGuideTabID'){
+     $("#APIRefPageID").show();
+    $("#GettingStatedGuidePageID").hide();
+    $("#clientLibPageID").hide();
+    currTab = $(element).parent();
+
     $("#GettingStatedGuidePageID").show();
     $("#APIRefPageID").hide();
     $("#clientLibPageID").hide();
-    $('body').scrollspy({ target: '#gettingStartedGuideNav' })
-
+   // $('body').scrollspy({ target: '.gettingStartedGuide',offset:400 })
+   // $('body').scrollspy('refresh');
     currTab = $(element).parent();
   }
-  else {
+  else if(myElID==="APIRefTabID") {
     $("#APIRefPageID").show();
     $("#GettingStatedGuidePageID").hide();
     $("#clientLibPageID").hide();
@@ -70,7 +84,7 @@ function changeTab(element){
 
 
 function initAPI(){
-  loadAllPages();
+ clearInterval(timer);
 
 
   $(".authenticationDiv").hide();
@@ -111,6 +125,8 @@ function initAPI(){
     initializelightBox();
      var tab = window.location.hash!=="" ? window.location.hash : "#APIRefTabID";
       changeTab($(tab));
+
+      
 }
 
 function loadAllPages(){
