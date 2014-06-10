@@ -1,0 +1,343 @@
+<div>
+    <h1>
+        Customer Profiles
+    <h1>
+</div>
+<p>
+    Use Customer Profiles to enable merchants to tokenize and store their customers' sensitive payment information on our secure servers, simplifying their PCI
+    DSS compliance as well as the payments process for returning customers and recurring transactions. By providing quick access to stored customer
+    information, CIM is ideal for businesses that:
+</p>
+<ul><li>
+    Process recurring transactions where the date and/or amount is different each month (e.g. utility companies).
+</li><li>
+    Process usage charges - where you only bill when the service is used. (e.g. pay-as-you-go cell phones).
+</li><li>
+    Are concerned with PCI compliance.
+</li><li>
+    Want to provide returning customers with the convenience of not having to re-enter personal data.
+</li></ul>
+<p>
+    The Profiles API supports integration with a Web site payment form or a proprietary business application. The profiles, which include payment and shipping
+    information, can then be referenced in future transactions, eliminating steps in the transaction process for repeat customers and potentially increasing
+    customer loyalty.
+</p>
+<p>
+    <img width="780" height="386" src="img/CIMdiagram.png"/>
+</p>
+
+
+
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////  -->
+<div id="custInfoManager-customers">
+    <h2>
+        Customers
+    </h2>
+    <p>
+        A customer profile contains some minimal information about the customer (ID, description and/or email address) but mainly exists to link the multiple
+        payment and shipping profiles with a single customer entity.
+    </p>
+    <p>
+        API methods to manage customer profiles include:
+    </p>
+        <ul><li>
+            <a href="">CreateCustomerProfile</a>
+        </li><li>
+            <a href="">GetCustomerProfile</a>
+        </li><li>
+            <a href="">GetCustomerProfileIds</a>
+        </li><li>
+            <a href="">UpdateCustomerProfile</a>
+        </li></ul>
+    </div>
+
+
+
+
+
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////  -->
+<div id="custInfoManager-paymentProfiles">
+    <h2>
+        Payment Profiles
+    </h2>
+    <p>
+        Creating a payment profile allows merchants to securely store sensitive payment information with Authorize.Net in a secure and PCI compliant manner.
+    </p>
+    <p>
+        API methods to manage customer payment profiles include:
+    </p>
+        <ul><li>
+            <a href="">CreateCustomerPaymentProfilev
+        </li><li>
+            <a href="">GetCustomerPaymentProfile</a>
+        </li><li>
+            <a href="">UpdateCustomerPaymentProfile</a>
+        </li></ul>
+</div>
+
+
+
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////  -->
+<div id="custInfoManager-shippingProfiles">
+    <h2>
+        Shipping Profiles
+    </h2>
+    <p>
+        Shipping profiles provide merchants with an opportunity to reduce the friction in the checkout of repeat customers by securely storing multiple shipping
+        addresses with Authorize.Net.
+    </p>
+    <p>
+        API methods to manage customer payment profiles include:
+        <ul><li>
+            <a href="">CreateCustomerPaymentProfile</a>
+        </li><li>
+            <a href="">GetCustomerPaymentProfile</a>
+        </li><li>
+            <a href="">UpdateCustomerPaymentProfile</a>
+        </li></ul>
+</div>
+
+
+
+
+
+
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////  -->
+<div id="custInfoManager-duplicateProfileVerification">
+    <h2>
+        Duplicate Profile Verification
+    </h2>
+    <p>
+        When you submit calls to the createCustomerProfileRequest, createCustomerPaymentProfileRequest, and createCustomerShippingAddressRequest functions, the
+        payment gateway checks certain fields in each request to ensure that a profile with that same information does not already exist. If a profile already
+        exists that contains the values being submitted in the new request, then the payment gateway returns an error message. If the duplicate profile is a
+        customer profile, the error message contains the ID of the already-created profile. The duplicate profile verification serves as a safeguard against
+        accidental duplicate submissions.
+    </p>
+    <p>
+        The following table lists the fields for each function that cannot match any other profile already created. An error will occur only if all the values for
+        each field being submitted match all the values for each field in the already existing profile.
+    </p>
+    <table border="1" cellspacing="0" cellpadding="0">
+        <tbody>
+            <tr>
+                <td width="399" valign="top">
+                    <p>
+                        <strong>Function</strong>
+                    </p>
+                </td>
+                <td width="399" valign="top">
+                    <p>
+                        <strong>Fields Used for Duplicate Profile Verification</strong>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td width="399" valign="top">
+                    <p>
+                        createCustomerProfileRequest
+                    </p>
+                </td>
+                <td width="399" valign="top">
+                    <ul>
+                        <li>
+                            merchantCustomerId
+                        </li>
+                        <li>
+                            description
+                        </li>
+                        <li>
+                            email
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td width="399" valign="top">
+                    <p>
+                        createCustomerPaymentProfileRequest
+                    </p>
+                </td>
+                <td width="399" valign="top">
+                    <ul>
+                        <li>
+                            customerProfileId
+                        </li>
+                        <li>
+                            cardNumber
+                        </li>
+                        <li>
+                            accountNumber
+                        </li>
+                        <li>
+                            routingNumber
+                        </li>
+                        <li>
+                            billToFirstName
+                        </li>
+                        <li>
+                            billToLastName
+                        </li>
+                        <li>
+                            billToAddress
+                        </li>
+                        <li>
+                            billToZip
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+            <tr>
+                <td width="399" valign="top">
+                    <p>
+                        createCustomerShippingAddressRequest
+                    </p>
+                </td>
+                <td width="399" valign="top">
+                    <ul>
+                        <li>
+                            customerProfileId
+                        </li>
+                        <li>
+                            firstName
+                        </li>
+                        <li>
+                            lastName
+                        </li>
+                        <li>
+                            address
+                        </li>
+                        <li>
+                            zip
+                        </li>
+                        <li>
+                            phoneNumber
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////  -->
+<div id="custInfoManager-chargingCustomers">
+    <h1>
+        Charging Customers
+    </h1>
+</div>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////  -->
+<div id="custInfoManager-createCustProfReq">
+    <h2>
+        Create a Customer Profile Transaction Request
+    </h2>
+    <p>
+        Use createCustomerProfileTransactionRequest to create a payment transaction from an existing customer profile.
+    </p>
+    <p>
+        You can submit one of six transaction types:
+    </p>
+    <ul>
+        <li>
+            Authorization Only
+        </li>
+        <li>
+            Authorization and Capture
+        </li>
+        <li>
+            Capture Only
+        </li>
+        <li>
+            Prior Authorization and Capture
+        </li>
+        <li>
+            Refund
+        </li>
+        <li>
+            Void
+        </li>
+    </ul>
+    <p>
+        The only transaction types that generate a customer receipt email are Authorization Only, Authorization and Capture, and Refund.
+    </p>
+</div>
+
+
+
+
+
+
+
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////////  -->
+<div id="custInfoManager-refunds">
+    <h2>
+        Refunds
+    </h2>
+    <p>
+        If you are submitting a refund against a previous CIM transaction, the following guidelines apply:
+    </p>
+
+
+
+    <ul><li>
+         Include customerProfileId, customerPaymentProfileId, and transId.
+    </li><li>
+            customerShippingAddressId is optional.
+    </li><li>
+         creditCardNumberMasked, bankRoutingNumberMasked, and bankAccountNumberMasked do not need to be included, but they will be validated if they are included.
+    </li></ul>
+
+
+
+    <p>
+        If you are submitting a refund for a non-CIM transaction, the following guidelines apply:
+    </p>
+
+
+
+    <ul><li>
+         You must include transId, creditCardNumberMasked (or bankRoutingNumberMasked and bankAccountNumberMasked).
+    </li><li>
+         Do not include customerProfileId, customerPaymentProfileId, or customerShippingAddressId.
+    </li></ul>
+
+
+
+    <p>
+        You can also issue an unlinked refund for a CIM transaction. In this case, the following rules apply:
+    </p>
+
+
+
+    <ul><li>
+     You must be enrolled in Expanded Credit Capabilities (ECC). For more information about ECC, go to    <a href="http://www.authorize.net/files/ecc.pdf">http://www.authorize.net/files/ecc.pdf</a>.
+    </li><li>
+         You must include customerProfileId and customerPaymentProfileId.
+    </li><li>
+            customerShippingAddressId is optional.
+    </li><li>
+         Do not include transId, creditCardNumberMasked, bankRoutingNumberMasked, or bankAccountNumberMasked.
+    </li></ul>
+</div>
+
+
+
+

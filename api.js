@@ -137,6 +137,7 @@ function loadAllPages(){
 
 function loadGettingStartedGuidePages(){
   $("#StartingGuide-recurring-billing").load("recurringBilling.html");
+  $("#customerInfoManagerID").load("customerInformationManager.html");
   
 }
 

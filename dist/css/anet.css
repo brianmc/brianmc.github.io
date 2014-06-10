@@ -177,6 +177,10 @@ iframe {
 p{
     text-align: justify;
 }
+p:hover{
+    background-color: aliceblue;
+
+}
 .noRPadding{
     
     padding-right: 0px !important;
