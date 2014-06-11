@@ -4,7 +4,7 @@ module.exports = function(grunt) {
   'compile-handlebars': {
        dynamicTemplate: {
         template: 'doctemplate.html',
-        templateData: ['data/aim.json','data/arb.json','data/cim-charge.json','data/cim.json','data/reporting.json'],
+        templateData: 'docdata.json',
         output: 'static.html',
         helpers:'idFromTitle.js'
       }
