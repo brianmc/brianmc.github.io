@@ -375,83 +375,6 @@ Cardholder information must be stored securely and in accordance with the Paymen
 For more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training.</td>
                                         <td>Numeric</td>
                                     </tr>
-                                     
-                                    <tr>
-                                        <td class='twoBullet'>bankAccount</td>
-                                        <td>The following elements belong to the &lt;bankAccount&gt; element; include them only for bank account transactions.
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>accountNumber</td>
-                                        <td>Account number, masked.
-                                            <br/></td>
-                                        <td>XXXX1111</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>routingNumber</td>
-                                        <td>Bank&#x27;s routing number.
-                                            <br/></td>
-                                        <td>XXXX0000</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>nameOnAccount</td>
-                                        <td>Name of the person who holds the bank account.
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>bankName</td>
-                                        <td>The name of the bank.
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>echeckType</td>
-                                        <td>The type of eCheck transaction.
-                                            <br/></td>
-                                        <td>PPD, WEB, CCD, TEL</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>authCode</td>
-                                        <td>Authorization code.
-                                            <br/></td>
-                                        <td>String.</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>refTransId</td>
-                                        <td>Transaction ID of the original partial authorization transaction.
-                                            <br/>Required only for refundTransaction, priorAuthCaptureTransaction, and 
-voidTransaction. 
-
-Do not include this field if you are 
-providing splitTenderId</td>
-                                        <td>String.</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>splitTenderId</td>
-                                        <td>The payment gateway-assigned ID 
-that links the current authorization request to the original authorization request. 
-
-                                            <br/>This value applies to partial authorization transactions only, and is returned in the reply 
-message from the original authorization request.</td>
-                                        <td>Numeric.</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>order</td>
-                                        <td>Contains information about the order.
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
                                       
                                     <tr>
                                         <td class='oneBullet'>lineItems</td>
@@ -1580,83 +1503,6 @@ Cardholder information must be stored securely and in accordance with the Paymen
 
 For more information about PCI, please refer to the Standards, Compliance and Security developer training video at http://developer.authorize.net/training.</td>
                                         <td>Numeric</td>
-                                    </tr>
-                                     
-                                    <tr>
-                                        <td class='twoBullet'>bankAccount</td>
-                                        <td>The following elements belong to the &lt;bankAccount&gt; element; include them only for bank account transactions.
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>accountNumber</td>
-                                        <td>Account number, masked.
-                                            <br/></td>
-                                        <td>XXXX1111</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>routingNumber</td>
-                                        <td>Bank&#x27;s routing number.
-                                            <br/></td>
-                                        <td>XXXX0000</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>nameOnAccount</td>
-                                        <td>Name of the person who holds the bank account.
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>bankName</td>
-                                        <td>The name of the bank.
-                                            <br/></td>
-                                        <td></td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>echeckType</td>
-                                        <td>The type of eCheck transaction.
-                                            <br/></td>
-                                        <td>PPD, WEB, CCD, TEL</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>authCode</td>
-                                        <td>Authorization code.
-                                            <br/></td>
-                                        <td>String.</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>refTransId</td>
-                                        <td>Transaction ID of the original partial authorization transaction.
-                                            <br/>Required only for refundTransaction, priorAuthCaptureTransaction, and 
-voidTransaction. 
-
-Do not include this field if you are 
-providing splitTenderId</td>
-                                        <td>String.</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>splitTenderId</td>
-                                        <td>The payment gateway-assigned ID 
-that links the current authorization request to the original authorization request. 
-
-                                            <br/>This value applies to partial authorization transactions only, and is returned in the reply 
-message from the original authorization request.</td>
-                                        <td>Numeric.</td>
-                                    </tr>
-                                    
-                                    <tr>
-                                        <td class='threeBullet'>order</td>
-                                        <td>Contains information about the order.
-                                            <br/></td>
-                                        <td></td>
                                     </tr>
                                       
                                     <tr>
@@ -3590,6 +3436,13 @@ B = CAVV passed validation, information only, no liability shift.</td>
   &lt;transactionRequest&gt;
     &lt;transactionType&gt;captureOnlyTransaction&lt;/transactionType&gt;
     &lt;amount&gt;5&lt;/amount&gt;
+    &lt;payment&gt;
+      &lt;creditCard&gt;
+        &lt;cardNumber&gt;5424000000000015&lt;/cardNumber&gt;
+        &lt;expirationDate&gt;1220&lt;/expirationDate&gt;
+        &lt;cardCode&gt;999&lt;/cardCode&gt;
+      &lt;/creditCard&gt;
+    &lt;/payment&gt;
     &lt;authCode&gt;ROHNFQ&lt;/authCode&gt;
   &lt;/transactionRequest&gt;
 &lt;/createTransactionRequest&gt;</textarea>
@@ -4156,12 +4009,15 @@ B = CAVV passed validation, information only, no liability shift.</td>
   &lt;refId&gt;123456&lt;/refId&gt;
   &lt;transactionRequest&gt;
     &lt;transactionType&gt;refundTransaction&lt;/transactionType&gt;
-    &lt;refTransId&gt;&lt;/refTransId&gt;
+    &lt;amount&gt;5&lt;/amount&gt;
     &lt;payment&gt;
       &lt;creditCard&gt;
-        &lt;cardNumber&gt;8888&lt;/cardNumber&gt;
+        &lt;cardNumber&gt;5424000000000015&lt;/cardNumber&gt;
+        &lt;expirationDate&gt;1220&lt;/expirationDate&gt;
+        &lt;cardCode&gt;999&lt;/cardCode&gt;
       &lt;/creditCard&gt;
     &lt;/payment&gt;
+    &lt;refTransId&gt;1122334455&lt;/refTransId&gt;
   &lt;/transactionRequest&gt;
 &lt;/createTransactionRequest&gt;</textarea>
                                         </p>
@@ -4724,6 +4580,1660 @@ B = CAVV passed validation, information only, no liability shift.</td>
   &lt;/transactionResponse&gt;
 &lt;/createTransactionResponse&gt;</textarea>
                                 <div id="txtRespLoader-void-a-transaction" class="loaderContainer">
+                                    <div class="loaderbg">Loading...</div>
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    
+                    <h3 id="payment-transactions-debit-a-bank-account">Debit a Bank Account</h3>
+                    <p>Use this method to process an ACH debit transaction using bank account details.</p>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#homereq-debit-a-bank-account" data-toggle="tab">Request</a>
+                        </li>
+                        <li><a href="#homeresp-debit-a-bank-account" data-toggle="tab">Response</a>
+                        </li>
+                        <li><a id="debit-a-bank-accountTryIt" href="#console-debit-a-bank-account" data-toggle="tab">Try it</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="homereq-debit-a-bank-account">
+                            <p><em>createTransactionRequest</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>merchantAuthentication</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Contains merchant authentication information. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='oneBullet'>name</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Merchant’s unique API Login ID.
+                                            <br/>The merchant API Login ID is provided in the Merchant Interface and must be stored securely. 
+
+The API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway.</td>
+                                        <td>Up to 20 characters</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>transactionKey</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Merchant’s unique Transaction Key.
+                                            <br/>The merchant Transaction Key is provided in the Merchant Interface and must be stored securely. 
+
+The API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway.</td>
+                                        <td>16 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>mobileDeviceId</td>
+                                        <td>Unique identifier for a mobile device.
+                                            <br/></td>
+                                        <td>60 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>refId</td>
+                                        <td>Merchant-assigned reference ID for the request.
+                                            <br/>If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.
+
+This element is not used for mobile device requests. Use mobileDeviceId instead. </td>
+                                        <td>Up to 20 characters.</td>
+                                    </tr>
+                                      
+                                    <tr>
+                                        <td>transactionRequest</td>
+                                        <td>Transaction information. This element includes all of the fields that follow.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='oneBullet'>transactionType</td>
+                                        <td>Type of credit card transaction.
+                                            <br/>If the value submitted does not match a supported value, the transaction is rejected. If this field is not submitted or the value is blank, the payment gateway will process the transaction as an authCaptureTransaction. </td>
+                                        <td>authCaptureTransaction</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>amount</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Amount of the transaction.
+                                            <br/>This is the total amount and must include tax, shipping, and any other charges. The amount can either be hard coded or posted to a script.</td>
+                                        <td>Up to 15 digits with a decimal point (no dollar symbol. For example, 8.95</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>paymentType</td>
+                                        <td>This section includes payment information. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>bankAccount</td>
+                                        <td>The following elements belong to the &lt;bankAccount&gt; element; include them only for bank account transactions.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>accountNumber</td>
+                                        <td>Account number, masked.
+                                            <br/></td>
+                                        <td>XXXX1111</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>routingNumber</td>
+                                        <td>Bank&#x27;s routing number.
+                                            <br/></td>
+                                        <td>XXXX0000</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>nameOnAccount</td>
+                                        <td>Name of the person who holds the bank account.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>bankName</td>
+                                        <td>The name of the bank.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>echeckType</td>
+                                        <td>The type of eCheck transaction.
+                                            <br/></td>
+                                        <td>PPD, WEB, CCD, TEL</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>authCode</td>
+                                        <td>Authorization code.
+                                            <br/></td>
+                                        <td>String.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>refTransId</td>
+                                        <td>Transaction ID of the original partial authorization transaction.
+                                            <br/>Required only for refundTransaction, priorAuthCaptureTransaction, and 
+voidTransaction. 
+
+Do not include this field if you are 
+providing splitTenderId</td>
+                                        <td>String.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>splitTenderId</td>
+                                        <td>The payment gateway-assigned ID 
+that links the current authorization request to the original authorization request. 
+
+                                            <br/>This value applies to partial authorization transactions only, and is returned in the reply 
+message from the original authorization request.</td>
+                                        <td>Numeric.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>order</td>
+                                        <td>Contains information about the order.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                      
+                                    <tr>
+                                        <td class='oneBullet'>lineItems</td>
+                                        <td>Contains one or more &lt;lineItem&gt; elements (the maximum is 30 line items.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>lineItem</td>
+                                        <td>Describes one line item of the order.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>itemId</td>
+                                        <td>Item identification.
+                                            <br/></td>
+                                        <td>Up to 31 characters.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>name</td>
+                                        <td>Name of the item.
+                                            <br/></td>
+                                        <td>Up to 31 characters</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>description</td>
+                                        <td>Description of the item.
+                                            <br/></td>
+                                        <td>Up to 255 characters.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>quantity</td>
+                                        <td>Quantity purchased.
+                                            <br/></td>
+                                        <td>Up to two decimal places. Must be a positive number</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>unitPrice</td>
+                                        <td>Price of one item.
+                                            <br/>Cost of an item per unit, excluding tax, freight, and duty.</td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>tax</td>
+                                        <td>Contains information about any taxes applied.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>amount</td>
+                                        <td>Amount of tax.
+                                            <br/>Total amount of the transaction must include this amount.</td>
+                                        <td>Format can include up to two decimal points. For example, 1.27. </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>name</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Name of tax.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>description</td>
+                                        <td>Description of tax.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>duty</td>
+                                        <td>Contains information about any duty applied.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>amount</td>
+                                        <td>Amount of duty.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>name</td>
+                                        <td>Name of duty.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>description</td>
+                                        <td>Description of duty.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>shipping</td>
+                                        <td>Items in this section describe shipping charges applied.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>amount</td>
+                                        <td>Amount of shipping charges.
+                                            <br/>Description of shipping charges.</td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>name</td>
+                                        <td>Name of shipping charges.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>description</td>
+                                        <td>Description of shipping charges.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>taxExempt</td>
+                                        <td>Indicates whether or not order is exempt from tax.
+                                            <br/></td>
+                                        <td>true, false</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>poNumber</td>
+                                        <td>The merchant-assigned purchase order number.
+                                            <br/>Purchase order number must be created dynamically on the merchant&#x27;s server or provided on a per-transaction basis. The payment gateway does not perform this function.</td>
+                                        <td>Up to 25 characters (no symbols).</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>customer</td>
+                                        <td>The following fields contain customer information.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>type</td>
+                                        <td>
+                                            <br/></td>
+                                        <td>individual, business</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>id</td>
+                                        <td>Merchant assigned customer ID.
+                                            <br/>Unique identifier to represent the customer associated with the transaction.
+
+Customer ID must be created dynamically on the merchant&#x27;s server or provided for each transaction. The payment gateway does not perform this function.</td>
+                                        <td>Up to 20 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>email</td>
+                                        <td>The customer’s valid email address.
+                                            <br/>Required only when using a European Payment Processor. Processing Platform.
+
+Email address to which the customer’s copy of the email receipt is sent when Email Receipts is configured in the Merchant Interface. The email is sent to the customer only if the email address format is valid. </td>
+                                        <td>Up to 255 characters.
+
+For example, janedoe@customer.com</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>billTo</td>
+                                        <td>This section contains billing address information.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>firstName</td>
+                                        <td>First name associated with customer’s billing address.
+                                            <br/>Required only when using a European Payment Processor.</td>
+                                        <td>Up to 50 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>lastName</td>
+                                        <td>Last name associated with customer’s billing address.
+                                            <br/>Required only when using a European Payment Processor.</td>
+                                        <td>Up to 50 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>company</td>
+                                        <td>Company associated with customer’s billing address.
+                                            <br/></td>
+                                        <td>Up to 50 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>address</td>
+                                        <td>Customer’s billing address.
+                                            <br/>Required if merchant would like to use the Address Verification Service security feature.
+ 
+Required when using GPN Canada or WorldPay Streamline Processing Platform.</td>
+                                        <td>Up to 60 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>city</td>
+                                        <td>City of customer’s billing address.
+                                            <br/>Required only when using a European Payment Processor.</td>
+                                        <td>Up to 40 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>state</td>
+                                        <td>State of customer’s billing address.
+                                            <br/>Required only when using a European Payment Processor.</td>
+                                        <td>Up to 40 characters (no symbols) or a valid two-character state code.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>zip</td>
+                                        <td>ZIP code of customer’s billing address.
+                                            <br/>Required if merchant would like to use the Address Verification Service security feature.
+ 
+Required when using GPN Canada or WorldPay Streamline Processing Platform.</td>
+                                        <td>Up to 20 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>country</td>
+                                        <td>Country of customer’s billing address.
+                                            <br/>Required only when using a European Payment Processor.</td>
+                                        <td>Up to 60 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>phoneNumber</td>
+                                        <td>Phone number associated with customer’s billing address.
+                                            <br/></td>
+                                        <td>Up to 25 digits (no letters).
+
+For example, 
+(123)123-1234</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>faxNumber</td>
+                                        <td>Fax number associated with customer’s billing address.
+                                            <br/>Up to 25 digits (no letters).
+
+For example, 
+(123)123-1234</td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>shipTo</td>
+                                        <td>This section contains shipping information.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>firstName</td>
+                                        <td>First name associated with customer’s shipping address.
+                                            <br/></td>
+                                        <td>Up to 50 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>lastName</td>
+                                        <td>Last name associated with customer’s shipping address.
+                                            <br/></td>
+                                        <td>Up to 50 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>company</td>
+                                        <td>Company associated with customer’s shipping address.
+                                            <br/></td>
+                                        <td>Up to 50 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>address</td>
+                                        <td>Customer’s shipping address.
+                                            <br/></td>
+                                        <td>Up to 60 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>city</td>
+                                        <td>City of customer’s shipping address.
+                                            <br/></td>
+                                        <td>Up to 40 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>state</td>
+                                        <td>State of customer’s shipping address.
+                                            <br/></td>
+                                        <td>Up to 40 characters (no symbols) or a valid two-character state code.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>zip</td>
+                                        <td>ZIP code of customer’s shipping address.
+                                            <br/></td>
+                                        <td>Up to 20 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>country</td>
+                                        <td>Country of customer’s shipping address.
+                                            <br/></td>
+                                        <td>Up to 60 characters (no symbols).</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>customerIP</td>
+                                        <td>IP address of customer initiating the transaction. If this value is not passed, it will default to 255.255.255.255.
+                                            <br/>Required only when the merchant is using customer IP based AFDS filters.</td>
+                                        <td>Up to 15 characters (no letters).
+
+For example, 255.255.255.255</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>cardholderAuthentication</td>
+                                        <td>Merchants using a third party cardholder authentication solution can submit the following authentication values with Visa and/or MasterCard transactions.
+
+Note: invalid combinations of the following two fields will generate an error.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>Authentication Indicator</td>
+                                        <td>The electronic commerce indicator (ECI) value for a Visa transaction; or the universal cardholder authentication field indicator (UCAF) for a MasterCard transaction obtained by the merchant after the authentication process.
+                                            <br/>Required only for transactions processed through cardholder authentication programs. When submitted with other transaction types, this value is ignored.
+
+This field is currently supported through Chase Paymentech, FDMS Nashville, Global Payments and TSYS. </td>
+                                        <td>Special characters included in this value must be URL encoded.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>Cardholder Authentication Value</td>
+                                        <td>The cardholder authentication verification value (CAVV) for a Visa transaction; or accountholder authentication value (AVV)/ universal cardholder authentication field (UCAF) for a MasterCard transaction obtained by the merchant after the authentication process.
+                                            <br/>Required only for authOnly and authCapture transactions processed through cardholder authentication programs. When submitted with other transaction types, this value is ignored.
+
+This field is currently supported through Chase Paymentech, FDMS Nashville, Global Payments and TSYS.</td>
+                                        <td>Special characters included in this value must be URL encoded.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>retail</td>
+                                        <td>The retail element contains two elements: marketType and deviceType.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>marketType</td>
+                                        <td>0 for ecommerce
+1 for moto
+2 for retail
+                                            <br/></td>
+                                        <td>Default value is 2.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>deviceType</td>
+                                        <td>7 for mobile POS
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>TransactionSettings</td>
+                                        <td>This section contains one or more &lt;setting&gt; elements.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>setting</td>
+                                        <td>allowPartialAuth, duplicatWindow, emailCustomer, recurringBilling, or testRequest
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>userFields</td>
+                                        <td>User-defined fields are allowed.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>name</td>
+                                        <td>Name of the user-defined field.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>value</td>
+                                        <td>Value of the user-defined field.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                       
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade in" id="homeresp-debit-a-bank-account">
+                            <p><em>createTransactionResponse</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>refId</td>
+                                        <td>Merchant-assigned reference ID for the request.
+                                            <br/>If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications.</td>
+                                        <td>Up to 20 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td>messages</td>
+                                        <td>This section contains information about the results of the request. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='oneBullet'>resultCode</td>
+                                        <td>Ok or Error.
+                                            <br/>Contains additional information about the status of the request. </td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>message</td>
+                                        <td>Contains specific message information.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>code</td>
+                                        <td>Code number for message.
+                                            <br/></td>
+                                        <td>I00001
+E000001</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>text</td>
+                                        <td>Text for the error message.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>sessionToken</td>
+                                        <td>Returned for mobile device transactions, instead of a transactionKey.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                       
+                                    <tr>
+                                        <td>transactionResponse</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='oneBullet'>responseCode</td>
+                                        <td>Overall status of the transaction.
+                                            <br/></td>
+                                        <td>1 = Approved 
+2 = Declined 
+3 = Error 
+4 = Held for Review</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>authCode</td>
+                                        <td>Authorization or approval code.
+                                            <br/></td>
+                                        <td>6 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>avsResultCode</td>
+                                        <td>Address Verification Service (AVS) response code.
+                                            <br/>Indicates the result of the AVS filter.</td>
+                                        <td>A = Address (Street) matches, ZIP does not.
+B = Address information not provided for AVS check.
+E = AVS error.
+G = Non-U.S. Card Issuing Bank.
+N = No Match on Address (Street) or ZIP.
+P = AVS not applicable for this transaction.
+R = Retry—System unavailable or timed out.
+S = Service not supported by issuer.
+U = Address information is unavailable.
+W = Nine digit ZIP matches, Address (Street) does not.
+X = Address (Street) and nine digit ZIP match.
+Y = Address (Street) and five digit ZIP match.
+Z = Five digit ZIP matches, Address (Street) does not.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>cvvResultCode</td>
+                                        <td>Card code verification (CCV) response code.
+                                            <br/>Indicates result of the CCV filter.</td>
+                                        <td>M = Match.
+N = No Match.
+P = Not Processed.
+S = Should have been present.
+U = Issuer unable to process request.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>cavvResultCode</td>
+                                        <td>Cardholder authentication verification response code.
+                                            <br/></td>
+                                        <td>Blank or not present  =  CAVV not validated.
+0 = CAVV not validated because erroneous data was submitted.
+1 = CAVV failed validation.
+2 = CAVV passed validation.
+3 = CAVV validation could not be performed; issuer attempt incomplete.
+4 = CAVV validation could not be performed; issuer system error.
+5 = Reserved for future use.
+6 = Reserved for future use.
+7 = CAVV attempt—failed validation—issuer available (U.S.-issued card/non-U.S acquirer).
+8 = CAVV attempt—passed validation—issuer available (U.S.-issued card/non-U.S. acquirer).
+9 = CAVV attempt—failed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).
+A = CAVV attempt—passed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).
+B = CAVV passed validation, information only, no liability shift.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>transId</td>
+                                        <td>The payment gateway assigned identification number for transaction.
+                                            <br/>The transId value must be used for any follow-on transactions such as a credit, prior authorization and capture, or void.</td>
+                                        <td>When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>reftransId</td>
+                                        <td>The transaction ID of a related, previously settled transaction. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>transHash</td>
+                                        <td>Payment gateway-generated MD5 hash value that can be used to authenticate the transaction response.
+                                            <br/>Because transaction responses are returned using an SSL connection, this feature is not necessary for AIM. </td>
+                                        <td>Alphanumeric.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>testRequest</td>
+                                        <td>
+                                            <br/>Indicates whether or not to treat this request as a test transaction. </td>
+                                        <td>true, false,1,0.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>accountNumber</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>accountType</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>messages</td>
+                                        <td>This element contains one or more &lt;message&gt; elements.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>message</td>
+                                        <td>These messages contain detailed information about the status of a particular transaction.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>code</td>
+                                        <td>Response code that represents the status.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>description</td>
+                                        <td>Text description of the status.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                      
+                                    <tr>
+                                        <td class='oneBullet'>errors</td>
+                                        <td>This element contains one or more &lt;error&gt; elements.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>error</td>
+                                        <td>This element contains detailed information about any errors returned.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>errorCode</td>
+                                        <td>Error code returned.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>errorText</td>
+                                        <td>Text description of error.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                      
+                                    <tr>
+                                        <td class='oneBullet'>splitTenderPayments</td>
+                                        <td>If the transaction was a partial authorization transaction, then the split tender payment detail information is listed in this section. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>splitTenderPayment</td>
+                                        <td>Contains information about one split tender transaction.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>transId</td>
+                                        <td>The payment gateway assigned identification number for the transaction.
+                                            <br/>When the testRequest field is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.</td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>responseCode</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>responseToCustomer</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>authCode</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>accountNumber</td>
+                                        <td>Last 4 digits of the card provided.
+                                            <br/>This field is returned with all transactions.</td>
+                                        <td>Alphanumeric (XXXX6835)</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>accountType</td>
+                                        <td>Visa, MasterCard, American Express, Discover, Diners Club, or JCB.
+                                            <br/></td>
+                                        <td>Text.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>requestedAmount</td>
+                                        <td>Amount requested in original authorization.
+                                            <br/>Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in.</td>
+                                        <td>Numeric.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>approvedAmount</td>
+                                        <td>Amount approved.
+                                            <br/>Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in.</td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>balanceOnCard</td>
+                                        <td>Balance on the debit card or prepaid card.
+                                            <br/>Can be a positive or negative number. Has a value only if the current transaction is for a prepaid card.</td>
+                                        <td>Numeric.</td>
+                                    </tr>
+                                      
+                                    <tr>
+                                        <td class='oneBullet'>userFields</td>
+                                        <td>This element contains user fields, if any are defined. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>Name</td>
+                                        <td>Name of user-defined field.
+                                            <br/>These values are only echoed back in the response, and are also added to the merchant receipts. No other action is taken with user-defined fields. </td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>value</td>
+                                        <td>Value of user-defined field.
+                                            <br/>These values are only echoed back in the response, and are also added to the merchant  receipts. No other action is taken with user-defined fields. </td>
+                                        <td></td>
+                                    </tr>
+                                       
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="console-debit-a-bank-account">
+                            <form method="post" action="">
+                                   
+                                        <div><span class="header">Request:</span>
+                                        </div>
+                                        <p>
+                                            <textarea class="sample-request" id="txtReqXml-debit-a-bank-account" name="txtReqXml" cols="80" rows="6" style="">&lt;createTransactionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
+  &lt;merchantAuthentication&gt;
+    &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+    &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+  &lt;/merchantAuthentication&gt;
+  &lt;refId&gt;123456&lt;/refId&gt;
+  &lt;transactionRequest&gt;
+    &lt;transactionType&gt;authCaptureTransaction&lt;/transactionType&gt;
+    &lt;amount&gt;5&lt;/amount&gt;
+    &lt;payment&gt;
+      &lt;bankAccount&gt;
+        &lt;accountType&gt;checking&lt;/accountType&gt;
+        &lt;routingNumber&gt;125000024&lt;/routingNumber&gt;
+        &lt;accountNumber&gt;12345678&lt;/accountNumber&gt;
+        &lt;nameOnAccount&gt;John Doe&lt;/nameOnAccount&gt;
+      &lt;/bankAccount&gt;
+    &lt;/payment&gt;
+    &lt;lineItems&gt;
+      &lt;lineItem&gt;
+        &lt;itemId&gt;1&lt;/itemId&gt;
+        &lt;name&gt;vase&lt;/name&gt;
+        &lt;description&gt;Cannes logo &lt;/description&gt;
+        &lt;quantity&gt;18&lt;/quantity&gt;
+        &lt;unitPrice&gt;45.00&lt;/unitPrice&gt;
+      &lt;/lineItem&gt;
+    &lt;/lineItems&gt;
+    &lt;tax&gt;
+      &lt;amount&gt;4.26&lt;/amount&gt;
+      &lt;name&gt;level2 tax name&lt;/name&gt;
+      &lt;description&gt;level2 tax&lt;/description&gt;
+    &lt;/tax&gt;
+    &lt;duty&gt;
+      &lt;amount&gt;8.55&lt;/amount&gt;
+      &lt;name&gt;duty name&lt;/name&gt;
+      &lt;description&gt;duty description&lt;/description&gt;
+    &lt;/duty&gt;
+    &lt;shipping&gt;
+      &lt;amount&gt;4.26&lt;/amount&gt;
+      &lt;name&gt;level2 tax name&lt;/name&gt;
+      &lt;description&gt;level2 tax&lt;/description&gt;
+    &lt;/shipping&gt;
+    &lt;poNumber&gt;456654&lt;/poNumber&gt;
+    &lt;billTo&gt;
+      &lt;firstName&gt;Ellen&lt;/firstName&gt;
+      &lt;lastName&gt;Johnson&lt;/lastName&gt;
+      &lt;company&gt;Souveniropolis&lt;/company&gt;
+      &lt;address&gt;14 Main Street&lt;/address&gt;
+      &lt;city&gt;Pecan Springs&lt;/city&gt;
+      &lt;state&gt;TX&lt;/state&gt;
+      &lt;zip&gt;44628&lt;/zip&gt;
+      &lt;country&gt;USA&lt;/country&gt;
+    &lt;/billTo&gt;
+    &lt;shipTo&gt;
+      &lt;firstName&gt;China&lt;/firstName&gt;
+      &lt;lastName&gt;Bayles&lt;/lastName&gt;
+      &lt;company&gt;Thyme for Tea&lt;/company&gt;
+      &lt;address&gt;12 Main Street&lt;/address&gt;
+      &lt;city&gt;Pecan Springs&lt;/city&gt;
+      &lt;state&gt;TX&lt;/state&gt;
+      &lt;zip&gt;44628&lt;/zip&gt;
+      &lt;country&gt;USA&lt;/country&gt;
+    &lt;/shipTo&gt;
+    &lt;customerIP&gt;192.168.1.1&lt;/customerIP&gt;
+  &lt;/transactionRequest&gt;
+&lt;/createTransactionRequest&gt;</textarea>
+                                        </p>
+                                        <p>
+                                            <button type="button" id="btnSend-debit-a-bank-account" name="btnSend" class="btn btn-primary">SEND</button>
+                                            <button type="button" id="btnReset-debit-a-bank-account" name="btnReset" class="btn btn" onclick="">Reset</button>
+                                             <span class="ie9msg btn bg-danger" disabled="" style="font-style: italic;">Live API Console requests are not supported in IE9 or below.</span>
+                                        </p>
+                            </form>
+                            <div class="authenticationDiv" id="auth-debit-a-bank-account">
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
+                                <form class="form-inline" id="populateKeyForm-debit-a-bank-account" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="loginID">API Login ID</label>
+                                        <input type="text" class="form-control" id="txtLoginID-debit-a-bank-account" placeholder="API Login ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="transactionKey">Transaction Key</label>
+                                        <input type="text" class="form-control" id="txtTransactionKey-debit-a-bank-account" placeholder="Transaction Key">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
+                                </form>
+                            </div>
+                            <div><span class="header">Response:</span>  <span id="spnStatusCode-debit-a-bank-account" class="error"></span>
+                            </div>
+                            <div style="position:relative;">
+                                <textarea class="sample-response" id="txtRespXml-debit-a-bank-account" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; 
+&lt;createTransactionResponse&gt;
+  &lt;refId&gt;
+    123456
+  &lt;/refId&gt;
+  &lt;messages&gt;
+    &lt;resultCode&gt;
+      Ok
+    &lt;/resultCode&gt;
+    &lt;message&gt;
+      &lt;code&gt;
+        I00001
+      &lt;/code&gt;
+      &lt;text&gt;
+        Successful.
+      &lt;/text&gt;
+    &lt;/message&gt;
+  &lt;/messages&gt;
+  &lt;transactionResponse&gt;
+    &lt;responseCode&gt;
+      1
+    &lt;/responseCode&gt;
+    &lt;authCode /&gt;
+    &lt;avsResultCode&gt;
+      P
+    &lt;/avsResultCode&gt;
+    &lt;cvvResultCode /&gt;
+    &lt;cavvResultCode /&gt;
+    &lt;transId&gt;
+      2214627492
+    &lt;/transId&gt;
+    &lt;refTransID /&gt;
+    &lt;transHash&gt;
+      7A6DCD2645DF873C035DCE4832C08036
+    &lt;/transHash&gt;
+    &lt;testRequest&gt;
+      0
+    &lt;/testRequest&gt;
+    &lt;accountNumber&gt;
+      XXXX5678
+    &lt;/accountNumber&gt;
+    &lt;accountType&gt;
+      eCheck
+    &lt;/accountType&gt;
+    &lt;messages&gt;
+      &lt;message&gt;
+        &lt;code&gt;
+          1
+        &lt;/code&gt;
+        &lt;description&gt;
+          This transaction has been approved.
+        &lt;/description&gt;
+      &lt;/message&gt;
+    &lt;/messages&gt;
+  &lt;/transactionResponse&gt;
+&lt;/createTransactionResponse&gt;</textarea>
+                                <div id="txtRespLoader-debit-a-bank-account" class="loaderContainer">
+                                    <div class="loaderbg">Loading...</div>
+                                    <div class="loader"></div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    
+                    <h3 id="payment-transactions-credit-a-bank-account">Credit a Bank Account</h3>
+                    <p>This transaction type is used to refund a customer using a bank account credit transaction.</p>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#homereq-credit-a-bank-account" data-toggle="tab">Request</a>
+                        </li>
+                        <li><a href="#homeresp-credit-a-bank-account" data-toggle="tab">Response</a>
+                        </li>
+                        <li><a id="credit-a-bank-accountTryIt" href="#console-credit-a-bank-account" data-toggle="tab">Try it</a>
+                        </li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane fade in active" id="homereq-credit-a-bank-account">
+                            <p><em>createTransactionRequest</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>merchantAuthentication</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Contains merchant authentication information. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='oneBullet'>name</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Merchant’s unique API Login ID.
+                                            <br/>The merchant API Login ID is provided in the Merchant Interface and must be stored securely. 
+
+The API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway.</td>
+                                        <td>Up to 20 characters</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>transactionKey</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Merchant’s unique Transaction Key.
+                                            <br/>The merchant Transaction Key is provided in the Merchant Interface and must be stored securely. 
+
+The API Login ID and Transaction Key together provide the merchant authentication required for access to the payment gateway.</td>
+                                        <td>16 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>mobileDeviceId</td>
+                                        <td>Unique identifier for a mobile device.
+                                            <br/></td>
+                                        <td>60 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>refId</td>
+                                        <td>Merchant-assigned reference ID for the request.
+                                            <br/>If included in the request, this value will be included in the response. This feature might be especially useful for multi-threaded applications.
+
+This element is not used for mobile device requests. Use mobileDeviceId instead. </td>
+                                        <td>Up to 20 characters.</td>
+                                    </tr>
+                                      
+                                    <tr>
+                                        <td>transactionRequest</td>
+                                        <td>Transaction information. This element includes all of the fields that follow.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='oneBullet'>transactionType</td>
+                                        <td>Type of credit card transaction.
+                                            <br/>If the value submitted does not match a supported value, the transaction is rejected. If this field is not submitted or the value is blank, the payment gateway will process the transaction as an authCaptureTransaction. </td>
+                                        <td>refundTransaction</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>amount</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Amount of the transaction.
+                                            <br/>This is the total amount and must include tax, shipping, and any other charges. The amount can either be hard coded or posted to a script.</td>
+                                        <td>Up to 15 digits with a decimal point (no dollar symbol. For example, 8.95</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>refTransId</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>Transaction ID of the original settled transaction.
+                                            <br/></td>
+                                        <td>String.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>payment</td>
+                                        <td>This section includes payment information. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>creditCard</td>
+                                        <td>The following elements belong to the &lt;creditCard&gt; element; include them only for credit card transactions.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>cardNumber</td>
+                                        <td><strong>Required.</strong>
+                                            <br/>The customer’s credit card number.
+                                            <br/></td>
+                                        <td>4 digits without spaces
+
+Only the last four digits are required for credit card transactions.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>bankAccount</td>
+                                        <td>The following elements belong to the &lt;bankAccount&gt; element; include them only for bank account transactions.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>accountNumber</td>
+                                        <td>Account number, masked.
+                                            <br/></td>
+                                        <td>XXXX1111</td>
+                                    </tr>
+                                       
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade in" id="homeresp-credit-a-bank-account">
+                            <p><em>createTransactionResponse</em>
+                            </p>
+                            <table class="table table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th>Element</th>
+                                        <th>Description</th>
+                                        <th>Format</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    
+                                    <tr>
+                                        <td>refId</td>
+                                        <td>Merchant-assigned reference ID for the request.
+                                            <br/>If included in the request, this value is included in the response. This feature might be especially useful for multi-threaded applications.</td>
+                                        <td>Up to 20 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td>messages</td>
+                                        <td>This section contains information about the results of the request. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='oneBullet'>resultCode</td>
+                                        <td>Ok or Error.
+                                            <br/>Contains additional information about the status of the request. </td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>message</td>
+                                        <td>Contains specific message information.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>code</td>
+                                        <td>Code number for message.
+                                            <br/></td>
+                                        <td>I00001
+E000001</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>text</td>
+                                        <td>Text for the error message.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='twoBullet'>sessionToken</td>
+                                        <td>Returned for mobile device transactions, instead of a transactionKey.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                       
+                                    <tr>
+                                        <td>transactionResponse</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='oneBullet'>responseCode</td>
+                                        <td>Overall status of the transaction.
+                                            <br/></td>
+                                        <td>1 = Approved 
+2 = Declined 
+3 = Error 
+4 = Held for Review</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>authCode</td>
+                                        <td>Authorization or approval code.
+                                            <br/></td>
+                                        <td>6 characters.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>avsResultCode</td>
+                                        <td>Address Verification Service (AVS) response code.
+                                            <br/>Indicates the result of the AVS filter.</td>
+                                        <td>A = Address (Street) matches, ZIP does not.
+B = Address information not provided for AVS check.
+E = AVS error.
+G = Non-U.S. Card Issuing Bank.
+N = No Match on Address (Street) or ZIP.
+P = AVS not applicable for this transaction.
+R = Retry—System unavailable or timed out.
+S = Service not supported by issuer.
+U = Address information is unavailable.
+W = Nine digit ZIP matches, Address (Street) does not.
+X = Address (Street) and nine digit ZIP match.
+Y = Address (Street) and five digit ZIP match.
+Z = Five digit ZIP matches, Address (Street) does not.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>cvvResultCode</td>
+                                        <td>Card code verification (CCV) response code.
+                                            <br/>Indicates result of the CCV filter.</td>
+                                        <td>M = Match.
+N = No Match.
+P = Not Processed.
+S = Should have been present.
+U = Issuer unable to process request.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>cavvResultCode</td>
+                                        <td>Cardholder authentication verification response code.
+                                            <br/></td>
+                                        <td>Blank or not present  =  CAVV not validated.
+0 = CAVV not validated because erroneous data was submitted.
+1 = CAVV failed validation.
+2 = CAVV passed validation.
+3 = CAVV validation could not be performed; issuer attempt incomplete.
+4 = CAVV validation could not be performed; issuer system error.
+5 = Reserved for future use.
+6 = Reserved for future use.
+7 = CAVV attempt—failed validation—issuer available (U.S.-issued card/non-U.S acquirer).
+8 = CAVV attempt—passed validation—issuer available (U.S.-issued card/non-U.S. acquirer).
+9 = CAVV attempt—failed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).
+A = CAVV attempt—passed validation—issuer unavailable (U.S.-issued card/non-U.S. acquirer).
+B = CAVV passed validation, information only, no liability shift.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>transId</td>
+                                        <td>The payment gateway assigned identification number for transaction.
+                                            <br/>The transId value must be used for any follow-on transactions such as a credit, prior authorization and capture, or void.</td>
+                                        <td>When testRequest is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>reftransId</td>
+                                        <td>The transaction ID of a related, previously settled transaction. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>transHash</td>
+                                        <td>Payment gateway-generated MD5 hash value that can be used to authenticate the transaction response.
+                                            <br/>Because transaction responses are returned using an SSL connection, this feature is not necessary for AIM. </td>
+                                        <td>Alphanumeric.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>testRequest</td>
+                                        <td>
+                                            <br/>Indicates whether or not to treat this request as a test transaction. </td>
+                                        <td>true, false,1,0.</td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>accountNumber</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>accountType</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                     
+                                    <tr>
+                                        <td class='oneBullet'>messages</td>
+                                        <td>This element contains one or more &lt;message&gt; elements.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>message</td>
+                                        <td>These messages contain detailed information about the status of a particular transaction.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>code</td>
+                                        <td>Response code that represents the status.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>description</td>
+                                        <td>Text description of the status.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                      
+                                    <tr>
+                                        <td class='oneBullet'>errors</td>
+                                        <td>This element contains one or more &lt;error&gt; elements.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>error</td>
+                                        <td>This element contains detailed information about any errors returned.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>errorCode</td>
+                                        <td>Error code returned.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>errorText</td>
+                                        <td>Text description of error.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                      
+                                    <tr>
+                                        <td class='oneBullet'>splitTenderPayments</td>
+                                        <td>If the transaction was a partial authorization transaction, then the split tender payment detail information is listed in this section. 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='twoBullet'>splitTenderPayment</td>
+                                        <td>Contains information about one split tender transaction.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>transId</td>
+                                        <td>The payment gateway assigned identification number for the transaction.
+                                            <br/>When the testRequest field is set to a positive response, or when Test Mode is enabled on the payment gateway, this value will be 0.</td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>responseCode</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>responseToCustomer</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>authCode</td>
+                                        <td>
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>accountNumber</td>
+                                        <td>Last 4 digits of the card provided.
+                                            <br/>This field is returned with all transactions.</td>
+                                        <td>Alphanumeric (XXXX6835)</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>accountType</td>
+                                        <td>Visa, MasterCard, American Express, Discover, Diners Club, or JCB.
+                                            <br/></td>
+                                        <td>Text.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>requestedAmount</td>
+                                        <td>Amount requested in original authorization.
+                                            <br/>Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in.</td>
+                                        <td>Numeric.</td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>approvedAmount</td>
+                                        <td>Amount approved.
+                                            <br/>Present if the current transaction is for a prepaid card or if the splitTenderId field was sent in.</td>
+                                        <td></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class='threeBullet'>balanceOnCard</td>
+                                        <td>Balance on the debit card or prepaid card.
+                                            <br/>Can be a positive or negative number. Has a value only if the current transaction is for a prepaid card.</td>
+                                        <td>Numeric.</td>
+                                    </tr>
+                                       
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane fade" id="console-credit-a-bank-account">
+                            <form method="post" action="">
+                                   
+                                        <div><span class="header">Request:</span>
+                                        </div>
+                                        <p>
+                                            <textarea class="sample-request" id="txtReqXml-credit-a-bank-account" name="txtReqXml" cols="80" rows="6" style="">&lt;createTransactionRequest xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
+  &lt;merchantAuthentication&gt;
+    &lt;name&gt;API_LOGIN_ID&lt;/name&gt;
+    &lt;transactionKey&gt;API_TRANSACTION_KEY&lt;/transactionKey&gt;
+  &lt;/merchantAuthentication&gt;
+  &lt;refId&gt;123456&lt;/refId&gt;
+  &lt;refId&gt;123456&lt;/refId&gt;
+  &lt;transactionRequest&gt;
+    &lt;transactionType&gt;refundTransaction&lt;/transactionType&gt;
+    &lt;amount&gt;5&lt;/amount&gt;
+    &lt;payment&gt;
+      &lt;bankAccount&gt;
+        &lt;accountType&gt;checking&lt;/accountType&gt;
+        &lt;routingNumber&gt;125000024&lt;/routingNumber&gt;
+        &lt;accountNumber&gt;12345678&lt;/accountNumber&gt;
+        &lt;nameOnAccount&gt;John Doe&lt;/nameOnAccount&gt;
+      &lt;/bankAccount&gt;
+    &lt;/payment&gt;
+    &lt;refTransId&gt;2148889729&lt;/refTransId&gt;
+  &lt;/transactionRequest&gt;
+&lt;/createTransactionRequest&gt;</textarea>
+                                        </p>
+                                        <p>
+                                            <button type="button" id="btnSend-credit-a-bank-account" name="btnSend" class="btn btn-primary">SEND</button>
+                                            <button type="button" id="btnReset-credit-a-bank-account" name="btnReset" class="btn btn" onclick="">Reset</button>
+                                             <span class="ie9msg btn bg-danger" disabled="" style="font-style: italic;">Live API Console requests are not supported in IE9 or below.</span>
+                                        </p>
+                            </form>
+                            <div class="authenticationDiv" id="auth-credit-a-bank-account">
+                                <p>Enter your sandbox credentials below and all the sample requests will be run against this account. You can sign up for an account really quickly <a href="https://developer.authorize.net/sandbox/" target="_blank">here.</a></p>
+                                <form class="form-inline" id="populateKeyForm-credit-a-bank-account" role="form" onsubmit="return btnPopulateKeys_onclick(this)">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="loginID">API Login ID</label>
+                                        <input type="text" class="form-control" id="txtLoginID-credit-a-bank-account" placeholder="API Login ID">
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="sr-only" for="transactionKey">Transaction Key</label>
+                                        <input type="text" class="form-control" id="txtTransactionKey-credit-a-bank-account" placeholder="Transaction Key">
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Populate Sample Requests</button>
+                                    <p class="bg-danger required btn" style="display:none;cursor: auto">Both are required fields</p>
+                                </form>
+                            </div>
+                            <div><span class="header">Response:</span>  <span id="spnStatusCode-credit-a-bank-account" class="error"></span>
+                            </div>
+                            <div style="position:relative;">
+                                <textarea class="sample-response" id="txtRespXml-credit-a-bank-account" name="txtRespXml" cols="80" rows="6">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;createTransactionResponse&gt;
+  &lt;refId&gt;123456&lt;/refId&gt;
+  &lt;messages&gt;
+    &lt;resultCode&gt;Ok&lt;/resultCode&gt;
+    &lt;message&gt;
+      &lt;code&gt;I00001&lt;/code&gt;
+      &lt;text&gt;Successful.&lt;/text&gt;
+    &lt;/message&gt;
+  &lt;/messages&gt;
+  &lt;transactionResponse&gt;
+    &lt;responseCode&gt;1&lt;/responseCode&gt;
+    &lt;authCode&gt;UGELQC&lt;/authCode&gt;
+    &lt;avsResultCode&gt;E&lt;/avsResultCode&gt;
+    &lt;cavvResultCode /&gt;
+    &lt;transId&gt;2148061808&lt;/transId&gt;
+    &lt;refTransID /&gt;
+    &lt;transHash&gt;0B428D8A928AAC61121AF2F6EAC5FF3F&lt;/transHash&gt;
+    &lt;testRequest&gt;0&lt;/testRequest&gt;
+    &lt;accountNumber&gt;XXXX5678&lt;/accountNumber&gt;
+    &lt;accountType&gt;eCheck&lt;/accountType&gt;
+    &lt;message&gt;
+      &lt;code&gt;1&lt;/code&gt;
+      &lt;description&gt;This transaction has been approved.&lt;/description&gt;
+    &lt;/message&gt;
+    &lt;userFields&gt;
+      &lt;userField&gt;
+        &lt;name&gt;MerchantDefinedFieldName1&lt;/name&gt;
+        &lt;value&gt;MerchantDefinedFieldValue1&lt;/value&gt;
+      &lt;/userField&gt;
+      &lt;userField&gt;
+        &lt;name&gt;favorite_color&lt;/name&gt;
+        &lt;value&gt;lavender&lt;/value&gt;
+      &lt;/userField&gt;
+    &lt;/userFields&gt;
+  &lt;/transactionResponse&gt;
+&lt;/createTransactionResponse&gt;</textarea>
+                                <div id="txtRespLoader-credit-a-bank-account" class="loaderContainer">
                                     <div class="loaderbg">Loading...</div>
                                     <div class="loader"></div>
                                 </div>
@@ -14398,6 +15908,12 @@ eCheck
                                 </li>
                                 
                                 <li><a href="#payment-transactions-void-a-transaction">Void a transaction</a>
+                                </li>
+                                
+                                <li><a href="#payment-transactions-debit-a-bank-account">Debit a Bank Account</a>
+                                </li>
+                                
+                                <li><a href="#payment-transactions-credit-a-bank-account">Credit a Bank Account</a>
                                 </li>
                                 
                             </ul>
