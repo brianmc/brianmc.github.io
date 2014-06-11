@@ -3,7 +3,7 @@ var sURL = "https://apitest.authorize.net/xml/v1/request.api";
 var timer
 $(document).ready(function() {
    loadAllPages();
-    timer = setInterval(function(){initAPI()}, 300);
+    timer = setInterval(function(){initAPI()}, 500);
   
    
 });
@@ -64,7 +64,8 @@ function changeTab(element){
     $("#GettingStatedGuidePageID").show();
     $("#APIRefPageID").hide();
     $("#clientLibPageID").hide();
-   // $('body').scrollspy({ target: '.gettingStartedGuide',offset:400 })
+   // $('body').scrollspy({ target: '#gettingStartedGuideNav'})
+   // $('body').data('target','#gettingStartedGuideNav');
    // $('body').scrollspy('refresh');
     currTab = $(element).parent();
   }
