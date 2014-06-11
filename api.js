@@ -128,6 +128,18 @@ function initAPI(){
       changeTab($(tab));
 
 
+      $(window).scroll(function () { 
+        //You've scrolled this much:
+          
+           if($(window).scrollTop()>100){
+              $("#gettingStartedGuideNav").css('top',"50px");
+           }
+           else{
+             $("#gettingStartedGuideNav").css('top',"80px");
+           };
+    });
+
+
 }
 
 function loadAllPages(){
