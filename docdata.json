@@ -4598,7 +4598,7 @@
 						]
 					}
 				],
-				"sample": "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <refId>123456</refId>\n  <refId>123456</refId>\n  <transactionRequest>\n    <transactionType>refundTransaction</transactionType>\n    <amount>5</amount>\n    <payment>\n      <bankAccount>\n        <accountType>checking</accountType>\n        <routingNumber>125000024</routingNumber>\n        <accountNumber>12345678</accountNumber>\n        <nameOnAccount>John Doe</nameOnAccount>\n      </bankAccount>\n    </payment>\n    <refTransId>2148889729</refTransId>\n  </transactionRequest>\n</createTransactionRequest>"
+				"sample": "<createTransactionRequest xmlns=\"AnetApi/xml/v1/schema/AnetApiSchema.xsd\">\n  <merchantAuthentication>\n    <name>API_LOGIN_ID</name>\n    <transactionKey>API_TRANSACTION_KEY</transactionKey>\n  </merchantAuthentication>\n  <refId>123456</refId>\n  <transactionRequest>\n    <transactionType>refundTransaction</transactionType>\n    <amount>5</amount>\n    <payment>\n      <bankAccount>\n        <accountType>checking</accountType>\n        <routingNumber>125000024</routingNumber>\n        <accountNumber>12345678</accountNumber>\n        <nameOnAccount>John Doe</nameOnAccount>\n      </bankAccount>\n    </payment>\n    <refTransId>2148889729</refTransId>\n  </transactionRequest>\n</createTransactionRequest>"
 			},
 			"response": {
 				"name": "createTransactionResponse",
