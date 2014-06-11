@@ -132,10 +132,10 @@ function initAPI(){
         //You've scrolled this much:
           
            if($(window).scrollTop()>100){
-              $("#gettingStartedGuideNav").css('top',"30px");
+              $("#gettingStartedGuideNav,#apiRefGuideNavID,#clientLibNavID").css('top',"30px");
            }
            else{
-             $("#gettingStartedGuideNav").css('top',"90px");
+             $("#gettingStartedGuideNav,#apiRefGuideNavID,#clientLibNavID").css('top',"90px");
            };
     });
 
