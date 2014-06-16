@@ -2,90 +2,14 @@ var requestEditor, responseEditor, codeEditorsID=[],transactionkey,loginid;
 var sURL = "https://apitest.authorize.net/xml/v1/request.api";
 var timer
 $(document).ready(function() {
-   loadAllPages();
-    timer = setInterval(function(){initAPI()}, 500);
-  
-   
+   if($("#navigationbarID li.active a").attr("id")==="SGuideTabID")loadGettingStartedGuidePages();
+   else initAPI()
+  initializelightBox();
 });
-
-var tabWasxClicked = "false";
-$(window).bind('hashchange', function() {
-  changeHash();
-});
-
-function changeHash(){ 
-    if(tabWasxClicked == "true"){
-      tabWasxClicked = "false";  // dont call the tab click function twice when 
-  }else{
-    tabWasxClicked = "fakeclick";
-    var tab = window.location.hash!=="" ? window.location.hash : "#APIRefTabID";// if index.html is the page send that.
-    changeTab($(tab)); // the hash changed without a tab click
-    currTab.addClass('active'); // re-highlight the current tab
-  }
-}
-
-var currTab = "";
-function changeTab(element){
-  if(tabWasxClicked == "fakeclick"){
-   tabWasxClicked = "false";
-  }else{
-    tabWasxClicked = "true";
-  }
- 
-  $("#navigationbarID ul li").removeClass('active');
-  $(element).parent().addClass('active');
-
-  var myElID = element.id;
-  if(myElID == undefined){
-    myElID = element.attr('id');
-  }
-   if(myElID === 'clientLibTabID')
-  {
-     $("#APIRefPageID").show();
-    $("#GettingStatedGuidePageID").hide();
-    $("#clientLibPageID").hide();
-    currTab = $(element).parent();
-
-
-    $("#clientLibPageID").show();
-    $("#clientLibPageID").show();
-    $("#GettingStatedGuidePageID").hide();
-    $("#APIRefPageID").hide();
-    
-    currTab = $(element).parent();
-
-  }
-  else if(myElID === 'SGuideTabID'){
-     $("#APIRefPageID").show();
-    $("#GettingStatedGuidePageID").hide();
-    $("#clientLibPageID").hide();
-    currTab = $(element).parent();
-
-    $("#GettingStatedGuidePageID").show();
-    $("#APIRefPageID").hide();
-    $("#clientLibPageID").hide();
-   // $('body').scrollspy({ target: '#gettingStartedGuideNav'})
-   // $('body').data('target','#gettingStartedGuideNav');
-   // $('body').scrollspy('refresh');
-    currTab = $(element).parent();
-  }
-  else if(myElID==="APIRefTabID") {
-    $("#APIRefPageID").show();
-    $("#GettingStatedGuidePageID").hide();
-    $("#clientLibPageID").hide();
-    currTab = $(element).parent();
-  }
-
-
-  $('[data-spy="scroll"]').each(function () {
-    var $spy = $(this).scrollspy('refresh')
-  })
-}
-
 
 
 function initAPI(){
- clearInterval(timer);
+
 
 
   $(".authenticationDiv").hide();
@@ -123,30 +47,11 @@ function initAPI(){
 
   });
 
-    initializelightBox();
-     var tab = window.location.hash!=="" ? window.location.hash : "#APIRefTabID";
-      changeTab($(tab));
-
-
-      $(window).scroll(function () { 
-        //You've scrolled this much:
-          
-           if($(window).scrollTop()>100){
-              $("#gettingStartedGuideNav,#apiRefGuideNavID,#clientLibNavID").css('top',"30px");
-           }
-           else{
-             $("#gettingStartedGuideNav,#apiRefGuideNavID,#clientLibNavID").css('top',"90px");
-           };
-    });
 
 
 }
 
-function loadAllPages(){
-  $("#clientLibPageID").load("clientlibTmp.html");
-  $("#GettingStatedGuidePageID").load("gettingStartedGuide.html","",loadGettingStartedGuidePages);
-  
-}
+
 
 function loadGettingStartedGuidePages(){
   $("#StartingGuide-recurring-billing").load("recurringBilling.html");

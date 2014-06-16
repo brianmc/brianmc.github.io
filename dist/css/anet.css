@@ -189,3 +189,6 @@ p:hover{
     
     padding-left: 0px !important;
 }
+.page-header {
+border-bottom: 1px solid #ccc;
+}
