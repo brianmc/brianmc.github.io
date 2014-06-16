@@ -185,31 +185,32 @@
             <li>
                 Daily Transaction Summary.
             </li>
+        
+            <li>
+                Failed Transaction Notice—sent when a payment in a subscription declines or receives an error response from the processor.
+            </li>
+            <li>
+                Subscription Due for Expiration—sent after the second-to-last payment in a subscription is submitted, to notify a merchant that the next payment is the
+                final one in the subscription.
+            </li>
+            <li>
+                Credit Card Expiration—sent immediately after the last possible successful payment in a subscription, to notify a merchant that the credit card will
+                expire before the next scheduled payment in the subscription.
+            </li>
+            <li>
+                Subscription Suspension—sent to notify a merchant that a subscription has been suspended. A subscription is suspended if the first payment in the
+                subscription is declined, rejected, or receives an error response. Additionally, if a subscription is edited (for example, payment or shipping information
+                is changed), the subscription is suspended if the first payment after the edits is declined, rejected, or receives an error response.
+            </li>
+            <li>
+                Subscription Termination—sent when a subscription is terminated. If a suspended subscription is not edited to fix the problem that caused the suspension,
+                it is terminated on the next scheduled payment.
+            </li>
+            <li>
+                Subscription Expiration—sent after a subscription expires. Once expired, a subscription cannot be reactivated. Instead, a new subscription must be
+                created.
+            </li>
         </ul>
-        <p>
-            · Failed Transaction Notice—sent when a payment in a subscription declines or receives an error response from the processor.
-        </p>
-        <p>
-            · Subscription Due for Expiration—sent after the second-to-last payment in a subscription is submitted, to notify a merchant that the next payment is the
-            final one in the subscription.
-        </p>
-        <p>
-            · Credit Card Expiration—sent immediately after the last possible successful payment in a subscription, to notify a merchant that the credit card will
-            expire before the next scheduled payment in the subscription.
-        </p>
-        <p>
-            · Subscription Suspension—sent to notify a merchant that a subscription has been suspended. A subscription is suspended if the first payment in the
-            subscription is declined, rejected, or receives an error response. Additionally, if a subscription is edited (for example, payment or shipping information
-            is changed), the subscription is suspended if the first payment after the edits is declined, rejected, or receives an error response.
-        </p>
-        <p>
-            · Subscription Termination—sent when a subscription is terminated. If a suspended subscription is not edited to fix the problem that caused the suspension,
-            it is terminated on the next scheduled payment.
-        </p>
-        <p>
-            · Subscription Expiration—sent after a subscription expires. Once expired, a subscription cannot be reactivated. Instead, a new subscription must be
-            created.
-        </p>
         <p>
             The Daily Transaction Summary email returns an Excel file in comma-separated value (.csv) format. The merchant will receive Successful.csv, Failed.csv, or
             both files.
