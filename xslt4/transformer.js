@@ -57,4 +57,4 @@ $xml.find("definition").wrap( "<td></td>" );
 
 
 // WRITE THE XML STRING TO THE PAGE 
-document.write(xmlToString(xmlDoc));
+//document.write(xmlToString(xmlDoc));
