@@ -28,8 +28,8 @@ function xmlToString(xmlData) {
     return xmlString;
 }   
 
-
-var xmlDoc=loadXMLDoc("DocBooksXML/" + PageName);
+alert("I am alive");
+var xmlDoc=loadXMLDoc("xslt4/" + PageName);
 var xml = xmlToString(xmlDoc);
 
 // LOAD THE XML INTO THE JQUERY XML PARSER
