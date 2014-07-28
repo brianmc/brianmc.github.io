@@ -28,7 +28,7 @@ function xmlToString(xmlData) {
     return xmlString;
 }   
 
-alert("I am alive");
+alert(PageName);
 var xmlDoc=loadXMLDoc(PageName);
 var xml = xmlToString(xmlDoc);
 
