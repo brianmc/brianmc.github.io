@@ -29,7 +29,7 @@ function xmlToString(xmlData) {
 }   
 
 alert("I am alive");
-var xmlDoc=loadXMLDoc("xslt4/" + PageName);
+var xmlDoc=loadXMLDoc(PageName);
 var xml = xmlToString(xmlDoc);
 
 // LOAD THE XML INTO THE JQUERY XML PARSER
