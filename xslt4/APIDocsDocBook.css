@@ -1,0 +1,66 @@
+article{
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-size: 14px;
+}
+title{
+	font-weight:bold;
+	clear:both;
+	display:block;
+	font-size:40px;
+	border-bottom: 1px solid #ccc;
+}
+subtitle{
+	font-weight:bold;
+	clear:both;
+	display:block;
+	font-size:30px;
+}
+subsubtitle{
+	clear:both;
+	display:block;
+	font-size:21px;
+}
+para{
+	display:block;
+	padding:10px 0;
+}
+div{
+	background-color:;
+}
+.video {
+	width: 341px;
+	float: right;
+	padding: 10px;
+}
+emphasis{
+	font-weight:bold;
+}
+ul li {
+	padding: 5px 0;
+	list-style-type: disc;
+}
+screen{
+	font-family: Consolas,monospace;
+}
+table.lingolist {
+	border: 0;
+	border-spacing: 0;
+	border-collapse: collapse;
+	margin: 0 60px;
+}
+table.lingolist term {
+	font-family: Consolas,monospace;
+	min-width: 166px;
+	display: inline-block;
+
+}
+table.lingolist tr td{
+	padding:5px;
+	border-top: 1px solid gray;
+}
+table.regulartable{
+	border-collapse:collapse;
+}
+table.regulartable tr td{
+	border: 1px solid gray;
+}
