@@ -28,6 +28,8 @@ function xmlToString(xmlData) {
     return xmlString;
 }   
 
+
+
 alert(PageName);
 //fsad
 var xmlDoc=loadXMLDoc(PageName);
