@@ -22,6 +22,9 @@ function initAPI(){
   codeEditorsID['authentication-sample-Code'].setSize(null,85);
 
   $('a').click(function(event){ 
+    $('[data-spy="scroll"]').each(function () {
+      var $spy = $(this).scrollspy('refresh')
+    })
     if($(event.currentTarget).html()==="Try it")
     {
       var id = this.id.toString();
