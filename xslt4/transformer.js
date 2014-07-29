@@ -30,7 +30,7 @@ function xmlToString(xmlData) {
 
 
 
-alert(PageName);
+
 //fsad
 var xmlDoc=loadXMLDoc(PageName);
 var xml = xmlToString(xmlDoc);
