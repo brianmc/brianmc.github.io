@@ -35,7 +35,7 @@ div{
 emphasis{
 	font-weight:bold;
 }
-ul li {
+article ul li {
 	padding: 5px 0;
 	list-style-type: disc;
 }
