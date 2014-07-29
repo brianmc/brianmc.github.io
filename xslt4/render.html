@@ -1,0 +1,1584 @@
+<html><head>
+	<link rel="stylesheet" type="text/css" href="APIDocsDocBook.css">
+
+
+</head>
+<body cz-shortcut-listen="true"><article>
+    <title>One-Time Transactions</title>
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="one-time-transaction-credit-card-process">
+	<para>
+		<subtitle>
+			Credit Card Process
+		</subtitle>
+	</para>
+	<para>
+		Connecting a web site or software application to the payment processing networks is exceptionally difficult and typically beyond the expertise and technical resources of most online merchants. Instead, merchants can connect to the Authorize.Net Payment Gateway, which provides the complex infrastructure and security necessary to ensure fast, reliable, and secure transmission of transaction data. Authorize.Net manages the routing of transactions just like a traditional credit card machine you find in the physical retail world; however, Authorize.Net uses the Internet instead of a phone line.
+	</para>
+	<para>
+		Typically, the actors in an online credit card transaction are:
+	</para>
+	<ul><itemizedlist>
+		<li><listitem>
+			Consumer—buys the product from the merchant’s web site using a credit card from an issuing bank.
+		</listitem></li>
+		<li><listitem>
+			Issuing bank—provides a credit card to the consumer. Represents the consumer in the event of a dispute.
+		</listitem></li>
+		<li><listitem>
+			Acquirer—usually a bank, underwrites the merchant’s ability to accept credit cards. Represents the merchant in the event of a dispute.
+		</listitem></li>
+		<li><listitem>
+			Merchant—sells a product or service to the consumer from their website, using an Authorize.Net payment API.
+		</listitem></li>
+	</itemizedlist></ul>
+	<para>
+		For more information on how Authorize.Net fits into the payment network, See our
+		<a href="http://www.authorize.net/resources/howitworksdiagram/"><ulink url="http://www.authorize.net/resources/howitworksdiagram/">credit card processing diagram</ulink></a>. For API field descriptions and sample code, see the
+		<a href="http://developer.authorize.net/api/reference/"><ulink url="http://developer.authorize.net/api/reference/">API Reference Guide</ulink></a>. For helpful video training modules, see
+		<a href="http://developer.authorize.net/training/"><ulink url="http://developer.authorize.net/training/">Authorize.Net Developer Training.</ulink></a>
+	</para>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+		<subtitle>
+			Life of a Transaction
+		</subtitle>
+	</para>
+	<para>
+		An online payment transaction goes through various phases, shown below.
+	</para>
+	<ul><itemizedlist>
+		<li><listitem>
+			<subsubtitle>
+				Authorize
+			</subsubtitle>
+			<para>
+				An authorization places a hold on the transaction amount in the customer’s issuing bank. No money actually changes hands yet. For example, let’s say that the merchant is going to ship a physical product from their website. First they authorize the amount of the transaction. Then they ship the product. Only after the product is shipped does the merchant capture the transaction.
+			</para>
+		</listitem></li>
+		<li><listitem>
+			<subsubtitle>
+				Capture
+			</subsubtitle>
+			<para>
+				A capture essentially marks a transaction for settlement. As soon as the product is shipped, the merchant can capture an amount up to the amount of the authorization. Usually the full amount is captured. An example of a situation in which the whole amount is not captured might be if the customer ordered multiple items and one of them is unavailable. It’s important to note that a single authorization can be captured only once. If you capture only part of an authorization amount, a new authorization will be required in order to capture more.
+			</para>
+		</listitem></li>
+		<li><listitem>
+			<subsubtitle>
+				Settle
+			</subsubtitle>
+			<para>
+				Within 24 hours, Authorize.Net settles the transaction. The merchant’s acquirer then deposits the funds into the merchant’s bank account.
+			</para>
+		</listitem></li>
+	</itemizedlist></ul>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+		<subtitle>Voids and Credits
+		</subtitle>
+	</para>
+	<para>
+		A <emphasis>void</emphasis>occurs after authorization, but before settlement. No money is exchanged; the authorization is simply cancelled.
+	</para>
+	<para>
+		A <emphasis>credit</emphasis>occurs after settlement. For example, the merchant ships the item, and the transaction is settled, but for some reason the customer becomes unsatisfied with the product. In such a case, the merchant may decide to refund (credit) the money. A credit is a new and distinct transaction from the original charge with its own unique transaction ID.
+	</para>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+		<subtitle>
+			Creating a Transaction
+		</subtitle>
+	</para>
+	<para>
+		The createTransactionRequest function is used to submit any type of one-time payment transaction. Transaction types are described below.
+	</para>
+	<ul><itemizedlist>
+		<li><listitem>
+			<subsubtitle>
+				Authorization and Capture
+			</subsubtitle>
+			<para>
+				This transaction is the most common type of credit card transaction and is the default payment gateway transaction type. The amount is sent for authorization and if it is approved, it is automatically submitted for settlement. The unique value for an Authorization and Capture transaction is: authCaptureTransaction.
+			</para>
+		</listitem></li>
+		<li><listitem>
+			<subsubtitle>
+				Authorization Only
+			</subsubtitle>
+			<para>
+				This transaction type is sent for authorization only. The transaction will not be sent for settlement until the credit card transaction type Prior Authorization and Capture (see definition below) is submitted, or the transaction is submitted for capture manually in the Merchant Interface. If no action is taken within 30 days, the authorization expires and is no longer available for capture. A new Authorization Only transaction has to be submitted to obtain a new authorization code. The unique value for an Authorization Only transaction is authOnlyTransaction.
+			</para>
+		</listitem></li>
+		<li><listitem>
+			<subsubtitle>
+				Prior Authorization and Capture
+			</subsubtitle>
+			<para>
+				This transaction type is used to complete an Authorization Only transaction that was successfully authorized through the payment gateway. Together, an Authorization Only transaction and a Prior Authorization and Capture transaction are considered one complete transaction. When the Prior Authorization and Capture is submitted, the transaction is sent for settlement.
+			</para>
+			<para>
+				The payment gateway accepts this transaction type and initiates settlement when the following conditions are met:
+			</para>
+			<ul><itemizedlist>
+				<li><listitem>
+					The original Authorization Only transaction was submitted within the previous 30 days (Authorization Only transactions expire on the payment gateway after 30 days).
+				</listitem></li>
+				<li><listitem>
+					The transaction is submitted with the valid transaction ID (refTransId) of an original, successfully authorized Authorization Only transaction.
+				</listitem></li>
+				<li><listitem>
+					The original transaction was successful and is not yet captured.
+				</listitem></li>
+				<li><listitem>
+					The amount being requested for capture is less than or equal to the original authorized amount. Only a single Prior Authorization and Capture transaction can be submitted against an Authorization Only.
+				</listitem></li>
+			</itemizedlist></ul>
+			<para>
+				The unique element values for a Prior Authorization and Capture transaction are:
+			</para>
+			<para>
+				<screen>
+					&lt;transactionType&gt;
+						priorAuthCaptureTransaction
+					&lt;/transactionType&gt;
+				</screen>
+			</para>
+			<para>
+				In addition, the transaction ID of the original transaction needs to be specified in the
+				<screen>
+					&lt;refTransId&gt;
+						element:
+					&lt;/refTransId&gt;
+				</screen>
+			</para>
+			<para>
+				<screen>
+					&lt;refTransId&gt;
+					123456
+					&lt;/refTransId&gt;
+				</screen>
+			</para>
+			<para>
+				For this transaction type, the
+				<screen>
+					&lt;amount&gt;
+				</screen>
+
+				field is required only if a Prior Authorization and Capture is submitted for an amount that is less than the amount of the original Authorization Only transaction. If no amount is submitted, the payment gateway will initiate settlement for the amount of the original authorized transaction.
+			</para>
+		</listitem></li>
+		<li><listitem>
+			<para>
+				<subsubtitle>
+					Capture Only
+				</subsubtitle>
+			</para>
+			<para>
+				This transaction type is used to complete a previously authorized transaction that was not originally submitted through the payment gateway or that required voice authorization.
+			</para>
+			<para>
+				The payment gateway accepts this transaction type and initiates settlement if the transaction is submitted with the valid authorization code issued to the merchant.
+			</para>
+			<para>
+				The unique element values for a Capture Only transaction are:
+			</para>
+			<para>
+				<screen>
+					&lt;transactionType&gt;
+						captureOnlyTransaction
+					&lt;/transactionType&gt;
+
+					&lt;authCode&gt;
+						authorization code here
+					&lt;/authCode&gt;
+				</screen>
+			</para>
+
+		</listitem></li>
+	</itemizedlist></ul>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+	    <subtitle>
+	    	Partial Authorization
+	    </subtitle>
+	</para>
+	<para>
+		A partial authorization, also known as a split-tender order, is an order in which two or more transactions comprise the total amount of the order. This type of transaction allows a customer to pay for one transaction with multiple payment types.
+	</para>
+	<para>Setting
+	    <screen>
+	        &lt;allowPartialAuth&gt;
+	        	true
+	        &lt;/allowPartialAuth&gt;
+	    </screen>
+	    in the request indicates that the merchant's system can accommodate partial authorizations. Without this flag, the transaction would be processed as any other and would be either fully authorized or declined due to lack of funds on the card.
+	</para>
+	<para>
+		If the first transaction is successfully approved for a partial amount of the total order, a split-tender ID is generated and returned to the merchant in the response. This ID must be passed back with each of the remaining transactions of the group, using
+		<screen>
+		    <splittenderid>
+		    	value
+		    </splittenderid>
+		</screen>
+		. If you include both a split-tender ID and a transaction ID on the same request, an error results.
+	</para>
+	<para>
+		All transactions in the group are held until the final transaction of the group is successfully authorized.
+	</para>
+	<para>
+		If the merchant needs to release the group of transactions before the final transaction is approved (if the balance is paid by cash, for example), send a priorAuthCaptureTransaction request and include the split-tender ID instead of a transaction ID.
+	</para>
+	<para>
+		If the merchant needs to void the group before completion, send a void request, using the split-tender ID instead of a transaction ID. This action will void all the transactions in the group.
+	</para>
+	<para>
+		The transaction is not submitted for settlement until either the merchant submits payments adding up to the full requested amount or until the merchant indicates that the transaction is complete (when all or part of the remaining balance is paid in cash).
+	</para>
+	<para>
+		Unique elements that apply to Partial Authorization transactions are:
+	</para>
+	<ul><itemizedlist>
+	    <li><listitem>
+	        <screen>
+	            &lt;allowPartialAuth&gt;true&lt;/allowPartialAuth&gt;
+	        </screen>
+	        (input, optional) The default value is set in the Merchant Interface; you can use this parameter to authorize individual transactions if the option is set to False in the Merchant Interface. Including this field in the transaction request overrides the merchant's account configuration.
+	    </listitem></li>
+	    <li><listitem>
+	        <screen>
+	            &lt;balanceOnCard&gt;
+	        </screen>
+	        (output) this is the authorized amount remaining on the card.
+	    </listitem></li>
+	    <li><listitem>
+	        <screen>requestedAmount</screen> 
+	        this is the amount requested.
+	    </listitem></li>
+	    <li><listitem>
+	        <screen>
+	            &lt;splitTenderId&gt;
+	        </screen>
+	        (output) this is the split-tender ID provided when the first partial authorization transaction was issued. Use this ID when submitting subsequent transactions related to the same group order.
+	    </listitem></li>
+	    <li><listitem>
+	        <screen>
+	            &lt;splitTenderStatus&gt;
+	        </screen>
+	        (output) indicates whether or not the transaction is complete.
+	    </listitem></li>
+	</itemizedlist></ul>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+	    <subtitle>
+	    	Basic Fraud Settings
+	    </subtitle>
+	</para>
+	<para>
+	    <subsubtitle>
+	    	AVS
+	    </subsubtitle>
+	</para>
+	<para>
+		The Address Verification Service (AVS) is a system designed by bankcard processors to help detect suspicious credit card transaction activity. AVS matches billing address information provided by the cardholder with the cardholder's billing address on file at the credit card issuing bank. The processing network then sends an AVS response code indicating the results of the match to the payment gateway. The AVS response code can be found in the payment gateway transaction response as well as on the Transaction Detail page in the Merchant Interface. Based on the merchant's AVS rejection settings, the transaction is accepted or rejected. Rejected transactions display a transaction status of Declined (AVS Mismatch) on the Transaction Detail page. It is important to note that the merchant cannot retrieve address information from the issuing bank; the bank provides only match or no-match information.
+	</para>
+	<para>
+		To implement AVS, the merchant must require the
+	    <emphasis>Address</emphasis>and
+	    <emphasis>ZIP</emphasis>Code fields on their payment form. To manage AVS rejection settings, log in to the Merchant Interface and choose
+	    <emphasis>Account &gt; Settings &gt; Security Settings &gt; Basic Fraud Settings &gt; AVS</emphasis>.
+	</para>
+	<para>
+    	<subsubtitle>
+    		Card Code Verification (CCV)
+    	</subsubtitle>
+    </para>
+    <para>
+    	This feature enables merchants to compare the card code submitted by the customer for the transaction with the card code on file at the card issuing bank. Filter settings in the Merchant Interface allow the merchant to reject transactions based on the CCV response received. To implement CCV, the merchant must require the Card Code field on their payment form.
+    </para>
+    <para>To manage rejection settings, log in to the Merchant Interface and choose
+        <emphasis>Account &gt; Settings &gt; Security Settings &gt; Basic Fraud Settings &gt; CCV.</emphasis>
+    </para>
+    <para>
+    	Different card companies use different terminologies to refer to card codes:
+    </para>
+    <para>
+    	CVV2 = Visa
+    </para>
+    <para>
+    	CVC2 = MasterCard
+    </para>
+    <para>
+    	CID = American Express and Discover
+    </para>
+    <para>
+        <subsubtitle>
+        	Daily Velocity Filter
+        </subsubtitle>
+    </para>
+    <para>
+    	The Daily Velocity Filter enables merchants to specify a threshold for the number of transactions allowed per day. All transactions exceeding the threshold for that day are flagged and processed according to the selected filter action. This filter is helpful in preventing certain types of fraudulent activity on the merchant's account.
+    </para>
+    <para>
+    	Choose
+        <emphasis>Account &gt; Settings &gt; Security Settings &gt; Basic Fraud Settings &gt; Daily Velocity</emphasis>.
+    </para>
+</section>
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<title>
+		Automated Recurring Billing
+	</title>
+	<para>
+		Automated Recurring Billing (ARB) enables you to automatically process installment-based credit card or eCheck.Net payments without having to store sensitive payment data, which is passed directly to Authorize. Net’s secure server.
+	</para>
+	<para>
+		A subscription is a set of multiple transactions, or payments, created for the purchase of an installment-based payment plan . The payment gateway then generates payments for the subscription later based on a specified payment schedule and subscription period.
+	</para>
+	<para>
+		A subscription functions the same whether a merchant creates, updates, and cancels a subscription in the Merchant Interface, or the merchant uses the Authorize.Net API. When a merchant creates a subscription in the Merchant Interface, he or she enters all required information into the Create New ARB Subscription form. When the merchant submits the information, the Subscription Confirmation page returns a message to the merchant indicating whether or not the subscription was created successfully. The subscription ID assigned for a successfully created subscription is also displayed.
+	</para>
+	<para>
+		The Authorize.Net API accomplishes the same functions through an XML call and subsequent XML response. Whether a subscription is created in the Merchant Interface or through the API, the results are the same. For descriptions and code samples of the API elements used for subscriptions, see the API Reference Guide.
+	</para>
+	<para>
+		Subscriptions do not process transactions in real time. Creating a subscription transaction successfully does not guarantee that subscription payments will process through your account successfully. Subscription transactions process at approximately 2:00 a.m. PST on scheduled payment dates. Therefore, the first scheduled transaction is not sent to the customer’s bank for authorization until approximately 2:00 a.m. PST on the start date that you specify when you create the subscription in your account. If you create a subscription with a start date that equals the creation date, the first scheduled payment does not process until after 2:00 a.m. the following day. If you wish to validate your customer’s payment information before creating their subscription in your account, use one of the real-time transaction processing methods, such as the Advanced Integration Method (AIM).
+	</para>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+
+	<para>
+		<subtitle>
+			Subscriptions
+		</subtitle>
+		You can create, update, and cancel a subscription. Subscriptions contain the following information.
+	</para>
+
+	<para>
+		<subsubtitle>
+			Subscription ID
+		</subsubtitle>
+	</para>
+	<para>
+		The subscription ID is generated by Authorize.Net and is used to manage a subscription. It is also stored with any transaction generated by that subscription so that you can better track it.
+	</para>
+
+	<para>
+		<subsubtitle>
+			Payment Schedule
+		</subsubtitle>
+	</para>
+	<para>
+		Start Date —this date is the date of the first transaction. Credit card data is verified at this time.
+	</para>
+
+	<para>
+		Interval Units —intervals define the number of total charges to be made and on what schedule; for example, weekly or monthly.
+	</para>
+
+	<para>
+		Trial Period —for a trial period, you can specify an amount and then charge a different amount for the remainder of the subscription.
+	</para>
+
+	<para>
+		<subsubtitle>
+			Payment Method
+		</subsubtitle>
+	</para>
+	<para>
+		Credit Card —customers’ encrypted credit card information is stored on Authorize. Net’s secure servers. Note that the card code is not supported because it cannot be stored.
+	</para>
+
+	<para>
+		eCheck —customers’ banking information is stored on Authorize. Net’s secure servers.
+	</para>
+
+	<para>
+		<subsubtitle>
+			Customer Information
+		</subsubtitle>
+	</para>
+	<para>
+		Customer information includes:
+		<ul><itemizedlist>
+			<li><listitem>
+				Name
+			</listitem></li>
+			<li><listitem>
+				Billing address
+			</listitem></li>
+			<li><listitem>
+				Shipping address
+			</listitem></li>
+		</itemizedlist></ul>
+		TIP : the first transaction conducted after a subscription is created or edited is processed like any other transaction and is subject to the Address Verification settings of your account. Subsequent transactions are flagged as recurring when we send them to the processor. In most cases, the processor does not verify addresses for transactions flagged as recurring.
+	</para>
+	<para>
+	Subscriptions with a monthly interval whose payments begin on the 31st of the month occur on the last day of every month.
+	</para>
+	<para>
+	Here are a few things to keep in mind:
+	<ul><itemizedlist>
+		<li><listitem>
+			The subscription start date (subscription.paymentSchedule.startDate) may be updated only if no successful payments have been completed.
+		</listitem></li>
+		<li><listitem>
+			The subscription interval information (subscription.paymentSchedule.interval.length and subscription.paymentSchedule.interval.unit) may not be updated.
+		</listitem></li>
+		<li><listitem>
+			The number of trial occurrences (subscription.paymentSchedule.trialOccurrences) may be updated only if the subscription has not yet begun or is still in the trial period.
+		</listitem></li>
+		<li><listitem>
+			When the start date is the 31st, and the interval is monthly, the billing date is the last day of each month (even when the month does not have 31 days).
+			All other fields are optional.
+		</listitem></li>
+	</itemizedlist></ul>
+	</para>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+		<subtitle>
+		Payment Schedule
+		</subtitle>
+	</para>
+	<para>
+		When you receive a response from the payment gateway with an Ok result code, your subscription has been successfully created. The response will include a subscription ID. Individual transactions, or payments, for a subscription are generated automatically after 2 a.m. PST by the payment gateway according to the designated payment schedule and subscription period. Each payment is viewable only in the merchant’s payment gateway account when it is actually generated.
+	</para>
+	<para>
+		For example, if a new subscription is created with a start date of June 6, with a monthly payment interval, the first payment for the subscription will not be viewable in the merchant’s payment gateway account until June 6. All subsequent payments will be visible on their scheduled dates.
+	</para>
+	<para>
+		If you create a new subscription with the first payment scheduled for the same day, the initial payment for the subscription will actually be submitted the next business day.
+	</para>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<subtitle>
+	Merchant Notification
+	</subtitle>
+	<para>
+	When a scheduled transaction in a subscription has been submitted, which is usually at 2 a.m. PST for ARB transactions, the merchant receives an email from the payment gateway indicating the transaction status.
+	</para>
+
+	<para>
+	A merchant can also configure his or her account in the Merchant Interface to receive the following ARB emails:
+	</para>
+
+	<para>
+		<ul><itemizedlist>
+			<li><listitem>
+				Daily Transaction Summary.
+			</listitem></li>
+			<li><listitem>
+				Failed Transaction Notice—sent when a payment in a subscription declines or receives an error response from the processor.
+			</listitem></li>
+			<li><listitem>
+				Subscription Due for Expiration—sent after the second-to-last payment in a subscription is submitted, to notify a merchant that the next payment is the final one in the subscription.
+			</listitem></li>
+			<li><listitem>
+				Credit Card Expiration—sent immediately after the last possible successful payment in a subscription, to notify a merchant that the credit card will expire before the next scheduled payment in the subscription.
+			</listitem></li>
+			<li><listitem>
+				Subscription Suspension—sent to notify a merchant that a subscription has been suspended. A subscription is suspended if the first payment in the subscription is declined, rejected, or receives an error response. Additionally, if a subscription is edited (for example, payment or shipping information is changed), the subscription is suspended if the first payment after the edits is declined, rejected, or receives an error response.
+			</listitem></li>
+			<li><listitem>
+				Subscription Termination—sent when a subscription is terminated. If a suspended subscription is not edited to fix the problem that caused the suspension, it is terminated on the next scheduled payment.
+			</listitem></li>
+			<li><listitem>
+				Subscription Expiration—sent after a subscription expires. Once expired, a subscription cannot be reactivated. Instead, a new subscription must be created.
+				The Daily Transaction Summary email returns an Excel file in comma-separated value (.csv) format. The merchant will receive Successful.csv, Failed.csv, or both files.
+			</listitem></li>
+		</itemizedlist></ul>
+
+	</para>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<subtitle>
+		Subscription Status
+	</subtitle>
+	<para>
+		A subscription can have one of the following statuses at any given time.
+	</para>
+	<lingolist>
+		</lingolist><entry>
+			</entry><entry>
+			</entry><entry>
+			</entry><entry>
+			</entry><entry>
+			</entry><table class="lingolist"><tbody><tr><td><term>
+				Active
+			</term></td>
+			<td><definition>
+				An active subscription is currently scheduled to be charged at a specified interval, which does not necessarily mean that payments will be successful.
+			</definition></td>
+		</tr>
+		<tr><td><term>
+				Expired
+			</term></td>
+			<td><definition>
+				The schedule of payments has ended.
+			</definition></td>
+		</tr>
+		<tr><td><term>
+				Suspended
+			</term></td>
+			<td><definition>
+				When the credit card information for a subscription expires, the subscription becomes suspended. A suspended subscription is not charged until the merchant corrects the problem. The merchant has until the next run date to correct the problem, or the subscription is terminated.
+			</definition></td>
+		</tr>
+		<tr><td><term>
+				Canceled
+			</term></td>
+			<td><definition>
+				The subscription was cancelled using ARBCancelSubscriptionRequest. A cancelled subscription no longer exists and cannot be reactivated.
+			</definition></td>
+		</tr>
+		<tr><td><term>
+				Terminated
+			</term></td>
+			<td><definition>
+				When a merchant takes no action on a suspended account before the next runDate, the subscription is terminated. Once terminated, a subscription can no longer be reactivated and must be recreated.
+			</definition></td>
+		</tr>
+	</tbody></table>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+		<subtitle>
+		Updating Subscriptions
+		</subtitle>
+	</para>
+	<para>
+		You can update any of the values from the ARBCreateSubscriptionRequest by entering them in the ARBUpdateSubscriptionRequest. The only difference is that you must include the subscriptionId value that was returned in the ARBCreateSubscriptionReponse. Here are a few things to keep in mind:
+
+		<ul><itemizedlist>
+			<li><listitem>
+				The subscription start date (subscription.paymentSchedule.startDate) may only be updated if no successful payments have been completed.
+			</listitem></li>
+			<li><listitem>
+				The subscription interval information (subscription.paymentSchedule.interval.length and subscription.paymentSchedule.interval.unit) may not be updated.
+			</listitem></li>
+			<li><listitem>
+				The number of trial occurrences (subscription.paymentSchedule.trialOccurrences) may only be updated if the subscription has not yet begun or is still in the trial period.
+			</listitem></li>
+			<li><listitem>
+				If the start date is the 31st, and the interval is monthly, the billing date is the last day of each month (even when the month does not have 31 days).
+			</listitem></li>
+		</itemizedlist></ul>
+	</para>
+	<para>
+		All other fields are optional.
+	</para>
+	<para>
+		<subsubtitle>
+			Cancel Subscription Request
+		</subsubtitle>
+	</para>
+	<para>
+		To cancel a subscription, call ARBCancelSubscription and enter the subscriptionId. If this call is successful, the subscription will no longer exist in our system.
+	</para>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<subtitle>
+		Subscription Reporting
+	</subtitle>
+	Detailed subscription information is included in the Transaction Details API. For more information, see the 
+	<a href="undefined"><ulink href="http://www.authorize.net/support/ReportingGuide_XML.pdf">Transaction Details Reporting Guide</ulink></a>.
+</section>
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+		<title>
+			Customer Profiles
+		</title>
+	</para>
+	<para>
+	You can use customer profiles to enable merchants to tokenize and store sensitive customer payment information on our secure servers, which simplifies PCI DSS compliance as well as the payments process for returning customers and recurring transactions. By providing quick access to stored customer information, CIM is ideal for businesses that:
+	</para>
+	<ul><itemizedlist>
+		<li><listitem>
+			Process recurring transactions in which the date or amount or both are different each month; for example, utility companies.
+		</listitem></li>
+		<li><listitem>
+			Process usage charges that you bill only when the service is used; for example, pay-as-you-go cell phones.
+		</listitem></li>
+		<li><listitem>
+			Are concerned with PCI compliance.
+		</listitem></li>
+		<li><listitem>
+			Want to provide returning customers with the convenience of not having to re-enter personal data.
+		</listitem></li>
+	</itemizedlist></ul>
+	<para>
+	The Profiles API supports integration with a web site payment form or a proprietary business application. The profiles, which include payment and shipping information, can then be referenced in future transactions, eliminating steps in the transaction process for repeat customers and potentially increasing customer loyalty.
+	</para>
+	<para>
+		<picture src="http://developer.authorize.net/api/reference/img/CIMdiagram.png">
+	</picture></para>
+	<para>
+	A customer profile contains minimal information about the customer such as ID, description, and email address, but its main purpose is to link multiple payment and shipping profiles with a single customer entity.
+	</para>
+	<para>
+	API methods to manage customer profiles include:
+	</para>
+	<ul><itemizedlist>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-profile">
+				Create Customer Profile
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-profile">
+				Get Customer Profile
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-profile-ids">
+				Get Customer Profile Ids
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-profile">
+				Update Customer Profile
+			</ulink></a>
+		</listitem></li>
+	</itemizedlist></ul>
+</section>
+
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+		<subtitle>
+			Payment Profiles
+		</subtitle>
+	</para>
+	<para>
+		Payment profiles enable merchants to securely store sensitive payment information with Authorize.Net in a secure and PCI-compliant manner.
+	</para>
+	<para>
+		API methods to manage customer payment profiles include:
+	</para>
+	<ul><itemizedlist>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-payment-profile">
+				Create Customer Payment Profile
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-payment-profile">
+				Get Customer Payment Profile
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-payment-profile">
+				Update Customer Payment Profile
+			</ulink></a>
+		</listitem></li>
+	</itemizedlist></ul>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+	<para>
+		<subtitle>
+			Shipping Profiles
+		</subtitle>
+	</para>
+	<para>
+		Shipping profiles enable merchants to expedite the checkout process for repeat customers by securely storing multiple shipping addresses with Authorize.Net.
+	</para>
+	<para>
+	API methods to manage customer payment profiles include:
+	</para>
+	<ul><itemizedlist>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-payment-profile">
+				Create Customer Payment Profile
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-payment-profile">
+				Get Customer Payment Profile
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-payment-profile">
+				Update Customer Payment Profile
+			</ulink></a>
+		</listitem></li>
+	</itemizedlist></ul>
+</section>
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+
+<subtitle>
+Duplicate Profile Verification
+</subtitle>
+The duplicate profile verification prevents accidental duplicate submissions. When you submit calls to the createCustomerProfileRequest, createCustomerPaymentProfileRequest, and createCustomerShippingAddressRequest functions, the payment gateway checks certain fields in each request to ensure that a profile with the same information does not already exist. If the payment gateway finds a matching profile, it returns an error message. If the duplicate profile is a customer profile, the error message contains the ID of the existing profile.
+
+The following table lists the fields for each function that cannot match an existing profile. An error occurs only when all of the values for each field being submitted match all of the values for each field in the existing profile.
+
+
+<table class="regulartable">
+	<tbody><tr>
+		<td>
+			Function
+		</td>
+		<td>
+			Fields Used for Duplicate Profile Verification
+		</td>
+	</tr>
+	<tr>
+		<td>
+			createCustomerProfileRequest
+		</td>
+		<td>
+			<ul><itemizedlist>
+				<li><listitem>
+					merchantCustomerId
+				</listitem></li>
+				<li><listitem>
+					description
+				</listitem></li>
+				<li><listitem>
+					email
+				</listitem></li>
+			</itemizedlist></ul>
+		</td>
+	</tr>
+	<tr>
+		<td>
+
+			createCustomerPaymentProfileRequest
+		</td>
+		<td>
+			<ul><itemizedlist>
+				<li><listitem>
+					customerProfileId
+				</listitem></li>
+				<li><listitem>
+					cardNumber
+				</listitem></li>
+				<li><listitem>
+					accountNumber
+				</listitem></li>
+				<li><listitem>
+					routingNumber
+				</listitem></li>
+				<li><listitem>
+					billToFirstName
+				</listitem></li>
+				<li><listitem>
+					billToLastName
+				</listitem></li>
+				<li><listitem>
+					billToAddress
+				</listitem></li>
+				<li><listitem>
+					billToZip
+				</listitem></li>
+			</itemizedlist></ul>
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			createCustomerShippingAddressRequest
+		</td>
+		<td>
+			<ul><itemizedlist>
+				<li><listitem>
+					customerProfileId
+				</listitem></li>
+				<li><listitem>
+					firstName
+				</listitem></li>
+				<li><listitem>
+					lastName
+				</listitem></li>
+				<li><listitem>
+					address
+				</listitem></li>
+				<li><listitem>
+					address
+				</listitem></li>
+				<li><listitem>
+					zip
+				</listitem></li>
+				<li><listitem>
+					phoneNumber
+				</listitem></li>
+			</itemizedlist></ul>
+		</td>
+	</tr>
+</tbody></table>
+
+</section>
+
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+
+
+<title>
+Charging Customer Profiles
+</title>
+
+
+</section>
+
+
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+
+<subtitle>
+Creating a Customer Profile Transaction Request
+</subtitle>
+Use createCustomerProfileTransactionRequest to create a payment transaction from an existing customer profile.
+
+You can submit one of six transaction types:
+
+
+
+	<ul><itemizedlist>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-authorize-a-transaction-from-a-customer-profile">
+				Authorization Only
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">
+				Authorization and Capture
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-capture-from-a-customer-profile">
+				Capture Only
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-capturing-a-transaction-with-prior-authorization-from-a-customer-profile">
+				Prior Authorization and Capture
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-refunding-a-transaction-for-a-customer-profile">
+				Refund
+			</ulink></a>
+		</listitem></li>
+		<li><listitem>
+			<a href="undefined"><ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-voiding-transactions-for-a-customer-profile">
+				Void
+			</ulink></a>
+		</listitem></li>
+	</itemizedlist></ul>
+
+
+
+
+
+
+
+
+
+The only transaction types that generate a customer receipt email are Authorization Only, Authorization and Capture, and Refund.
+
+
+</section>
+
+
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<!-- /////////////////////////////////////////////////////////////////////////////////////// -->
+<section id="xxxxx">
+
+
+<subtitle>
+Refunds
+</subtitle>
+If you are submitting a refund against a previous CIM transaction, the following guidelines apply:
+			<ul><itemizedlist>
+				<li><listitem>
+					Include customerProfileId, customerPaymentProfileId, and transId.
+				</listitem></li>
+				<li><listitem>
+					customerShippingAddressId is optional.
+				</listitem></li>
+				<li><listitem>
+					creditCardNumberMasked, bankRoutingNumberMasked, and bankAccountNumberMasked do not need to be included, but they are validated if they are included.
+				</listitem></li>
+			</itemizedlist></ul>
+
+
+
+If you are submitting a refund for a non-CIM transaction, the following guidelines apply:
+			<ul><itemizedlist>
+				<li><listitem>
+					You must include transId, creditCardNumberMasked (or bankRoutingNumberMasked and bankAccountNumberMasked).
+				</listitem></li>
+				<li><listitem>
+					Do not include customerProfileId, customerPaymentProfileId, or customerShippingAddressId.
+				</listitem></li>
+			</itemizedlist></ul>
+
+
+You can also issue an unlinked refund for a CIM transaction. In this case, the following rules apply:
+
+			<ul><itemizedlist>
+				<li><listitem>
+					You must be enrolled in Expanded Credit Capabilities (ECC). For more information about ECC, go to http://www.authorize.net/files/ecc.pdf.
+				</listitem></li>
+				<li><listitem>
+					You must include customerProfileId and customerPaymentProfileId.
+				</listitem></li>
+				<li><listitem>
+					customerShippingAddressId is optional.
+				</listitem></li>
+				<li><listitem>
+					Do not include transId, creditCardNumberMasked, bankRoutingNumberMasked, or bankAccountNumberMasked.
+				</listitem></li>
+			</itemizedlist></ul>
+
+
+
+</section>
+
+
+<section id="xxxxx">
+
+
+	<title>
+	Charging Customer Profiles
+	</title>
+
+    <table class="table table-condensed">
+
+        <thead>
+            <tr>
+                <th>CODE</th>
+                <th>TEXT</th>
+                <th>DESCRIPTION</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr>
+                <td>
+                    I00001
+                </td>
+                <td>
+                    Successful
+                </td>
+                <td>
+                    The record was processed successfully
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    I00003
+                </td>
+                <td>
+                    The record has already been deleted
+                </td>
+                <td>
+                    The record has already been deleted
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    I00005
+                </td>
+                <td>
+                    The mobile device has been submitted for approval
+                </td>
+                <td>
+                </td>
+            </tr>
+
+
+            <!-- THIS IS THE TEXT COPIED AND PASTED STRIGHT FROM THE PDF IT IS EASY TO COPY AND PASTE THE TABLE ELEMENTS INTO IT, LIKE ABOVE -->
+
+
+
+            <tr>
+                <td>
+                    I00006
+                </td>
+                <td>
+                    The mobile device is approved and ready for use
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00001
+                </td>
+                <td>
+                    An error occurred during processing. Try again.
+                </td>
+                <td>
+                    An unexpected system error occurred while processing this request.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00002
+                </td>
+                <td>
+                    The content-type specified is not supported.
+                </td>
+                <td>
+                    The only supported content-types are text/xml and application/xml.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00003
+                </td>
+                <td>
+                    An error occurred while parsing the XML request.
+                </td>
+                <td>
+                    This is the result of an XML parser error.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00004
+                </td>
+                <td>
+                    The name of the requested API method is invalid.
+                </td>
+                <td>
+                    The name of the root node of the XML request is the API method being called. It is not valid.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00005
+                </td>
+                <td>
+                    The merchantAuthentication.transactionKey is invalid or not present.
+                </td>
+                <td>
+                    Merchant authentication requires a valid value for transaction key.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00006
+                </td>
+                <td>
+                    The merchantAuthentication.name is invalid or not present.
+                </td>
+                <td>
+                    Merchant authentication requires a valid value for name.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00007
+                </td>
+                <td>
+                    User authentication failed due to invalid authentication values.
+                </td>
+                <td>
+                    The name/and or transaction key is invalid.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00008
+                </td>
+                <td>
+                    User authentication failed. The payment gateway account or user is inactive.
+                </td>
+                <td>
+                    The payment gateway or user account is not currently active.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00009
+                </td>
+                <td>
+                    The payment gateway account is in Test Mode. The request cannot be processed.
+                </td>
+                <td>
+                    The requested API method cannot be executed while the payment gateway account is in Test Mode.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00010
+                </td>
+                <td>
+                    User authentication failed. You do not have the appropriate permissions.
+                </td>
+                <td>
+                    The user does not have permission to call the API.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00011
+                </td>
+                <td>
+                    Access denied. You do not have the appropriate permissions.
+                </td>
+                <td>
+                    The user does not have permission to call the API method.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00012
+                </td>
+                <td>
+                    A duplicate subscription already exists.
+                </td>
+                <td>
+                    A duplicate of the subscription was already submitted. The duplicate check looks at several fields including payment information, billing information and, specifically for subscriptions, Start Date, Interval and Unit.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00013
+                </td>
+                <td>
+                    The field is invalid.
+                </td>
+                <td>
+                    One of the field values is not valid.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00014
+                </td>
+                <td>
+                    A required field is not present.
+                </td>
+                <td>
+                    One of the required fields was not present.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00015
+                </td>
+                <td>
+                    The field length is invalid.
+                </td>
+                <td>
+                    One of the fields has an invalid length.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00016
+                </td>
+                <td>
+                    The field type is invalid.
+                </td>
+                <td>
+                    The field type is not valid.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00017
+                </td>
+                <td>
+                    The startDate cannot occur in the past.
+                </td>
+                <td>
+                    The subscription start date cannot occur before the subscription submission date.
+                    <span style="color:blue; font-weight:bold;">
+                        Note :
+                    </span>
+                    Validation is performed against local server time, which is Mountain Time.
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    E00018
+                </td>
+                <td>
+                    The credit card expires before the subscription startDate.
+                </td>
+                <td>
+                    The credit card is not valid as of the start date of the subscription.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00019
+                </td>
+                <td>
+                    The customer taxId or driversLicense information is required.
+                </td>
+                <td>
+                    The customer tax ID or driver’s license information (driver’s license number, driver’s license state, driver’s license DOB) is required for the subscription.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00020
+                </td>
+                <td>
+                    The payment gateway account is not enabled for eCheck.Net subscriptions.
+                </td>
+                <td>
+                    This payment gateway account is not set up to process eCheck.Net subscriptions.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00021
+                </td>
+                <td>
+                    The payment gateway account is not enabled for credit card subscriptions.
+                </td>
+                <td>
+                    This payment gateway account is not set up to process credit card subscriptions.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00022
+                </td>
+                <td>
+                    The interval length cannot exceed 365 days or 12 months.
+                </td>
+                <td>
+                    The interval length must be 7 to 365 days or 1 to 12 months.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00024
+                </td>
+                <td>
+                    The trialOccurrences is required when trialAmount is specified.
+                </td>
+                <td>
+                    The number of trial occurrences cannot be zero if a valid trial amount is submitted.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00025
+                </td>
+                <td>
+                    Automated Recurring Billing is not enabled.
+                </td>
+                <td>
+                    The payment gateway account is not enabled for Automated Recurring Billing.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00026
+                </td>
+                <td>
+                    Both trialAmount and trialOccurrences are required.
+                </td>
+                <td>
+                    If either a trial amount or number of trial occurrences is specified then values for both must be submitted.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00027
+                </td>
+                <td>
+                    The test transaction was unsuccessful.
+                </td>
+                <td>
+                    An approval was not returned for the test transaction.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00028
+                </td>
+                <td>
+                    The trialOccurrences must be less than totalOccurrences.
+                </td>
+                <td>
+                    The number of trial occurrences specified must be less than the number of total occurrences specified.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00029
+                </td>
+                <td>
+                    Payment information is required.
+                </td>
+                <td>
+                    Payment information is required when creating a subscription.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00030
+                </td>
+                <td>
+                    A paymentSchedule is required.
+                </td>
+                <td>
+                    A payment schedule is required when creating a subscription.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00031
+                </td>
+                <td>
+                    The amount is required.
+                </td>
+                <td>
+                    The subscription amount is required when creating a subscription.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00032
+                </td>
+                <td>
+                    The startDate is required.
+                </td>
+                <td>
+                    The subscription start date is required to create a subscription.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00033
+                </td>
+                <td>
+                    The subscription Start Date cannot be changed.
+                </td>
+                <td>
+                    Once a subscription is created the Start Date cannot be changed.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00034
+                </td>
+                <td>
+                    The interval information cannot be changed.
+                </td>
+                <td>
+                    Once a subscription is created the subscription interval cannot be changed.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00035
+                </td>
+                <td>
+                    The subscription cannot be found.
+                </td>
+                <td>
+                    The subscription ID for this request is not valid for this merchant.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00036
+                </td>
+                <td>
+                    The payment type cannot be changed.
+                </td>
+                <td>
+                    Changing the subscription payment type between credit card and eCheck.Net is not currently supported.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00037
+                </td>
+                <td>
+                    The subscription cannot be updated.
+                </td>
+                <td>
+                    Subscriptions that are expired, canceled or terminated cannot be updated.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00038
+                </td>
+                <td>
+                    The subscription cannot be canceled.
+                </td>
+                <td>
+                    Subscriptions that are expired or terminated cannot be canceled.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00045
+                </td>
+                <td>
+                    The root node does not reference a valid XML namespace.
+                </td>
+                <td>
+                    An error exists in the XML namespace. This error is similar to E00003.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00054
+                </td>
+                <td>
+                    The mobile device is not registered with this merchant account.
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00055
+                </td>
+                <td>
+                    The mobile device is pending approval by the account administrator.
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00056
+                </td>
+                <td>
+                    The mobile device has been disabled for use with this account.
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00057
+                </td>
+                <td>
+                    The user does not have permissions to submit requests from a mobile device.
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00058
+                </td>
+                <td>
+                    The merchant has met or exceeded the number of pending mobile devices permitted for this account.
+                </td>
+                <td>
+                    An account is limited to 100 pending mobile devices. You need to enable, disable, or delete some devices.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    E00059
+                </td>
+                <td>
+                    The authentication type is not allowed for this method call.
+                </td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+</article>
+
+
+
+</body></html>
