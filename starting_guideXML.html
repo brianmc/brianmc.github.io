@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Authorize.Net API Documentation">
+    <meta name="keywords" content="AIM ARB CIM Reporting">
+
+    <title>
+
+        Authorize.Net API Documentation
+
+    </title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Documentation extras -->
+    <link href="dist/css/docs.min.css" rel="stylesheet">
+
+    <!--[if lt IE 9]><script src="http://getbootstrap.com/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link href="dist/css/anet.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="dist/css/APIDocsDocBook.css">
+
+
+    <!-- Favicons -->
+    <link href="http://developer.authorize.net/resources/images/favicon.ico" rel="shortcut icon" />
+
+</head>
+
+<body data-spy="scroll" data-target="#apiRefGuideNavID">
+    <div id="fsLightbox1687734" class="fsLightbox" style="display:none;">
+        <div align="right" style="padding-bottom:5px;">
+            <a id="fsLightboxClose1687734" href="#" title="close">
+                <img src="https://www.formstack.com/forms/images/2/cross.gif" border="0" />
+            </a>
+        </div>
+        <div id="fsLightboxContent1687734" style="height:450px; max-width:650px; padding-top:0px; overflow:auto;">
+            <script type="text/javascript" src="https://www.formstack.com/forms/js.php?1687734-JTjHUklIow-v3"></script>
+        </div>
+    </div>
+
+    <a class="sr-only" href="#content">Skip to main content</a>
+
+    <!-- Docs master nav -->
+    <header class="navbar navbar-static-top bs-docs-nav" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    <img src="dist/css/Logo-White.png">
+                </div>
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation" id="navigationbarID">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#" style="padding-top:20px;padding-bottom: 16px;" id="SGuideTabID">Getting Started Guide</a>
+                    </li>
+                    <li>
+                        <a href="index.html" style="padding-top:20px;" id="APIRefTabID">API Reference Guide<span style="font-size: 0.8em;"> ( BETA )</span></a>
+                    </li>
+                    <li>
+                        <a href="client_libraries.html" style="padding-top:20px;padding-bottom: 16px;" id="clientLibTabID">Client Libraries</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <div class="banner">
+        <div class="container">
+            We're releasing this new documentation in BETA. Please feel free to send us your
+            <strong>
+                <a id="feedbackLinkID" href="#">feedback</a>
+            </strong>, or join the community
+            <strong>
+                <a target="_blank" href="http://community.developer.authorize.net/t5/Community-Feedback/API-Reference-Guide-Beta-Discussion/td-p/39922">discussion</a>
+            </strong>.
+        </div>
+    </div>
+
+    <div class="container bs-docs-container">
+        <div class="row" id="APIRefPageID">
+            <div class="col-md-9" role="main">
+
+
+                <div id="Content"></div>
+
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="bs-docs-sidebar hidden-print " role="complementary" id="gettingStartedGuideNav" style="position:fixed;">
+                    <ul class="nav bs-docs-sidenav">
+
+                        <li class="active">
+                            <a href="#one-time-transaction">
+                          One-Time Transactions
+                        </a>
+                            <ul class="nav">
+                                <li class="active">
+                                    <a href="#one-time-transaction-credit-card-process">
+                              Credit Card Process
+                            </a>
+                                </li>
+                                <li class="">
+                                    <a href="#life-of-a-transaction">
+                              Life of a Transaction
+                            </a>
+                                </li>
+                                <li class="">
+                                    <a href="#voids-and-credit">
+                              Voids and Credit
+                            </a>
+                                </li>
+                                <li class="">
+                                    <a href="#create-transaction-request">
+                              Creating A Transaction
+                            </a>
+                                </li>
+                                <li class="">
+                                    <a href="#partial-authorizations">
+                              Partial Authorizations
+                            </a>
+                                </li>
+                                <li class="">
+                                    <a href="#basic-fraud-detection">
+                              Basic Fraud Settings
+                            </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a href="#StartingGuide-recurring-billing">
+                                  Recurring Billing
+                                </a>
+                            <ul class="nav">
+                                <li>
+                                    <a href="#StartingGuide-subscriptionID">Subscriptions</a>
+                                </li>
+                                <li>
+                                    <a href="#StartingGuide-Payment-Schedule">Payment Schedule</a>
+                                </li>
+                                <li>
+                                    <a href="#StartingGuide-merchant-notification">Merchant Notification</a>
+                                </li>
+                                <li class="">
+                                    <a href="#StartingGuide-subscription-status"> Subscription Status </a>
+                                </li>
+                                <li class="">
+                                    <a href="#StartingGuide-updating-subscriptions"> Updating Subscriptions</a>
+                                </li>
+                                <li class="">
+                                    <a href="#StartingGuide-subscription-reporting"> Subscription Reporting</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#customerInfoManagerID">
+                                   Custormer Profiles
+                                </a>
+                            <ul class="nav">
+                                <li>
+                                    <a href="#custInfoManager-customers">Customers</a>
+                                </li>
+                                <li>
+                                    <a href="#custInfoManager-paymentProfiles">Payment Profiles</a>
+                                </li>
+                                <li>
+                                    <a href="#custInfoManager-shippingProfiles">Shipping Profiles</a>
+                                </li>
+                                <li>
+                                    <a href="#custInfoManager-duplicateProfileVerification">Duplicate Profile Verification</a>
+                                </li>
+                                <li>
+                                    <a href="#custInfoManager-chargingCustomers">Charging Customer Profiles</a>
+                                </li>
+                                <li>
+                                    <a href="#custInfoManager-createCustProfReq">Create a Customer Profile Transaction Request</a>
+                                </li>
+                                <li>
+                                    <a href="#custInfoManager-refunds">Refunds</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                         <li>
+                            <a href="#PayPal">
+                                  PayPal Express Checkout
+                                </a>
+                            <ul class="nav">
+                                <li>
+                                    <a href="#PayPal_ButtonPlacement">Button Placement</a>
+                                </li>
+                                <li>
+                                    <a href="#PayPal_TransactionTypes">Transaction Types</a>
+                                </li>
+                                <li>
+                                    <a href="#PayPal_TransactionFlow">Transaction Flow</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        
+                        <li>
+                            <a href="#information-and-error-messages">Error Response Codes</a>
+                        </li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript
+================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="dist/js/doc.min.js"></script>
+    <script type="text/javascript" src="https://www.formstack.com/forms/js/lightbox.js"></script>
+    <script src="api.js"></script>
+
+
+
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-20120532-2']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+    <script src="dist/js/transformer.js"></script>
+
+    <div class="footerTradmark">© 2009, 2014. Authorize.Net is a registered trademark of CyberSource, a Visa company. All rights reserved.
+        <br />
+    </div>
+</body>
+
+</html>
