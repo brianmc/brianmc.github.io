@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE guide PUBLIC "http://docbook.org/xml/5.0/dtd/docbook.dtd">
+<!-- This file written in DocBook XML -->
+
+<article>
+	<title>eCheck.Net</title>
+	<para>eCheck.Net® is Authorize.Net’s exclusive electronic check processing solution. eCheck.Net enables Web merchants already processing credit card transactions through the Authorize.Net Payment Gateway to offer their customers an additional payment option.</para>
+	<para>An eCheck transaction is similar to a credit card transaction because it uses the createTransactionRequest function. The difference is that for an eCheck transaction, the paymentType element contains  a bankAccount section instead of creditCard. The eCheck fields include:</para>
+	<itemizedList>
+		<listItem><para>accountNumber – The bank account number, masked.</para></listItem>
+		<listItem><para>routingNumber - Bank's routing number.</para></listItem>
+		<listItem><para>nameOnAccount - Name of the person who holds the bank account.</para></listItem>
+		<listItem><para>bankName -The name of the bank</para></listItem>
+		<listItem><para>echeckType - The type of eCheck transaction, including ARC, BOC, CCD, PPD, TEL, and WEB. These types are explained in the next section.</para></listItem>
+		<listItem><para>checkNumber - The check number as printed on the physical check. Required for ARC and BOC.</para></listItem>
+	</itemizedList>
+	<para>One other crucial difference between an eCheck and Credit Card payment is that unlike Credit Card payments, eCheck payments are not instantly authorized. The authorization process can take 5 to 7 days.</para>
+	<para>eCheck transactions can also be used as a payment type when charging customer profiles. In this case, the eCheck payment information is used in the createCustomerPaymentProfileRequest method. For a list of the API fields used in when charging customer profiles, see the API Reference section <ulink url="http://developer.authorize.net/api/reference/#charge-customer-profiles">Charging Customer Profiles</ulink>.</para>
+	<para>Below is a code sample of the banking block of the createTransactionRequest. For a code sample of the entire request, see the <ulink url="http://developer.authorize.net/api/reference/">API Reference Guide</ulink>.</para>
+	<screen><payment>
+      <bankAccount>
+        <accountType>checking</accountType>
+        <routingNumber>125000024</routingNumber>
+        <accountNumber>12345678</accountNumber>
+        <nameOnAccount>John Doe</nameOnAccount>
+        <echeckType>ARC</echeckType>
+        <checkNumber>123</checkNumber>
+      </bankAccount>
+    </payment></screen>
+<para><subtitle>Understanding eCheck Types</subtitle></para>
+<para><emphasis>Accounts Receivable Conversion (ARC)</emphasis></para>
+<para>This transaction type is a one-time charge against a customer's checking account. ARC allows merchants to collect payments received in the mail or left in a drop-box, and convert them to an electronic payment.</para> 
+<para><subtitle>Back Office Conversion (BOC)</subtitle></para>
+<para>This transaction type is a one-time charge against a customer's checking account. BOC allows merchants to collect a check written at a point of sale (checkout counter, manned bill payment location, service call location) and convert it to an ACH debit during back office processing.</para>
+<para><subtitle>Cash Concentration or Disbursement (CCD)</subtitle></para>
+<para>This transaction type is a one-time or recurring charge or refund against a business checking account. CCD transactions are fund transfers to or from a corporate entity.</para>
+<para><subtitle>Prearranged Payment and Deposit Entry (PPD)</subtitle></para>
+<para>This transaction type is a one-time or recurring charge or refund against a consumer  checking or savings account. PPD transactions may only be originated when payment and deposit terms between the merchant and the customer are prearranged.</para>
+<para><subtitle>Telephone-Initiated Entry (TEL)</subtitle></para>
+<para>This transaction type is a one-time charge against a consumer checking or savings account that was originated by telephone. TEL transactions can only be originated when an existing relationship between the merchant and the customer exists; or if no relationship exists, the customer must initiate the telephone call to the merchant.</para>
+<para><subtitle>Internet-Initiated Entry (WEB)</subtitle></para>
+<para>This transaction type is a one-time or recurring charge against a consumer checking or savings account and for which payment authorization was obtained from the customer via the Internet.</para>
+</article>

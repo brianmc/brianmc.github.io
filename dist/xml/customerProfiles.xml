@@ -1,0 +1,312 @@
+<article>
+    <section id="customerInfoManagerID">
+        <para>
+            <title>
+                Customer Profiles
+            </title>
+        </para>
+    </section>
+    <section id="custInfoManager-customers">
+        <subtitle>
+            Customers
+        </subtitle>
+        <para>
+            You can use customer profiles to enable merchants to tokenize and store sensitive customer payment information on our secure servers, which simplifies PCI DSS compliance as well as the payments process for returning customers and recurring transactions. By providing quick access to stored customer information, CIM is ideal for businesses that:
+        </para>
+        <itemizedList>
+            <listItem>
+                Process recurring transactions in which the date or amount or both are different each month; for example, utility companies.
+            </listItem>
+            <listItem>
+                Process usage charges that you bill only when the service is used; for example, pay-as-you-go cell phones.
+            </listItem>
+            <listItem>
+                Are concerned with PCI compliance.
+            </listItem>
+            <listItem>
+                Want to provide returning customers with the convenience of not having to re-enter personal data.
+            </listItem>
+        </itemizedList>
+        <para>
+            The Profiles API supports integration with a web site payment form or a proprietary business application. The profiles, which include payment and shipping information, can then be referenced in future transactions, eliminating steps in the transaction process for repeat customers and potentially increasing customer loyalty.
+        </para>
+        <para>
+            <picture src="http://developer.authorize.net/api/reference/img/CIMdiagram.png"></picture>
+        </para>
+        <para>
+            A customer profile contains minimal information about the customer such as ID, description, and email address, but its main purpose is to link multiple payment and shipping profiles with a single customer entity.
+        </para>
+        <para>
+            API methods to manage customer profiles include:
+        </para>
+        <itemizedList>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-profile">
+                    Create Customer Profile
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-profile">
+                    Get Customer Profile
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-profile-ids">
+                    Get Customer Profile Ids
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-profile">
+                    Update Customer Profile
+                </ulink>
+            </listItem>
+        </itemizedList>
+    </section>
+    <section id="custInfoManager-paymentProfiles">
+        <para>
+            <subtitle>
+                Payment Profiles
+            </subtitle>
+        </para>
+        <para>
+            Payment profiles enable merchants to securely store sensitive payment information with Authorize.Net in a secure and PCI-compliant manner.
+        </para>
+        <para>
+            API methods to manage customer payment profiles include:
+        </para>
+        <itemizedList>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-payment-profile">
+                    Create Customer Payment Profile
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-payment-profile">
+                    Get Customer Payment Profile
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-payment-profile">
+                    Update Customer Payment Profile
+                </ulink>
+            </listItem>
+        </itemizedList>
+    </section>
+    <section id="custInfoManager-shippingProfiles">
+        <para>
+            <subtitle>
+                Shipping Profiles
+            </subtitle>
+        </para>
+        <para>
+            Shipping profiles enable merchants to expedite the checkout process for repeat customers by securely storing multiple shipping addresses with Authorize.Net.
+        </para>
+        <para>
+            API methods to manage customer payment profiles include:
+        </para>
+        <itemizedList>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-payment-profile">
+                    Create Customer Payment Profile
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-payment-profile">
+                    Get Customer Payment Profile
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-payment-profile">
+                    Update Customer Payment Profile
+                </ulink>
+            </listItem>
+        </itemizedList>
+    </section>
+    <section id="custInfoManager-duplicateProfileVerification">
+        <subtitle>
+            Duplicate Profile Verification
+        </subtitle>
+        <para>The duplicate profile verification prevents accidental duplicate submissions. When you submit calls to the createCustomerProfileRequest, createCustomerPaymentProfileRequest, and createCustomerShippingAddressRequest functions, the payment gateway checks certain fields in each request to ensure that a profile with the same information does not already exist. If the payment gateway finds a matching profile, it returns an error message. If the duplicate profile is a customer profile, the error message contains the ID of the existing profile. The following table lists the fields for each function that cannot match an existing profile. An error occurs only when all of the values for each field being submitted match all of the values for each field in the existing profile.</para>
+		<table class="regulartable">
+            <tr>
+                <td>
+                    <emphasis role="bold">Function</emphasis>
+                </td>
+                <td>
+                    <emphasis role="bold">Fields Used for Duplicate Profile Verification</emphasis>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    createCustomerProfileRequest
+                </td>
+                <td>
+                    <itemizedList>
+                        <listItem>
+                            merchantCustomerId
+                        </listItem>
+                        <listItem>
+                            description
+                        </listItem>
+                        <listItem>
+                            email
+                        </listItem>
+                    </itemizedList>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    createCustomerPaymentProfileRequest
+                </td>
+                <td>
+                    <itemizedList>
+                        <listItem>
+                            customerProfileId
+                        </listItem>
+                        <listItem>
+                            cardNumber
+                        </listItem>
+                        <listItem>
+                            accountNumber
+                        </listItem>
+                        <listItem>
+                            routingNumber
+                        </listItem>
+                        <listItem>
+                            billToFirstName
+                        </listItem>
+                        <listItem>
+                            billToLastName
+                        </listItem>
+                        <listItem>
+                            billToAddress
+                        </listItem>
+                        <listItem>
+                            billToZip
+                        </listItem>
+                    </itemizedList>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    createCustomerShippingAddressRequest
+                </td>
+                <td>
+                    <itemizedList>
+                        <listItem>
+                            customerProfileId
+                        </listItem>
+                        <listItem>
+                            firstName
+                        </listItem>
+                        <listItem>
+                            lastName
+                        </listItem>
+                        <listItem>
+                            address
+                        </listItem>
+                        <listItem>
+                            address
+                        </listItem>
+                        <listItem>
+                            zip
+                        </listItem>
+                        <listItem>
+                            phoneNumber
+                        </listItem>
+                    </itemizedList>
+                </td>
+            </tr>
+        </table>
+		<para>
+		</para>
+    </section>
+
+    <section id="custInfoManager-chargingCustomers">
+        <title>
+            Charging Customer Profiles
+        </title>
+    </section>
+    <section id="custInfoManager-createCustProfReq">
+        <subtitle>
+            Creating a Customer Profile Transaction Request
+        </subtitle>
+        Use createCustomerProfileTransactionRequest to create a payment transaction from an existing customer profile. You can submit one of six transaction types:
+        <itemizedList>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-authorize-a-transaction-from-a-customer-profile">
+                    Authorization Only
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">
+                    Authorization and Capture
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-capture-from-a-customer-profile">
+                    Capture Only
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-capturing-a-transaction-with-prior-authorization-from-a-customer-profile">
+                    Prior Authorization and Capture
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-refunding-a-transaction-for-a-customer-profile">
+                    Refund
+                </ulink>
+            </listItem>
+            <listItem>
+                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-voiding-transactions-for-a-customer-profile">
+                    Void
+                </ulink>
+            </listItem>
+        </itemizedList>
+        The only transaction types that generate a customer receipt email are Authorization Only, Authorization and Capture, and Refund.
+    </section>
+    <section id="custInfoManager-refunds">
+        <subtitle>
+            Refunds
+        </subtitle>
+        If you are submitting a refund against a previous CIM transaction, the following guidelines apply:
+        <itemizedList>
+            <listItem>
+                Include customerProfileId, customerPaymentProfileId, and transId.
+            </listItem>
+            <listItem>
+                customerShippingAddressId is optional.
+            </listItem>
+            <listItem>
+                creditCardNumberMasked, bankRoutingNumberMasked, and bankAccountNumberMasked do not need to be included, but they are validated if they are included.
+            </listItem>
+        </itemizedList>
+        If you are submitting a refund for a non-CIM transaction, the following guidelines apply:
+        <itemizedList>
+            <listItem>
+                You must include transId, creditCardNumberMasked (or bankRoutingNumberMasked and bankAccountNumberMasked).
+            </listItem>
+            <listItem>
+                Do not include customerProfileId, customerPaymentProfileId, or customerShippingAddressId.
+            </listItem>
+        </itemizedList>
+        You can also issue an unlinked refund for a CIM transaction. In this case, the following rules apply:
+        <itemizedList>
+            <listItem>
+                You must be enrolled in Expanded Credit Capabilities (ECC). For more information about ECC, go to http://www.authorize.net/files/ecc.pdf.
+            </listItem>
+            <listItem>
+                You must include customerProfileId and customerPaymentProfileId.
+            </listItem>
+            <listItem>
+                customerShippingAddressId is optional.
+            </listItem>
+            <listItem>
+                Do not include transId, creditCardNumberMasked, bankRoutingNumberMasked, or bankAccountNumberMasked.
+            </listItem>
+        </itemizedList>
+    </section>
+
+</article>

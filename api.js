@@ -57,8 +57,8 @@ function initAPI(){
 
 
 function loadGettingStartedGuidePages(){
-  $("#StartingGuide-recurring-billing").load("recurringBilling.html");
-  $("#customerInfoManagerID").load("customerInformationManager.html");
+  //$("#StartingGuide-recurring-billing").load("recurringBilling.html");
+  //$("#customerInfoManagerID").load("customerInformationManager.html");
   
 }
 
