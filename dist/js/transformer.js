@@ -79,7 +79,7 @@ function produceXMLtoHTML(XMLFile){
 
 // RUN ALL THE ABOVE CODE FOR EACH XML FILE
 produceXMLtoHTML("dist/xml/oneTimeTransaction.xml");
-produceXMLtoHTML("dist/xml/automatedRecurringBilling.xml");
+produceXMLtoHTML("dist/xml/AutomatedRecurringBilling.xml");
 produceXMLtoHTML("dist/xml/customerProfiles.xml");
 produceXMLtoHTML("dist/xml/PayPal.xml");
 

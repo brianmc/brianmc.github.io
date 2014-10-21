@@ -6993,7 +6993,7 @@ http://www.merchanteCommerceSite.com/Success/TC25262</td>
                                     </tr>
                                                                         <tr>
                                         <td class='threeBullet'>cancelURL</td>
-                                        <td>URL to which the customer�s browser returns when the customer chooses not to pay with PayPal.
+                                        <td>URL to which the customer&#x27;s browser returns when the customer chooses not to pay with PayPal.
                                             <br/></td>
                                         <td>Valid URL. For example:
 http://www.merchanteCommerceSite.com/Success/TC25262</td>
@@ -7034,43 +7034,43 @@ US (default): United States
                                     </tr>
                                     <tr>
                                         <td class='twoBullet'>firstName</td>
-                                        <td>The first name associated with the customer�s shipping address. 
+                                        <td>The first name associated with the customer&#x27;s shipping address. 
                                             <br/></td>
                                         <td>50 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>lastName</td>
-                                        <td>The last name associated with the customer�s shipping address.
+                                        <td>The last name associated with the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>50 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>address</td>
-                                        <td>The customer�s shipping address.
+                                        <td>The customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>60 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>city</td>
-                                        <td>The city of the customer�s shipping address.
+                                        <td>The city of the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>40 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>state</td>
-                                        <td>The state of the customer�s shipping address.
+                                        <td>The state of the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>40 character maximum (no symbols), or a valid two-character code.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>zip</td>
-                                        <td>The ZIP code of the customer�s shipping address.
+                                        <td>The ZIP code of the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>20 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>country</td>
-                                        <td>The country of the customer�s shipping address.
+                                        <td>The country of the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>60 character maximum. No symbols.</td>
                                     </tr>
@@ -7376,7 +7376,7 @@ http://www.merchanteCommerceSite.com/Success/TC25262</td>
                                     </tr>
                                                                         <tr>
                                         <td class='threeBullet'>cancelURL</td>
-                                        <td>URL to which the customer�s browser returns if they do not choose to pay with PayPal.
+                                        <td>URL to which the customer&#x27;s browser returns if they do not choose to pay with PayPal.
                                             <br/></td>
                                         <td>Valid URL. For example:
 http://www.merchanteCommerceSite.com/Success/TC25262</td>
@@ -7417,43 +7417,43 @@ US (default): United States
                                     </tr>
                                     <tr>
                                         <td class='twoBullet'>firstName</td>
-                                        <td>The city of the customer�s shipping address.
+                                        <td>The city of the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>40 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>lastName</td>
-                                        <td>The last name associated with the customer�s shipping address.
+                                        <td>The last name associated with the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>50 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>address</td>
-                                        <td>The customer�s shipping address.
+                                        <td>The customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>60 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>city</td>
-                                        <td>The city of the customer�s shipping address.
+                                        <td>The city of the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>40 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>state</td>
-                                        <td>The state of the customer�s shipping address.
+                                        <td>The state of the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>40 character maximum (no symbols), or a valid two-character code.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>zip</td>
-                                        <td>The ZIP code of the customer�s shipping address.
+                                        <td>The ZIP code of the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>20 character maximum. No symbols.</td>
                                     </tr>
                                      <tr>
                                         <td class='twoBullet'>country</td>
-                                        <td>The country of the customer�s shipping address.
+                                        <td>The country of the customer&#x27;s shipping address.
                                             <br/></td>
                                         <td>60 character maximum. No symbols.</td>
                                     </tr>
@@ -8308,10 +8308,120 @@ xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
                                     <tr>
                                         <td class='oneBullet'>transactionType</td>
                                         <td>priorAuthCaptureTransaction
-                                            <br/>The type of transaction.</td>
+                                            <br/>The type of transaction. 
+If the value submitted does not match a supported value, the transaction is rejected. If this field is not submitted or the value is blank, the payment gateway will process the transaction as an Authorize and Capture transaction.</td>
                                         <td></td>
                                     </tr>
-                                      <tr>
+                                     <tr>
+                                        <td class='oneBullet'>amount</td>
+                                        <td>The amount of the transaction. 
+This is the total amount and must include tax, shipping, and any other charges.
+                                            <br/></td>
+                                        <td>15 digit maximum with a decimal point (no dollar symbol). For example, 8.95.</td>
+                                    </tr>
+                                     <tr>
+                                        <td class='oneBullet'>payment</td>
+                                        <td>This field is a container for a payment type.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class='twoBullet'>payPal</td>
+                                        <td>This field is a container for PayPal information.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class='threeBullet'>successURL</td>
+                                        <td>URL to which the customer&#x27;s browser returns when they choose to pay with PayPal.
+                                            <br/></td>
+                                        <td>Valid URL. For example:
+http://www.merchanteCommerceSite.com/Success/TC25262</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td class='threeBullet'>cancelURL</td>
+                                        <td>URL to which the customer&#x27;s browser returns if they do not choose to pay with PayPal.
+                                            <br/></td>
+                                        <td>Valid URL. For example:
+http://www.merchanteCommerceSite.com/Success/TC25262</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td class='threeBullet'>payPalLc</td>
+                                        <td>Locale of pages displayed by PayPal during Express Checkout. 
+
+Possible values: 
+AU: Australia 
+CAN: Canada
+DE: Germany 
+ES: Spain 
+FR: France 
+GB: United Kingdom 
+IT: Italy 
+US (default): United States 
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                                                        <tr>
+                                        <td class='threeBullet'>paypalHdrImg</td>
+                                        <td>URL for the image that will be displayed in the upper left area of the payment page. 
+                                            <br/></td>
+                                        <td>Valid URL. For example, https://usa.visa.com/img/home/logo_visa.gif</td>
+                                    </tr>
+                                                                        <tr>
+                                        <td class='threeBullet'>PaypalPayflowcolor</td>
+                                        <td>Background color for the payment page. 
+                                            <br/></td>
+                                        <td>HTML hexadecimal color. </td>
+                                    </tr>
+                                                                          <tr>
+                                        <td class='oneBullet'>shipTo</td>
+                                        <td>This field is a container for shipping information.
+                                            <br/></td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td class='twoBullet'>firstName</td>
+                                        <td>The city of the customer&#x27;s shipping address.
+                                            <br/></td>
+                                        <td>40 character maximum. No symbols.</td>
+                                    </tr>
+                                     <tr>
+                                        <td class='twoBullet'>lastName</td>
+                                        <td>The last name associated with the customer&#x27;s shipping address.
+                                            <br/></td>
+                                        <td>50 character maximum. No symbols.</td>
+                                    </tr>
+                                     <tr>
+                                        <td class='twoBullet'>address</td>
+                                        <td>The customer&#x27;s shipping address.
+                                            <br/></td>
+                                        <td>60 character maximum. No symbols.</td>
+                                    </tr>
+                                     <tr>
+                                        <td class='twoBullet'>city</td>
+                                        <td>The city of the customer&#x27;s shipping address.
+                                            <br/></td>
+                                        <td>40 character maximum. No symbols.</td>
+                                    </tr>
+                                     <tr>
+                                        <td class='twoBullet'>state</td>
+                                        <td>The state of the customer&#x27;s shipping address.
+                                            <br/></td>
+                                        <td>40 character maximum (no symbols), or a valid two-character code.</td>
+                                    </tr>
+                                     <tr>
+                                        <td class='twoBullet'>zip</td>
+                                        <td>The ZIP code of the customer&#x27;s shipping address.
+                                            <br/></td>
+                                        <td>20 character maximum. No symbols.</td>
+                                    </tr>
+                                     <tr>
+                                        <td class='twoBullet'>country</td>
+                                        <td>The country of the customer&#x27;s shipping address.
+                                            <br/></td>
+                                        <td>60 character maximum. No symbols.</td>
+                                    </tr>
+                                       <tr>
                                         <td>refTransID</td>
                                         <td>The TransId value that was returned from the first authOnlyTransaction call. 
                                             <br/></td>
