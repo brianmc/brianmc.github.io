@@ -6929,7 +6929,10 @@ piSchema.xsd&quot;&gt;
 
 The following calls are createTransactionRequest calls with PayPal-specific fields. </p>
                     <h3 id="paypal-express-checkout--authorization-only">Authorization Only</h3>
-                    <p></p>
+                    <p>An Authorization Only request notifies PayPal that an authorization has been initiated but 
+does not complete the authorization. It returns a secure URL with a token appended to it. 
+The purpose of this token is to identify the transaction when the customer is redirected to 
+PayPal.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-authorization-only" data-toggle="tab">Request</a>
                         </li>
@@ -7313,7 +7316,7 @@ In test mode, the URL will be returned with an invalid token of 0. For example, 
                     </div>
 
                     <h3 id="paypal-express-checkout--authorization-and-capture">Authorization and Capture</h3>
-                    <p></p>
+                    <p>This type of transaction is the most common and is the default payment gateway transaction type. Like the Authorization Only request, it notifies PayPal that an Authorization and Capture transaction has been initiated, but does not complete the request. It also returns a secure URL with a token appended to it. The purpose of this token is to identify the transaction when the customer is redirected to PayPal.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-authorization-and-capture" data-toggle="tab">Request</a>
                         </li>
@@ -7688,7 +7691,9 @@ www.paypal.com/cgibin/webscr?cmd=_express-checkout&amp;token=0
                     </div>
 
                     <h3 id="paypal-express-checkout--get-details">Get Details</h3>
-                    <p></p>
+                    <p>A Get Details transaction returns customer’s PayPal Payer ID, email address, and 
+shipping information. Get Details can be called at any time and is most useful after the 
+customer has approved the payment at PayPal. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-get-details" data-toggle="tab">Request</a>
                         </li>
@@ -7999,7 +8004,7 @@ If the value submitted does not match a supported value, the transaction is reje
                     </div>
 
                     <h3 id="paypal-express-checkout--authorization-only,-continued">Authorization Only, Continued</h3>
-                    <p></p>
+                    <p>This request, if successful, actually authorizes the transaction but does not capture it.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-authorization-only,-continued" data-toggle="tab">Request</a>
                         </li>
@@ -8277,7 +8282,8 @@ xmlns=&quot;AnetApi/xml/v1/schema/AnetApiSchema.xsd&quot;&gt;
                     </div>
 
                     <h3 id="paypal-express-checkout--prior-authorization-capture">Prior Authorization Capture</h3>
-                    <p></p>
+                    <p>This transaction type is used to capture an Authorization Only, Continue transaction that 
+was successfully authorized through the payment gateway.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-prior-authorization-capture" data-toggle="tab">Request</a>
                         </li>
@@ -8629,7 +8635,7 @@ US (default): United States
                     </div>
 
                     <h3 id="paypal-express-checkout--authorization-and-capture,-continue">Authorization and Capture, Continue</h3>
-                    <p></p>
+                    <p>This request actually authorizes and captures the transaction. </p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-authorization-and-capture,-continue" data-toggle="tab">Request</a>
                         </li>
@@ -8906,7 +8912,9 @@ If the value submitted does not match a supported value, the transaction is reje
                     </div>
 
                     <h3 id="paypal-express-checkout--void">Void</h3>
-                    <p></p>
+                    <p>This transaction type can be used to cancel an authorization that has not yet been 
+captured. Void can be used only in the following sequence: Authorization Only &gt; 
+Authorization Only, Continue &gt; Void.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-void" data-toggle="tab">Request</a>
                         </li>
@@ -9148,7 +9156,10 @@ If the value submitted does not match a supported value, the transaction is reje
                     </div>
 
                     <h3 id="paypal-express-checkout--credit">Credit</h3>
-                    <p></p>
+                    <p>This transaction type is used to refund a customer for a transaction that was originally 
+processed and successfully settled through the payment gateway. Credits do not occur 
+until after your transactions have been settled on our system, which happens after the 
+cutoff time.</p>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#homereq-credit" data-toggle="tab">Request</a>
                         </li>
