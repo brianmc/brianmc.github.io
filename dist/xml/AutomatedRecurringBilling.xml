@@ -252,6 +252,6 @@
             Subscription Reporting
         </subtitle>
         Detailed subscription information is included in the Transaction Details API. For more information, see the
-        <ulink href="http://www.authorize.net/support/ReportingGuide_XML.pdf">Transaction Details Reporting Guide</ulink>.
+        <ulink url="http://www.authorize.net/support/ReportingGuide_XML.pdf">Transaction Details Reporting Guide</ulink>.
     </section>
 </article>

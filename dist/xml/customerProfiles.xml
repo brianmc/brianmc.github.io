@@ -41,22 +41,22 @@
         </para>
         <itemizedList>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-profile">
                     Create Customer Profile
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-profile">
                     Get Customer Profile
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-profile-ids">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-profile-ids">
                     Get Customer Profile Ids
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-profile">
                     Update Customer Profile
                 </ulink>
             </listItem>
@@ -76,17 +76,17 @@
         </para>
         <itemizedList>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-payment-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-payment-profile">
                     Create Customer Payment Profile
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-payment-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-payment-profile">
                     Get Customer Payment Profile
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-payment-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-payment-profile">
                     Update Customer Payment Profile
                 </ulink>
             </listItem>
@@ -106,17 +106,17 @@
         </para>
         <itemizedList>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-payment-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-create-customer-payment-profile">
                     Create Customer Payment Profile
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-payment-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-get-customer-payment-profile">
                     Get Customer Payment Profile
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-payment-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#manage-customer-profiles-update-customer-payment-profile">
                     Update Customer Payment Profile
                 </ulink>
             </listItem>
@@ -235,32 +235,32 @@
         Use createCustomerProfileTransactionRequest to create a payment transaction from an existing customer profile. You can submit one of six transaction types:
         <itemizedList>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-authorize-a-transaction-from-a-customer-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-authorize-a-transaction-from-a-customer-profile">
                     Authorization Only
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-authorize-and-capture-a-transaction-from-a-customer-profile">
                     Authorization and Capture
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-capture-from-a-customer-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-capture-from-a-customer-profile">
                     Capture Only
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-capturing-a-transaction-with-prior-authorization-from-a-customer-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-capturing-a-transaction-with-prior-authorization-from-a-customer-profile">
                     Prior Authorization and Capture
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-refunding-a-transaction-for-a-customer-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-refunding-a-transaction-for-a-customer-profile">
                     Refund
                 </ulink>
             </listItem>
             <listItem>
-                <ulink href="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-voiding-transactions-for-a-customer-profile">
+                <ulink url="http://developer.authorize.net/api/reference/index.html#charge-customer-profiles-voiding-transactions-for-a-customer-profile">
                     Void
                 </ulink>
             </listItem>
