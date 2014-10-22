@@ -35,7 +35,7 @@
         <para>
             For more information on how Authorize.Net fits into the payment network, See our
             <ulink url="http://www.authorize.net/resources/howitworksdiagram/">credit card processing diagram</ulink>. For API field descriptions and sample code, see the
-            <ulink url="http://developer.authorize.net/api/reference/">API Reference Guide</ulink>. For helpful video training modules, see
+            <ulink url="index.html">API Reference Guide</ulink>. For helpful video training modules, see
             <ulink url="http://developer.authorize.net/training/">Authorize.Net Developer Training.</ulink>
         </para>
     </section>

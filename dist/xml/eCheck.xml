@@ -4,7 +4,7 @@
 
 <article>
 	<title>eCheck.Net</title>
-	<para>eCheck.Net® is Authorize.Net’s exclusive electronic check processing solution. eCheck.Net enables Web merchants already processing credit card transactions through the Authorize.Net Payment Gateway to offer their customers an additional payment option.</para>
+	<para>eCheck.Net® is Authorize.Net's exclusive electronic check processing solution. eCheck.Net enables Web merchants already processing credit card transactions through the Authorize.Net Payment Gateway to offer their customers an additional payment option.</para>
 	<para>An eCheck transaction is similar to a credit card transaction because it uses the createTransactionRequest function. The difference is that for an eCheck transaction, the paymentType element contains  a bankAccount section instead of creditCard. The eCheck fields include:</para>
 	<itemizedList>
 		<listItem><para>accountNumber – The bank account number, masked.</para></listItem>
