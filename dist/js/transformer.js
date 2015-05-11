@@ -17,13 +17,24 @@ return xhttp.responseXML;
 function xmlToString(xmlData) { 
 
     var xmlString;
-    //IE
-    if (window.ActiveXObject){
+
+    // if IE > 9, Mozilla, Chrome
+    if (typeof XMLSerializer == 'function')
+    {
+
+      var serializer = new XMLSerializer();
+      // IE 9 || IE > 10, Mozilla, Chrome
+      xmlString = xmlData.xml || serializer.serializeToString(xmlData);
+
+    } else {
+      // IE <= 8
+      if (window.ActiveXObject){
         xmlString = xmlData.xml;
-    }
-    // code for Mozilla, Firefox, Opera, etc.
-    else{
-        xmlString = (new XMLSerializer()).serializeToString(xmlData);
+      }
+      // code for Opera - somehow Opera fall under window.ActiveXObject
+      else{
+          xmlString = (new XMLSerializer()).serializeToString(xmlData);
+      }
     }
     return xmlString;
 }   
@@ -40,6 +51,9 @@ function produceXMLtoHTML(XMLFile){
   xml = xml.replace("<anetApiMessages>", "<justanode><anetApiMessages>");
   xml = xml.replace("</anetApiMessages>", "</anetApiMessages></justanode>");
 
+  xml = xml.replace("<picture","<img");
+  xml = xml.replace("</picture>","</img>");
+	
   // LOAD THE XML INTO THE JQUERY XML PARSER
   xmlDoc = $.parseXML(xml),
   $xml = $(xmlDoc),
@@ -53,7 +67,8 @@ function produceXMLtoHTML(XMLFile){
   $xml.find("listitem").wrap( "<li></li>" ); 
 
   $xml.find("ulink").each(function (i,e){
-    $(e).wrap( "<a href='" + $(e).attr('url') + "'></a>" );
+    var $e = $(e);
+    $e.wrap( $('<a/>').attr('href', $e.attr('url')) );
   });
 
 
@@ -64,14 +79,20 @@ function produceXMLtoHTML(XMLFile){
   $xml.find("definition").wrap( "<td></td>" );
 
 
+  // THIS IS THE ERROR XML  
+  var x = $xml.find("message");
+  if(x) {
 
-  // THIS IS THE ERROR XML
-  $xml.find("anetApiMessages").wrap( "<table class='lingolist' id='errorCodeTable'></table>" );
-  $xml.find("message").wrap( "<tr></tr>" );
-  $xml.find("code").wrap( "<td></td>" );
-  $xml.find("text").wrap( "<td></td>" );
-  $xml.find("description").wrap( "<td></td>" );
+    var errorResponseTable = $("<table/>").addClass("lingolist").attr("id", "errorCodeTable");
+    errorResponseTable.append("<tr><th><i>CODE</i></th><th><i>TEXT</i></th><th><i>DESCRIPTION</i></th></tr>");
 
+    for ( i=0; i < x.length; i++){ 
+      errorResponseTable.append("<tr><td>" + x[i].getElementsByTagName("code")[0].childNodes[0].nodeValue + "</td><td>" + x[i].getElementsByTagName("text")[0].childNodes[0].nodeValue + "</td><td>" + x[i].getElementsByTagName("description")[0].childNodes[0].nodeValue + "</td></tr>");
+    };
+
+    $xml.find(".marginTopBottomThirtyPixels").after(errorResponseTable);
+    $xml.find('message').remove();  
+  };
 
   $("#Content").append(xmlToString(xmlDoc));
 }
@@ -84,6 +105,3 @@ produceXMLtoHTML("dist/xml/customerProfiles.xml");
 produceXMLtoHTML("dist/xml/PayPal.xml");
 
 produceXMLtoHTML("dist/xml/AnetApiMessages.xml");
-
-// ADD A TITLE BAR TO THE ERROR TABLE 
-$("#errorCodeTable").prepend("<tr><th><i>CODE</i></th><th><i>TEXT</i></th><th><i>DESCRIPTION</i></th></tr>");

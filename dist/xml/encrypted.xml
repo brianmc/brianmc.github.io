@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE guide PUBLIC "http://docbook.org/xml/5.0/dtd/docbook.dtd">
+<!-- This file written in DocBook XML -->
+
+<article>
+	<section id="encrypted">
+		<title>Using an Encrypted Card Reader</title>
+	</section>
+	<para>Authorize.Net enables you to process encrypted payments using a mobile device, a kiosk, or point-of-sale system. Encryption increases security by encrypting payment data as it is being read by the card reader. Authorize.Net uses <ulink url="http://en.wikipedia.org/wiki/Triple_DES">3DES for encryption.</para>
+	<subtitle>Components</subtitle>
+	<para>There are three components involved in an encrypted payment:</para>
+		<orderedlist numeration="arabic">
+	
+			<listitem>
+				<para>The card reader used to encrypt the data. The reader must have an Authorize.Net encryption key in order to work with Authorize.Net systems. Sandbox and production environments use different encryption keys, so you must use different card readers for matching environments. Test thoroughly in the sandbox environment before moving to the production environment.</para>
+			</listitem>
+
+			<listitem>
+				<para>The reader’s SDK, which communicates between the reader and the payment application. The SDK is provided by the manufacturer.</para>
+			</listitem>
+		
+			<listitem>	
+				<para>The payment app, which is created by Authorize.Net and integrated with the reader’s SDK to provide shopping and payment functions with the card reader.</para>
+			</listitem>
+		</orderedlist>	
+	<subtitle>Code Sample</subtitle>
+	<para>A payment transaction with an encrypted card reader uses the <createTransactionRequest> function, but instead of using the <creditCard> element and its child elements, the encrypted payment data must be set in the <encryptedTrackData> element and its child elements. The code sample below shows an encrypted AUTH_CAPTURE transaction from a mobile device:</para>
+<screen>
+<?xml version="1.0" encoding="utf-8"?>
+<createTransactionRequest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">
+	<merchantAuthentication>
+		<name>merchantID</name>
+		<sessionToken>your session token</sessionToken>
+		<mobileDeviceId>your device ID</mobileDeviceId>
+	</merchantAuthentication>
+	<transactionRequest>
+		<transactionType>authCaptureTransaction</transactionType>
+		<amount>123.00</amount>
+		<payment>
+			<encryptedCreditCard>
+				<encryptedTrackData>
+					<FormOfPayment>
+						<Value>
+							<Encoding>Hex</Encoding>
+							<EncryptionAlgorithm>TDES</EncryptionAlgorithm>
+							<Scheme>
+								<DUKPT>
+									<Operation>DECRYPT</Operation>
+									<Mode>
+										<Data>1</Data>
+									</Mode>
+									<DeviceInfo>
+										<Description>4649443D4944544543482E556E694D61672E416E64726F69642E53646B7631</Description>
+									</DeviceInfo>
+									<EncryptedData>
+										<Value>02f300801f342600039b252a343237352a2a2a2a2a2a2a2a353637355e332f54455354205e2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a3f2a3b343237352a2a2a2a2a2a2a2a353637353d2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a2a3f2a521db2603bfe6169fc371211161c4ad6edd7294a8352af1ba8b388c527d8d6335286413ad67521b8be085da998cef7ae3621b0b72eecd6d61953a4a268e02a8cdff3d365216df73646b326d8dac369c11a2a3a4a9336addc4a15ae5d8843e0163bae895b9b4df3253439b4dd885363ad108604ea04f2e4fac701a5a0e65c54e1301a5ed7706eb88762994901000000400015ac1e03</Value>
+									</EncryptedData>
+								</DUKPT>
+							</Scheme>
+						</Value>
+					</FormOfPayment>
+				</encryptedTrackData>
+			</encryptedCreditCard>
+		</payment>
+		<lineItems>
+			<lineItem>
+				<itemId>1</itemId>
+				<name>vase</name>
+				<description>Cannes logo </description>
+				<quantity>18</quantity>
+				<unitPrice>45.00</unitPrice>
+			</lineItem>
+		</lineItems>
+		<tax>
+			<amount>4.26</amount>
+			<name>level2 tax name</name>
+			<description>level2 tax</description>
+		</tax>
+		<duty>
+			<amount>8.55</amount>
+			<name>duty name</name>
+			<description>duty description</description>
+		</duty>
+		<shipping>
+			<amount>4.26</amount>
+			<name>level2 tax name</name>
+			<description>level2 tax</description>
+		</shipping>
+		<poNumber>456654</poNumber>
+		<customer>
+			<id>18</id>
+			<email>someone@emailaddress.com</email>
+		</customer>
+		<order>
+			<invoiceNumber>INV1</invoiceNumber>
+			<description>Bicycledescription>
+		</order>
+		<billTo>
+			<firstName>John</firstName>
+			<lastName>Smith</lastName>
+			<company>AAA-FruitCompany.com</company>
+			<address>1234 Main St</address>
+			<city>Bellevue</city>
+			<state>WA</state>
+			<zip>98004</zip>
+			<country>United States</country>
+			<phoneNumber>555-555-5555</phoneNumber>
+			<faxNumber>555-555-1234</faxNumber>
+		</billTo>
+		<shipTo>
+			<firstName>John</firstName>
+			<lastName>Smith</lastName>
+			<company>The Beatles</company>
+			<address>com.FruitCompany-AAA</address>
+			<city>Bellevue</city>
+			<state>WA</state>
+			<zip>40089</zip>
+			<country>States United</country>
+		</shipTo>
+		<customerIP>127.0.0.1</customerIP>
+		<retail>
+			<marketType>2</marketType>
+			<deviceType>7</deviceType>
+		</retail>
+		<transactionSettings>
+			<setting>
+				<settingName>allowPartialAuth</settingName>
+				<settingValue>False</settingValue>
+			</setting>
+			<setting>
+				<settingName>testRequest</settingName>
+				<settingValue>False</settingValue>
+			</setting>
+		</transactionSettings>
+		<userFields>
+			<userField>
+				<name>x_type</name>
+				<value>AUTH_CAPTURE</value>
+			</userField>
+		</userFields>
+	</transactionRequest>
+</createTransactionRequest>
+</screen>
+	<subtitle>Authentication</subtitle>
+	<para>There are two authentication methods depending on the type of device that you are using, shown below. </para>
+	<subsubtitle>Mobile Device</subsubtitle>
+	<para>When you use a mobile device to process encrypted payments, you must use your user login ID, password, and device ID for authentication. After you are logged in, subsequent transactions use login ID, session token, and device ID for authentication.</para> 
+	<para><emphasis>Note:</emphasis> For security purposes, never store your API login and transaction key on a mobile device.</para>
+	<subsubtitle>Server</subsubtitle>
+	<para>When using a server device like a POS kiosk, securely store and use the API login ID and transaction key for authentication.</para> 
+	<para><emphasis>Note:</emphasis> The transaction key should be stored on and retrieved from the service device.</para>
+	<subtitle>Obtaining an Encrypted Card Reader</subtitle>
+	<para>To process encrypted payments with Authorize.Net, you must use a card reader with an approved key. You can acquire an approved reader at the <ulink url="http://authorizenet.posportal.com/">Authorize.Net POS Portal.<ulink></para>
+

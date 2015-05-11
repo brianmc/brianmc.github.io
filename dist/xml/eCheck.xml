@@ -29,9 +29,9 @@
     </payment></screen>
 <para><subtitle>Understanding eCheck Types</subtitle></para>
 <para><emphasis>Accounts Receivable Conversion (ARC)</emphasis></para>
-<para>This transaction type is a one-time charge against a customer's checking account. ARC allows merchants to collect payments received in the mail or left in a drop-box, and convert them to an electronic payment.</para> 
+<para>This transaction type is a one-time charge against a customer's checking account. ARC allows merchants to collect payments received in the mail or left in a drop-box, and convert them to an electronic payment. When you use this eCheck type, NACHA requires that you use a Magnetic Ink Character Recognition Reader to provide proof of a paper check.</para> 
 <para><subtitle>Back Office Conversion (BOC)</subtitle></para>
-<para>This transaction type is a one-time charge against a customer's checking account. BOC allows merchants to collect a check written at a point of sale (checkout counter, manned bill payment location, service call location) and convert it to an ACH debit during back office processing.</para>
+<para>This transaction type is a one-time charge against a customer's checking account. BOC allows merchants to collect a check written at a point of sale (checkout counter, manned bill payment location, service call location) and convert it to an ACH debit during back office processing. When you use this eCheck type, NACHA requires that you use a Magnetic Ink Character Recognition Reader to provide proof of a paper check.</para>
 <para><subtitle>Cash Concentration or Disbursement (CCD)</subtitle></para>
 <para>This transaction type is a one-time or recurring charge or refund against a business checking account. CCD transactions are fund transfers to or from a corporate entity.</para>
 <para><subtitle>Prearranged Payment and Deposit Entry (PPD)</subtitle></para>

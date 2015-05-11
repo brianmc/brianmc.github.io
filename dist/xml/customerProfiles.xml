@@ -31,7 +31,7 @@
             The Profiles API supports integration with a web site payment form or a proprietary business application. The profiles, which include payment and shipping information, can then be referenced in future transactions, eliminating steps in the transaction process for repeat customers and potentially increasing customer loyalty.
         </para>
         <para>
-            <picture src="http://developer.authorize.net/api/reference/img/CIMdiagram.png"></picture>
+            <picture src="http://developer.authorize.net/api/reference/dist/img/CIMdiagram.png"></picture>
         </para>
         <para>
             A customer profile contains minimal information about the customer such as ID, description, and email address, but its main purpose is to link multiple payment and shipping profiles with a single customer entity.
@@ -58,6 +58,11 @@
             <listItem>
                 <ulink url="index.html#manage-customer-profiles-update-customer-profile">
                     Update Customer Profile
+                </ulink>
+            </listItem>
+           <listItem>
+                <ulink url="index.html#manage-customer-profiles-create-a-customer-profile-from-a-transaction">
+                    Create a Customer Profile from a Transaction
                 </ulink>
             </listItem>
         </itemizedList>
@@ -126,7 +131,7 @@
         <subtitle>
             Duplicate Profile Verification
         </subtitle>
-        <para>The duplicate profile verification prevents accidental duplicate submissions. When you submit calls to the createCustomerProfileRequest, createCustomerPaymentProfileRequest, and createCustomerShippingAddressRequest functions, the payment gateway checks certain fields in each request to ensure that a profile with the same information does not already exist. If the payment gateway finds a matching profile, it returns an error message. If the duplicate profile is a customer profile, the error message contains the ID of the existing profile. The following table lists the fields for each function that cannot match an existing profile. An error occurs only when all of the values for each field being submitted match all of the values for each field in the existing profile.</para>
+        <para>The duplicate profile verification prevents accidental duplicate submissions. When you submit calls to the createCustomerProfileRequest, createCustomerPaymentProfileRequest, and createCustomerShippingAddressRequest functions, the payment gateway checks certain fields in each request to ensure that a profile with the same information does not already exist. If the payment gateway finds a matching profile, it returns an error message. If the duplicate profile is a customer profile, the error message contains the ID of the existing profile. The following table lists the fields for each function that cannot match an existing profile. An error occurs only when all of the values for each field being submitted match all of the values for each field in the existing profile.</para><br />
 		<table class="regulartable">
             <tr>
                 <td>
@@ -219,16 +224,235 @@
                 </td>
             </tr>
         </table>
-		<para>
-		</para>
+		<para>  </para>
     </section>
-
+	
+    <section id="custInfoManager-hosted">
+		<title>Using the Hosted Form</title>
+		<subtitle>Identifying the Customer</subtitle>
+		<para>Before you can present the hosted form, you need a way of identifying returning customers. You can have the customer log in to your site. Several content management systems and shopping carts automatically support that functionality. It is important that the login process is reliable so that one customer does not have access to another's stored payment information.</para>
+		<para>For first-time customers, you must create a new profile using the <ulink url="index.html#manage-customer-profiles-create-customer-profile">createCustomerProfileRequest</ulink> method.</para>
+		<para>A customer profile contains any unique combination:</para>
+		<itemizedList>
+            <listItem>
+                Customer ID (any value you choose)
+            </listItem>
+            <listItem>
+                Email
+            </listItem>
+            <listItem>
+                Description
+            </listItem>
+		</itemizedList>
+		<para>Once the profile is created, you'll receive a unique profile ID that you can use to identify this customer in the future.</para>
+		<subtitle>Retrieving a Token</subtitle>
+		<para>Before you can send the HTML form post, you will need to retrieve a token using the <ulink url="index.html#manage-customer-profiles-get-hosted-profile-page">getHostedProfilePageRequest</ulink> method.</para>
+		<para>You must include the Customer's profile ID in your request. </para>
+		<para>Settings include:</para>
+        <itemizedList>
+            <listItem>
+                Return URL and return text--used to place a link back to your site. The return URL and return text are usually only used if you are having the customer completely leave your site and go to our hosted form.
+            </listItem>
+            <listItem>
+                Page border visibility--determines if a black border will be drawn around the edge of the hosted form. This setting may help you seamlessly fit it into your own site.
+            </listItem>
+            <listItem>
+                Heading background color--defaults to gray; you can set this to any color.
+            </listItem>
+            <listItem>
+                Communicator URL--used for embedding the hosted form into your own page.
+            </listItem>
+            <listItem>
+                HostedProfile validation mode--liveMode or testMode
+            </listItem>	
+		</itemizedList>
+		<subtitle>Presenting the Hosted Form</subtitle>
+		<para>The token is passed in a basic HTML form with the input name "token". The input name "token" is the only input value that must be included for a request to add a new payment or shipping profile, or to manage all of your profiles in one window. If you want to prompt to edit only a single existing profile, then you must include the associated profile ID in an additional "paymentProfileId" or "shippingAddressId" form POST field.</para>
+		<para>The type of form that you display is determined by the URL that the form is submitted to, also known as the form action, shown below:</para>
+		<subsubtitle>Form Action URLs</subsubtitle>
+		<itemizedList>
+			<listItem>Manage Profiles<ulink url="https://test.authorize.net/profile/manage">  https://test.authorize.net/profile/manage</ulink></listItem>
+			<listItem>Add Payment Profile<ulink url="https://test.authorize.net/profile/addPayment">  https://test.authorize.net/profile/addPayment</ulink></listItem>
+			<listItem>Add Shipping Profile<ulink url="https://test.authorize.net/profile/addShipping">  https://test.authorize.net/profile/addShipping</ulink></listItem>
+			<listItem>Edit Payment Profile<ulink url="https://test.authorize.net/profile/editPayment">  https://test.authorize.net/profile/editPayment</ulink></listItem>
+			<listItem>Edit Shipping Profile<ulink url="https://test.authorize.net/profile/editShipping">  https://test.authorize.net/profile/editShipping</ulink></listItem>
+		</itemizedList>
+    <subsubtitle>Conditional Fields</subsubtitle>
+		<itemizedList>
+			<listItem>Edit Payment Profile include paymentProfileId</listItem>
+			<listItem>Edit Shipping Address include shppingAddressId</listItem>
+    </itemizedList>
+		<subtitle>Displaying the Form</subtitle>
+		<para>The hosted form is designed so that you have the freedom to integrate it into your site in almost any way. You can configure it as a separate pop-up window or embed it into your existing site. You can use a "shadow box" layout, in which the box pops up in front of the rest of your site, but not in a new window. Finally, you can just use the full window by directing the customer to Authorize.Net and letting them direct themselves back again, which avoids the use of Javascript. </para>
+		<para>We have <ulink url="http://developer.authorize.net/downloads/samplecode/">sample code</ulink> available in our developer forums that shows one example of how to open the hosted form in a shadow box. The shadow box layout can also be accomplished with third-party Javascript toolkits such as jquery.</para>
+		<subsubtitle>Redirect</subsubtitle>
+		<para>To implement hosted CIM access by using a redirect to Authorize.Net, follow these steps:</para>
+		<para><emphasis>Step 1 - </emphasis>When you receive the token returned by the GetHostedProfilePageResponse function call, put a hidden form somewhere on your page (the value for the token will be the value returned by the function call).</para>
+		<para>If you are using the test environment, replace secure.authorize.net/profile/manage with test.authorize.net/profile/manage.</para>
+		<para><code>&lt;form method=&quot;post&quot; action=&quot;https://secure.authorize.net/profile/manage&quot;&gt;</code></para>
+        <para><code>    &lt;input type=&quot;hidden&quot; name=&quot;token&quot; value=&quot;pfGaUNntEKMGfyWPmI4p+Bb4TJf2F0NCoCBp3cOXB7&quot;/&gt;</code></para> 
+		<para><code>    &lt;input type=&quot;submit&quot; value=&quot;Manage my payment and shipping information&quot;/&gt;</code></para>
+		<para><code>&lt;/form&gt;</code></para>
+		<para></para>
+		<para><emphasis>Step 2 - </emphasis>Add a button on your page that redirects the customer to Authorize.Net's secure site. You can customize the text:</para>
+		<para><code>&lt;input type=&quot;button&quot; onclick= &quot;document.getElementById( &#39;formAuthorizeNetPage&#39;).submit();&quot;&gt;Manage my payment and shipping information&lt;/input&gt;</code></para>
+		<para>In this example, the Manage my payment and shipping information button directs users to the Authorize.Net Customer Information Manager Hosted page, where they can:</para>
+		<para>
+		<itemizedList>
+			<listItem>Create a new payment profile</listItem>
+			<listItem>Update or delete current credit card or bank information</listItem>
+			<listItem>Enter a new shipping address</listItem>
+			<listItem>Update or delete current shipping address</listItem>
+		</itemizedList>
+		</para>
+		<subsubtitle>iFrame</subsubtitle>
+		<para>For security reasons, web browsers do not allow Javascript communication between two pages that are hosted on different domains, even if one is embedded within another. Therefore, our hosted form cannot directly provide information to the page that is encapsulating it.</para>
+		<para>However, it is beneficial to provide some small amount of information indirectly through a third page. You can embed our hosted form in an iFrame, which enables us to embed your iFrameCommunicator inside our hosted form. This channel of communication allows us to send messages to your iFrameCommunicator page. As long as your communicator page is hosted on the same domain as your main page, it can to communicate</para>
+		<para>This channel of communication is used to pass a few basic messages to your site:</para>
+		<itemizedList>
+			<listItem>Ideal height and width of the window--allows you to resize the frame and avoid any scrollbars from appearing.</listItem>
+			<listItem>Changes Saved--returned whenever the customer saves changes to their profile. You can use this notification to know when to look for those changes through the CIM API.</listItem>
+			<listItem>Request Cancelled--returned when the merchant backs out of the hosted form.</listItem>
+		</itemizedList>
+		<para><emphasis role="bold">NOTE:</emphasis> You must use https when using iFrameCommunicator.</para>
+		<subtitle>Guidelines for Parameter Setting</subtitle>
+		<para>The following parameter settings are used with the getHostedProfilePageRequest field.</para>
+				<para></para>
+		<para>To integrate to the hosted page as a redirect, pass the hostedProfileReturnUrl parameter and the hostedProfileReturnUrlText parameter. The parameter hostedProfilePageBorderVisible=true is optional. </para>
+				<para></para>
+		<para>To integrate to the hosted page as a popup, pass the hostedProfilePageBorderVisible=false parameter and the hostedProfileIFrameCommunicatorUrl parameter.</para>
+				<para></para>
+		<para>The following table shows possible settings: </para>
+      <table class="regulartable">
+        <tr>
+          <td>
+            <para>
+              <emphasis role="bold">Parameter</emphasis>
+            </para>
+          </td>
+          <td>
+            <para>
+              <emphasis role="bold">Description</emphasis>
+            </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para>hostedProfileReturnUrl</para>
+          </td>
+          <td>
+            <para>Enter the URL for the page that the customer returns to when the hosted session ends. Do not pass this setting for iframes or popups.</para>
+            <para>The return URL is validated to verify that it begins with http:// or https://</para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para>hostedProfileReturnUrlText</para>
+          </td>
+          <td>
+            <para>
+              Enter the text to display on the button that returns the customer to your web site. The value can be any text up to 200 characters. If you do not pass this parameter, the default button text is <emphasis>Continue</emphasis>. Do not pass this setting for iframes or popups.
+            </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para>hostedProfileReturnUrlText</para>
+          </td>
+          <td>
+            <para>
+              Enter the text to display on the button that returns
+              the customer to your web site. The value can be
+              any text up to 200 characters. If you do not pass
+              this parameter, the default button text is
+              <emphasis>Continue</emphasis>. Do not pass this setting for iframes or popups.
+            </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para>hostedProfilePageBorderVisible</para>
+          </td>
+          <td>
+            <para>
+              Enter <emphasis role="bold">true</emphasis> or <emphasis role="bold">	 false</emphasis>. Must be false for iframes or
+              popups, and must be true for redirects
+            </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para>hostedProfileHeadingBgColor</para>
+          </td>
+          <td>
+            <para>
+              Enter a hex color string such as #e0e0e0. The
+              background color of the section headers changes
+              from gray to a custom color.
+            </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para>hostedProfileIFrameCommunicatorUrl</para>
+          </td>
+          <td>
+            <para>
+              Enter the URL to a page that can communicate
+              with the merchant's main page using javascript.
+              This parameter enables you to dynamically
+              change the size of the popup so that there are no
+              scroll bars. This parameter is required only for
+              iframe or lightbox applications.
+            </para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para>hostedProfileValidationMode</para>
+          </td>
+          <td>
+            <para>liveMode--this value is the default setting. liveMode generates a transaction to the processor in the amount of 0.01 or 0.00. If successful, the transaction is immediately voided. Visa authorization transactions are changing from 0.01 to 0.00 for all processors. All other credit card types use 0.01.</para>
+            <para>Standard gateway and merchant account fees may apply to the authorization transactions. For Visa transactions using 0.00, the billTo address and billTo zip fields are required.</para>
+            <para>testMode--performs field validation only. All fields are validated. However, fields with unrestricted field definitions (such as telephone number) do not generate errors.</para>
+            <para>If you select testMode, a 1.00 test transaction is submitted using the Luhn MOD 10 algorithm to verify that the credit card number is in a valid format. This test transaction does not appear on the customer's credit card statement, but it will generate and send a transaction receipt email to the merchant.</para>
+            <para>If a validation transaction is unsuccessful, the profile is not created, and the merchant receives an error.</para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para>hostedProfileBillingAddressRequired</para>
+          </td>
+          <td>
+            <para>Format: Boolean; default is false.</para>
+            <para>Notes: When set to true, results in an asterisk next to the required fields on the hosted form. Sets First Name, Last Name, Address, City, State, and Zip Code as required fields in order for a payment profile to be created or updated within a hosted CIM form.</para>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <para>hostedProfileCardCodeRequired</para>
+          </td>
+          <td>
+            <para>Format: Boolean. Default is false.</para>
+            <para>Notes: When set to true, sets the Card Code field as required in order for a payment profile to be created or updated within a hosted CIM form. Results in an asterisk next to the card code field on the hosted form.</para>
+          </td>
+        </tr>
+      </table>
+	  <para>  </para>
+    </section>
     <section id="custInfoManager-chargingCustomers">
         <title>
             Charging Customer Profiles
         </title>
     </section>
-    <section id="custInfoManager-createCustProfReq">
+    <section id="custInfoManager-createTransactionRequest">
+		<subtitle>Charging a Profile Using the createtransactionRequest Function</subtitle>
+		<para>You can use profile information in the <screen>payment</screen> element of a createTransactionRequest function.</para>
+		<itemizedList>
+			<listItem><ulink url="http://developer.authorize.net/api/reference/index.html#payment-transactions-charge-a-customer-profile">Charge a profile using the CreateTransactionRequest function.</ulink></listItem>
+		</itemizedList>
+    </section>
+	<section id="custInfoManager-createCustProfReq">
         <subtitle>
             Creating a Customer Profile Transaction Request
         </subtitle>
@@ -308,5 +532,4 @@
             </listItem>
         </itemizedList>
     </section>
-
 </article>
