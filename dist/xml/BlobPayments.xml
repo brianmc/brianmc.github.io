@@ -1,0 +1,34 @@
+<article>
+    <section id="StartingGuide-BlobPayments">
+        <para>
+            <title>
+                Blob Payments
+            </title>
+        </para>
+    </section>
+	<section id="StartingGuide-BlobPayments-intro">
+        <para>
+		Blob Payments is ....
+        </para>
+    </section>  
+    <section id="StartingGuide-BlobPayments-preintegration">
+	    <para>
+            <subtitle>
+                Pre-Integration Steps
+            </subtitle>
+        </para>
+        <itemizedList>
+            <listItem>
+                Do 1
+            </listItem>
+            <listItem>
+                Do Two
+            </listItem>
+            <listItem>
+                Three
+            </listItem>
+        </itemizedList>
+    </section>
+
+
+</article>

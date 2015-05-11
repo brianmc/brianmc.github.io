@@ -1,5 +1,29 @@
-<form method="post" action="https://test.secure.authorize.net/profile/manage">
-<input type="hidden" name="token" 
-value="aIESyVW8IYI/FCDYH/BaC7Gl/i/Qwni6/T8ajAMyw5BvxagCRtpdxpzLNvZXHxjt+idY5IXE8nVwolLCMoPBNutXwzvG+L4kE8NcOBC3NhAhRUevSLyL9S2shbgcZT48Ieqp059KKN0fzAyXgOPi3aTgt1DACfyfCELZAxnLiA97YC0yUoVyFRt6vNZlxpJc/WZ9gpkHAGqIhOPcilp8ba/kdWSJGXCnTSEOxVXBm+bxXcdxoEZqfwgoInQKPvcuI9Wnjk6R/nzwtBl54wruuJSE7EJ/ZQBKe2YWVr52HLZjmpoaGAjmr0aNk3hd40BmbSznxjUtD9+wtusFjh/rOjjpJWdO8pENmtK102wVmEOGAirfBQZbihe9Ge/1+Rab"/> 
-<input type="submit" value="Manage my payment and shipping />
+<form method="post" action="https://test.authorize.net/profile/manage">
+<input type="text" name="token" 
+value=""/> 
+<input type="submit" value="Manage my payment and shipping information."/> 
+</form>
+<form method="post" action="https://test.authorize.net/profile/addpayment">
+<input type="text" name="token" 
+value=""/> 
+<input type="submit" value="Add Payment Profile."/> 
+</form>
+<form method="post" action="https://test.authorize.net/profile/addShipping">
+<input type="text" name="token" 
+value=""/> 
+<input type="submit" value="Add shipping profile."/> 
+</form>
+<form method="post" action="https://test.authorize.net/profile/editPayment">
+<input type="text" name="token" 
+value=""/> 
+Payment Profile ID : <input type="text" name="paymentProfileId" 
+value=""/> 
+<input type="submit" value="Edit payment profile."/> 
+</form>
+<form method="post" action="https://test.authorize.net/profile/editPayment">
+<input type="text" name="token" 
+value=""/> 
+Shipping Profile ID : <input type="text" name="shippingProfileId" 
+value=""/> 
+<input type="submit" value="Edit shipping profile."/> 
 </form>

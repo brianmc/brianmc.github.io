@@ -1,0 +1,639 @@
+<article>
+	    <section id="xxxxx">
+        <title>
+            Charging Customer Profiles
+        </title>
+        <table class="table table-condensed">
+            <thead>
+                <tr>
+                    <th>CODE</th>
+                    <th>TEXT</th>
+                    <th>DESCRIPTION</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        I00001
+                    </td>
+                    <td>
+                        Successful
+                    </td>
+                    <td>
+                        The record was processed successfully
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        I00003
+                    </td>
+                    <td>
+                        The record has already been deleted
+                    </td>
+                    <td>
+                        The record has already been deleted
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        I00005
+                    </td>
+                    <td>
+                        The mobile device has been submitted for approval
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        I00006
+                    </td>
+                    <td>
+                        The mobile device is approved and ready for use
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00001
+                    </td>
+                    <td>
+                        An error occurred during processing. Try again.
+                    </td>
+                    <td>
+                        An unexpected system error occurred while processing this request.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00002
+                    </td>
+                    <td>
+                        The content-type specified is not supported.
+                    </td>
+                    <td>
+                        The only supported content-types are text/xml and application/xml.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00003
+                    </td>
+                    <td>
+                        An error occurred while parsing the XML request.
+                    </td>
+                    <td>
+                        This is the result of an XML parser error.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00004
+                    </td>
+                    <td>
+                        The name of the requested API method is invalid.
+                    </td>
+                    <td>
+                        The name of the root node of the XML request is the API method being called. It is not valid.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00005
+                    </td>
+                    <td>
+                        The merchantAuthentication.transactionKey is invalid or not present.
+                    </td>
+                    <td>
+                        Merchant authentication requires a valid value for transaction key.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00006
+                    </td>
+                    <td>
+                        The merchantAuthentication.name is invalid or not present.
+                    </td>
+                    <td>
+                        Merchant authentication requires a valid value for name.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00007
+                    </td>
+                    <td>
+                        User authentication failed due to invalid authentication values.
+                    </td>
+                    <td>
+                        The name/and or transaction key is invalid.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00008
+                    </td>
+                    <td>
+                        User authentication failed. The payment gateway account or user is inactive.
+                    </td>
+                    <td>
+                        The payment gateway or user account is not currently active.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00009
+                    </td>
+                    <td>
+                        The payment gateway account is in Test Mode. The request cannot be processed.
+                    </td>
+                    <td>
+                        The requested API method cannot be executed while the payment gateway account is in Test Mode.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00010
+                    </td>
+                    <td>
+                        User authentication failed. You do not have the appropriate permissions.
+                    </td>
+                    <td>
+                        The user does not have permission to call the API.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00011
+                    </td>
+                    <td>
+                        Access denied. You do not have the appropriate permissions.
+                    </td>
+                    <td>
+                        The user does not have permission to call the API method.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00012
+                    </td>
+                    <td>
+                        A duplicate subscription already exists.
+                    </td>
+                    <td>
+                        A duplicate of the subscription was already submitted. The duplicate check looks at several fields including payment information, billing information and, specifically for subscriptions, Start Date, Interval and Unit.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00013
+                    </td>
+                    <td>
+                        The field is invalid.
+                    </td>
+                    <td>
+                        One of the field values is not valid.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00014
+                    </td>
+                    <td>
+                        A required field is not present.
+                    </td>
+                    <td>
+                        One of the required fields was not present.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00015
+                    </td>
+                    <td>
+                        The field length is invalid.
+                    </td>
+                    <td>
+                        One of the fields has an invalid length.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00016
+                    </td>
+                    <td>
+                        The field type is invalid.
+                    </td>
+                    <td>
+                        The field type is not valid.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00017
+                    </td>
+                    <td>
+                        The startDate cannot occur in the past.
+                    </td>
+                    <td>
+                        The subscription start date cannot occur before the subscription submission date.
+                        <span style="color:blue; font-weight:bold;">
+                            Note :
+                        </span>
+                        Validation is performed against local server time, which is Mountain Time.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+
+                        E00018
+                    </td>
+                    <td>
+                        The credit card expires before the subscription startDate.
+                    </td>
+                    <td>
+                        The credit card is not valid as of the start date of the subscription.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00019
+                    </td>
+                    <td>
+                        The customer taxId or driversLicense information is required.
+                    </td>
+                    <td>
+                        The customer tax ID or driver’s license information (driver’s license number, driver’s license state, driver’s license DOB) is required for the subscription.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00020
+                    </td>
+                    <td>
+                        The payment gateway account is not enabled for eCheck.Net subscriptions.
+                    </td>
+                    <td>
+                        This payment gateway account is not set up to process eCheck.Net subscriptions.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00021
+                    </td>
+                    <td>
+                        The payment gateway account is not enabled for credit card subscriptions.
+                    </td>
+                    <td>
+                        This payment gateway account is not set up to process credit card subscriptions.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00022
+                    </td>
+                    <td>
+                        The interval length cannot exceed 365 days or 12 months.
+                    </td>
+                    <td>
+                        The interval length must be 7 to 365 days or 1 to 12 months.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00024
+                    </td>
+                    <td>
+                        The trialOccurrences is required when trialAmount is specified.
+                    </td>
+                    <td>
+                        The number of trial occurrences cannot be zero if a valid trial amount is submitted.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00025
+                    </td>
+                    <td>
+                        Automated Recurring Billing is not enabled.
+                    </td>
+                    <td>
+                        The payment gateway account is not enabled for Automated Recurring Billing.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00026
+                    </td>
+                    <td>
+                        Both trialAmount and trialOccurrences are required.
+                    </td>
+                    <td>
+                        If either a trial amount or number of trial occurrences is specified then values for both must be submitted.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00027
+                    </td>
+                    <td>
+                        The test transaction was unsuccessful.
+                    </td>
+                    <td>
+                        An approval was not returned for the test transaction.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00028
+                    </td>
+                    <td>
+                        The trialOccurrences must be less than totalOccurrences.
+                    </td>
+                    <td>
+                        The number of trial occurrences specified must be less than the number of total occurrences specified.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00029
+                    </td>
+                    <td>
+                        Payment information is required.
+                    </td>
+                    <td>
+                        Payment information is required when creating a subscription.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00030
+                    </td>
+                    <td>
+                        A paymentSchedule is required.
+                    </td>
+                    <td>
+                        A payment schedule is required when creating a subscription.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00031
+                    </td>
+                    <td>
+                        The amount is required.
+                    </td>
+                    <td>
+                        The subscription amount is required when creating a subscription.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00032
+                    </td>
+                    <td>
+                        The startDate is required.
+                    </td>
+                    <td>
+                        The subscription start date is required to create a subscription.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00033
+                    </td>
+                    <td>
+                        The subscription Start Date cannot be changed.
+                    </td>
+                    <td>
+                        Once a subscription is created the Start Date cannot be changed.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00034
+                    </td>
+                    <td>
+                        The interval information cannot be changed.
+                    </td>
+                    <td>
+                        Once a subscription is created the subscription interval cannot be changed.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00035
+                    </td>
+                    <td>
+                        The subscription cannot be found.
+                    </td>
+                    <td>
+                        The subscription ID for this request is not valid for this merchant.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00036
+                    </td>
+                    <td>
+                        The payment type cannot be changed.
+                    </td>
+                    <td>
+                        Changing the subscription payment type between credit card and eCheck.Net is not currently supported.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00037
+                    </td>
+                    <td>
+                        The subscription cannot be updated.
+                    </td>
+                    <td>
+                        Subscriptions that are expired, canceled or terminated cannot be updated.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00038
+                    </td>
+                    <td>
+                        The subscription cannot be canceled.
+                    </td>
+                    <td>
+                        Subscriptions that are expired or terminated cannot be canceled.
+                    </td>
+                </tr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <tr>
+                    <td>
+                        E00039
+                    </td>
+                    <td>
+                        A duplicate record already exists.
+                    </td>
+                    <td>
+                        A duplicate of the customer profile, customer payment profile, or customer address was already submitted.
+                    </td>
+                </tr>
+
+  
+                <tr>
+                    <td>
+                        E00040
+                    </td>
+                    <td>
+                        The record cannot be found.
+                    </td>
+                    <td>
+                        The profileID, paymentProfileId, or shippingAddressId for this request is not valid for
+this merchant.
+                    </td>
+                </tr>
+  
+                <tr>
+                    <td>
+                        E00041
+                    </td>
+                    <td>
+                        One or more fields must contain a value.
+                    </td>
+                    <td>
+                        All of the fields were empty or missing.
+                    </td>
+                </tr>
+  
+                <tr>
+                    <td>
+                        E00042
+                    </td>
+                    <td>
+                        The maximum number of payment profiles allowed for the customer profile is {0}.
+                    </td>
+                    <td>
+                        The maximum number of payment profiles for the
+customer profile has been reached.
+                    </td>
+                </tr>
+  
+                <tr>
+                    <td>
+                        E00043
+                    </td>
+                    <td>
+                         The maximum number of shipping addresses allowed for the customer profile is {0}.
+                    </td>
+                    <td>
+                        The maximum number of shipping addresses for the customer profile has been reached.
+                    </td>
+                </tr>
+ 
+                <tr>
+                    <td>
+                        E00044
+                    </td>
+                    <td>
+                        Customer Information Manager is not enabled.
+                    </td>
+                    <td>
+                        The payment gateway account is not enabled for Customer Information Manager (CIM).
+                    </td>
+                </tr>
+  
+
+
+
+
+
+                <tr>
+                    <td>
+                        E00045
+                    </td>
+                    <td>
+                        The root node does not reference a valid XML namespace.
+                    </td>
+                    <td>
+                        An error exists in the XML namespace. This error is similar to E00003.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00054
+                    </td>
+                    <td>
+                        The mobile device is not registered with this merchant account.
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00055
+                    </td>
+                    <td>
+                        The mobile device is pending approval by the account administrator.
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00056
+                    </td>
+                    <td>
+                        The mobile device has been disabled for use with this account.
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00057
+                    </td>
+                    <td>
+                        The user does not have permissions to submit requests from a mobile device.
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00058
+                    </td>
+                    <td>
+                        The merchant has met or exceeded the number of pending mobile devices permitted for this account.
+                    </td>
+                    <td>
+                        An account is limited to 100 pending mobile devices. You need to enable, disable, or delete some devices.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        E00059
+                    </td>
+                    <td>
+                        The authentication type is not allowed for this method call.
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</article>

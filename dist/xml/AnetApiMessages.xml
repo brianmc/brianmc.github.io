@@ -1,0 +1,587 @@
+﻿  <section id="information-and-error-messages">
+<anetApiMessages >
+
+  <title class="marginTopBottomThirtyPixels">Error ResponseCodes</title>
+
+  <message>
+    <code>I00001</code>
+    <text>Successful.</text>
+    <description>The request was processed successfully.</description>
+  </message>
+  <message>
+    <code>I00002</code>
+    <text>The subscription has already been canceled.</text>
+    <description>The subscription has already been canceled.</description>
+  </message>
+  <message>
+    <code>I00003</code>
+    <text>The record has already been deleted.</text>
+    <description>The record has already been deleted.</description>
+  </message>
+  <message>
+    <code>I00004</code>
+    <text>No records found.</text>
+    <description>No records have been found that match your query.</description>
+  </message>
+	<message>
+		<code>I00005</code>
+		<text>The mobile device has been submitted for approval by the account administrator.</text>
+		<description>The mobile device was successfully inserted into the database.</description>
+	</message>
+	<message>
+		<code>I00006</code>
+		<text>The mobile device is approved and ready for use.</text>
+		<description>The mobile device was successfully registered and approved by the account administrator.</description>
+	</message>
+  <message>
+    <code>I00007</code>
+    <text>The Payment Gateway Account service (id=8) has already been accepted.</text>
+    <description>The Payment Gateway Account service (id=8) has already been accepted.</description>
+  </message>
+  <message>
+    <code>I00008</code>
+    <text>The Payment Gateway Account service (id=8) has already been declined.</text>
+    <description>The Payment Gateway Account service (id=8) has already been declined.</description>
+  </message>
+  <message>
+    <code>I00009</code>
+    <text>The APIUser already exists.</text>
+    <description>The APIUser already exists.</description>
+  </message>
+   <message>
+    <code>I00010</code>
+    <text>The merchant is activated successfully.</text>
+    <description>The merchant is activated successfully.</description>
+  </message>
+   <message>
+    <code>I00011</code>
+    <text>The merchant is not activated.</text>
+    <description>The merchant is not activated.</description>
+  </message>
+  <message>
+    <code>I99999</code>
+    <text>This feature has not yet been completed. One day it will be but it looks like today is not that day.</text>
+    <description>This is a work in progress. This message will not be released to production. It's just a dev placeholder.</description>
+  </message>
+    
+  <!--  Error messages -->
+  <message>
+    <code>E00001</code>
+    <text>An error occurred during processing. Please try again.</text>
+    <description>An unexpected system error occurred while processing this request.</description>
+  </message>
+  <message>
+    <code>E00002</code>
+    <text>The content-type specified is not supported.</text>
+    <description>The only supported content-types are text/xml and application/xml.</description>
+  </message>
+  <message>
+    <code>E00003</code>
+    <text>An error occurred while parsing the XML request.</text>
+    <description>This is the result of an XML parser error.</description>
+  </message>
+  <message>
+    <code>E00004</code>
+    <text>The name of the requested API method is invalid.</text>
+    <description>The name of the root node of the XML request is the API method being called. It is not valid.</description>
+  </message>
+  <message>
+    <code>E00005</code>
+    <text>The transaction key or API key is invalid or not present.</text>
+    <description>User authentication requires a valid value for transaction key or API key.</description>
+  </message>
+  <message>
+    <code>E00006</code>
+    <text>The API user name is invalid or not present.</text>
+    <description>User authentication requires a valid value for API user name.</description>
+  </message>
+  <message>
+    <code>E00007</code>
+    <text>User authentication failed due to invalid authentication values.</text>
+    <description>The API user name is invalid and/or the transaction key or API key is invalid.</description>
+  </message>
+  <message>
+    <code>E00008</code>
+    <text>User authentication failed. The account or API user is inactive.</text>
+    <description>The payment gateway, reseller, or user account is not currently active.</description>
+  </message>
+  <message>
+    <code>E00009</code>
+    <text>The payment gateway account is in Test Mode. The request cannot be processed.</text>
+    <description>The requested API method cannot be executed while the payment gateway account is in Test Mode.</description>
+  </message>
+  <message>
+    <code>E00010</code>
+    <text>User authentication failed. You do not have the appropriate permissions.</text>
+    <description>The user does not have permission to call the API.</description>
+  </message>
+  <message>
+    <code>E00011</code>
+    <text>Access denied. You do not have the appropriate permissions.</text>
+    <description>The user does not have permission to call the API method.</description>
+  </message>
+  <message>
+    <code>E00012</code>
+    <text>A duplicate subscription already exists.</text>
+    <description>A duplicate of the subscription was already submitted.</description>
+  </message>
+  <message>
+    <code>E00013</code>
+    <text>The field is invalid.</text>
+    <description>One of the field values is not valid.</description>
+  </message>
+  <message>
+    <code>E00014</code>
+    <text>A required field is not present.</text>
+    <description>One of the required fields was not present.</description>
+  </message>
+  <message>
+    <code>E00015</code>
+    <text>The field length is invalid.</text>
+    <description>One of the fields has an invalid length.</description>
+  </message>
+  <message>
+    <code>E00016</code>
+    <text>The field type is invalid.</text>
+    <description>The field type is not valid.</description>
+  </message>
+  <message>
+    <code>E00017</code>
+    <text>The start date cannot occur in the past.</text>
+    <description>The subscription start date cannot occur before the subscription submission date.</description>
+  </message>
+  <message>
+    <code>E00018</code>
+    <text>The credit card expires before the subscription start date.</text>
+    <description>The credit card is not valid as of the start date of the subscription.</description>
+  </message>
+  <message>
+    <code>E00019</code>
+    <text>The customer tax id or drivers license information is required.</text>
+    <description>The customer tax ID or driver's license information (driver's license number, driver's license state, driver's license DOB) is required for the subscription.</description>
+  </message>
+  <message>
+    <code>E00020</code>
+    <text>The payment gateway account is not enabled for eCheck.Net subscriptions.</text>
+    <description>The payment gateway account is not set up to process eCheck.Net subscriptions.</description>
+  </message>
+  <message>
+    <code>E00021</code>
+    <text>The payment gateway account is not enabled for credit card subscriptions.</text>
+    <description>The payment gateway account is not set up to process credit card subscriptions.</description>
+  </message>
+  <message>
+    <code>E00022</code>
+    <text>The interval length cannot exceed 365 days or 12 months.</text>
+    <description>The interval length must be 7 to 365 days or 1 to 12 months.</description>
+  </message>
+  <message>
+    <code>E00023</code>
+    <text>The subscription duration cannot exceed three years.</text>
+    <description>The number of total occurrences cannot extend the duration of the subscription beyond three years from the start date.</description>
+  </message>
+  <message>
+    <code>E00024</code>
+    <text>Trial Occurrences is required when Trial Amount is specified.</text>
+    <description>The number of trial occurrences cannot be zero if a valid trial amount is submitted.</description>
+  </message>
+  <message>
+    <code>E00025</code>
+    <text>Automated Recurring Billing is not enabled.</text>
+    <description>The payment gateway account is not enabled for Automated Recurring Billing.</description>
+  </message>
+  <message>
+    <code>E00026</code>
+    <text>Both Trial Amount and Trial Occurrences are required.</text>
+    <description>If either a trial amount or number of trial occurrences is specified then values for both must be submitted.</description>
+  </message>
+  <message>
+    <code>E00027</code>
+    <text>The transaction was unsuccessful.</text>
+    <description>An approval was not returned for the transaction.</description>
+  </message>
+  <message>
+    <code>E00028</code>
+    <text>Trial Occurrences must be less than Total Occurrences.</text>
+    <description>The number of trial occurrences specified must be less than the number of total occurrences specified.</description>
+  </message>
+  <message>
+    <code>E00029</code>
+    <text>Payment information is required.</text>
+    <description>Payment information is required when creating a subscription or payment profile.</description>
+  </message>
+  <message>
+    <code>E00030</code>
+    <text>The payment schedule is required.</text>
+    <description>A payment schedule is required when creating a subscription.</description>
+  </message>
+  <message>
+    <code>E00031</code>
+    <text>The amount is required.</text>
+    <description>The subscription amount is required when creating a subscription.</description>
+  </message>
+  <message>
+    <code>E00032</code>
+    <text>The start date is required.</text>
+    <description>The subscription start date is required to create a subscription.</description>
+  </message>
+  <message>
+    <code>E00033</code>
+    <text>The start date cannot be changed.</text>
+    <description>Once a subscription is created the start date cannot be changed.</description>
+  </message>
+  <message>
+    <code>E00034</code>
+    <text>The interval information cannot be changed.</text>
+    <description>Once a subscription is created the interval cannot be changed.</description>
+  </message>
+  <message>
+    <code>E00035</code>
+    <text>The subscription cannot be found.</text>
+    <description>The subscription ID for this request is not valid for this merchant.</description>
+  </message>
+  <message>
+    <code>E00036</code>
+    <text>The payment type cannot be changed.</text>
+    <description>Changing the subscription payment type between credit card and eCheck.Net is not currently supported.</description>
+  </message>
+  <message>
+    <code>E00037</code>
+    <text>The subscription cannot be updated.</text>
+    <description>Subscriptions that are expired, canceled or terminated cannot be updated.</description>
+  </message>
+  <message>
+    <code>E00038</code>
+    <text>The subscription cannot be canceled.</text>
+    <description>Subscriptions that are expired or terminated cannot be canceled.</description>
+  </message>
+  <message>
+    <code>E00039</code>
+    <text>A duplicate record already exists.</text>
+    <description>A duplicate of the customer profile, customer payment profile, or customer address was already submitted.</description>
+  </message>
+  <message>
+    <code>E00040</code>
+    <text>The record cannot be found.</text>
+    <description>The customer profile ID, payment profile ID, shipping address ID, or transaction ID for this request is not valid for this merchant.</description>
+  </message>
+  <message>
+    <code>E00041</code>
+    <text>One or more fields must contain a value.</text>
+    <description>All of the fields were empty or missing.</description>
+  </message>
+  <message>
+    <code>E00042</code>
+    <text>You cannot add more than {0} payment profiles.</text>
+    <description>The maximum number of payment profiles for the customer profile has been reached.</description>
+  </message>
+  <message>
+    <code>E00043</code>
+    <text>You cannot add more than {0} shipping addresses.</text>
+    <description>The maximum number of shipping addresses for the customer profile has been reached.</description>
+  </message>
+  <message>
+    <code>E00044</code>
+    <text>Customer Information Manager is not enabled.</text>
+    <description>The payment gateway account is not enabled for Customer Information Manager (CIM).</description>
+  </message>
+  <message>
+    <code>E00045</code>
+    <text>The root node does not reference a valid XML namespace.</text>
+    <description>The root node does not reference a valid XML namespace.</description>
+  </message>
+  <message>
+    <code>E00046</code>
+    <text>Generic InsertNewMerchant failure.</text>
+    <description>Generic InsertNewMerchant failure.</description>
+  </message>
+  <message>
+    <code>E00047</code>
+    <text>Merchant Boarding API is not enabled.</text>
+    <description>The reseller account is not enabled for Merchant Boarding API.</description>
+  </message>
+  <message>
+    <code>E00048</code>
+    <text>At least one payment method must be set in payment types or an echeck service must be provided.</text>
+    <description>The merchant account must be set up to accept credit card payments, eCheck payments, or both.</description>
+  </message>
+  <message>
+    <code>E00049</code>
+    <text>The operation timed out before it could be completed.</text>
+    <description>The database operation timed out before it could be completed.</description>
+  </message>
+  <message>
+    <code>E00050</code>
+    <text>Sell Rates cannot be less than Buy Rates</text>
+    <description>Cannot set a buyrate to less than the sellrate</description>
+  </message>
+  <message>
+    <code>E00051</code>
+    <text>The original transaction was not issued for this payment profile.</text>
+    <description>If customer profile ID, payment profile ID, and shipping address ID are included, they must match the original transaction.</description>
+  </message>
+  <message>
+    <code>E00052</code>
+    <text>The maximum number of elements for an array {0} is {1}.</text>
+    <description>The maximum number of elements for an array has been reached.</description>
+  </message>
+  <message>
+    <code>E00053</code>
+    <text>Server too busy</text>
+    <description>The server is currently too busy, please try again later.</description>
+  </message>
+	<message>
+		<code>E00054</code>
+		<text>The mobile device is not registered with this merchant account.</text>
+		<description>The mobile device identifier is not associated with the merchant account.</description>
+	</message>
+	<message>
+		<code>E00055</code>
+		<text>The mobile device has already been registered but is pending approval by the account administrator.</text>
+		<description>The mobile device exists but is in a pending status.</description>
+	</message>
+	<message>
+		<code>E00056</code>
+		<text>The mobile device has been disabled for use with this account.</text>
+		<description>The mobile device exists but has a status of disabled.</description>
+	</message>
+	<message>
+		<code>E00057</code>
+		<text>The user does not have permissions to submit requests from a mobile device.</text>
+		<description>The user does not have sufficient permissions to use a mobile device with this merchant account.</description>
+	</message>
+	<message>
+		<code>E00058</code>
+		<text>The merchant has met or exceeded the number of pending mobile devices permitted for this account.</text>
+		<description>The merchant has too many devices in a pending status.</description>
+	</message>
+	<message>
+		<code>E00059</code>
+		<text>The authentication type is not allowed for this method call.</text>
+		<description>The authentication type is not allowed for the requested method call.</description>
+	</message>
+	<message>
+		<code>E00060</code>
+		<text>The transaction type is invalid.</text>
+		<description>The transaction type is invalid.</description>
+	</message>
+	<message> 
+		<code>E00061</code>
+		<text>{0}({1}).</text>
+		<description>Could not decrypt DUKPT blobs and returned error.</description>
+	</message>
+  <message>
+    <code>E00062</code>
+    <text>Fatal error when calling web service.</text>
+    <description>Fatal error when calling web service.</description>
+  </message>
+  <message>
+    <code>E00063</code>
+    <text>Calling web service return error.</text>
+    <description>Calling web service return error.</description>
+  </message>
+  <message>
+    <code>E00064</code>
+    <text>Client authorization denied.</text>
+    <description>Client authorization denied.</description>
+  </message>
+  <message>
+    <code>E00065</code>
+    <text>Prerequisite failed.</text>
+    <description>Prerequisite failed.</description>
+  </message>
+  <message>
+    <code>E00066</code>
+    <text>Invalid value.</text>
+    <description>Invalid value.</description>
+  </message>
+  <message>
+    <code>E00067</code>
+    <text>An error occurred while parsing the XML request.  Too many {0} specified.</text>
+    <description>This is the result of an XML parser error.  Too many nodes specified.</description>
+  </message>
+  <message>
+    <code>E00068</code>
+    <text>An error occurred while parsing the XML request.  {0} is invalid.</text>
+    <description>This is the result of an XML parser error.  The node is invalid.</description>
+  </message>
+  <message>
+    <code>E00069</code>
+    <text>The Payment Gateway Account service (id=8) has already been accepted.  Decline is not allowed.</text>
+    <description>The Payment Gateway Account service (id=8) has already been accepted.  Decline is not allowed.</description>
+  </message>
+  <message>
+    <code>E00070</code>
+    <text>The Payment Gateway Account service (id=8) has already been declined.  Agree is not allowed.</text>
+    <description>The Payment Gateway Account service (id=8) has already been declined.  Agree is not allowed.</description>
+  </message>
+  <message>
+    <code>E00071</code>
+    <text>{0} must contain data.</text>
+    <description>All of the fields were empty or missing.</description>
+  </message>
+  <message>
+    <code>E00072</code>
+    <text>Node {0} is required.</text>
+    <description>Required node missing.</description>
+  </message>
+  <message>
+    <code>E00073</code>
+    <text>{0} is invalid.</text>
+    <description>One of the field values is not valid.</description>
+  </message>
+  <message>
+    <code>E00074</code>
+    <text>This merchant is not associated with this reseller.</text>
+    <description>This merchant is not associated with this reseller.</description>
+  </message>
+  <message>
+    <code>E00075</code>
+    <text>An error occurred while parsing the XML request.  Missing field(s) {0}.</text>
+    <description>This is the result of an XML parser error.  Missing field(s).</description>
+  </message>
+  <message>
+    <code>E00076</code>
+    <text>{0} contains invalid value.</text>
+    <description>Invalid value.</description>
+  </message>
+  <message>
+    <code>E00077</code>
+    <text>The value of {0} is too long.  The length of value should be {1}</text>
+    <description>Value too long.</description>
+  </message>
+  <message>
+    <code>E00078</code>
+    <text>Pending Status (not completed).</text>
+    <description>Pending Status (not completed).</description>
+  </message>
+  <!-- BEGIN[cmai]: Meta credentials -->
+  <message>
+    <code>E00079</code>
+    <text>The impersonation login ID is invalid or not present.</text>
+    <description>Impersonation partner login ID is invalid or not present.</description>
+  </message>
+  <message>
+    <code>E00080</code>
+    <text>The impersonation API Key is invalid or not present.</text>
+    <description>Impersonation API Key is invalid or not present.</description>
+  </message>
+  <message>
+    <code>E00081</code>
+    <text>Partner account is not authorized to impersonate the login account.</text>
+    <description>The partner account is not authorized to impersonate the login account.</description>
+  </message>
+  <!-- END: Meta credentials -->
+  <message>
+    <code>E00082</code>
+    <text>Country for {0} is not valid.</text>
+    <description>Country is not valid.</description>
+  </message>
+  <message>
+    <code>E00083</code>
+    <text>Bank payment method is not accepted for the selected business country.</text>
+    <description>Bank payment method is not accepted for the selected business country.</description>
+  </message>
+  <message>
+    <code>E00084</code>
+    <text>Credit card payment method is not accepted for the selected business country.</text>
+    <description>Credit card payment method is not accepted for the selected business country.</description>
+  </message>
+  <message>
+    <code>E00085</code>
+    <text>State for {0} is not valid.</text>
+    <description>State is not valid.</description>
+  </message>
+  <message>
+    <code>E00086</code>
+    <text>Merchant has declined authorization to resource.</text>
+    <description>Merchant has declined authorization to resource.</description>
+  </message>
+  <message>
+    <code>E00087</code> <!-- ERR_NO_SUBSCRIPTIONS_FOUND -->
+    <text>No subscriptions found for the given request.</text>
+    <description>There are no subscriptions available for the merchant account for the type of subscriptions requested.</description>
+  </message>
+  <message>
+    <code>E00088</code> <!-- ERR_NOPROFILEID_WITH_CREATE_PROFILE -->
+    <text>ProfileIds cannot be sent when requesting CreateProfile.</text>
+    <description>CreateProfile and profileIds are mutually exclusive, only one of them can be provided at a time.</description>
+  </message>
+  <message>
+    <code>E00089</code> <!-- ERR_PAYMENT_DATA_REQUIRED_WITH_CREATE_PROFILE -->
+    <text>Payment data is required when requesting CreateProfile.</text>
+    <description>When requesting CreateProfile payment data cannot be null.</description>
+  </message>
+  <message>
+    <code>E00090</code> <!-- ERR_NO_PAYMENT_PROFILE_WITH_PAYMENT_DATA -->
+    <text>PaymentProfile cannot be sent with payment data.</text>
+    <description>PaymentProfile and PaymentData are mutually exclusive, only one of them can be provided at a time.</description>
+  </message>
+  <message>
+    <code>E00091</code> <!-- ERR_NO_PAYMENT_PROFILEID_WITH_PAYMENT_DATA -->
+    <text>PaymentProfileId cannot be sent with payment data.</text>
+    <description>PaymentProfileId and payment data are mutually exclusive, only one of them can be provided at a time.</description>
+  </message>
+  <message>
+    <code>E00092</code> <!-- ERR_NO_SHIPPING_PROFILEID_WITH_SHIPTO_DATA -->
+    <text>ShippingProfileId cannot be sent with ShipTo data.</text>
+    <description>ShippingProfileId and ShipToAddress are mutually exclusive, only one of them can be provided at a time.</description>
+  </message>
+  <message>
+    <code>E00093</code> <!-- ERR_NO_PAYMENT_PROFILE_WITH_BILLTO_DATA -->
+    <text>PaymentProfile cannot be sent with billing data.</text>
+    <description>PaymentProfile and Billing information are mutually exclusive, only one of them can be provided at a time.</description>
+  </message>
+  <message>
+    <code>E00094</code> <!-- ERR_INVALID_PAGING_OFFSET_FOR_SUBSCRIPTIONS -->
+    <text>Paging Offset exceeds the maximum allowed value.</text>
+    <description>Paging Offset exceeds allowed value. Check and lower the value.</description>
+  </message>
+  <message>
+    <code>E00095</code>
+    <!-- ERR_SHIPPING_PROFILEID_NOT_PROVIDED -->
+    <text>ShippingProfileId is not provided within Customer Profile.</text>
+    <description>When using Customer Profile with Credit Card Info to specify Shipping Profile, Shipping Profile Id must be included.</description>
+  </message>  
+  <message>
+    <code>E00096</code>
+    <text>Finger Print value is not valid.</text>
+    <description>Finger Print value is not valid.</description>
+  </message>
+  <message>
+    <code>E00097</code>
+    <text>Finger Print can't be generated.</text>
+    <description>Finger Print can't be generated.</description>
+  </message>
+  <message>
+    <code>E00098</code>
+    <!-- ERR_CUSTOMER_OR_SHIPPINGPROFILE_NOT_FOUND -->
+    <text>Customer Profile ID or Shipping Profile ID not found.</text>
+    <description>Search for shipping profile using customer profile id and shipping profile id did not find any records.</description>
+  </message>
+  <message>
+    <code>E00099</code>
+    <!-- ERR_TRANS_NOT_FOUND_NO_PROFILE_CREATED -->
+    <text>Customer profile creation failed. This transaction ID is invalid.</text>
+    <description>Customer profile creation failed. This transaction ID is invalid.</description>
+  </message>
+  <message>
+    <code>E00100</code>
+    <!-- ERR_INVALID_TRANS_TYPE_FOR_PROFILE_CREATION -->
+    <text>Customer profile creation failed. This transaction type does not support profile creation.</text>
+    <description>Customer profile creation failed. This transaction type does not support profile creation.</description>
+  </message>
+  <message>
+    <code>E00101</code>
+    <!-- ERR_CREATING_CUSTOMERPROFILE_FROM_TRANSACTION -->
+    <text>Customer profile creation failed.</text>
+    <description>Error creating a customer payment profile from transaction.</description>
+  </message>
+  <message>
+    <code>E00102</code>
+    <!-- ERR_CREATING_PROFILE_MISSING_CUSTOMER_INFO -->
+    <text>Customer Info is missing.</text>
+    <description>Error creating a customer profile from transaction.</description>
+  </message>
+</anetApiMessages>
+</section>

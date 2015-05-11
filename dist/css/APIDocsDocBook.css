@@ -3,26 +3,25 @@ article{
 	font-size: 14px;
 }
 title{
-	font-weight:bold;
 	clear:both;
 	display:block;
 	font-size:40px;
 	border-bottom: 1px solid #ccc;
 }
 subtitle{
-	font-weight:bold;
 	clear:both;
 	display:block;
 	font-size:30px;
 }
 subsubtitle{
 	clear:both;
-	display:block;
+	display:inline-block;
 	font-size:21px;
 }
 para{
 	display:block;
 	padding:10px 0;
+
 }
 div{
 	background-color:;
@@ -63,4 +62,16 @@ table.regulartable{
 }
 table.regulartable tr td{
 	border: 1px solid gray;
+	vertical-align: top;
+	padding:2px;
+}
+listitem{
+	display:block;
+}
+code{
+	color:#000;
+	background-color:transparent;
+}
+.marginTopBottomThirtyPixels {
+margin: 30px 0;
 }

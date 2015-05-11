@@ -1,12 +1,26 @@
 var requestEditor, responseEditor, codeEditorsID=[],transactionkey,loginid;
+
 var sURL = "https://apitest.authorize.net/xml/v1/request.api";
+
 var timer
+
 $(document).ready(function() {
    if($("#navigationbarID li.active a").attr("id")==="SGuideTabID")loadGettingStartedGuidePages();
    else initAPI()
   initializelightBox();
-});
 
+  // to check if API login id and Transaction key exist in cookie
+  var cookieId = getCredCookie('loginId'),
+      cookieKey = getCredCookie('transactionKey');
+
+  if(cookieId && cookieKey) {
+    applyCredential('main', cookieId, cookieKey);
+
+    $('#populateKeyForm-main').find('.btn-primary').text('Repopulate Sample Requests')
+  }
+
+
+});
 
 function initAPI(){
 
@@ -18,7 +32,7 @@ function initAPI(){
     codeEditorsID[id] =  CodeMirror.fromTextArea(document.getElementById(id), { mode: 'xml',lineNumbers: true});
   });
   // Sample API readonly code mirror
-  codeEditorsID['authentication-sample-Code'] = CodeMirror.fromTextArea(document.getElementById('authentication-sample-Code'), { mode: 'xml',lineNumbers: true,readOnly:true});
+  codeEditorsID['authentication-sample-Code'] = CodeMirror.fromTextArea(document.getElementById('authentication-sample-Code-Xml'), { mode: 'xml',lineNumbers: true,readOnly:true});
   codeEditorsID['authentication-sample-Code'].setSize(null,85);
 
   $('a').click(function(event){ 
@@ -57,8 +71,8 @@ function initAPI(){
 
 
 function loadGettingStartedGuidePages(){
-  $("#StartingGuide-recurring-billing").load("recurringBilling.html");
-  $("#customerInfoManagerID").load("customerInformationManager.html");
+  //$("#StartingGuide-recurring-billing").load("recurringBilling.html");
+  //$("#customerInfoManagerID").load("customerInformationManager.html");
   
 }
 
@@ -80,14 +94,21 @@ function XHConn()
   }catch (e) { xmlhttp = false; }
   if (!xmlhttp) return null;
 
-  this.connect = function( sPostData, fnDone)
+  this.connect = function( sPostData, fnDone, isJSON)
   { 
     try {
       
       bComplete = false;
       xmlhttp.open(method, sURL, true);
       xmlhttp.setRequestHeader("method", "POST "+sURL+" HTTP/1.1");
-      xmlhttp.setRequestHeader("content-type", "text/xml");
+      
+      if(isJSON){
+        xmlhttp.setRequestHeader("content-type", "application/json");
+        //xmlhttp.setRequestHeader("content-type", "text/xml");
+        
+      }else{
+        xmlhttp.setRequestHeader("content-type", "text/xml");
+      }
       xmlhttp.onreadystatechange = function(){
         if (xmlhttp.readyState == 4 && !bComplete)
         {
@@ -124,61 +145,98 @@ function btnSend_onclick(id) {
   document.getElementById("spnStatusCode"+genericId).innerHTML = "";
   
   var fnWhenDone = function (oXML) {
+      //oXML is the whole xmlhttp object 
        $("#txtRespLoader"+genericId).hide();
       if (oXML.status && oXML.status != "200") {
         document.getElementById("spnStatusCode"+genericId).innerHTML = "HTTP status code: " + oXML.status.toString().replace(/</g, "&lt;");
       }
        if(oXML.responseText.indexOf("Error")>-1){
-          var errorTxt = oXML.responseText.split("text>");
-          $("#spnStatusCode"+genericId).text(errorTxt[1].substring(0,errorTxt[1].length-2));
-          $("#spnStatusCode"+genericId).show(200);
+          if(!$("#txtReqXml"+genericId).data("isJSON")){
+            var errorTxt = oXML.responseText.split("text>");
+            $("#spnStatusCode"+genericId).text(errorTxt[1].substring(0,errorTxt[1].length-2));
+            $("#spnStatusCode"+genericId).show(200);
+          }
         }
         else{
           $("#spnStatusCode"+genericId).text('');
         }
       var txt = oXML.responseText;
-      txt = txt.replace(/></g, "> <");
-      codeEditorsID["txtRespXml"+genericId].setValue(txt);
-      reFormatCodeMirror("txtRespXml"+genericId);
+      txt = txt.replace(/></g, "> <").replace(/&amp;/, "&");
+	 
+     if($("#txtReqXml"+genericId).data("isJSON")){
+	       respObj = JSON.parse(txt);
+		   txt = JSON.stringify(respObj, null, 4);
+		   codeEditorsID["txtRespXml"+genericId].setValue(txt);
+		   codeEditorsID["txtRespXml"+genericId].setOption("mode", "javascript");
+		   codeEditorsID["txtRespXml"+genericId].setOption("json", "true");
+           codeEditorsID["txtRespXml"+genericId].refresh();
+	  }
+	  else{
+		codeEditorsID["txtRespXml"+genericId].setValue(txt);
+		reFormatCodeMirror("txtRespXml"+genericId);
+	  }
+
       document.getElementById("btnSend"+genericId).disabled = false;
   };
-  g_xc.connect(codeEditorsID["txtReqXml"+genericId].getValue() , fnWhenDone);
+
+  var theRealValueToSend = stripCodeMirrorIndenting(codeEditorsID["txtReqXml"+genericId].getValue());
+  g_xc.connect(theRealValueToSend , fnWhenDone, $("#txtReqXml"+genericId).data("isJSON"));
 }
 
 function btnReset_onclick(id){
-   genericId = id.substring(8,id.length);
-   codeEditorsID["txtReqXml"+genericId].setValue($("#txtReqXml"+genericId).val().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
-   codeEditorsID["txtReqXml"+genericId].refresh();
-   codeEditorsID["txtRespXml"+genericId].setValue($("#txtRespXml"+genericId).val());
-   codeEditorsID["txtRespXml"+genericId].refresh();
-   $("#spnStatusCode"+genericId).hide('easeIn', function(){
-     $("#spnStatusCode"+genericId).text('');
-   })
+  genericId = id.substring(8,id.length);
+    if($("#txtReqXml"+genericId).data("isJSON")){
+      if(loginid && transactionkey) {
+        codeEditorsID["txtReqXml"+genericId].setValue($("#txtReqJsn"+genericId).val().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
+        codeEditorsID["txtReqXml"+genericId].refresh();
+      }
+      codeEditorsID["txtRespXml"+genericId].setValue($("#txtRespJsn"+genericId).val());
+      codeEditorsID["txtRespXml"+genericId].refresh();
+    }
+    else{
+      if(loginid && transactionkey) {
+        codeEditorsID["txtReqXml"+genericId].setValue($("#txtReqXml"+genericId).val().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
+        codeEditorsID["txtReqXml"+genericId].refresh();
+      }
+      codeEditorsID["txtRespXml"+genericId].setValue($("#txtRespXml"+genericId).val());
+      codeEditorsID["txtRespXml"+genericId].refresh();
+    }
+    $("#spnStatusCode"+genericId).hide('easeIn', function(){
+    $("#spnStatusCode"+genericId).text('');
+  })
 }
 
 function reFormatCodeMirror(id){
     var totalLines = codeEditorsID[id].lineCount();
     var totalChars = codeEditorsID[id].getTextArea().value.length;
     codeEditorsID[id].autoFormatRange({line:0, ch:0}, {line:totalLines, ch:totalChars});
+
     CodeMirror.commands['goPageUp'](codeEditorsID[id]);
+CodeMirror.commands['indentAuto'](codeEditorsID[id]);
+
+
+
     $("#"+id).trigger({type: 'keypress', which: 13});
 }
 
 function btnPopulateKeys_onclick(object) {
+
    var id = object.id.split("populateKeyForm-")[1];
-   loginid = document.getElementById("txtLoginID-"+id).value;                                 
+   loginid = document.getElementById("txtLoginID-"+id).value;
    transactionkey = document.getElementById("txtTransactionKey-"+id).value;
+
+   // store loginid and transactionkey into cookie
+   setCredCookie('loginId', loginid);
+   setCredCookie('transactionKey', transactionkey);  
+
    if(loginid==="" || transactionkey==="" ){
     $("#"+object.id+" div").addClass("has-error");
     $("form .required").show();
     return false;
-   }   
-   var allSamples = document.getElementsByClassName("sample-request");
-   for (var i = 0; i < allSamples.length; i++) {
-      var sampleRequest = codeEditorsID[allSamples[i].id];
-      sampleRequest.setValue(sampleRequest.getValue().replace("API_LOGIN_ID",loginid).replace("API_TRANSACTION_KEY",transactionkey));
-      sampleRequest.refresh();
-    }
+   } 
+
+   applyCredential(id, loginid, transactionkey);
+	
    $(object).find(".btn-primary").attr("disabled","disabled").addClass("btn-success").removeClass("btn-primary").text("Done!!");
    $(".authenticationDiv").hide("slow");
    $("form .required").hide();
@@ -186,6 +244,34 @@ function btnPopulateKeys_onclick(object) {
    $("#txtLoginID-"+id).val('');
    $("#txtTransactionKey-"+id).val('');
    return false;
+}
+
+function applyCredential(id, loginid, transactionkey) {
+  var allSamples = document.getElementsByClassName("sample-request");
+
+  for (var i = 0; i < allSamples.length; i++) {
+    var sampleRequest = codeEditorsID[allSamples[i].id],
+        sampleRequestValue = sampleRequest.getValue(),
+        existingLoginId = ($(sampleRequestValue).find('merchantAuthentication > name').text()), // look for existing credential loginId
+        existingKey = ($(sampleRequestValue).find('merchantAuthentication > transactionKey').text()); // looking for existing credential Key
+    sampleRequest.setValue(sampleRequestValue.replace(existingLoginId, loginid).replace(existingKey, transactionkey));
+    sampleRequest.refresh();
+  }
+}
+
+function setCredCookie(cname, cvalue) {
+    document.cookie = cname + "=" + cvalue;
+}
+
+function getCredCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return "";
 }
 
 function selUrls_onChange(obj) {
@@ -216,4 +302,25 @@ function getInternetExplorerVersion()
   else{
      $('form .ie9msg').hide();
   }
+}
+
+// this is to pull out the indenting in the CodeMirror XML
+function stripCodeMirrorIndenting(code){
+  var arrIndentedCode = code.split(">");
+  var arrScrunchedCode = [];
+  arrIndentedCode.forEach(function(entry) {
+      //  this should be a regex
+      entry = entry.replace("\n          ", "");
+      entry = entry.replace("\n         ", "");
+      entry = entry.replace("\n        ", "");
+      entry = entry.replace("\n       ", "");
+      entry = entry.replace("\n      ", "");
+      entry = entry.replace("\n     ", "");
+      entry = entry.replace("\n    ", "");
+      entry = entry.replace("\n   ", "");
+      entry = entry.replace("\n  ", "");
+      entry = entry.replace("\n ", "");
+      arrScrunchedCode.push(entry.trim());
+  });
+  return arrScrunchedCode.join(">");
 }

@@ -1,0 +1,156 @@
+<article>
+	<section id="PayPal">
+		<title>PayPal Express Checkout</title>
+	</section>
+	<para>PayPal Express Checkout for Authorize.Net enables you to offer PayPal as a payment option to your customers by incorporating it within your existing XML API implementation.</para>
+	
+	<para>PayPal Express Checkout is not supported by some resellers and is not offered in some countries. For more information, contact your reseller. PayPal Express Checkout does not support the full PayPal feature-set, including $0 authorizations. PayPal transactions are not subject to AFDS fraud filters, except the IP blacklist filter.</para>
+	
+	<para>To use PayPal Checkout Express:</para>
+	
+	<itemizedList>
+		<listItem><para>A Business or Premier PayPal account. A Business or Premier account enables you
+to become a merchant for whom PayPal collects money from buyers for goods or
+services. PayPal manages these transactions and charges you a small fee and a
+percentage of the amount collected from the buyer for each transaction.</para></listItem>
+		<listItem><para>A PayPal sandbox account with two test accounts. The PayPal sandbox provides an
+environment that simulates PayPal in which you execute your Express Checkout
+integration without actually exchanging money. One of your test accounts represents
+you as the merchant; the other test account represents a buyer. Your testing is not
+restricted to just two accounts; however, you must have a sandbox account to create
+test accounts and perform actual testing. The PayPal sandbox URL is:</para></listItem>
+	</itemizedList>
+	<para><ulink url="https://developer.paypal.com/docs/classic/lifecycle/ug_sandbox/">https://developer.paypal.com/docs/classic/lifecycle/ug_sandbox/</ulink></para>
+	
+	<para><emphasis>Note: </emphasis>Refunds cannot be tested in the sandbox environment because the settlement process is not being enabled.</para>
+
+	<section id="PayPal_ButtonPlacement">
+		<subtitle>Button Placement</subtitle>
+	
+		<para>Customers choose PayPal because they are familiar with the checkout experience and trust the security that PayPal offers. Placing the PayPal button early in the checkout flow will ensure increased sales lift, because customers will know early on that PayPal is a payment option. Note that the customer only initiates PayPal Express Checkout when they choose PayPal as a payment option. When they choose to "check out with PayPal," they are routed directly to PayPal.</para>
+
+		<para>For more information on Express Checkout Best practices, click <ulink url="https://developer.paypal.com/webapps/developer/docs/classic/express-checkout/integration-guide/ECUIRequirements/">here</ulink>.</para>
+	</section>
+
+
+	<section id="PayPal_TransactionTypes">
+		<subtitle>Transaction Types</subtitle>
+
+		<para>The transaction flow for PayPal Express Checkout for Authorize.Net is different than a credit card transaction flow. The initial request to authorize a transaction notifies PayPal that an authorization has been initiated. Information that can be used to continue the authorization must be returned from PayPal.</para>
+
+		<para>PayPal Express Checkout for Authorize.Net uses the following transaction types.</para>
+	
+
+
+		<subsubtitle><ulink url="http://developer.authorize.net/api/reference/#paypal-express-checkout--authorization-only">Authorization Only</ulink></subsubtitle>
+		
+		<para>An Authorization Only request notifies PayPal that an authorization has been initiated but does not complete the authorization. It returns a secure URL with a token appended to it. The purpose of this token is to identify the transaction when the customer is redirected to PayPal.</para>
+
+		<subsubtitle><ulink url="http://developer.authorize.net/api/reference/#paypal-express-checkout--get-details">Get Details</ulink></subsubtitle>
+
+		<para>A Get Details transaction returns customer's PayPal Payer ID, email address, and shipping information. Get Details can be called at any time and is most useful after the customer has approved the payment at PayPal.</para>
+
+		<subsubtitle><ulink url="http://developer.authorize.net/api/reference/#paypal-express-checkout--authorization-only-continued">Authorization Only, Continued</ulink></subsubtitle>
+
+		<para>This request, if successful, actually authorizes the transaction but does not capture it.</para>
+
+		<subsubtitle><ulink url="http://developer.authorize.net/api/reference/#paypal-express-checkout--prior-authorization-capture">Prior Authorization Capture</ulink></subsubtitle>
+
+		<para>This transaction type is used to capture an Authorization Only, Continue transaction that was successfully authorized through the payment gateway.</para>
+
+		<subsubtitle><ulink url="http://developer.authorize.net/api/reference/#paypal-express-checkout--void">Void</ulink></subsubtitle>
+
+		<para>This transaction type can be used to cancel an authorization that has not yet been captured. Void can be used only in the following sequence: Authorization Only, Authorization Only Continue, Void.</para>
+
+		<subsubtitle><ulink url="http://developer.authorize.net/api/reference/#paypal-express-checkout--authorization-and-capture">Authorization and Capture</ulink></subsubtitle>
+
+		<para>This type of transaction is the most common and is the default payment gateway transaction type. Like the Authorization Only request, it notifies PayPal that an Authorization and Capture transaction has been initiated, but does not complete the request. It also returns a secure URL with a token appended to it. The purpose of this token is to identify the transaction when the customer is redirected to PayPal.</para>
+
+		<subsubtitle><ulink url="http://developer.authorize.net/api/reference/#paypal-express-checkout--authorization-and-capture-continue">Authorization and Capture, Continued</ulink></subsubtitle>
+
+		<para>This request actually authorizes and captures the transaction.</para>
+
+		<subsubtitle><ulink url="http://developer.authorize.net/api/reference/#paypal-express-checkout--credit">Refund</ulink></subsubtitle>
+
+		<para>This transaction type is used to refund a customer for a transaction that was originally processed and successfully settled through the payment gateway. Refunds do not occur until after your transactions have been settled on our system, which happens after the cutoff time.</para>
+</section>
+
+
+
+<section id="PayPal_TransactionFlow">
+	<subtitle>Transaction Flow</subtitle>
+
+	<para>The transaction flow consists of three typical sequences:</para>
+
+	<subsubtitle>Sequence 1</subsubtitle>
+
+		<orderedlist numeration="arabic">
+	
+			<listitem>
+				<para>Authorization Only</para>
+			</listitem>
+
+			<listitem>
+				<para>Get Details (recommended for shipping)</para>
+			</listitem>
+		
+			<listitem>	
+				<para>Authorization Only, Continue</para>
+			</listitem>
+			
+			<listitem>
+				<para>Prior Authorization Capture</para>
+			</listitem>
+
+			<listitem>
+				<para>Refund (optional)</para>
+			</listitem>
+
+		</orderedlist>	
+		
+	<subsubtitle>Sequence 2</subsubtitle>
+	
+		<orderedlist numeration="arabic">
+		
+			<listitem>
+				<para>Authorization Only</para>
+			</listitem>
+				
+			<listitem>	
+				<para>Get Details (recommended for shipping)</para>
+			</listitem>
+
+			<listitem>
+				<para>Authorization Only, Continue</para>
+			</listitem>
+				
+			<listitem>	
+				<para>Void</para>
+			</listitem>	
+			
+		</orderedlist>
+
+	<subsubtitle>Sequence 3</subsubtitle>
+
+		<orderedlist numeration="arabic">
+		
+			<listitem>
+				<para>Authorization and Capture</para>
+			</listitem>	
+
+			<listitem>
+				<para>Get Details (recommended for shipping)</para>
+			</listitem>
+
+			<listitem>
+				<para>Authorization and Capture, Continue</para>
+			</listitem>
+		
+			<listitem>
+				<para>Refund (optional)</para>
+			</listitem>
+
+		</orderedlist>
+
+</section>
+</article>
