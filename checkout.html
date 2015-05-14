@@ -1,0 +1,60 @@
+<html>
+ <head>
+  <script type="text/javascript">
+   function onVisaCheckoutReady() {
+     V.init({
+     apikey: "GY3CQNLRHKE63GWCVLHH13Ff12umyj4ZglGhGdCM6y6Liy0YE",
+     sourceId: "Merchant Defined Source ID",
+     settings: {
+      locale: "en_US",
+      countryCode: "US",
+      displayName: "...Corp",
+      logoUrl: "www.Some_Image_URL.gif",
+      websiteUrl: "www....Corp.com",
+      customerSupportUrl: "www....Corp.support.com",
+      shipping: {
+       acceptedRegions: ["US", "CA"],
+       collectShipping: "true"
+      },
+      payment: {
+       cardBrands: [
+        "VISA",
+        "MASTERCARD"],
+       acceptCanadianVisaDebit: "true"
+      },
+      review: {
+       message: "Merchant defined message",
+       buttonAction: "Continue"
+      },
+     dataLevel: "SUMMARY"
+     },
+     paymentRequest: {
+      merchantRequestId: "Merchant defined request ID",
+      currencyCode: "USD",
+      subtotal: "10.00",
+      shippingHandling: "2.00",
+      tax: "2.00",
+      discount: "1.00",
+      giftWrap: "2.00",
+      misc: "1.00",
+      total: "16.00",
+      description: "Megacorp Product",
+      orderId: "Merchant defined order ID",
+      promoCode: "Merchant defined promo code",
+      customData: {
+       "nvPair": [
+       { "name": "customName1", "value": "customValue1" },
+       { "name": "customName2", "value": "customValue2" }
+      ]
+     }
+    }
+   }
+  );
+V.on("payment.success", function(payment) {alert(JSON.stringify(payment)); }); V.on("payment.cancel", function(payment) {alert(JSON.stringify(payment)); }); V.on("payment.error", function(payment, error) {alert(JSON.stringify(error)); }); }  </script> </head> <body>  <img alt="Visa Checkout" class="v-button" role="button"
+ src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png?
+  cardBrands=VISA,MASTERCARD,DISCOVER,AMEX"/>
+ <script type="text/javascript"
+  src="https://sandbox-assets.secure.checkout.visa.com/checkout-widget/resources/js/integration/v1/sdk.js">
+ </script>
+</body>
+</html>
