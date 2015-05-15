@@ -50,7 +50,7 @@
     }
    }
   );
-V.on("payment.success", function(payment) {alert(JSON.stringify(payment)); print(JSON.stringify(payment)); }); V.on("payment.cancel", function(payment) {alert(JSON.stringify(payment)); }); V.on("payment.error", function(payment, error) {alert(JSON.stringify(error)); }); }  </script> </head> <body>  <img alt="Visa Checkout" class="v-button" role="button"
+V.on("payment.success", function(payment) {alert(JSON.stringify(payment)); console.log("It worked!");console.log(JSON.stringify(payment)); }); V.on("payment.cancel", function(payment) {alert(JSON.stringify(payment)); console.log("Someone cancelled!");console.log(JSON.stringify(payment));}); V.on("payment.error", function(payment, error) {alert(JSON.stringify(error)); console.log("Ooops!");console.log(JSON.stringify(payment)); }); }  </script> </head> <body>  <img alt="Visa Checkout" class="v-button" role="button"
  src="https://sandbox.secure.checkout.visa.com/wallet-services-web/xo/button.png?
   cardBrands=VISA,MASTERCARD,DISCOVER,AMEX"/>
  <script type="text/javascript"
