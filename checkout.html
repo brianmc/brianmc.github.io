@@ -7,7 +7,30 @@
      paymentRequest: {
       currencyCode: "USD",
       total: "16.00"
-    }
+    },
+    settings: {
+      locale: "en_US",
+      countryCode: "US",
+      displayName: "...Corp",
+      logoUrl: "www.Some_Image_URL.gif",
+      websiteUrl: "www....Corp.com",
+      customerSupportUrl: "www....Corp.support.com",
+      shipping: {
+       acceptedRegions: ["US", "CA"],
+       collectShipping: "true"
+      },
+      payment: {
+       cardBrands: [
+        "VISA",
+        "MASTERCARD"],
+       acceptCanadianVisaDebit: "true"
+      },
+      review: {
+       message: "Merchant defined message",
+       buttonAction: "Continue"
+      },
+     dataLevel: "FULL"
+     }
    }
   );
 V.on("payment.success", function(payment) {alert(JSON.stringify(payment)); console.log("It worked!");console.log(JSON.stringify(payment)); }); V.on("payment.cancel", function(payment) {alert(JSON.stringify(payment)); console.log("Someone cancelled!");console.log(JSON.stringify(payment));}); V.on("payment.error", function(payment, error) {alert(JSON.stringify(error)); console.log("Ooops!");console.log(JSON.stringify(payment)); }); }  </script> </head> <body>  <img alt="Visa Checkout" class="v-button" role="button"
